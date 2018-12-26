@@ -1,13 +1,15 @@
 #!/usr/bin/env rc
 # Generates the index file for a markdown blog
 
+site = 'https://henesy.github.io'
 files = `{ls -t *.md | grep -v 'README\.md' | grep -v 'index\.md'}
 
 echo '# Some Kind of Blog
 ' > index.md
 
 for(f in $files){
-	echo '- '^$f >> index.md
+	url = $site^'/'^`{echo $f | sed 's/\.md//g'}
+	echo '- [' ^ $f ^ '](' ^ $url ^ ')' >> index.md
 }
 
 echo >> index.md
