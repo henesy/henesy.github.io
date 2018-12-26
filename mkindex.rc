@@ -8,8 +8,9 @@ echo '# Some Kind of Blog
 ' > index.md
 
 for(f in $files){
-	url = $site^'/'^`{echo $f | sed 's/\.md//g'}
-	echo '- [' ^ $f ^ '](' ^ $url ^ ')' >> index.md
+	page = `{echo $f | sed 's/\.md//g'}
+	url = $site^'/'^$page
+	echo '- [' ^ $page ^ '](' ^ $url ^ ')' >> index.md
 }
 
 echo >> index.md
