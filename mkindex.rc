@@ -1,0 +1,14 @@
+#!/usr/bin/env rc
+# Generates the index file for a markdown blog
+
+files = `{ls -t *.md | grep -v 'README\.md' | grep -v 'index\.md'}
+
+echo '# Some Kind of Blog
+' > index.md
+
+for(f in $files){
+	echo '- '^$f >> index.md
+}
+
+echo >> index.md
+
