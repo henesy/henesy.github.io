@@ -10,5 +10,5 @@ The rc for unix port I use is by Byron Rakitzis: <https://github.com/rakitzis/rc
 
 ## See also
 
-<http://blog.postnix.us>
+<http://blog.postnix.pw>
 
