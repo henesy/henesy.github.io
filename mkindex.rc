@@ -4,10 +4,16 @@
 
 site = 'https://seh.dev'
 motto = '# PR||GTFO'
+header = '<title> PR||GTFO </title>'
 
 ### Header
 
-echo $motto > index.md
+touch index.md
+cat index.md > index.md
+
+echo $header >> index.md
+
+echo $motto >> index.md
 echo >> index.md
 
 ### Blog body

@@ -1,3 +1,4 @@
+<title> PR||GTFO </title>
 # PR||GTFO
 
 * 2018/12/27 - [Using p9sk1 authentication in modern 9front](https://seh.dev/2018/12/27/0/)
