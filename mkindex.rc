@@ -4,7 +4,7 @@
 
 site = 'https://seh.dev'
 motto = '# PR||GTFO'
-header = '<title> PR||GTFO </title>'
+header = ''
 
 ### Header
 
