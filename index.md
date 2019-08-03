@@ -1,4 +1,4 @@
-# PR||GTFO
+# PR¦¦GTFO
 
 * 2018/12/27 - [Using p9sk1 authentication in modern 9front](https://seh.dev/2018/12/27/0/)
 * 2018/09/21 - [Intro to Graphics on Plan 9](https://seh.dev/2018/09/21/0/)

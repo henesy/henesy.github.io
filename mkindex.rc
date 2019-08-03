@@ -3,7 +3,7 @@
 # Tree format is /year/month/day/N/index.md
 
 site = 'https://seh.dev'
-motto = '# PR||GTFO'
+motto = '# PR¦¦GTFO'
 
 echo $motto > index.md
 echo >> index.md
