@@ -1,17 +1,26 @@
 #!/usr/bin/env rc
-# Generates the index file for a markdown blog
+# Create /index.md for blog
+# Tree format is /year/month/day/N/index.md
 
-site = 'https://henesy.github.io'
-files = `{ls -t *.md | grep -v 'README\.md' | grep -v 'index\.md'}
+site = 'https://seh.dev'
+motto = '# PR||GTFO'
 
-echo '# Some Kind of Blog
-' > index.md
+echo $motto > index.md
+echo >> index.md
 
-for(f in $files){
-	page = `{echo $f | sed 's/\.md//g'}
-	url = $site^'/'^$page
-	echo '- [' ^ $page ^ '](' ^ $url ^ ')' >> index.md
+# Ignore dir names starting with _
+years = `{ls -l | grep '^d' | awk '{print $9}' | grep -v '^_'}^/
+
+for(y in $years){
+	paths = `{du -a $y | awk '{print $2}' | grep '/index.md$'}
+	
+	for(p in $paths){
+		date = `{echo $p | sed 's/\/[0-9]\/index.md$//g'}
+		title = `{echo '/^#/' | ed -s $p | sed 's/^# //g'}
+		url = $site^'/'^$p
+		
+		echo '- ['^$"title^']('^$url^')' >> index.md
+	}
 }
 
 echo >> index.md
-
