@@ -2,6 +2,7 @@
 # Create /index.md for blog
 # Tree format is /year/month/day/N/index.md
 
+src = 'https://github.com/henesy/henesy.github.io'
 site = 'https://seh.dev'
 motto = '# PR||GTFO'
 header = '<title> PR||GTFO </title>'
@@ -38,10 +39,12 @@ echo >> index.md
 ### Footer
 echo '**See also**:
 
-* <https://github.com/henesy>
-* <https://bitbucket.org/henesy>
-* <https://gitlab.com/henesy>
-* <http://postnix.pw>
+- <https://github.com/henesy>
+- <https://bitbucket.org/henesy>
+- <https://gitlab.com/henesy>
+- <http://postnix.pw>
 ' >> index.md
+
+echo 'Source: <'^$src^'>' >> index.md
 
 echo >> index.md

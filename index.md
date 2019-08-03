@@ -12,9 +12,10 @@
 
 **See also**:
 
-* <https://github.com/henesy>
-* <https://bitbucket.org/henesy>
-* <https://gitlab.com/henesy>
-* <http://postnix.pw>
+- <https://github.com/henesy>
+- <https://bitbucket.org/henesy>
+- <https://gitlab.com/henesy>
+- <http://postnix.pw>
 
+Source: <https://github.com/henesy/henesy.github.io>
 
