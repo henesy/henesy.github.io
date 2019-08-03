@@ -9,10 +9,10 @@ echo $motto > index.md
 echo >> index.md
 
 # Ignore dir names starting with _
-years = `{ls -l | grep '^d' | awk '{print $9}' | grep -v '^_'}^/
+years = `{ls -l | grep '^d' | awk '{print $9}' | grep -v '^_' | sort -r}^/
 
 for(y in $years){
-	paths = `{du -a $y | awk '{print $2}' | grep '/index.md$'}
+	paths = `{du -a $y | awk '{print $2}' | grep '/index.md$' | sort -r}
 	
 	for(p in $paths){
 		date = `{echo $p | sed 's/\/[0-9]\/index.md$//g'}
