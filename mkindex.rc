@@ -19,7 +19,7 @@ for(y in $years){
 		title = `{echo '/^#/' | ed -s $p | sed 's/^# //g'}
 		url = $site^'/'^$p
 		
-		echo '* '^$date^' ­ ['^$"title^']('^$url^')' >> index.md
+		echo '* '^$date^' - ['^$"title^']('^$url^')' >> index.md
 	}
 }
 
