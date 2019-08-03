@@ -1,6 +1,10 @@
-# henesy.github.io
+# seh.dev
 
 Some kind of blog?
+
+Most software is considered largely unnecessary.
+
+PR||GTFO.
 
 ## Generation
 
