@@ -3,10 +3,14 @@
 # Tree format is /year/month/day/N/index.md
 
 site = 'https://seh.dev'
-motto = '# PR¦¦GTFO'
+motto = '# PR||GTFO'
+
+### Header
 
 echo $motto > index.md
 echo >> index.md
+
+### Blog body
 
 # Ignore dir names starting with _
 years = `{ls -l | grep '^d' | awk '{print $9}' | grep -v '^_' | sort -r}^/
@@ -22,5 +26,16 @@ for(y in $years){
 		echo '* '^$date^' - ['^$"title^']('^$url^')' >> index.md
 	}
 }
+
+echo >> index.md
+
+### Footer
+echo '## See also:
+
+* <https://github.com/henesy>
+* <https://bitbucket.org/henesy>
+* <https://gitlab.com/henesy>
+* <http://postnix.pw>
+' >> index.md
 
 echo >> index.md
