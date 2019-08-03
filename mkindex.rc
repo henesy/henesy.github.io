@@ -43,8 +43,10 @@ echo '**See also**:
 - <https://bitbucket.org/henesy>
 - <https://gitlab.com/henesy>
 - <http://postnix.pw>
-' >> index.md
 
-echo 'Source: <'^$src^'>' >> index.md
+Source: <'^$src^'>
+
+<img src="http://9front.org/img/mothracompat.gif" height="36" border="0">
+' >> index.md
 
 echo >> index.md
