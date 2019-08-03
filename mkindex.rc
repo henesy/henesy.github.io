@@ -17,7 +17,7 @@ for(y in $years){
 	for(p in $paths){
 		date = `{echo $p | sed 's/\/[0-9]\/index.md$//g'}
 		title = `{echo '/^#/' | ed -s $p | sed 's/^# //g'}
-		url = $site^'/'^$p
+		url = `{echo $site^'/'^$p | sed 's/index.md$//g'}
 		
 		echo '* '^$date^' - ['^$"title^']('^$url^')' >> index.md
 	}
