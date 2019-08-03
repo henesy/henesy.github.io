@@ -36,7 +36,7 @@ for(y in $years){
 echo >> index.md
 
 ### Footer
-echo '## See also:
+echo '**See also**:
 
 * <https://github.com/henesy>
 * <https://bitbucket.org/henesy>

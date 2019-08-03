@@ -10,7 +10,7 @@
 * 2018/03/03 - [Using Plan9Port Mkfiles](https://seh.dev/2018/03/03/0/)
 * 2018/02/23 - [Testing 1 2 3…](https://seh.dev/2018/02/23/0/)
 
-## See also:
+**See also**:
 
 * <https://github.com/henesy>
 * <https://bitbucket.org/henesy>
