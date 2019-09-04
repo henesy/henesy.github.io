@@ -4,13 +4,13 @@
 
 Oberon is notable for being simple and powerful in a manner which permits Oberon to be pleasant for use with education. 
 
-Refer to Wikipedia for some history and exposition: https://en.wikipedia.org/wiki/Oberon_(operating_system)
+Refer to Wikipedia for some history and exposition: <https://en.wikipedia.org/wiki/Oberon_(operating_system)>
 
 ## Getting Oberon
 
-The easiest way to get Oberon up and running from unix is through pdewacht's risc emu: https://github.com/pdewacht/oberon-risc-emu
+The easiest way to get Oberon up and running from unix is through pdewacht's risc emu: <https://github.com/pdewacht/oberon-risc-emu>
 
-You can also, from unix, use A2 Oberon Subsystem for Unix (aosunix). This can be acquired a few different ways, but the easiest way is probably via fld's directory: http://www.informatik.uni-bremen.de/~fld/UnixAos/
+You can also, from unix, use A2 Oberon Subsystem for Unix (aosunix). This can be acquired a few different ways, but the easiest way is probably via fld's directory: <http://www.informatik.uni-bremen.de/~fld/UnixAos/>
 
 If you do go this route, you'll need to follow the `Readme.txt` and download rev\{install.UnixA2, *-*bit.tgz} of your choice. 
 
@@ -20,13 +20,13 @@ If you want the A2 sources at their root, you can clone the main sources tree vi
 
 	svn checkout --user infsvn.anonymous https://svn-dept.inf.ethz.ch/svn/lecturers/a2/	# Password: anonymous
 
-These can be browsed online via: https://svn-dept.inf.ethz.ch/svn/lecturers/a2/?username=infsvn.anonymous?password=anonymous
+These can be browsed online via: <https://svn-dept.inf.ethz.ch/svn/lecturers/a2/?username=infsvn.anonymous?password=anonymous>
 
 There's also a community repository served via subversion:
 
 	svn checkout https://www.ocp.inf.ethz.ch/svn/ocp/
 
-You can play with Oberon in the browser via: https://schierlm.github.io/OberonEmulator/emu-wasm.html?image=UnicodeDiskImageWithSource&width=1024&height=576
+You can play with Oberon in the browser via: <https://schierlm.github.io/OberonEmulator/emu-wasm.html?image=UnicodeDiskImageWithSource&width=1024&height=576>
 
 ## Using Oberon
 
@@ -206,13 +206,13 @@ Some fun differences in Acme from Oberon's Textual-User-Interface (TUI):
 
 Acme has a few different ports and rewrites floating around:
 
-- Original Plan9 in Alef: http://mirror.postnix.pw/plan9_2e/sys/src/cmd/acme/
-- Plan9 in C: https://code.9front.org/hg/plan9front/file/tip/sys/src/cmd/acme
-- Limbo: https://bitbucket.org/inferno-os/inferno-os/src/default/appl/acme/
-- Acme-SAC, also Limbo: https://github.com/caerwynj/acme-sac
-- Ported to Nt in C: https://github.com/knieriem/pf9
-- Ported to unixen in C: https://github.com/9fans/plan9port/tree/master/src/cmd/acme
-- Rewrite of the unixen port, but [suckless](http://suckless.org)-ier: https://github.com/karahobny/acme2k
+- Original Plan9 in Alef: <http://mirror.postnix.pw/plan9_2e/sys/src/cmd/acme/>
+- Plan9 in C: <https://code.9front.org/hg/plan9front/file/tip/sys/src/cmd/acme>
+- Limbo: <https://bitbucket.org/inferno-os/inferno-os/src/default/appl/acme/>
+- Acme-SAC, also Limbo: <https://github.com/caerwynj/acme-sac>
+- Ported to Nt in C: <https://github.com/knieriem/pf9>
+- Ported to unixen in C: <https://github.com/9fans/plan9port/tree/master/src/cmd/acme>
+- Rewrite of the unixen port, but [suckless](http://suckless.org)-ier: <https://github.com/karahobny/acme2k>
 
 ## Sources
 
@@ -221,15 +221,15 @@ Acme has a few different ports and rewrites floating around:
 
 ## Resources
 
-- https://inf.ethz.ch/personal/wirth/ProjectOberon/UsingOberon.pdf
-- www.ocp.inf.ethz.ch/wiki/
-- https://en.wikibooks.org/wiki/Oberon/
-- https://www.inf.ethz.ch/personal/wirth/
-- http://www.projectoberon.com/
-- http://www.ethoberon.ethz.ch/WirthPubl/ProgInOberon.pdf
-- https://github.com/andreaspirklbauer/Oberon-experimental
-- https://github.com/pdewacht/oberon-risc-emu
-- https://github.com/schierlm/OberonEmulator
-- https://www.youtube.com/watch?v=5niGplCza7s
-- https://www.youtube.com/watch?v=EXY78gPMvl0
-- https://www.youtube.com/watch?v=BJIqHIYSDrk
+- <https://inf.ethz.ch/personal/wirth/ProjectOberon/UsingOberon.pdf>
+- <http://www.ocp.inf.ethz.ch/wiki/>
+- <https://en.wikibooks.org/wiki/Oberon/>
+- <https://www.inf.ethz.ch/personal/wirth/>
+- <http://www.projectoberon.com/>
+- <http://www.ethoberon.ethz.ch/WirthPubl/ProgInOberon.pdf>
+- <https://github.com/andreaspirklbauer/Oberon-experimental>
+- <https://github.com/pdewacht/oberon-risc-emu>
+- <https://github.com/schierlm/OberonEmulator>
+- <https://www.youtube.com/watch?v=5niGplCza7s>
+- <https://www.youtube.com/watch?v=EXY78gPMvl0>
+- <https://www.youtube.com/watch?v=BJIqHIYSDrk>
