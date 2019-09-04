@@ -12,7 +12,7 @@ The easiest way to get Oberon up and running from unix is through pdewacht's ris
 
 You can also, from unix, use A2 Oberon Subsystem for Unix (aosunix). This can be acquired a few different ways, but the easiest way is probably via fld's directory: <http://www.informatik.uni-bremen.de/~fld/UnixAos/>
 
-If you do go this route, you'll need to follow the `Readme.txt` and download `rev\{install.UnixA2, *-*bit.tgz}` of your choice. 
+If you do go this route, you'll need to follow the `Readme.txt` and download a `rev.*/{install.UnixA2, *-*bit.tgz}` of your choice. 
 
 _Disclaimer_: At the time of writing I have not gotten Oberon proper to compile/run my own programs under Bluebottle. I can write under Bluebottle's main desktop interface/programs just fine, but I want straight Oberon. 
 
@@ -56,7 +56,7 @@ A useful command not shown by default is `Edit.Locate` which takes an argument o
 4. Mb2 on `Edit.Locate`
 5. Jump to position occurs
 
-All "windows" are referred to as Texts. All Texts are editable. All Texts have a Title Bar which is not editable. Title Bar contents can be selected with mb3 and/or executed with mb2. 
+All windows are referred to as Texts. All Texts are editable. All Texts have a Title Bar which is not editable. Title Bar contents can be selected with mb3 and/or executed with mb2. 
 
 There are some special symbols found in arguments to commands:
 
