@@ -12,7 +12,7 @@ The easiest way to get Oberon up and running from unix is through pdewacht's ris
 
 You can also, from unix, use A2 Oberon Subsystem for Unix (aosunix). This can be acquired a few different ways, but the easiest way is probably via fld's directory: <http://www.informatik.uni-bremen.de/~fld/UnixAos/>
 
-If you do go this route, you'll need to follow the `Readme.txt` and download rev\{install.UnixA2, *-*bit.tgz} of your choice. 
+If you do go this route, you'll need to follow the `Readme.txt` and download `rev\{install.UnixA2, *-*bit.tgz}` of your choice. 
 
 _Disclaimer_: At the time of writing I have not gotten Oberon proper to compile/run my own programs under Bluebottle. I can write under Bluebottle's main desktop interface/programs just fine, but I want straight Oberon. 
 
@@ -110,7 +110,7 @@ Hello.Mod:
 5. Mb2 over `Clipboard.Paste`
 6. Mb2 over `Edit.Store` in the `Hello.Mod` Title Bar
 	- You should see a line like `Edit.Store Hello.Mod     257` in the `System.Log` Text
-7. Mb2 over `ORP.Compile Hello.Mod ^ /s
+7. Mb2 over `ORP.Compile Hello.Mod ^ /s`
 	- You should see a line like `compiling Hello    33    40 E4DFD669` in the log
 	- Note: the /s argument is described to allow overwriting previously generated symbols
 8. Mb2 over `Hello.World`

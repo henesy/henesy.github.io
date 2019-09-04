@@ -1,2 +1,0 @@
-# Ducker is not docker
-
