@@ -68,7 +68,7 @@ There are some special symbols found in arguments to commands:
 
 Start the emulator!
 
-![RISC emulator startup](./risc-start.png =520x576)
+<img src="./risc-start.png" alt="RISC emulator startup" height="520" width="576">
 
 On the right hand there's the System track and the left hand there's the Edit track. 
 
@@ -116,7 +116,7 @@ Hello.Mod:
 8. Mb2 over `Hello.World`
 	- You should see a hello world-like message in the log
 
-![It was me, Dio!](./helloworld.png =520x576)
+<img src="./helloworld.png" alt="It was me, Dio!" height="520" width="576">
 
 ### M0 from Wirth Space
 
@@ -160,7 +160,7 @@ I modified Wirth's [M0.Mod](./M0.Mod) example from [Using Oberon](https://inf.et
 		Texts.OpenWriter(W) 
 	END M0. 
 
-![M0.P0 running](./M0P0.png =520x576)
+<img src="./M0P0.png" alt="M0.P0 running" height="520" width="576">
 
 ## Some Stuff Oberon Inspired
 
