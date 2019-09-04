@@ -1,6 +1,8 @@
 <title> PR||GTFO </title>
 # PR||GTFO
 
+* 2019/09/01 - [Playing with Oberon in 2019](https://seh.dev/2019/09/01/0/)
+* 2019/08/04 - [Ducker is not docker](https://seh.dev/2019/08/04/0/)
 * 2018/12/27 - [Using p9sk1 authentication in modern 9front](https://seh.dev/2018/12/27/0/)
 * 2018/09/21 - [Intro to Graphics on Plan 9](https://seh.dev/2018/09/21/0/)
 * 2018/09/07 - [Creating and Applying 9front Patches](https://seh.dev/2018/09/07/0/)
