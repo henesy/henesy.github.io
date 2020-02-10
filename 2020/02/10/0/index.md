@@ -1,6 +1,10 @@
 # Go-like programming patterns through the ages
 
-This post intends to showcase programming patterns from Alef, to Limbo, to Go.
+This post intends to showcase programming patterns from Alef, Plan9 C, Limbo, to Go.
+
+(??) ­ Include different Plan9 edition releases to see the libc evolve?
+
+(???) ­ Include unix examples for shade?
 
 All of these code snippets should be complete in their own forms and compilable/runnable.
 
@@ -9,6 +13,22 @@ If you want to play with Alef in 2020, your best bet is probably installing a Pl
 There's a work-in-progress port of Alef from 2e to 9front/386 which can be found on the [public grid](http://9gridchan.org) griddisk at `/burnzez/rep/alef/root` and maybe `/burnzez/alef`.
 
 If you want to play with Limbo in 2020, your best bet is either the official Inferno [here](https://bitbucket.org/inferno-os/inferno-os/) or the purgatorio fork [here](https://code.9front.org/hg/purgatorio).
+
+### Intro ­ tokenizing
+
+### Alef
+
+### Plan9 C
+
+getfields/tokenize
+
+### Limbo
+
+tokenize
+
+### Go
+
+strings.Fields
 
 ## Coroutine spawning
 
