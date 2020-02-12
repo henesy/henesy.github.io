@@ -71,19 +71,120 @@ To run a single file program:
 
 ### Alef
 
+[tok.l](./tok.l)
+
+```
+#include <alef.h>
+
+#define NTOKS 9
+#define MAXTOK 512
+#define str "abc » 'test 1 2 3' !"
+
+void
+main(void)
+{
+	int n, i;
+	byte *toks[MAXTOK];
+
+	print("%s\n", str);
+
+	n = tokenize(str, toks, NTOKS);
+
+	for(i = 0; i < n; i++)
+		print("%s\n", toks[i]);
+
+	exits(nil);
+}
+```
+
 ### Plan9 C
 
-getfields/tokenize
+[tok.c](./tok.c)
+
+```
+#include <u.h>
+#include <libc.h>
+
+#define NTOKS 9
+#define MAXTOK 512
+char *str = "abc ☺ 'test 1 2 3' !";
+
+void
+main(int, char*[])
+{
+	int n, i;
+	char *toks[MAXTOK];
+
+	print("%s\n", str);
+
+	n = tokenize(str, (char**)toks, NTOKS);
+
+	for(i = 0; i < n; i++)
+		print("%s\n", toks[i]);
+
+	exits(nil);
+}
+```
 
 ### Limbo
 
-tokenize
+[tok.b](./tok.b)
+
+```
+implement Tokenizing;
+
+include "sys.m";
+	sys: Sys;
+
+include "draw.m";
+
+Tokenizing: module {
+	init: fn(nil: ref Draw->Context, nil: list of string);
+};
+
+str: con "abc ☺ 'test 1 2 3' !";
+
+init(nil: ref Draw->Context, nil: list of string) {
+	sys = load Sys Sys->PATH;
+
+	sys->print("%s\n", str);
+
+	(n, toks) := sys->tokenize(str, "\n\t ");
+
+	for(; toks != nil; toks = tl toks) {
+		sys->print("%s\n", hd toks);
+	}
+
+	exit;
+}
+```
 
 ### Go
 
-strings.Fields
+[tok.go](./tok.go)
 
-## Coroutine spawning
+```
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+const str = "abc ☺ 'test 1 2 3' !"
+
+func main() {
+	fmt.Println(str)
+
+	fields := strings.Fields(str)
+
+	for _, f := range fields {
+		fmt.Println(f)
+	}
+}
+```
+
+## Asynchronous spwaning
 
 ### Alef
 
@@ -110,6 +211,33 @@ main(void)
 	sleep(5);
 }
 
+```
+
+### Plan9 C
+
+[co.c](./co.c)
+
+```
+#include <u.h>
+#include <libc.h>
+#include <thread.h>
+
+void
+doubleN(void *n)
+{
+	print("%d\n", 2*(*(int*)n));
+}
+
+void
+threadmain(int, char*[])
+{
+	int s₀ = 7, s₁ = 9;
+	threadcreate(doubleN, &s₁, 4096);	// A thread
+	proccreate(doubleN, &s₀, 4096);		// A process
+	sleep(5);
+
+	threadexitsall(nil);
+}
 ```
 
 ### Limbo
@@ -167,17 +295,72 @@ func main() {
 
 ## Unnamed struct members
 
+### Alef
+
+
+
+### Plan9 C
+
+
+
+### Limbo
+
+
+
+### Go
+
 
 
 ## CSP elements
+
+### Alef
+
+
+
+### Plan9 C
+
+
+
+### Limbo
+
+
+
+### Go
 
 
 
 ## Multiple returns (??)
 
+### Alef
 
 
-##
 
+### Plan9 C
+
+Nope.
+
+### Limbo
+
+
+
+### Go
+
+
+
+## Lists
+
+### Alef
+
+show `for(each X in L){}` format
+
+### Plan9 C
+
+
+
+### Limbo
+
+
+
+### Go
 
 
