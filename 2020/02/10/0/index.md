@@ -81,6 +81,10 @@ To run a single file program:
 
 ## Intro ­ tokenizing
 
+### Newsqueak
+
+Nope.
+
 ### Alef
 
 [tok.l](./tok.l)
@@ -198,6 +202,21 @@ func main() {
 
 ## Asynchronous spawning
 
+### Newsqueak
+
+[co.nq](./co.nq)
+
+```
+double := prog(n : int) {
+	print(2*n, "\n");
+};
+
+# Begin main logic
+begin double(7);
+begin double(9);
+begin double(11);
+```
+
 ### Alef
 
 [co.l](./co.l)
@@ -307,6 +326,10 @@ func main() {
 
 ## Unnamed struct members
 
+### Newsqueak
+
+Nope.
+
 ### Alef
 
 
@@ -324,6 +347,40 @@ func main() {
 
 
 ## Sending and receiving on channels
+
+### Newsqueak
+
+[chans.nq](./chans.nq)
+
+```
+max := 10;
+
+# Prints out numbers as they're received
+printer := prog(c: chan of int)
+{
+	i : int;
+	for(i = 0; i < max; i++){
+		n := <- c;
+		print(n, " ");
+	}
+	print("\n");
+};
+
+# Pushes values into the channel
+pusher := prog(c: chan of int)
+{
+	i : int;
+	for(i = 0; i < max; i++){
+		c <-= i * i;
+	}
+};
+
+# Begin main logic
+printChan := mk(chan of int);
+
+begin printer(printChan);
+begin pusher(printChan);
+```
 
 ### Alef
 
@@ -345,7 +402,53 @@ func main() {
 
 ### Newsqueak
 
+[select.nq](./select.nq)
 
+```
+max := 2;
+
+# Selects on two channels for both being able to receive and send
+selector := prog(prodChan : chan of int, recChan : chan of int, n : int){
+	i, j : int;
+
+	for(;;)
+		select{
+		case i =<- prodChan:
+			print("case recv	← ", i, "\n");
+
+		case recChan <-= n:
+			print("case send	→ ", n, "\n");
+		}
+};
+
+# Pushes `max` values into `prodChan`
+producer := prog(n : int, prodChan : chan of int){
+	i : int;
+
+	for(i = 0; i < max; i++){
+		print("pushed		→ ", n, "\n");
+		prodChan <-= n;
+	}
+};
+
+# Reads `max` values out of `recChan`
+receiver := prog(recChan : chan of int){
+	i : int;
+
+	# Stop receiving, manually
+	for(i = 0; i < max; i++)
+		print("received	→ ", <- recChan, "\n");
+};
+
+# Begin main logic
+prodChan := mk(chan of int);
+
+recChan := mk(chan of int);
+
+begin producer(123, prodChan);
+begin receiver(recChan);
+begin selector(prodChan, recChan, 456);
+```
 
 ### Alef
 
