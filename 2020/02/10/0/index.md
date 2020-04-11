@@ -409,7 +409,7 @@ max := 2;
 
 # Selects on two channels for both being able to receive and send
 selector := prog(prodChan : chan of int, recChan : chan of int, n : int){
-	i, j : int;
+	i : int;
 
 	for(;;)
 		select{
@@ -564,13 +564,74 @@ threadmain(int, char*[])
 
 ### Limbo
 
-show `alt{}`
+[select.b](./select.b)
+
+```
+implement Select;
+
+include "sys.m";
+	sys: Sys;
+	print: import sys;
+
+include "draw.m";
+
+Select: module {
+	init: fn(nil: ref Draw->Context, nil: list of string);
+};
+
+max : con 2;
+
+selector(prodChan: chan of int, recChan: chan of int, n: int) {
+	for(;;)
+		alt {
+		i := <- prodChan =>
+			print("case recv	← %d\n", i);
+
+		recChan <-= n =>
+			print("case send	→ %d\n", n);
+
+		* =>
+			raise "should never happen";
+		}
+}
+
+producer(n: int, prodChan: chan of int) {
+	for(i := 0; i < max; i++){
+		print("pushed		→ %d\n", n);
+		prodChan <-= n;
+	}
+}
+
+receiver(recChan: chan of int) {
+	for(i := 0; i < max; i++)
+		print("received	→ %d\n", <- recChan);
+}
+
+init(nil: ref Draw->Context, nil: list of string) {
+	sys = load Sys Sys->PATH;
+
+	prodChan	:= chan of int;
+	recChan	:= chan of int;
+
+	spawn producer(123, prodChan);
+	spawn receiver(recChan);
+	spawn selector(prodChan, recChan, 456);
+
+	sys->sleep(1000);
+
+	exit;
+}
+```
 
 ### Go
 
 show `select{}`
 
 ## Multiple returns (??)
+
+### Newsqueak
+
+show using tuples
 
 ### Alef
 
@@ -582,7 +643,34 @@ Nope.
 
 ### Limbo
 
-show using tuples
+[multret.b](./multret.b)
+
+```
+implement MultRet;
+
+include "sys.m";
+	sys: Sys;
+
+include "draw.m";
+
+MultRet: module {
+	init: fn(nil: ref Draw->Context, nil: list of string);
+};
+
+swap(a, b: int): (int, int) {
+	return (b, a);
+}
+
+init(nil: ref Draw->Context, nil: list of string) {
+	sys = load Sys Sys->PATH;
+
+	(x, y) := swap(3, 7);
+
+	sys->print("3, 7 → %d, %d\n", x, y);
+
+	exit;
+}
+```
 
 ### Go
 

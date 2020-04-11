@@ -2,7 +2,7 @@ max := 2;
 
 # Selects on two channels for both being able to receive and send
 selector := prog(prodChan : chan of int, recChan : chan of int, n : int){
-	i, j : int;
+	i : int;
 
 	for(;;)
 		select{
