@@ -22,7 +22,7 @@ selector(prodChan: chan of int, recChan: chan of int, n: int) {
 			print("case send	→ %d\n", n);
 
 		* =>
-			raise "should never happen";
+			break;
 		}
 }
 

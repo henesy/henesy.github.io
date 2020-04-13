@@ -591,7 +591,7 @@ selector(prodChan: chan of int, recChan: chan of int, n: int) {
 			print("case send	→ %d\n", n);
 
 		* =>
-			raise "should never happen";
+			break;
 		}
 }
 
@@ -621,13 +621,14 @@ init(nil: ref Draw->Context, nil: list of string) {
 
 	exit;
 }
+
 ```
 
 ### Go
 
 show `select{}`
 
-## Multiple returns (??)
+## Multiple returns
 
 ### Newsqueak
 
@@ -677,6 +678,10 @@ init(nil: ref Draw->Context, nil: list of string) {
 show normal multiple returns from function signature
 
 ## Lists
+
+### Newsqueak
+
+???
 
 ### Alef
 
