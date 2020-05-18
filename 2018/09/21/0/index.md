@@ -35,6 +35,6 @@ Some useful documents for reference:
 
 Hopefully this helps an intrepid adventurer get started. 
 
-Feel free to reach out to me on [9fans](https://discord.me/9fans) or IRC and I'll gladly expand this list.
+Feel free to reach out to me on [9fans](https://discord.gg/eu8VBUs) or IRC and I'll gladly expand this list.
 
 Happy hacking!
