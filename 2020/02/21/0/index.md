@@ -118,7 +118,7 @@ tenshi%
 
 ### Exit status
 
-When a program exists, it leaves behind a string, rather than an integer. Note that all strings in plan9's C dialect are presumed to be utf-8 by default. 
+When a program exits, it leaves behind a string, rather than an integer. Note that all strings in plan9's C dialect are presumed to be utf-8 by default. 
 
 As such, we call [exits(2)](http://man.cat-v.org/9front/2/exits) instead of the posix exit(). 
 
