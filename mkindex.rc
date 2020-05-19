@@ -4,8 +4,8 @@
 
 src = 'https://github.com/henesy/henesy.github.io'
 site = 'https://seh.dev'
-motto = '# PR||GTFO'
-header = '<title> PR||GTFO </title>'
+motto = '# seh.dev'
+header = '<title> seh.dev </title>'
 
 ### Header
 
