@@ -1,30 +1,16 @@
-# Legacy of Go - CSP and otherwise
+# Code samples from Go-related languages
 
-This post intends to showcase programming patterns from Newsqueak, Alef, Plan9 C, Limbo, to Go.
+This post intends to showcase programming patterns which were in common from Newsqueak, Alef, Plan9 C, Limbo, to Go.
 
 (??) ­ Include different Plan9 edition releases to see the libc evolve?
 
-(???) ­ Include unix examples for shade?
-
 All of these code snippets should be complete as shown and compilable/runnable in the state presented.
-
-If you want to play with Newsqueak, the unix port of squint is probably the most straightforward, found [here](https://github.com/rwos/newsqueak). The papers describing Newsqueak is [here](https://swtch.com/~rsc/thread/newsqueak.pdf) and [here](https://swtch.com/~rsc/thread/newsquimpl.pdf).
-
-If you want to play with Alef in 2020, your best bet is probably installing a Plan9 2nd edition VM. A text guide for this process is in a prior blog post [here](https://seh.dev/2018/03/19/0/) and a video guide is [here](https://www.youtube.com/watch?v=W00TnQ91nj8).
-
-There are more resources on Plan9 2nd edition indexed [here](http://9.postnix.pw/hist/2e/).
-
-There's a work-in-progress port of Alef from 2e to 9front/386 which can be found on the [public grid](http://wiki.9gridchan.org/public_grid/index.html) griddisk at `/burnzez/rep/alef/root` and maybe `/burnzez/alef`. Griddisk is accessible over 9p via `tcp!45.63.75.148!9564`. You can more easily access the grid from unix via the [gridnix scripts](https://github.com/henesy/grid-unix).
-
-Papers on Alef are [here](http://doc.cat-v.org/plan_9/2nd_edition/papers/alef/).
-
-If you want to play with Limbo in 2020, your best bet is either the official Inferno [here](https://bitbucket.org/inferno-os/inferno-os/) or the purgatorio fork [here](https://code.9front.org/hg/purgatorio).
-
-If you want to play with Plan9 in 2020, your best bet is 9front, found [here](http://9front.org/).
 
 ## Building and running examples
 
 ### Newsqueak
+
+The unix port of squint is probably the most straightforward, found [here](https://github.com/rwos/newsqueak). The papers describing Newsqueak is [here](https://swtch.com/~rsc/thread/newsqueak.pdf) and [here](https://swtch.com/~rsc/thread/newsquimpl.pdf).
 
 To run a program from a prompt:
 
@@ -33,6 +19,14 @@ To run a program from a prompt:
 	$
 
 ### Alef
+
+Your best bet is probably installing a Plan9 2nd edition VM. A text guide for this process is in a prior blog post [here](https://seh.dev/2018/03/19/0/) and a video guide is [here](https://www.youtube.com/watch?v=W00TnQ91nj8).
+
+There's a work-in-progress port of Alef from 2e to 9front/386 which can be found on the [public grid](http://wiki.9gridchan.org/public_grid/index.html) griddisk at `/burnzez/rep/alef/root` and maybe `/burnzez/alef`. Griddisk is accessible over 9p via `tcp!45.63.75.148!9564`. You can more easily access the grid from unix via the [gridnix scripts](https://github.com/henesy/grid-unix).
+
+Papers on Alef are [here](http://doc.cat-v.org/plan_9/2nd_edition/papers/alef/).
+
+There are more resources on Plan9 2nd edition indexed [here](http://9.postnix.pw/hist/2e/).
 
 From a prompt on a complete Plan9 2e installation:
 
@@ -43,6 +37,9 @@ From a prompt on a complete Plan9 2e installation:
 	term%
 
 ### Plan9 C
+
+9front is found [here](http://9front.org/).
+
 
 From a 386 system:
 
@@ -64,6 +61,8 @@ Arm uses `5?` in its commands, etc. as per the manuals 2c(1) and 2l(1).
 
 ### Limbo
 
+Either the official Inferno [here](https://bitbucket.org/inferno-os/inferno-os/) or the purgatorio fork [here](https://code.9front.org/hg/purgatorio).
+
 From a prompt inside the Inferno VM:
 
 	; limbo foo.b
@@ -72,6 +71,8 @@ From a prompt inside the Inferno VM:
 	;
 
 ### Go
+
+Go can be acquired from https://golang.org
 
 To run a single file program:
 
