@@ -10,7 +10,7 @@ All of these code snippets should be complete as shown and compilable/runnable i
 
 ### Newsqueak
 
-The unix port of squint is probably the most straightforward, found [here](https://github.com/rwos/newsqueak). The papers describing Newsqueak is [here](https://swtch.com/~rsc/thread/newsqueak.pdf) and [here](https://swtch.com/~rsc/thread/newsquimpl.pdf).
+The unix port of squint is probably the most straightforward method, found [here](https://github.com/rwos/newsqueak). The papers describing Newsqueak are [here](https://swtch.com/~rsc/thread/newsqueak.pdf) and [here](https://swtch.com/~rsc/thread/newsquimpl.pdf).
 
 To run a program from a prompt:
 
@@ -20,7 +20,7 @@ To run a program from a prompt:
 
 ### Alef
 
-Your best bet is probably installing a Plan9 2nd edition VM. A text guide for this process is in a prior blog post [here](https://seh.dev/2018/03/19/0/) and a video guide is [here](https://www.youtube.com/watch?v=W00TnQ91nj8).
+Your best bet is probably installing a Plan9 2nd edition VM. A text guide for this process is in [a prior blog post](https://seh.dev/2018/03/19/0/) and a video guide to installation is [here](https://www.youtube.com/watch?v=W00TnQ91nj8).
 
 There's a work-in-progress port of Alef from 2e to 9front/386 which can be found on the [public grid](http://wiki.9gridchan.org/public_grid/index.html) griddisk at `/burnzez/rep/alef/root` and maybe `/burnzez/alef`. Griddisk is accessible over 9p via `tcp!45.63.75.148!9564`. You can more easily access the grid from unix via the [gridnix scripts](https://github.com/henesy/grid-unix).
 
@@ -38,8 +38,7 @@ From a prompt on a complete Plan9 2e installation:
 
 ### Plan9 C
 
-9front is found [here](http://9front.org/).
-
+The most maintained Plan9 fork, 9front, is found [here](http://9front.org/).
 
 From a 386 system:
 
@@ -114,6 +113,19 @@ main(void)
 }
 ```
 
+#### Output
+
+```
+abc » 'test 1 2 3' !
+abc
+»
+'test
+1
+2
+3'
+!
+```
+
 ### Plan9 C
 
 [tok.c](./tok.c)
@@ -141,6 +153,16 @@ main(int, char*[])
 
 	exits(nil);
 }
+```
+
+#### Output
+
+```
+abc ☺ 'test 1 2 3' !
+abc
+☺
+test 1 2 3
+!
 ```
 
 ### Limbo
@@ -176,6 +198,19 @@ init(nil: ref Draw->Context, nil: list of string) {
 }
 ```
 
+#### Output
+
+```
+abc ☺ 'test 1 2 3' !
+abc
+☺
+'test
+1
+2
+3'
+!
+```
+
 ### Go
 
 [tok.go](./tok.go)
@@ -201,6 +236,19 @@ func main() {
 }
 ```
 
+#### Output
+
+```
+abc ☺ 'test 1 2 3' !
+abc
+☺
+'test
+1
+2
+3'
+!
+```
+
 ## Asynchronous spawning
 
 ### Newsqueak
@@ -216,6 +264,14 @@ double := prog(n : int) {
 begin double(7);
 begin double(9);
 begin double(11);
+```
+
+#### Output
+
+```
+14
+18
+22
 ```
 
 ### Alef
@@ -243,6 +299,15 @@ main(void)
 	sleep(5);
 }
 
+```
+
+#### Output
+
+```
+18
+26
+22
+14
 ```
 
 ### Plan9 C
@@ -303,6 +368,12 @@ init(nil: ref Draw->Context, nil: list of string) {
 }
 ```
 
+#### Output
+
+```
+14
+```
+
 ### Go
 
 [co.go](./co.go)
@@ -323,6 +394,12 @@ func main() {
 	go double(7)
 	time.Sleep(5 * time.Millisecond)
 }
+```
+
+#### Output
+
+```
+14
 ```
 
 ## Unnamed struct members
@@ -381,6 +458,12 @@ printChan := mk(chan of int);
 
 begin printer(printChan);
 begin pusher(printChan);
+```
+
+#### Output
+
+```
+0 1 4 9 16 25 36 49 64 81
 ```
 
 ### Alef
@@ -449,6 +532,19 @@ recChan := mk(chan of int);
 begin producer(123, prodChan);
 begin receiver(recChan);
 begin selector(prodChan, recChan, 456);
+```
+
+#### Output
+
+```
+pushed		→ 123
+pushed		→ 123
+case recv	← 123
+case send	→ 456
+received	→ 456
+case send	→ 456
+received	→ 456
+case recv	← 123
 ```
 
 ### Alef
@@ -563,6 +659,20 @@ threadmain(int, char*[])
 }
 ```
 
+#### Output
+
+```
+pushed		→ 123
+received	→ 456
+case send	→ 456
+pushed		→ 123
+received	→ 456
+case send	→ 456
+case recv	← 123
+case send	→ 456
+case recv	← 123
+```
+
 ### Limbo
 
 [select.b](./select.b)
@@ -625,6 +735,19 @@ init(nil: ref Draw->Context, nil: list of string) {
 
 ```
 
+#### Output
+
+```
+pushed		→ 123
+case send	→ 456
+received	→ 456
+case recv	← 123
+pushed		→ 123
+case recv	← 123
+case send	→ 456
+received	→ 456
+```
+
 ### Go
 
 show `select{}`
@@ -672,6 +795,12 @@ init(nil: ref Draw->Context, nil: list of string) {
 
 	exit;
 }
+```
+
+#### Output
+
+```
+3, 7 → 7, 3
 ```
 
 ### Go
