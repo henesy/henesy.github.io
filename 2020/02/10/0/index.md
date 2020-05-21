@@ -1,10 +1,12 @@
 # Code samples from Go-related languages
 
-This post intends to showcase programming patterns which were in common from Newsqueak, Alef, Plan9 C, Limbo, to Go.
+This post intends to showcase programming patterns, or _stuff_, which is common between Newsqueak, Alef, Plan9 C, Limbo, and Go.
 
 (??) ­ Include different Plan9 edition releases to see the libc evolve?
 
 All of these code snippets should be complete as shown and compilable/runnable in the state presented.
+
+Articles or posts talking about Go have a habit of referring to the languages cited
 
 ## Building and running examples
 
@@ -819,7 +821,13 @@ show `for(each X in L){}` format
 
 ### Plan9 C
 
+show generic C linked list style
 
+```
+List *l;
+for(l = mylist; l != nil; l = l->next)
+	print("%d ", *(int*)l->datum);
+```
 
 ### Limbo
 
@@ -828,3 +836,26 @@ show list :: operation and iteration style
 ### Go
 
 show `for p, v := range X`
+
+## Modules / packages / separable compilation
+
+### Newsqueak
+
+???
+
+### Alef
+
+show `#include` and headers, etc. like C
+
+### Plan9 C
+
+show C, maybe with the `#pragma` src thing used by libraries
+
+### Limbo
+
+show importing of a .dis using a .m file and then loading a .dis to run as/by the shell module
+
+### Go
+
+show packages
+
