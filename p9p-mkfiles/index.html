@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>seh.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="Using Plan9Port Mkfiles" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seh.dev/p9p-mkfiles/" />
+    <meta itemprop="name" content="Using Plan9Port Mkfiles">
+    <meta itemprop="description" content="">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Using Plan9Port Mkfiles"/>
+    <meta name="twitter:description" content=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+    
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.7d924ef9774ec20834568e42ea359840e26958ba74814c521b70b3cb5161c0bf.css" >
+</head>
+<body>
+    <header>
+    <div class="header header-frame">
+        <div>
+          
+            <h1 class="header__title">Using Plan9Port Mkfiles</h1>
+          
+            
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list header-nav-list--menu">
+                
+                
+                    
+                        <li class="header-nav-list__item">
+                            <a class="header-nav-list__link" href="/about/">
+                                
+                                <span>About</span>
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+            <button class="header-nav-list__nav-btn">navigation</button>
+        </nav>
+        <button class="mb-header__menu-btn">
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+        </button>
+    </div>
+    <nav id="mobile-header-nav" class="mb-header-nav">
+  
+  
+  <button class="mb-header-nav__close-btn flex-center">
+    <svg
+            class="mb-header-nav__svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            >
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+    </button>
+    
+    <div class="mb-header-nav__wrapper">
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Tags
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/p9p/"
+                                                            >p9p</a
+                                                        >
+                    </li>
+                        
+                    
+                
+            </ul>
+        </div>
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Menu
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                
+                    
+                      <li class="mb-header-nav-list__item ">
+                            <a class="mb-header-nav-list__link" href="/about/">
+                                About
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+
+    <div id="content">
+<article class="post">
+  
+    <div class="post-content"><h1 id="using-plan9port-mkfiles">Using Plan9Port Mkfiles</h1>
+<p>Recently I decided to play with the idea of porting Nemo&rsquo;s semfs (from Ch13 of his book) to *nix as a learning exercise.</p>
+<p>As a goal I wanted to change as little of the original code as possible. Even with the plan9port 9c/9l bindings however, some portions of the source (unnamed struct members, mostly) did not build and required changing.</p>
+<p>A notable point of change was the mkfile for semfs, originally using the mkone file, I needed to find the equivalent mkfile in plan9port.</p>
+<p>The original mkfile looked something like this:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&lt;/$objtype/mkfile
+
+TARG = semfs
+
+OFILES = \
+	sem.$O \
+	semfs.$O
+
+HFILES = \
+	sem.h
+
+BIN = $home/bin/$objtype
+
+&lt;/sys/src/cmd/mkone
+</code></pre></div><p>After a bit of digging, a suitable replacement was found in plan9port:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&lt;$PLAN9/src/mkhdr
+
+TARG = semfs
+
+OFILES = \
+	sem.$O \
+	semfs.$O
+
+HFILES = \
+	sem.h
+
+BIN = $home/bin/$objtype
+
+&lt;$PLAN9/src/mkone
+</code></pre></div><p>Assuming that a functional plan9port install exists and $PLAN9 is set to the root of said install, the mkfile works exactly as one would expect. Pleasantly, the nature of the mkhdr file means that the output binary will be named o.* in a similar pattern to the 6.out or 8.out style produced by the Plan 9 C compilers.</p>
+</div>
+  
+</article>
+<button class="floating-button">
+    <a class="floating-button__link" href="https://seh.dev/">
+        <span>home</span>
+    </a>
+</button>
+
+
+    </div>
+    
+    <footer class="post-footer">
+    <div class="footer">
+        
+            <div>© 2020, Sean Hinchee</div>
+        
+        <div class="footer__socials">
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+
+    
+    
+      
+<script src="https://seh.dev/js/script.js"></script>
+
+    
+  </body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>seh.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="DiscordFS —- A Tale of Two Clients" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seh.dev/discordfs-thoughts/" />
+    <meta itemprop="name" content="DiscordFS —- A Tale of Two Clients">
+    <meta itemprop="description" content="">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="DiscordFS —- A Tale of Two Clients"/>
+    <meta name="twitter:description" content=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+    
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.7d924ef9774ec20834568e42ea359840e26958ba74814c521b70b3cb5161c0bf.css" >
+</head>
+<body>
+    <header>
+    <div class="header header-frame">
+        <div>
+          
+            <h1 class="header__title">DiscordFS —- A Tale of Two Clients</h1>
+          
+            
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list header-nav-list--menu">
+                
+                
+                    
+                        <li class="header-nav-list__item">
+                            <a class="header-nav-list__link" href="/about/">
+                                
+                                <span>About</span>
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+            <button class="header-nav-list__nav-btn">navigation</button>
+        </nav>
+        <button class="mb-header__menu-btn">
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+        </button>
+    </div>
+    <nav id="mobile-header-nav" class="mb-header-nav">
+  
+  
+  <button class="mb-header-nav__close-btn flex-center">
+    <svg
+            class="mb-header-nav__svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            >
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+    </button>
+    
+    <div class="mb-header-nav__wrapper">
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Tags
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/go/"
+                                                            >go</a
+                                                        >
+                    </li>
+                        
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/9p/"
+                                                            >9p</a
+                                                        >
+                    </li>
+                        
+                    
+                
+            </ul>
+        </div>
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Menu
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                
+                    
+                      <li class="mb-header-nav-list__item ">
+                            <a class="mb-header-nav-list__link" href="/about/">
+                                About
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+
+    <div id="content">
+<article class="post">
+  
+    <div class="post-content"><h1 id="discordfs----a-tale-of-two-clients">DiscordFS &ndash; A Tale of Two Clients</h1>
+<p>Around a year ago I worked on my first attempt at a <a href="https://discord.gg">Discord</a> <a href="https://bitbucket.org/henesy/disco">client</a> that would build and function on 9front. Since then the landscape hasn&rsquo;t changed much and neither has the client. It works well enough for my needs and the two or so other people who use it. Since then however, the number of members in the <a href="https://discord.gg/eu8VBUs">9fans Discord Server</a> has grown many times its original size. Summarily, the interest in a native client for 9front grew to scale. The problem is that for Discord to be experienced fully as intended, it demands a GUI. Plan 9 fits the bill well for this as the GUI model is very intuitive and the graphical use of the system is encouraged at every turn. The problem is that the Go language used for the client is not only a slight bit unreliable on Plan 9, but is not the native language of the system. A concession has been made as to where the Discord <a href="https://github.com/bwmarrin/discordgo">library</a> used is fairly robust and well maintained, so we didn&rsquo;t want to abandon it, but we wanted to use C to fit the 9front software standards people expect.</p>
+<p>The solution is a filesystem. What follows is the rough format of such a filesystem, outlining how such a filesystem would be laid out. DiscordFS could be run as a client on its own and be in Go, though it would not be very intuitive. The idea model for a native 9front client would be a C program which expects a filesystem interface for Discord (provided by DiscordFS) and then handles graphical display and processing of user input complete with colors and images as per the Electron Discord client.</p>
+<h2 id="structure">Structure</h2>
+<p>As always, input is much appreciated. Feel free to pitch in on the conversation via the <a href="https://discord.gg/eu8VBUs">9fans Discord Server</a>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">/
+	henesy/
+		...
+	heneinesy/
+		9fans/
+			ctl
+			roles
+			about
+			channels/
+				general/
+					ctl
+					messages
+					about
+				...
+			members/
+				mveety/
+					ctl
+					roles
+					about
+				mora/
+				...
+		r40k/
+			...
+	...
+</code></pre></div><ul>
+<li>ctl &ndash; A file which allows documented commands to be run and operated against a given element (add/remove/change permissions)</li>
+<li>messages &ndash; Dynamically loads the last N messages for a channel as they&rsquo;re read depending on the ctl configuration</li>
+<li>about &ndash; Displays general, parseable, information about a given element</li>
+<li>attachments &ndash; A directory containing files that were attached to messages. The messages folder, when a file is attached, can have special syntax to denote that a message is attached and what its filename and hash are.</li>
+</ul>
+<p>In this case <code>/</code> is the top directory in the mounted fs with subfolders for each user and then for each user subfolders for each server they are a member of, etc.</p>
+</div>
+  
+</article>
+<button class="floating-button">
+    <a class="floating-button__link" href="https://seh.dev/">
+        <span>home</span>
+    </a>
+</button>
+
+
+    </div>
+    
+    <footer class="post-footer">
+    <div class="footer">
+        
+            <div>© 2020, Sean Hinchee</div>
+        
+        <div class="footer__socials">
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+
+    
+    
+      
+<script src="https://seh.dev/js/script.js"></script>
+
+    
+  </body>
+</html>

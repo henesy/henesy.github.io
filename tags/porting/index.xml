@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>porting on seh.dev</title>
+    <link>https://seh.dev/tags/porting/</link>
+    <description>Recent content in porting on seh.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2020, Sean Hinchee</copyright>
+    <lastBuildDate>Sat, 01 Feb 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://seh.dev/tags/porting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Porting Unix Software to Plan9</title>
+      <link>https://seh.dev/porting/</link>
+      <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/porting/</guid>
+      <description>Porting Unix Software to Plan9 The original source code used in this port: https://github.com/rswier/c4.
+The final port source code for the port: https://github.com/henesy/c4.
+The commits for the port starting from my history should vaguely reflect the order and rough increment of changes described in this post. It is recommended to skim the source and changes while reading ☺.
+Initial reading  C Programming in Plan 9  Porting This post will show the process of porting a unix program, c4, to plan9.</description>
+    </item>
+    
+  </channel>
+</rss>

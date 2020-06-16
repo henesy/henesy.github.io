@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>oberon on seh.dev</title>
+    <link>https://seh.dev/tags/oberon/</link>
+    <description>Recent content in oberon on seh.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2020, Sean Hinchee</copyright>
+    <lastBuildDate>Sun, 01 Sep 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://seh.dev/tags/oberon/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Playing with Oberon in 2019</title>
+      <link>https://seh.dev/oberon/</link>
+      <pubDate>Sun, 01 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/oberon/</guid>
+      <description>Playing with Oberon in 2019 Oberon is the name for an operating system and language pair written by Niklaus Wirth.
+Oberon is notable for being simple and powerful in a manner which permits Oberon to be pleasant for use with education.
+Refer to Wikipedia for some history and exposition: https://en.wikipedia.org/wiki/Oberon_(operating_system)
+Getting Oberon The easiest way to get Oberon up and running from unix is through pdewacht&amp;rsquo;s risc emu: https://github.com/pdewacht/oberon-risc-emu
+You can also, from unix, use A2 Oberon Subsystem for Unix (aosunix).</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>seh.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="Porting Unix Software to Plan9" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seh.dev/porting/" />
+    <meta itemprop="name" content="Porting Unix Software to Plan9">
+    <meta itemprop="description" content="">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Porting Unix Software to Plan9"/>
+    <meta name="twitter:description" content=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+    
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.7d924ef9774ec20834568e42ea359840e26958ba74814c521b70b3cb5161c0bf.css" >
+</head>
+<body>
+    <header>
+    <div class="header header-frame">
+        <div>
+          
+            <h1 class="header__title">Porting Unix Software to Plan9</h1>
+          
+            
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list header-nav-list--menu">
+                
+                
+                    
+                        <li class="header-nav-list__item">
+                            <a class="header-nav-list__link" href="/about/">
+                                
+                                <span>About</span>
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+            <button class="header-nav-list__nav-btn">navigation</button>
+        </nav>
+        <button class="mb-header__menu-btn">
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+        </button>
+    </div>
+    <nav id="mobile-header-nav" class="mb-header-nav">
+  
+  
+  <button class="mb-header-nav__close-btn flex-center">
+    <svg
+            class="mb-header-nav__svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            >
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+    </button>
+    
+    <div class="mb-header-nav__wrapper">
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Tags
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/plan9/"
+                                                            >plan9</a
+                                                        >
+                    </li>
+                        
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/porting/"
+                                                            >porting</a
+                                                        >
+                    </li>
+                        
+                    
+                
+            </ul>
+        </div>
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Menu
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                
+                    
+                      <li class="mb-header-nav-list__item ">
+                            <a class="mb-header-nav-list__link" href="/about/">
+                                About
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+
+    <div id="content">
+<article class="post">
+  
+    <div class="post-content"><h1 id="porting-unix-software-to-plan9">Porting Unix Software to Plan9</h1>
+<p>The original source code used in this port: <a href="https://github.com/rswier/c4">https://github.com/rswier/c4</a>.</p>
+<p>The final port source code for the port: <a href="https://github.com/henesy/c4">https://github.com/henesy/c4</a>.</p>
+<p>The commits for the port starting from my history should vaguely reflect the order and rough increment of changes described in this post. It is recommended to skim the source and changes while reading ☺.</p>
+<h2 id="initial-reading">Initial reading</h2>
+<ul>
+<li><a href="http://doc.cat-v.org/plan_9/programming/c_programming_in_plan_9">C Programming in Plan 9</a></li>
+</ul>
+<h2 id="porting">Porting</h2>
+<p>This post will show the process of porting a unix program, c4, to plan9. Specifically, this will target 9front/amd64.</p>
+<p>The goal is to have the program operate as expected and compile with as few warnings as possible under kencc as per <a href="http://man.cat-v.org/9front/1/2c">2c(1)</a> and <a href="http://man.cat-v.org/9front/1/2l">2l(1)</a>. No portion of the ANSI/POSIX Environment (APE) should be used.</p>
+<p>Prior knowledge of C, at least C89, is assumed under a posix or unix context.</p>
+<p>Assertions are made in the context of plan9&rsquo;s C dialect.</p>
+<h3 id="first-steps">First steps</h3>
+<p>Scrap <strong>all</strong> of the <code>#include</code>'d headers, if plan9 uses them, we&rsquo;ll figure them out later.</p>
+<p>The two main headers we&rsquo;ll use are <code>u.h</code> which contains platform-specific types, etc. and <code>libc.h</code> which contains the core of the plan9 libc functions, etc.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#998;font-style:italic">// Written by Robert Swierczek
+</span><span style="color:#998;font-style:italic"></span>
+<span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#define int long long
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">char</span> <span style="color:#000;font-weight:bold">*</span>p, <span style="color:#000;font-weight:bold">*</span>lp, <span style="color:#998;font-style:italic">// current position
+</span></code></pre></div><p>Create a mkfile, this will speed up our development process.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&lt;/$objtype/mkfile
+
+BIN = $home/bin/$objtype
+
+TARG = c4
+
+OFILES = c4.$O \
+
+&lt;/sys/src/cmd/mkone
+</code></pre></div><p>Just to be safe, we&rsquo;ll make a .gitignore as well:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">*.[8qkv5967o]
+[8qkv5967o].out
+</code></pre></div><p>Since plan9 uses a split compiler and linker, we&rsquo;ll get from c4.c: <code>c4.6</code> and <code>6.c4</code>. In this pattern, the <code>*.6</code> file is the post-compilation file to be linked and the <code>6.*</code> file is the linked <a href="http://man.cat-v.org/9front/6/a.out">a.out(6)</a> executable.</p>
+<p>When we compile, we get:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% mk
+6c -FTVw c4.c
+c4.c:53 function not declared: printf
+c4.c:56 function not declared: printf
+c4.c:59 function not declared: printf
+c4.c:59 function not declared: printf
+c4.c:135 function not declared: printf
+c4.c:135 function not declared: exit
+c4.c:136 function not declared: next
+c4.c:138 function not declared: next
+c4.c:139 function not declared: next
+c4.c:143 function not declared: next
+c4.c:143 function not declared: next
+too many errors
+mk: 6c -FTVw c4.c  : exit status=rc 566432: 6c 566434: error
+tenshi% 
+</code></pre></div><h2 id="function-declarations">Function declarations</h2>
+<p>Functions which take no arguments, must be declared with <code>myfunc(void)</code> as the function signature.</p>
+<p>We can get ride of all the <code>function not declared: next</code> errors by changing the declaration to:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#998;font-style:italic">// identifier offsets (since we can&#39;t create an ident struct)
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">enum</span> { Tk, Hash, Name, Class, Type, Val, HClass, HType, HVal, Idsz };
+
+<span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">next</span>(<span style="color:#458;font-weight:bold">void</span>)
+{
+  <span style="color:#458;font-weight:bold">char</span> <span style="color:#000;font-weight:bold">*</span>pp;
+</code></pre></div><p>Compiling:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% mk
+6c -FTVw c4.c
+c4.c:53 function not declared: printf
+c4.c:56 function not declared: printf
+c4.c:59 function not declared: printf
+c4.c:59 function not declared: printf
+c4.c:135 function not declared: printf
+c4.c:135 function not declared: exit
+c4.c:143 function not declared: printf
+c4.c:143 function not declared: exit
+c4.c:146 function not declared: printf
+c4.c:146 function not declared: exit
+c4.c:159 function not declared: printf
+too many errors
+mk: 6c -FTVw c4.c  : exit status=rc 567394: 6c 567396: error
+tenshi% 
+</code></pre></div><h3 id="exit-status">Exit status</h3>
+<p>When a program exits, it leaves behind a string, rather than an integer. Note that all strings in plan9&rsquo;s C dialect are presumed to be utf-8 by default.</p>
+<p>As such, we call <a href="http://man.cat-v.org/9front/2/exits">exits(2)</a> instead of the posix exit().</p>
+<p>We probably want to update these names manually, as it gives us the chance to create more articulate statuses.</p>
+<p>Additionally, we probably want to use <a href="http://man.cat-v.org/9front/2/perror">sysfatal(2)</a> rather than <a href="http://man.cat-v.org/9front/2/exits">exits(2)</a> for errors, as <a href="http://man.cat-v.org/9front/2/perror">sysfatal(2)</a> prints a message to stderr as well as sets the exit string.</p>
+<p>Example:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">expr</span>(<span style="color:#458;font-weight:bold">int</span> lev)
+{
+  <span style="color:#458;font-weight:bold">int</span> t, <span style="color:#000;font-weight:bold">*</span>d;
+
+  <span style="color:#000;font-weight:bold">if</span> (<span style="color:#000;font-weight:bold">!</span>tk) { sysfatal(<span style="color:#d14">&#34;%lld: unexpected eof in expression</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, line); }
+  <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">if</span> (tk <span style="color:#000;font-weight:bold">==</span> Num) { <span style="color:#000;font-weight:bold">*++</span>e <span style="color:#000;font-weight:bold">=</span> IMM; <span style="color:#000;font-weight:bold">*++</span>e <span style="color:#000;font-weight:bold">=</span> ival; next(); ty <span style="color:#000;font-weight:bold">=</span> INT; }
+  <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">if</span> (tk <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#39;&#34;&#39;</span>) {
+</code></pre></div><p>Compiling:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% mk
+6c -FTVw c4.c
+c4.c:53 function not declared: printf
+c4.c:56 function not declared: printf
+c4.c:59 function not declared: printf
+c4.c:59 function not declared: printf
+c4.c:291 function not declared: stmt
+c4.c:295 function not declared: stmt
+c4.c:306 function not declared: stmt
+c4.c:318 function not declared: stmt
+c4.c:339 function not declared: printf
+c4.c:341 function not declared: printf
+c4.c:344 function not declared: printf
+too many errors
+mk: 6c -FTVw c4.c  : exit status=rc 567790: 6c 567792: error
+tenshi% 
+</code></pre></div><h3 id="print-commands">Print commands</h3>
+<p>The <code>*f</code> functions exist similarly in name, dropping the <code>f</code>. For example, printf() becomes print().</p>
+<p>In acme we can correct these names via:</p>
+<pre><code>Edit ,s/printf/print/g
+</code></pre>
+<p>Compiling:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% mk
+6c -FTVw c4.c
+warning: c4.c:53 format mismatch d VLONG, arg 2
+warning: c4.c:53 format mismatch &#39;*&#39; in .*s VLONG, arg 3
+warning: c4.c:59 format mismatch d VLONG, arg 2
+c4.c:291 function not declared: stmt
+c4.c:295 function not declared: stmt
+c4.c:306 function not declared: stmt
+c4.c:318 function not declared: stmt
+warning: c4.c:344 format mismatch d VLONG, arg 2
+warning: c4.c:345 format mismatch d VLONG, arg 2
+warning: c4.c:346 format mismatch d VLONG, arg 2
+warning: c4.c:347 format mismatch d VLONG, arg 2
+warning: c4.c:360 format mismatch d VLONG, arg 2
+warning: c4.c:361 format mismatch d VLONG, arg 2
+warning: c4.c:379 format mismatch d VLONG, arg 2
+warning: c4.c:379 format mismatch d VLONG, arg 3
+warning: c4.c:383 format mismatch d VLONG, arg 2
+warning: c4.c:396 format mismatch d VLONG, arg 2
+warning: c4.c:397 format mismatch d VLONG, arg 2
+warning: c4.c:409 format mismatch d VLONG, arg 2
+warning: c4.c:410 format mismatch d VLONG, arg 2
+warning: c4.c:418 format mismatch d VLONG, arg 2
+warning: c4.c:427 format mismatch d VLONG, arg 2
+warning: c4.c:428 format mismatch d VLONG, arg 2
+c4.c:438 function not declared: stmt
+warning: c4.c:476 format mismatch d VLONG, arg 2
+warning: c4.c:480 format mismatch d VLONG, arg 2
+warning: c4.c:522 format mismatch d VLONG, arg 2
+warning: c4.c:522 format mismatch d VLONG, arg 3
+warning: c4.c:523 format mismatch d VLONG, arg 2
+warning: c4.c:523 format mismatch d VLONG, arg 3
+warning: c4.c:330 used and not set: a
+mk: 6c -FTVw c4.c  : exit status=rc 567802: 6c 567804: error
+tenshi% 
+</code></pre></div><p>It looks like we have another <code>function not declared</code> error due to missing the void in the function declaration, let&rsquo;s fix that:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">  }
+}
+
+<span style="color:#458;font-weight:bold">void</span> stmt(<span style="color:#458;font-weight:bold">void</span>)
+{
+  <span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>a, <span style="color:#000;font-weight:bold">*</span>b;
+
+  <span style="color:#000;font-weight:bold">if</span> (tk <span style="color:#000;font-weight:bold">==</span> If) {
+</code></pre></div><p>Compiling:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% mk clean &amp;&amp; mk
+rm -f *.[05678qv] [05678qv].out y.tab.? lex.yy.c y.debug y.output c4 $CLEANFILES
+6c -FTVw c4.c
+warning: c4.c:53 format mismatch d VLONG, arg 2
+warning: c4.c:53 format mismatch &#39;*&#39; in .*s VLONG, arg 3
+warning: c4.c:59 format mismatch d VLONG, arg 2
+warning: c4.c:344 format mismatch d VLONG, arg 2
+warning: c4.c:345 format mismatch d VLONG, arg 2
+warning: c4.c:346 format mismatch d VLONG, arg 2
+warning: c4.c:347 format mismatch d VLONG, arg 2
+warning: c4.c:360 format mismatch d VLONG, arg 2
+warning: c4.c:361 format mismatch d VLONG, arg 2
+warning: c4.c:379 format mismatch d VLONG, arg 2
+warning: c4.c:379 format mismatch d VLONG, arg 3
+warning: c4.c:383 format mismatch d VLONG, arg 2
+warning: c4.c:396 format mismatch d VLONG, arg 2
+warning: c4.c:397 format mismatch d VLONG, arg 2
+warning: c4.c:409 format mismatch d VLONG, arg 2
+warning: c4.c:410 format mismatch d VLONG, arg 2
+warning: c4.c:418 format mismatch d VLONG, arg 2
+warning: c4.c:427 format mismatch d VLONG, arg 2
+warning: c4.c:428 format mismatch d VLONG, arg 2
+warning: c4.c:476 format mismatch d VLONG, arg 2
+warning: c4.c:480 format mismatch d VLONG, arg 2
+warning: c4.c:522 format mismatch d VLONG, arg 2
+warning: c4.c:522 format mismatch d VLONG, arg 3
+warning: c4.c:523 format mismatch d VLONG, arg 2
+warning: c4.c:523 format mismatch d VLONG, arg 3
+warning: c4.c:330 used and not set: a
+6l  -o 6.out c4.6
+tenshi% 
+</code></pre></div><p><strong>Note:</strong> the compilation command has changed to <code>mk clean &amp;&amp; mk</code> as now, we are at exclusively warnings, hooray! ☺</p>
+<h3 id="fixing-warnings">Fixing warnings</h3>
+<p>Some of the format specifiers differ as well as per <a href="http://man.cat-v.org/9front/2/print">print(2)</a>, so we need to correct those.</p>
+<p>In case the way to read the errors is unclear, <code>format mismatch d VLONG, arg 2</code> can be read as:</p>
+<p>The format specifier <code>d</code> matches to the second argument for print(), but does not match the expected type of VLONG (int was expected).</p>
+<p>In this case, vlong is a &ldquo;very long&rdquo; type whose formatting specifier, as a decimal value, will be <code>%lld</code>.</p>
+<p>The type definition of a vlong is on amd64 is:</p>
+<pre><code>/amd64/include/u.h:7: typedef	long long	vlong;
+</code></pre>
+<p>Example:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">sp; }
+    <span style="color:#000;font-weight:bold">else</span> { print(<span style="color:#d14">&#34;unknown instruction = %lld! cycle = %lld</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, i, cycle); <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>; }
+  }
+}
+</code></pre></div><p>The <code>used and not set</code> can be fixed by initializing <code>a</code> to a value:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">int</span> argc, <span style="color:#458;font-weight:bold">char</span> <span style="color:#000;font-weight:bold">**</span>argv)
+{
+  <span style="color:#458;font-weight:bold">int</span> fd, bt, ty, poolsz, <span style="color:#000;font-weight:bold">*</span>idmain;
+  <span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>pc, <span style="color:#000;font-weight:bold">*</span>sp, <span style="color:#000;font-weight:bold">*</span>bp, a, cycle; <span style="color:#998;font-style:italic">// vm registers
+</span><span style="color:#998;font-style:italic"></span>  <span style="color:#458;font-weight:bold">int</span> i, <span style="color:#000;font-weight:bold">*</span>t; <span style="color:#998;font-style:italic">// temps
+</span><span style="color:#998;font-style:italic"></span>  
+  a <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>;
+
+  <span style="color:#000;font-weight:bold">--</span>argc; <span style="color:#000;font-weight:bold">++</span>argv;
+</code></pre></div><h3 id="the-final-warning">The final warning</h3>
+<p>After fixing all of the VLONG format specifiers, there&rsquo;s one specifier remaining that seems troublesome:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% mk clean &amp;&amp; mk
+rm -f *.[05678qv] [05678qv].out y.tab.? lex.yy.c y.debug y.output c4 $CLEANFILES
+6c -FTVw c4.c
+warning: c4.c:53 format mismatch &#39;*&#39; in .*s VLONG, arg 3
+6l  -o 6.out c4.6
+tenshi% 
+</code></pre></div><p>Honestly, I wasn&rsquo;t sure what <code>.*s</code> meant exactly, so for reference from <a href="http://www.cplusplus.com/reference/cstdio/printf/">here</a>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">The width is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.
+</code></pre></div><p>In short, <code>%.*s</code> expects a pair of arguments in the order <code>int, char*</code>.</p>
+<p>This seems to be caused partially by this <code>#define</code> at the top of c4.c:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#define int long long
+</span></code></pre></div><p>This may be an architectural decision to enforce the use of the largest integer type available, which plan9 provides through the vlong type.</p>
+<p>If we wanted to make this a more idiomatic and warning-free port, which we still could do, then we would remove this <code>#define</code> and use vlong in place of <code>long long</code>, etc.</p>
+<p>For now, we&rsquo;ll build the program and accept our one warning. ☺</p>
+<h3 id="hello-world">Hello World</h3>
+<p>As a final step, let&rsquo;s adjust hello.c to match the plan9 style:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>()
+{
+  print(<span style="color:#d14">&#34;hello, world</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>);
+}
+</code></pre></div><p>And then:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% 6.out hello.c
+hello, world
+exit(13) cycle = 8
+tenshi% 
+</code></pre></div><p>We have a functioning, native, port of c4 to plan9!</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://man.cat-v.org/9front/">Manuals</a></li>
+<li><a href="http://doc.cat-v.org/plan_9/4th_edition/papers/ape">APE</a></li>
+<li><a href="http://doc.cat-v.org/plan_9/4th_edition/papers/compiler">Plan 9 C Compilers</a></li>
+</ul>
+</div>
+  
+</article>
+<button class="floating-button">
+    <a class="floating-button__link" href="https://seh.dev/">
+        <span>home</span>
+    </a>
+</button>
+
+
+    </div>
+    
+    <footer class="post-footer">
+    <div class="footer">
+        
+            <div>© 2020, Sean Hinchee</div>
+        
+        <div class="footer__socials">
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+
+    
+    
+      
+<script src="https://seh.dev/js/script.js"></script>
+
+    
+  </body>
+</html>

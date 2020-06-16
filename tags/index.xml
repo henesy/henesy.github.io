@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on seh.dev</title>
+    <link>https://seh.dev/tags/</link>
+    <description>Recent content in Tags on seh.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2020, Sean Hinchee</copyright>
+    <lastBuildDate>Sat, 01 Feb 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://seh.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>plan9</title>
+      <link>https://seh.dev/tags/plan9/</link>
+      <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/tags/plan9/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>porting</title>
+      <link>https://seh.dev/tags/porting/</link>
+      <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/tags/porting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oberon</title>
+      <link>https://seh.dev/tags/oberon/</link>
+      <pubDate>Sun, 01 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/tags/oberon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>graphics</title>
+      <link>https://seh.dev/tags/graphics/</link>
+      <pubDate>Fri, 21 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/tags/graphics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>9p</title>
+      <link>https://seh.dev/tags/9p/</link>
+      <pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/tags/9p/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://seh.dev/tags/go/</link>
+      <pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>p9p</title>
+      <link>https://seh.dev/tags/p9p/</link>
+      <pubDate>Sat, 03 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/tags/p9p/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

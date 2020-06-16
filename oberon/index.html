@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>seh.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="Playing with Oberon in 2019" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seh.dev/oberon/" />
+    <meta itemprop="name" content="Playing with Oberon in 2019">
+    <meta itemprop="description" content="">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Playing with Oberon in 2019"/>
+    <meta name="twitter:description" content=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+    
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.7d924ef9774ec20834568e42ea359840e26958ba74814c521b70b3cb5161c0bf.css" >
+</head>
+<body>
+    <header>
+    <div class="header header-frame">
+        <div>
+          
+            <h1 class="header__title">Playing with Oberon in 2019</h1>
+          
+            
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list header-nav-list--menu">
+                
+                
+                    
+                        <li class="header-nav-list__item">
+                            <a class="header-nav-list__link" href="/about/">
+                                
+                                <span>About</span>
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+            <button class="header-nav-list__nav-btn">navigation</button>
+        </nav>
+        <button class="mb-header__menu-btn">
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+        </button>
+    </div>
+    <nav id="mobile-header-nav" class="mb-header-nav">
+  
+  
+  <button class="mb-header-nav__close-btn flex-center">
+    <svg
+            class="mb-header-nav__svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            >
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+    </button>
+    
+    <div class="mb-header-nav__wrapper">
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Tags
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/oberon/"
+                                                            >oberon</a
+                                                        >
+                    </li>
+                        
+                    
+                
+            </ul>
+        </div>
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Menu
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                
+                    
+                      <li class="mb-header-nav-list__item ">
+                            <a class="mb-header-nav-list__link" href="/about/">
+                                About
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+
+    <div id="content">
+<article class="post">
+  
+    <div class="post-content"><h1 id="playing-with-oberon-in-2019">Playing with Oberon in 2019</h1>
+<p><a href="http://www.projectoberon.com/">Oberon</a> is the name for an operating system and language pair written by <a href="https://inf.ethz.ch/personal/wirth/">Niklaus Wirth</a>.</p>
+<p>Oberon is notable for being simple and powerful in a manner which permits Oberon to be pleasant for use with education.</p>
+<p>Refer to Wikipedia for some history and exposition: <a href="https://en.wikipedia.org/wiki/Oberon_(operating_system)">https://en.wikipedia.org/wiki/Oberon_(operating_system)</a></p>
+<h2 id="getting-oberon">Getting Oberon</h2>
+<p>The easiest way to get Oberon up and running from unix is through pdewacht&rsquo;s risc emu: <a href="https://github.com/pdewacht/oberon-risc-emu">https://github.com/pdewacht/oberon-risc-emu</a></p>
+<p>You can also, from unix, use A2 Oberon Subsystem for Unix (aosunix). This can be acquired a few different ways, but the easiest way is probably via fld&rsquo;s directory: <a href="http://www.informatik.uni-bremen.de/~fld/UnixAos/">http://www.informatik.uni-bremen.de/~fld/UnixAos/</a></p>
+<p>If you do go this route, you&rsquo;ll need to follow the <code>Readme.txt</code> and download a <code>rev.*/{install.UnixA2, *-*bit.tgz}</code> of your choice.</p>
+<p><em>Disclaimer</em>: At the time of writing I have not gotten Oberon proper to compile/run my own programs under Bluebottle. I can write under Bluebottle&rsquo;s main desktop interface/programs just fine, but I want straight Oberon.</p>
+<p>If you want the A2 sources at their root, you can clone the main sources tree via subversion:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">svn checkout --user infsvn.anonymous https://svn-dept.inf.ethz.ch/svn/lecturers/a2/	<span style="color:#998;font-style:italic"># Password: anonymous</span>
+</code></pre></div><p>These can be browsed online via: <a href="https://svn-dept.inf.ethz.ch/svn/lecturers/a2/?username=infsvn.anonymous?password=anonymous">https://svn-dept.inf.ethz.ch/svn/lecturers/a2/?username=infsvn.anonymous?password=anonymous</a></p>
+<p>There&rsquo;s also a community repository served via subversion:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">svn checkout https://www.ocp.inf.ethz.ch/svn/ocp/
+</code></pre></div><p>You can play with Oberon in the browser via: <a href="https://schierlm.github.io/OberonEmulator/emu-wasm.html?image=UnicodeDiskImageWithSource&amp;width=1024&amp;height=576">https://schierlm.github.io/OberonEmulator/emu-wasm.html?image=UnicodeDiskImageWithSource&amp;width=1024&amp;height=576</a></p>
+<h2 id="using-oberon">Using Oberon</h2>
+<p>For the purposes of this post I&rsquo;ll be using pdewacht&rsquo;s Oberon risc emu.</p>
+<p>Note the presence of <code>Clipboard.Paste</code> and <code>Clipboard.CopyViewer</code> in this Oberon. This will be useful later.</p>
+<h3 id="mouse">Mouse</h3>
+<p>I&rsquo;ll use the format of mb[1-3] to describe mouse buttons to press. A mouse with three buttons is recommended.</p>
+<ul>
+<li>mb1 is the left mouse button, used for placing the caret</li>
+<li>mb2 is the middle mouse button (or hover and press the Alt key), used for running commands</li>
+<li>mb3 is the right mouse button, used for selecting text</li>
+</ul>
+<h3 id="commands">Commands</h3>
+<p>Commands are text in the form of <code>Module.Procedure</code>.</p>
+<p>Arguments to a command can be specified by highlighting the arguments with mb3 and running the command with mb2. For example, you can highlight <code>*.Mod</code> and run <code>System.Directory</code> as shown in the System side at start. This should list all the directory contents which end with <code>.Mod</code>.</p>
+<p>A useful command not shown by default is <code>Edit.Locate</code> which takes an argument of the form <code>pos x</code>. This format is emitted by the <code>ORP.Compile</code> command and the usage I enjoyed was as such:</p>
+<ol>
+<li>Trigger an error in the form of <code>pos 142 undef</code></li>
+<li>Mb1 inside the .Mod file in question</li>
+<li>Mb3 select the <code>pos 142</code> string</li>
+<li>Mb2 on <code>Edit.Locate</code></li>
+<li>Jump to position occurs</li>
+</ol>
+<p>All windows are referred to as Texts. All Texts are editable. All Texts have a Title Bar which is not editable. Title Bar contents can be selected with mb3 and/or executed with mb2.</p>
+<p>There are some special symbols found in arguments to commands:</p>
+<ul>
+<li><code>~</code> passes the preceding whitespace-separated text as a list of arguments (see the M0.Mod example later)</li>
+<li><code>^</code> passes either the single word/name to the left of it or a single word/name that&rsquo;s been selected with mb3</li>
+<li><code>@</code> passes in the current mb3-selected text</li>
+</ul>
+<h2 id="writing-programs">Writing Programs</h2>
+<p>Start the emulator!</p>
+<img src="./risc-start.png" title="RISC emulator startup" height="600">
+<p>On the right hand there&rsquo;s the System track and the left hand there&rsquo;s the Edit track.</p>
+<h3 id="hello-world">Hello World</h3>
+<p>Let&rsquo;s compile and run hello world ☺!</p>
+<p>Hello.Mod:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">MODULE Hello;
+
+(* Hello World!  *)
+
+IMPORT Texts, Oberon;
+
+VAR W: Texts.Writer;
+
+PROCEDURE World*;
+BEGIN
+	Texts.WriteString(W, &#34;\nZa Warudo!&#34;);
+	Texts.WriteLn(W);
+	Texts.Append(Oberon.Log, W.buf);
+END World;
+
+BEGIN
+	Texts.OpenWriter(W);
+END Hello.
+</code></pre></div><ol>
+<li>Enter a line inside any existing Text in the form:</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Edit.Open Hello.Mod
+Clipboard.Paste
+ORP.Compile Hello.Mod ^ /s
+Hello.World
+</code></pre></div><ol start="2">
+<li>Mb2 over <code>Edit.Open</code></li>
+<li>From the host, copy the source for <a href="./Hello.Mod">Hello.Mod</a></li>
+<li>Mb1 inside the newly opened Text for Hello.Mod</li>
+<li>Mb2 over <code>Clipboard.Paste</code></li>
+<li>Mb2 over <code>Edit.Store</code> in the <code>Hello.Mod</code> Title Bar
+<ul>
+<li>You should see a line like <code>Edit.Store Hello.Mod     257</code> in the <code>System.Log</code> Text</li>
+</ul>
+</li>
+<li>Mb2 over <code>ORP.Compile Hello.Mod ^ /s</code>
+<ul>
+<li>You should see a line like <code>compiling Hello    33    40 E4DFD669</code> in the log</li>
+<li>Note: the /s argument is described to allow overwriting previously generated symbols</li>
+</ul>
+</li>
+<li>Mb2 over <code>Hello.World</code>
+<ul>
+<li>You should see a hello world-like message in the log</li>
+</ul>
+</li>
+</ol>
+<img src="./helloworld.png" title="It was me, Dio!" height="600">
+<h3 id="m0-from-wirth-space">M0 from Wirth Space</h3>
+<p>I modified Wirth&rsquo;s <a href="./M0.Mod">M0.Mod</a> example from <a href="https://inf.ethz.ch/personal/wirth/ProjectOberon/UsingOberon.pdf">Using Oberon</a> which shows some ascpects of a typical Oberon program:</p>
+<p>MODULE M0;</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">(* 
+
+A rewrite of Wirth&#39;s Using Oberon M0.Mod:
+
+https://inf.ethz.ch/personal/wirth/ProjectOberon/UsingOberon.pdf
+
+*)
+
+IMPORT Texts, Oberon;
+
+VAR W: Texts.Writer;       
+
+PROCEDURE      P0*;      
+	VAR sum: INTEGER; 
+	S: Texts.Scanner; 
+
+BEGIN
+	sum := 0;             
+	Texts.OpenScanner(S, Oberon.Par.text, Oberon.Par.pos); 
+	Texts.Scan(S); 
+	WHILE S.class = Texts.Int 
+	DO    
+		Texts.WriteInt(W, S.i, 6); 
+		sum := sum + S.i; 
+		Texts.Scan(S)             
+	END;
+      
+	Texts.WriteInt(W, sum, 8); 
+	Texts.WriteLn(W); 
+	Texts.Append(Oberon.Log, W.buf)       
+END P0;      
+
+BEGIN 
+	Texts.OpenWriter(W) 
+END M0. 
+</code></pre></div><img src="./M0P0.png" title="M0.P0 running" height="600">
+<h2 id="some-stuff-oberon-inspired">Some Stuff Oberon Inspired</h2>
+<h3 id="limbo">Limbo</h3>
+<p><a href="https://github.com/henesy/limbobyexample">Limbo</a> is a language written for the <a href="https://github.com/henesy/awesome-inferno">Inferno</a> operating system which runs on the <a href="http://doc.cat-v.org/inferno/4th_edition/dis_VM_specification">Dis</a> virtual machine.</p>
+<p>Some fun similarities in Limbo from Oberon&rsquo;s language:</p>
+<ul>
+<li><code>:=</code> syntax for implicitly-typed variable initialization</li>
+<li><code>name: type</code> for explicitly-typed variable declaration</li>
+<li>Modules!</li>
+<li>Dynamically loaded/freed modules</li>
+<li>Types and functions from imported (included) modules being referenced in the <code>Module.Name</code> format</li>
+</ul>
+<p>You can play with Limbo/Inferno in the browser via <a href="http://debu.gs/">Pete</a>&rsquo;s <a href="http://tryinferno.rekka.io">Try Inferno</a>.</p>
+<h3 id="go">Go</h3>
+<p>This is mostly due to <a href="https://golang.org/">Go</a>&rsquo;s lineage, see most of the Limbo section above.</p>
+<p>The format for declaring a variable&rsquo;s type does show up in Go as:</p>
+<pre><code>var x int
+</code></pre>
+<p>compare this to Oberon&rsquo;s equivalent:</p>
+<pre><code>VAR sum: INTEGER;
+</code></pre>
+<p>This is a Pascal-ism, but as the language heritage of Go is descended from Pascal, it&rsquo;s worth mentioning. This is also true of Limbo.</p>
+<h3 id="acme">Acme</h3>
+<p><a href="http://acme.cat-v.org">Acme</a> is an editor which expresses itself as a <a href="http://9p.cat-v.org/">9p</a> filesystem originally written for <a href="http://doc.cat-v.org/plan_9/">Plan9</a> in <a href="http://doc.cat-v.org/plan_9/2nd_edition/papers/alef/ref">Alef</a> which drew a great deal of inspiration from Oberon. I (and others!) use Acme as the day-to-day editor of choice. I wouldn&rsquo;t leave home without it ☺.</p>
+<p>Some fun differences in Acme from Oberon&rsquo;s Textual-User-Interface (TUI):</p>
+<ul>
+<li>Scrollbar mouse buttons are flipped</li>
+<li>Tags (Title Bars) are editable</li>
+<li>Mb2 can select and execute with arguments</li>
+<li>Mb3 can select and jump to occurences similar to using Oberon&rsquo;s <code>Edit.Search</code></li>
+<li>Mb1 sets a cursor, but each window (Text) has its own cursor and mouse position is used to determine which cursor to use for an input</li>
+</ul>
+<p>Acme has a few different ports and rewrites floating around:</p>
+<ul>
+<li>Original Plan9 in Alef: <a href="http://mirror.postnix.pw/plan9_2e/sys/src/cmd/acme/">http://mirror.postnix.pw/plan9_2e/sys/src/cmd/acme/</a></li>
+<li>Plan9 in C: <a href="https://code.9front.org/hg/plan9front/file/tip/sys/src/cmd/acme">https://code.9front.org/hg/plan9front/file/tip/sys/src/cmd/acme</a></li>
+<li>Limbo: <a href="https://bitbucket.org/inferno-os/inferno-os/src/default/appl/acme/">https://bitbucket.org/inferno-os/inferno-os/src/default/appl/acme/</a></li>
+<li>Acme-SAC, also Limbo: <a href="https://github.com/caerwynj/acme-sac">https://github.com/caerwynj/acme-sac</a></li>
+<li>Ported to Nt in C: <a href="https://github.com/knieriem/pf9">https://github.com/knieriem/pf9</a></li>
+<li>Ported to unixen in C: <a href="https://github.com/9fans/plan9port/tree/master/src/cmd/acme">https://github.com/9fans/plan9port/tree/master/src/cmd/acme</a></li>
+<li>Rewrite of the unixen port, but <a href="http://suckless.org">suckless</a>-ier: <a href="https://github.com/karahobny/acme2k">https://github.com/karahobny/acme2k</a></li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="./Hello.Mod">Hello.Mod</a></li>
+<li><a href="./M0.Mod">M0.Mod</a></li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://inf.ethz.ch/personal/wirth/ProjectOberon/UsingOberon.pdf">https://inf.ethz.ch/personal/wirth/ProjectOberon/UsingOberon.pdf</a></li>
+<li><a href="http://www.ocp.inf.ethz.ch/wiki/">http://www.ocp.inf.ethz.ch/wiki/</a></li>
+<li><a href="https://en.wikibooks.org/wiki/Oberon/">https://en.wikibooks.org/wiki/Oberon/</a></li>
+<li><a href="https://www.inf.ethz.ch/personal/wirth/">https://www.inf.ethz.ch/personal/wirth/</a></li>
+<li><a href="http://www.projectoberon.com/">http://www.projectoberon.com/</a></li>
+<li><a href="http://www.ethoberon.ethz.ch/WirthPubl/ProgInOberon.pdf">http://www.ethoberon.ethz.ch/WirthPubl/ProgInOberon.pdf</a></li>
+<li><a href="https://github.com/andreaspirklbauer/Oberon-experimental">https://github.com/andreaspirklbauer/Oberon-experimental</a></li>
+<li><a href="https://github.com/pdewacht/oberon-risc-emu">https://github.com/pdewacht/oberon-risc-emu</a></li>
+<li><a href="https://github.com/schierlm/OberonEmulator">https://github.com/schierlm/OberonEmulator</a></li>
+<li><a href="https://www.youtube.com/watch?v=5niGplCza7s">https://www.youtube.com/watch?v=5niGplCza7s</a></li>
+<li><a href="https://www.youtube.com/watch?v=EXY78gPMvl0">https://www.youtube.com/watch?v=EXY78gPMvl0</a></li>
+<li><a href="https://www.youtube.com/watch?v=BJIqHIYSDrk">https://www.youtube.com/watch?v=BJIqHIYSDrk</a></li>
+</ul>
+</div>
+  
+</article>
+<button class="floating-button">
+    <a class="floating-button__link" href="https://seh.dev/">
+        <span>home</span>
+    </a>
+</button>
+
+
+    </div>
+    
+    <footer class="post-footer">
+    <div class="footer">
+        
+            <div>© 2020, Sean Hinchee</div>
+        
+        <div class="footer__socials">
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+
+    
+    
+      
+<script src="https://seh.dev/js/script.js"></script>
+
+    
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>graphics on seh.dev</title>
+    <link>https://seh.dev/tags/graphics/</link>
+    <description>Recent content in graphics on seh.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2020, Sean Hinchee</copyright>
+    <lastBuildDate>Fri, 21 Sep 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://seh.dev/tags/graphics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Intro to Graphics on Plan 9</title>
+      <link>https://seh.dev/graphics/</link>
+      <pubDate>Fri, 21 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/graphics/</guid>
+      <description>Intro to Graphics on Plan 9 A common question asked all over the Plan 9 community is that of how to get started making GUI applications, as 9 is closely married to the GUI.
+While I might get around to a step by step tutorial on GUI programming in another post or location, I&amp;rsquo;d rather compile some helpful examples and resources for getting started.
+Some useful programs for reference:
+ 9pong 9clock lines squares bouncing ball example breakout snake clock catclock glendy mahjongg  Some useful documents for reference:</description>
+    </item>
+    
+  </channel>
+</rss>
