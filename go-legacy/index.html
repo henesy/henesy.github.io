@@ -1,0 +1,2012 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>seh.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="Go&#39;s History in Code" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seh.dev/go-legacy/" />
+    <meta itemprop="name" content="Go&#39;s History in Code">
+    <meta itemprop="description" content="">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Go&#39;s History in Code"/>
+    <meta name="twitter:description" content=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+    
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.7d924ef9774ec20834568e42ea359840e26958ba74814c521b70b3cb5161c0bf.css" >
+</head>
+<body>
+    <header>
+    <div class="header header-frame">
+        <div>
+          
+            <h1 class="header__title">Go&#39;s History in Code</h1>
+          
+            
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list header-nav-list--menu">
+                
+                
+                    
+                        <li class="header-nav-list__item">
+                            <a class="header-nav-list__link" href="/about/">
+                                
+                                <span>About</span>
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+            <button class="header-nav-list__nav-btn">navigation</button>
+        </nav>
+        <button class="mb-header__menu-btn">
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+        </button>
+    </div>
+    <nav id="mobile-header-nav" class="mb-header-nav">
+  
+  
+  <button class="mb-header-nav__close-btn flex-center">
+    <svg
+            class="mb-header-nav__svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            >
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+    </button>
+    
+    <div class="mb-header-nav__wrapper">
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Tags
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/go/"
+                                                            >go</a
+                                                        >
+                    </li>
+                        
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/plan9/"
+                                                            >plan9</a
+                                                        >
+                    </li>
+                        
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/inferno/"
+                                                            >inferno</a
+                                                        >
+                    </li>
+                        
+                    
+                
+            </ul>
+        </div>
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Menu
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                
+                    
+                      <li class="mb-header-nav-list__item ">
+                            <a class="mb-header-nav-list__link" href="/about/">
+                                About
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+
+    <div id="content">
+<article class="post">
+  
+    <div class="post-content"><h1 id="gos-history-in-code">Go&rsquo;s History in Code</h1>
+<p>This post intends to showcase programming patterns, or <em>stuff</em>, which is common between Newsqueak, Alef, Plan9 C, Limbo, and Go.</p>
+<p>All of these code snippets should be complete as shown and compilable/runnable in the state presented. The Alef examples might have subtle typos, but this is due to the fact I had to manually re-type them out from VirtualBox since I didn&rsquo;t have copy/paste available to the guest.</p>
+<p>Commentary has been inserted before examples where I believe it will be helpful.</p>
+<p>If I missed a feature or misreported a fact, feel free to open an issue/PR against <a href="http://github.com/henesy/blog">the blog on GitHub</a>.</p>
+<h2 id="motivation">Motivation</h2>
+<p>Articles or posts talking about Go&rsquo;s predecessors have a habit of referring to the languages listed above, but can fail to provide concrete resources for seeing how these languages work. This post aims to provide a reference for such languages.</p>
+<p>I find being able to play with languages and see complete programs showing how the language fits together as a whole rather than just small snippets extremely valuable for learning.</p>
+<p>In particular with older languages, it can be difficult to find ways to practically experiment with the language and get a feel for the ergonomics of the error reporting, building of complex programs, etc. without having access to the compiler/interpreter/environment itself. As such, paths to being able to write in these languages have been provided for each language presented.</p>
+<p>Note that this reference is not intended to be exhaustive.</p>
+<h2 id="building-and-running-examples">Building and running examples</h2>
+<h3 id="newsqueak">Newsqueak</h3>
+<p>The unix port of squint is found at <a href="https://github.com/rwos/newsqueak">https://github.com/rwos/newsqueak</a>.</p>
+<p>The papers describing Newsqueak:</p>
+<ul>
+<li><a href="https://swtch.com/~rsc/thread/newsqueak.pdf">https://swtch.com/~rsc/thread/newsqueak.pdf</a></li>
+<li><a href="https://swtch.com/~rsc/thread/newsquimpl.pdf">https://swtch.com/~rsc/thread/newsquimpl.pdf</a></li>
+</ul>
+<p>To run a program from a prompt:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ squint foo.nq
+<span style="color:#998;font-style:italic"># output, if any</span>
+$
+</code></pre></div><h3 id="alef">Alef</h3>
+<p>Your best bet at trying Alef is installing a Plan9 2nd edition (2e) virtual machine. A text guide for this process is in <a href="https://seh.dev/plan9-2e/">a prior blog post</a> and <a href="https://www.youtube.com/watch?v=W00TnQ91nj8">a complementary video guide for installation</a>.</p>
+<p>Papers on Alef: <a href="http://doc.cat-v.org/plan_9/2nd_edition/papers/alef/">http://doc.cat-v.org/plan_9/2nd_edition/papers/alef/</a></p>
+<p>More resources on 2e: <a href="http://9.postnix.pw/hist/2e/">http://9.postnix.pw/hist/2e/</a></p>
+<p>Direct download to a VirtualBox image of 2e: <a href="http://9.postnix.pw/hist/2e/plan92e_vbox.tgz">http://9.postnix.pw/hist/2e/plan92e_vbox.tgz</a></p>
+<p>There&rsquo;s also a work-in-progress port of Alef from 2e to 9front/386 which can be found on the <a href="http://wiki.9gridchan.org/public_grid/index.html">public grid</a> griddisk at <code>/burnzez/rep/alef/root</code> and maybe <code>/burnzez/alef</code>. Griddisk is accessible over 9p via <code>tcp!45.63.75.148!9564</code>. You can more easily access the grid from unix via the <a href="https://github.com/henesy/grid-unix">gridnix scripts</a>.</p>
+<p>From a prompt on a complete Plan9 2e installation:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">term% 8al foo.l
+term% 8l co.8
+term% 8.out
+<span style="color:#998;font-style:italic"># output, if any</span>
+term%
+</code></pre></div><h3 id="plan9-c">Plan9 C</h3>
+<p>The most actively maintained Plan9 fork <a href="http://9front.org/">is 9front</a>.</p>
+<p>A more Bell Labs-like experience may be found <a href="http://9legacy.org/">in 9legacy</a>. Instructions and workflow should be similar.</p>
+<p>Papers describing the Plan9 C dialect:</p>
+<ul>
+<li><a href="http://doc.cat-v.org/plan_9/programming/c_programming_in_plan_9">http://doc.cat-v.org/plan_9/programming/c_programming_in_plan_9</a></li>
+<li><a href="http://doc.cat-v.org/plan_9/4th_edition/papers/compiler">http://doc.cat-v.org/plan_9/4th_edition/papers/compiler</a></li>
+</ul>
+<p>The Plan9 C dialect was partially described with a narrative <a href="https://seh.dev/porting/">in a previous blog post</a>.</p>
+<p>From a 386 9front system:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">term% 8c foo.c
+term% 8l foo.8
+term% 8.out
+<span style="color:#998;font-style:italic"># output, if any</span>
+term%
+</code></pre></div><p>From an amd64 9front system:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">term% 6c foo.c
+term% 6l foo.6
+term% 6.out
+<span style="color:#998;font-style:italic"># output, if any</span>
+term%
+</code></pre></div><p>Arm uses <code>5c</code> and <code>5l</code> for compiling/linking respectively as per the manuals <a href="http://man.cat-v.org/9front/1/2c">2c(1)</a> and <a href="http://man.cat-v.org/9front/1/2l">2l(1)</a>.</p>
+<h3 id="limbo">Limbo</h3>
+<p>The official Inferno repository: <a href="https://bitbucket.org/inferno-os/inferno-os/">https://bitbucket.org/inferno-os/inferno-os/</a></p>
+<p>The purgatorio Inferno fork: <a href="https://code.9front.org/hg/purgatorio">https://code.9front.org/hg/purgatorio</a></p>
+<p>There are a variety of other resources for Inferno and Limbo available <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>Papers describing Limbo:</p>
+<ul>
+<li><a href="http://doc.cat-v.org/inferno/4th_edition/limbo_language/descent">http://doc.cat-v.org/inferno/4th_edition/limbo_language/descent</a></li>
+<li><a href="http://doc.cat-v.org/inferno/4th_edition/limbo_language/limbo">http://doc.cat-v.org/inferno/4th_edition/limbo_language/limbo</a></li>
+<li><a href="http://doc.cat-v.org/inferno/4th_edition/limbo_language/addendum">http://doc.cat-v.org/inferno/4th_edition/limbo_language/addendum</a></li>
+</ul>
+<p>From a prompt inside the Inferno virtual machine (or native):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">; limbo foo.b
+; foo
+<span style="color:#998;font-style:italic"># output, if any</span>
+;
+</code></pre></div><h3 id="go">Go</h3>
+<p>Go can be acquired from <a href="https://golang.org">https://golang.org</a>.</p>
+<p>The specification for Go: <a href="https://golang.org/ref/spec">https://golang.org/ref/spec</a></p>
+<p>To run a single file program:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ go run foo.go
+<span style="color:#998;font-style:italic"># output, if any</span>
+$
+</code></pre></div><h2 id="intro---tokenizing">Intro - tokenizing</h2>
+<p>This section demonstrates standard library naïve tokenizing.</p>
+<h3 id="newsqueak-1">Newsqueak</h3>
+<p>Nope.</p>
+<h3 id="alef-1">Alef</h3>
+<p><a href="./alef/tok.l">tok.l</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#999;font-weight:bold;font-style:italic">#define NTOKS 9
+</span><span style="color:#999;font-weight:bold;font-style:italic">#define MAXTOK 512
+</span><span style="color:#999;font-weight:bold;font-style:italic">#define str &#34;abc » &#39;test 1 2 3&#39; !&#34;
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">void</span>)
+{
+	<span style="color:#458;font-weight:bold">int</span> n, i;
+	byte <span style="color:#000;font-weight:bold">*</span>toks[MAXTOK];
+
+	print(<span style="color:#d14">&#34;%s</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, str);
+
+	n <span style="color:#000;font-weight:bold">=</span> tokenize(str, toks, NTOKS);
+
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> n; i<span style="color:#000;font-weight:bold">++</span>)
+		print(<span style="color:#d14">&#34;%s</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, toks[i]);
+
+	exits(nil);
+}
+</code></pre></div><h4 id="output">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">abc » &#39;test 1 2 3&#39; !
+abc
+»
+&#39;test
+1
+2
+3&#39;
+!
+</code></pre></div><h3 id="plan9-c-1">Plan9 C</h3>
+<p>Related reading: <a href="http://man.cat-v.org/9front/2/getfields">tokenize(2)</a></p>
+<p><a href="./plan9c/tok.c">tok.c</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#999;font-weight:bold;font-style:italic">#define NTOKS 9
+</span><span style="color:#999;font-weight:bold;font-style:italic">#define MAXTOK 512
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span><span style="color:#458;font-weight:bold">char</span> <span style="color:#000;font-weight:bold">*</span>str <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;abc ☺ &#39;test 1 2 3&#39; !&#34;</span>;
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">int</span>, <span style="color:#458;font-weight:bold">char</span><span style="color:#000;font-weight:bold">*</span>[])
+{
+	<span style="color:#458;font-weight:bold">int</span> n, i;
+	<span style="color:#458;font-weight:bold">char</span> <span style="color:#000;font-weight:bold">*</span>toks[MAXTOK];
+
+	print(<span style="color:#d14">&#34;%s</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, str);
+
+	n <span style="color:#000;font-weight:bold">=</span> tokenize(str, (<span style="color:#458;font-weight:bold">char</span><span style="color:#000;font-weight:bold">**</span>)toks, NTOKS);
+
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> n; i<span style="color:#000;font-weight:bold">++</span>)
+		print(<span style="color:#d14">&#34;%s</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, toks[i]);
+
+	exits(nil);
+}
+</code></pre></div><h4 id="output-1">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">abc ☺ &#39;test 1 2 3&#39; !
+abc
+☺
+test 1 2 3
+!
+</code></pre></div><h3 id="limbo-1">Limbo</h3>
+<p>Related reading: <a href="http://man.cat-v.org/inferno/2/sys-tokenize">sys-tokenize(2)</a></p>
+<p><a href="./limbo/tok.b">tok.b</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Tokenizing;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">sys</span>: Sys;
+
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+
+<span style="color:#900;font-weight:bold">Tokenizing</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>: fn(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string);
+};
+
+<span style="color:#900;font-weight:bold">str</span>: con <span style="color:#d14">&#34;abc ☺ &#39;test 1 2 3&#39; !&#34;</span>;
+
+init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+
+	sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;%s</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, str);
+
+	(n, toks) <span style="color:#000;font-weight:bold">:=</span> sys<span style="color:#000;font-weight:bold">-&gt;</span>tokenize(str, <span style="color:#d14">&#34;</span><span style="color:#d14">\n\t</span><span style="color:#d14"> &#34;</span>);
+
+	<span style="color:#000;font-weight:bold">for</span>(; toks <span style="color:#000;font-weight:bold">!=</span> nil; toks <span style="color:#000;font-weight:bold">=</span> tl toks) {
+		sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;%s</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, hd toks);
+	}
+
+	exit;
+}
+</code></pre></div><h4 id="output-2">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">abc ☺ &#39;test 1 2 3&#39; !
+abc
+☺
+&#39;test
+1
+2
+3&#39;
+!
+</code></pre></div><h3 id="go-1">Go</h3>
+<p><a href="./go/tok.go">tok.go</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+
+<span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+	<span style="color:#d14">&#34;strings&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">const</span> str = <span style="color:#d14">&#34;abc ☺ &#39;test 1 2 3&#39; !&#34;</span>
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(str)
+
+	fields <span style="color:#000;font-weight:bold">:=</span> strings.<span style="color:#900;font-weight:bold">Fields</span>(str)
+
+	<span style="color:#000;font-weight:bold">for</span> _, f <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> fields {
+		fmt.<span style="color:#900;font-weight:bold">Println</span>(f)
+	}
+}
+</code></pre></div><h4 id="output-3">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">abc ☺ &#39;test 1 2 3&#39; !
+abc
+☺
+&#39;test
+1
+2
+3&#39;
+!
+</code></pre></div><h2 id="asynchronous-spawning">Asynchronous spawning</h2>
+<p>Many of the languages which inspired Go contained simple abstractions for running functions in asychronous coroutines, processes, or threads.</p>
+<h3 id="newsqueak-2">Newsqueak</h3>
+<p><a href="./newsqueak/co.nq">co.nq</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">double</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">prog</span>(<span style="color:#008080">n</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">int</span>) {
+	<span style="color:#008080">print</span>(<span style="color:#099">2</span><span style="color:#900;font-weight:bold">*</span><span style="color:#008080">n</span><span style="color:#900;font-weight:bold">,</span> <span style="color:#998;font-style:italic">&#34;\n&#34;</span>);
+};
+
+<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#900;font-weight:bold">Begin</span> <span style="color:#900;font-weight:bold">main</span> <span style="color:#900;font-weight:bold">logic</span>
+<span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">double</span>(<span style="color:#099">7</span>);
+<span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">double</span>(<span style="color:#099">9</span>);
+<span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">double</span>(<span style="color:#099">11</span>);
+</code></pre></div><h4 id="output-4">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">14
+18
+22
+</code></pre></div><h3 id="alef-2">Alef</h3>
+<p><a href="./alef/co.l">co.l</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">double</span>(<span style="color:#458;font-weight:bold">int</span> n)
+{
+	print(<span style="color:#d14">&#34;%d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, <span style="color:#099">2</span><span style="color:#000;font-weight:bold">*</span>n);
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">void</span>)
+{
+	task <span style="color:#458;font-weight:bold">double</span>(<span style="color:#099">7</span>);		<span style="color:#998;font-style:italic">/* A coroutine	*/</span>
+	proc <span style="color:#458;font-weight:bold">double</span>(<span style="color:#099">9</span>);		<span style="color:#998;font-style:italic">/* A process	*/</span>
+	par {
+		<span style="color:#458;font-weight:bold">double</span>(<span style="color:#099">11</span>);		<span style="color:#998;font-style:italic">/* A process	*/</span>
+		<span style="color:#458;font-weight:bold">double</span>(<span style="color:#099">13</span>);		<span style="color:#998;font-style:italic">/* A process	*/</span>
+	}
+	sleep(<span style="color:#099">5</span>);
+}
+
+</code></pre></div><h4 id="output-5">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">18
+26
+22
+14
+</code></pre></div><h3 id="plan9-c-2">Plan9 C</h3>
+<p>Related reading: <a href="http://man.cat-v.org/9front/2/thread">thread(2)</a></p>
+<p><a href="./plan9c/co.c">co.c</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;thread.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">doubleN</span>(<span style="color:#458;font-weight:bold">void</span> <span style="color:#000;font-weight:bold">*</span>n)
+{
+	print(<span style="color:#d14">&#34;%d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, <span style="color:#099">2</span><span style="color:#000;font-weight:bold">*</span>(<span style="color:#000;font-weight:bold">*</span>(<span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">*</span>)n));
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">threadmain</span>(<span style="color:#458;font-weight:bold">int</span>, <span style="color:#458;font-weight:bold">char</span><span style="color:#000;font-weight:bold">*</span>[])
+{
+	<span style="color:#458;font-weight:bold">int</span> s<span style="color:#a61717;background-color:#e3d2d2">₀</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">7</span>, s<span style="color:#a61717;background-color:#e3d2d2">₁</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">9</span>;
+	threadcreate(doubleN, <span style="color:#000;font-weight:bold">&amp;</span>s<span style="color:#a61717;background-color:#e3d2d2">₁</span>, <span style="color:#099">4096</span>);	<span style="color:#998;font-style:italic">// A thread
+</span><span style="color:#998;font-style:italic"></span>	proccreate(doubleN, <span style="color:#000;font-weight:bold">&amp;</span>s<span style="color:#a61717;background-color:#e3d2d2">₀</span>, <span style="color:#099">4096</span>);		<span style="color:#998;font-style:italic">// A process
+</span><span style="color:#998;font-style:italic"></span>	sleep(<span style="color:#099">5</span>);
+
+	threadexitsall(nil);
+}
+</code></pre></div><h4 id="output-6">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">14
+18
+</code></pre></div><h3 id="limbo-2">Limbo</h3>
+<p><a href="./limbo/co.b">co.b</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Coroutines;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">sys</span>: Sys;
+
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+
+<span style="color:#900;font-weight:bold">Coroutines</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>: fn(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string);
+};
+
+<span style="color:#458;font-weight:bold">double</span>(<span style="color:#900;font-weight:bold">n</span>: <span style="color:#458;font-weight:bold">int</span>) {
+	sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;%d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, <span style="color:#099">2</span><span style="color:#000;font-weight:bold">*</span>n);
+}
+
+init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+
+	spawn <span style="color:#900;font-weight:bold">double</span>(<span style="color:#099">7</span>);
+
+	sys<span style="color:#000;font-weight:bold">-&gt;</span>sleep(<span style="color:#099">5</span>);
+
+	exit;
+}
+</code></pre></div><h4 id="output-7">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">14
+</code></pre></div><h3 id="go-2">Go</h3>
+<p><a href="./go/co.go">co.go</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+
+<span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+	<span style="color:#d14">&#34;time&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">double</span>(n <span style="color:#458;font-weight:bold">int</span>) {
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#099">2</span><span style="color:#000;font-weight:bold">*</span>n)
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">double</span>(<span style="color:#099">7</span>)
+	time.<span style="color:#900;font-weight:bold">Sleep</span>(<span style="color:#099">5</span> <span style="color:#000;font-weight:bold">*</span> time.Millisecond)
+}
+</code></pre></div><h4 id="output-8">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">14
+</code></pre></div><h2 id="sending-and-receiving-on-channels">Sending and receiving on channels</h2>
+<p>Channels are a core part of the Communicating Sequential Processes (CSP) <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> model for concurrent synchronization and communication.</p>
+<p>Go and its predecessors support standard library/primitive-level tooling for working with channels.</p>
+<h3 id="newsqueak-3">Newsqueak</h3>
+<p><a href="./newsqueak/chans.nq">chans.nq</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">max</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">10</span>;
+
+<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#900;font-weight:bold">Prints</span> <span style="color:#900;font-weight:bold">out</span> <span style="color:#900;font-weight:bold">numbers</span> <span style="color:#900;font-weight:bold">as</span> <span style="color:#900;font-weight:bold">they</span><span style="color:#a61717;background-color:#e3d2d2">&#39;</span><span style="color:#900;font-weight:bold">re</span> <span style="color:#900;font-weight:bold">received</span>
+<span style="color:#900;font-weight:bold">printer</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">prog</span>(<span style="color:#900;font-weight:bold">c:</span> <span style="color:#008080">chan</span> <span style="color:#008080">of</span> <span style="color:#900;font-weight:bold">int</span>)
+{
+	<span style="color:#008080">i</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">int</span>;
+	<span style="color:#900;font-weight:bold">for</span>(<span style="color:#008080">i</span> <span style="color:#900;font-weight:bold">=</span> <span style="color:#099">0</span>; <span style="color:#900;font-weight:bold">i</span> <span style="color:#900;font-weight:bold">&lt;</span> <span style="color:#008080">max</span>; <span style="color:#900;font-weight:bold">i++</span>){
+		<span style="color:#008080">n</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#a61717;background-color:#e3d2d2">&lt;-</span> <span style="color:#008080">c</span>;
+		<span style="color:#900;font-weight:bold">print</span>(<span style="color:#008080">n</span><span style="color:#900;font-weight:bold">,</span> <span style="color:#998;font-style:italic">&#34; &#34;</span>);
+	}
+	<span style="color:#900;font-weight:bold">print</span>(<span style="color:#998;font-style:italic">&#34;\n&#34;</span>);
+};
+
+<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#900;font-weight:bold">Pushes</span> <span style="color:#900;font-weight:bold">values</span> <span style="color:#900;font-weight:bold">into</span> <span style="color:#900;font-weight:bold">the</span> <span style="color:#900;font-weight:bold">channel</span>
+<span style="color:#900;font-weight:bold">pusher</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">prog</span>(<span style="color:#900;font-weight:bold">c:</span> <span style="color:#008080">chan</span> <span style="color:#008080">of</span> <span style="color:#900;font-weight:bold">int</span>)
+{
+	<span style="color:#008080">i</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">int</span>;
+	<span style="color:#900;font-weight:bold">for</span>(<span style="color:#008080">i</span> <span style="color:#900;font-weight:bold">=</span> <span style="color:#099">0</span>; <span style="color:#900;font-weight:bold">i</span> <span style="color:#900;font-weight:bold">&lt;</span> <span style="color:#008080">max</span>; <span style="color:#900;font-weight:bold">i++</span>){
+		<span style="color:#008080">c</span> <span style="color:#900;font-weight:bold">&lt;-=</span> <span style="color:#008080">i</span> <span style="color:#900;font-weight:bold">*</span> <span style="color:#008080">i</span>;
+	}
+};
+
+<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#900;font-weight:bold">Begin</span> <span style="color:#900;font-weight:bold">main</span> <span style="color:#900;font-weight:bold">logic</span>
+<span style="color:#900;font-weight:bold">printChan</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">mk</span>(<span style="color:#008080">chan</span> <span style="color:#900;font-weight:bold">of</span> <span style="color:#900;font-weight:bold">int</span>);
+
+<span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">printer</span>(<span style="color:#008080">printChan</span>);
+<span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">pusher</span>(<span style="color:#008080">printChan</span>);
+</code></pre></div><h4 id="output-9">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 1 4 9 16 25 36 49 64 81
+</code></pre></div><h3 id="alef-3">Alef</h3>
+<p>Note the <code>?</code> and <code>[n]</code> syntax for channels as defined in the <em>&ldquo;Alef User&rsquo;s Guide&rdquo;</em>. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p><a href="./alef/chans.l">chans.l</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">int</span> max <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">10</span>;
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">pusher</span>(chan(<span style="color:#458;font-weight:bold">int</span>) printchan)
+{
+	<span style="color:#458;font-weight:bold">int</span> i;
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> max; i<span style="color:#000;font-weight:bold">++</span>)
+		printchan <span style="color:#000;font-weight:bold">&lt;-=</span> i <span style="color:#000;font-weight:bold">*</span> i;
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">printer</span>(chan(<span style="color:#458;font-weight:bold">int</span>) printchan)
+{
+	<span style="color:#458;font-weight:bold">int</span> n, i;
+
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> max; i<span style="color:#000;font-weight:bold">++</span>){
+		n <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span>printchan;
+		print(<span style="color:#d14">&#34;%d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, n);
+	}
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">void</span>)
+{
+	chan(<span style="color:#458;font-weight:bold">int</span>) printchan;
+	chan(<span style="color:#458;font-weight:bold">int</span>)[<span style="color:#099">2</span>] bufchan;
+	alloc printchan, bufchan;
+
+	par {
+		pusher(printchan);
+		printer(printchan);
+	}
+
+	<span style="color:#000;font-weight:bold">while</span>(bufchan<span style="color:#000;font-weight:bold">?</span>){
+		i <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">++</span>i <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">++</span>i;
+		bufchan <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#000;font-weight:bold">=</span> i;
+		print(<span style="color:#d14">&#34;sent %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, i);
+	}
+
+	<span style="color:#000;font-weight:bold">while</span>(<span style="color:#000;font-weight:bold">?</span>bufchan)
+		print(<span style="color:#d14">&#34;received %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, <span style="color:#000;font-weight:bold">&lt;-</span>bufchan);
+}
+</code></pre></div><h4 id="output-10">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0
+1
+4
+9
+16
+25
+36
+49
+64
+81
+sent 2
+sent 12
+received 2
+received 12
+</code></pre></div><h3 id="plan9-c-3">Plan9 C</h3>
+<p>Related reading: <a href="http://man.cat-v.org/9front/2/thread">thread(2)</a></p>
+<p><a href="./plan9c/chans.c">chans.c</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;thread.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#000;font-weight:bold">const</span> max <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">10</span>;
+
+<span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">printer</span>(<span style="color:#458;font-weight:bold">void</span> <span style="color:#000;font-weight:bold">*</span>v)
+{
+	Channel <span style="color:#000;font-weight:bold">*</span>printchan <span style="color:#000;font-weight:bold">=</span> (Channel<span style="color:#000;font-weight:bold">*</span>) v;
+	<span style="color:#458;font-weight:bold">int</span> i, n;
+
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> max; i<span style="color:#000;font-weight:bold">++</span>){
+		recv(printchan, <span style="color:#000;font-weight:bold">&amp;</span>n);
+		print(<span style="color:#d14">&#34;received → %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, n);
+	}
+
+	threadexits(nil);
+}
+
+<span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">pusher</span>(<span style="color:#458;font-weight:bold">void</span> <span style="color:#000;font-weight:bold">*</span>v)
+{
+	Channel <span style="color:#000;font-weight:bold">*</span>printchan <span style="color:#000;font-weight:bold">=</span> (Channel<span style="color:#000;font-weight:bold">*</span>) v;
+	<span style="color:#458;font-weight:bold">int</span> i, <span style="color:#000;font-weight:bold">*</span>n;
+	n <span style="color:#000;font-weight:bold">=</span> calloc(<span style="color:#099">1</span>, <span style="color:#000;font-weight:bold">sizeof</span> (<span style="color:#458;font-weight:bold">int</span>));
+
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> max; i<span style="color:#000;font-weight:bold">++</span>){
+		<span style="color:#000;font-weight:bold">*</span>n <span style="color:#000;font-weight:bold">=</span> i <span style="color:#000;font-weight:bold">*</span> i;
+		send(printchan, n);
+	}
+
+	threadexits(nil);
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">threadmain</span>(<span style="color:#458;font-weight:bold">int</span>, <span style="color:#458;font-weight:bold">char</span><span style="color:#000;font-weight:bold">*</span>[]) {
+	<span style="color:#458;font-weight:bold">int</span> bufsize <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>;
+	Channel <span style="color:#000;font-weight:bold">*</span>printchan <span style="color:#000;font-weight:bold">=</span> chancreate(<span style="color:#000;font-weight:bold">sizeof</span> (<span style="color:#458;font-weight:bold">int</span>), <span style="color:#099">0</span>);
+
+	proccreate(printer,	printchan,	<span style="color:#099">4096</span>);
+	proccreate(pusher,	printchan,	<span style="color:#099">4096</span>);
+
+	sleep(<span style="color:#099">100</span>);
+
+	threadexitsall(nil);
+}
+</code></pre></div><h4 id="output-11">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">received → 0
+received → 1
+received → 4
+received → 9
+received → 16
+received → 25
+received → 36
+received → 49
+received → 64
+received → 81
+</code></pre></div><h3 id="limbo-3">Limbo</h3>
+<p><a href="./limbo/chans.b">chans.b</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Channels;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">sys</span>: Sys;
+
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+
+<span style="color:#900;font-weight:bold">Channels</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>: fn(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string);
+};
+
+<span style="color:#900;font-weight:bold">max</span> : con <span style="color:#099">10</span>;
+
+printer(<span style="color:#900;font-weight:bold">c</span>: chan of <span style="color:#458;font-weight:bold">int</span>) {
+	<span style="color:#900;font-weight:bold">i</span> : <span style="color:#458;font-weight:bold">int</span>;
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> max; i<span style="color:#000;font-weight:bold">++</span>){
+		<span style="color:#900;font-weight:bold">n</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span> c;
+		sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;%d &#34;</span>, n);
+	}
+	sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>);
+}
+
+pusher(<span style="color:#900;font-weight:bold">c</span>: chan of <span style="color:#458;font-weight:bold">int</span>) {
+	<span style="color:#900;font-weight:bold">i</span> : <span style="color:#458;font-weight:bold">int</span>;
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> max; i<span style="color:#000;font-weight:bold">++</span>){
+		c <span style="color:#000;font-weight:bold">&lt;-=</span> i <span style="color:#000;font-weight:bold">*</span> i;
+	}
+}
+
+init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+
+	<span style="color:#900;font-weight:bold">printChan</span> :<span style="color:#000;font-weight:bold">=</span> chan of <span style="color:#458;font-weight:bold">int</span>;
+
+	spawn <span style="color:#900;font-weight:bold">printer</span>(printChan);
+	spawn <span style="color:#900;font-weight:bold">pusher</span>(printChan);
+
+	sys<span style="color:#000;font-weight:bold">-&gt;</span>sleep(<span style="color:#099">1</span>);
+
+	exit;
+}
+</code></pre></div><h4 id="output-12">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 1 4 9 16 25 36 49 64 81
+</code></pre></div><h3 id="go-3">Go</h3>
+<p>Note that Go is the only language to support the optional <code>ok</code> value when reading out of a channel.</p>
+<p><a href="./go/chans.go">chans.go</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+
+<span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">const</span> max = <span style="color:#099">10</span>
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">printer</span>(c <span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">int</span>, done <span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">bool</span>) {
+	<span style="color:#000;font-weight:bold">for</span> {
+		n, ok <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&lt;-</span> c
+		<span style="color:#000;font-weight:bold">if</span> !ok {
+			<span style="color:#000;font-weight:bold">break</span>
+		}
+
+		fmt.<span style="color:#900;font-weight:bold">Print</span>(n, <span style="color:#d14">&#34; &#34;</span>)
+	}
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>()
+
+	done <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#000;font-weight:bold">true</span>
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">pusher</span>(c <span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">int</span>) {
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>; i &lt; max; i<span style="color:#000;font-weight:bold">++</span> {
+		c <span style="color:#000;font-weight:bold">&lt;-</span> i <span style="color:#000;font-weight:bold">*</span> i
+	}
+
+	<span style="color:#0086b3">close</span>(c)
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	c <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">int</span>, <span style="color:#099">2</span>)
+	done <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">bool</span>)
+
+	<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">printer</span>(c, done)
+	<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">pusher</span>(c)
+
+	<span style="color:#000;font-weight:bold">&lt;-</span> done
+}
+
+</code></pre></div><h4 id="output-13">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 1 4 9 16 25 36 49 64 81
+</code></pre></div><h2 id="selecting-on-multiple-channels">Selecting on multiple channels</h2>
+<p>Continuing with the CSP channel communication model, Go and its predecessors support primitives for alternating - or selecting - on multiple channels, typically in switch/case-like statement specifying a case of ready to send/receive.</p>
+<h3 id="newsqueak-4">Newsqueak</h3>
+<p><a href="./newsqueak/select.nq">select.nq</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">max</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">2</span>;
+
+<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#900;font-weight:bold">Selects</span> <span style="color:#900;font-weight:bold">on</span> <span style="color:#900;font-weight:bold">two</span> <span style="color:#900;font-weight:bold">channels</span> <span style="color:#900;font-weight:bold">for</span> <span style="color:#900;font-weight:bold">both</span> <span style="color:#900;font-weight:bold">being</span> <span style="color:#900;font-weight:bold">able</span> <span style="color:#900;font-weight:bold">to</span> <span style="color:#900;font-weight:bold">receive</span> <span style="color:#900;font-weight:bold">and</span> <span style="color:#900;font-weight:bold">send</span>
+<span style="color:#900;font-weight:bold">selector</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">prog</span>(<span style="color:#008080">prodChan</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">chan</span> <span style="color:#900;font-weight:bold">of</span> <span style="color:#900;font-weight:bold">int,</span> <span style="color:#008080">recChan</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">chan</span> <span style="color:#900;font-weight:bold">of</span> <span style="color:#900;font-weight:bold">int,</span> <span style="color:#008080">n</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">int</span>){
+	<span style="color:#008080">i</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">int</span>;
+
+	<span style="color:#900;font-weight:bold">for</span>(;;)
+		<span style="color:#900;font-weight:bold">select</span>{
+		<span style="color:#008080">case</span> <span style="color:#900;font-weight:bold">i</span> <span style="color:#900;font-weight:bold">=&lt;-</span> <span style="color:#900;font-weight:bold">prodChan:</span>
+			<span style="color:#008080">print</span>(<span style="color:#998;font-style:italic">&#34;case recv	← &#34;</span><span style="color:#a61717;background-color:#e3d2d2">,</span> <span style="color:#008080">i</span><span style="color:#900;font-weight:bold">,</span> <span style="color:#998;font-style:italic">&#34;\n&#34;</span>);
+
+		<span style="color:#900;font-weight:bold">case</span> <span style="color:#900;font-weight:bold">recChan</span> <span style="color:#900;font-weight:bold">&lt;-=</span> <span style="color:#900;font-weight:bold">n:</span>
+			<span style="color:#008080">print</span>(<span style="color:#998;font-style:italic">&#34;case send	→ &#34;</span><span style="color:#a61717;background-color:#e3d2d2">,</span> <span style="color:#008080">n</span><span style="color:#900;font-weight:bold">,</span> <span style="color:#998;font-style:italic">&#34;\n&#34;</span>);
+		}
+};
+
+<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#900;font-weight:bold">Pushes</span> <span style="color:#a61717;background-color:#e3d2d2">`</span><span style="color:#900;font-weight:bold">max</span><span style="color:#a61717;background-color:#e3d2d2">`</span> <span style="color:#900;font-weight:bold">values</span> <span style="color:#900;font-weight:bold">into</span> <span style="color:#a61717;background-color:#e3d2d2">`</span><span style="color:#900;font-weight:bold">prodChan</span><span style="color:#a61717;background-color:#e3d2d2">`</span>
+<span style="color:#900;font-weight:bold">producer</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">prog</span>(<span style="color:#008080">n</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">int,</span> <span style="color:#008080">prodChan</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">chan</span> <span style="color:#900;font-weight:bold">of</span> <span style="color:#900;font-weight:bold">int</span>){
+	<span style="color:#008080">i</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">int</span>;
+
+	<span style="color:#900;font-weight:bold">for</span>(<span style="color:#008080">i</span> <span style="color:#900;font-weight:bold">=</span> <span style="color:#099">0</span>; <span style="color:#900;font-weight:bold">i</span> <span style="color:#900;font-weight:bold">&lt;</span> <span style="color:#008080">max</span>; <span style="color:#900;font-weight:bold">i++</span>){
+		<span style="color:#008080">print</span>(<span style="color:#998;font-style:italic">&#34;pushed		→ &#34;</span><span style="color:#a61717;background-color:#e3d2d2">,</span> <span style="color:#008080">n</span><span style="color:#900;font-weight:bold">,</span> <span style="color:#998;font-style:italic">&#34;\n&#34;</span>);
+		<span style="color:#900;font-weight:bold">prodChan</span> <span style="color:#900;font-weight:bold">&lt;-=</span> <span style="color:#008080">n</span>;
+	}
+};
+
+<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#900;font-weight:bold">Reads</span> <span style="color:#a61717;background-color:#e3d2d2">`</span><span style="color:#900;font-weight:bold">max</span><span style="color:#a61717;background-color:#e3d2d2">`</span> <span style="color:#900;font-weight:bold">values</span> <span style="color:#900;font-weight:bold">out</span> <span style="color:#900;font-weight:bold">of</span> <span style="color:#a61717;background-color:#e3d2d2">`</span><span style="color:#900;font-weight:bold">recChan</span><span style="color:#a61717;background-color:#e3d2d2">`</span>
+<span style="color:#900;font-weight:bold">receiver</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">prog</span>(<span style="color:#008080">recChan</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">chan</span> <span style="color:#900;font-weight:bold">of</span> <span style="color:#900;font-weight:bold">int</span>){
+	<span style="color:#008080">i</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">int</span>;
+
+	<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#900;font-weight:bold">Stop</span> <span style="color:#900;font-weight:bold">receiving,</span> <span style="color:#008080">manually</span>
+	<span style="color:#900;font-weight:bold">for</span>(<span style="color:#008080">i</span> <span style="color:#900;font-weight:bold">=</span> <span style="color:#099">0</span>; <span style="color:#900;font-weight:bold">i</span> <span style="color:#900;font-weight:bold">&lt;</span> <span style="color:#008080">max</span>; <span style="color:#900;font-weight:bold">i++</span>)
+		<span style="color:#900;font-weight:bold">print</span>(<span style="color:#998;font-style:italic">&#34;received	→ &#34;</span><span style="color:#a61717;background-color:#e3d2d2">,</span> <span style="color:#a61717;background-color:#e3d2d2">&lt;-</span> <span style="color:#008080">recChan</span><span style="color:#900;font-weight:bold">,</span> <span style="color:#998;font-style:italic">&#34;\n&#34;</span>);
+};
+
+<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#900;font-weight:bold">Begin</span> <span style="color:#900;font-weight:bold">main</span> <span style="color:#900;font-weight:bold">logic</span>
+<span style="color:#900;font-weight:bold">prodChan</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">mk</span>(<span style="color:#008080">chan</span> <span style="color:#900;font-weight:bold">of</span> <span style="color:#900;font-weight:bold">int</span>);
+
+<span style="color:#900;font-weight:bold">recChan</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">mk</span>(<span style="color:#008080">chan</span> <span style="color:#900;font-weight:bold">of</span> <span style="color:#900;font-weight:bold">int</span>);
+
+<span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">producer</span>(<span style="color:#099">123</span><span style="color:#900;font-weight:bold">,</span> <span style="color:#008080">prodChan</span>);
+<span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">receiver</span>(<span style="color:#008080">recChan</span>);
+<span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">selector</span>(<span style="color:#008080">prodChan</span><span style="color:#900;font-weight:bold">,</span> <span style="color:#008080">recChan</span><span style="color:#900;font-weight:bold">,</span> <span style="color:#099">456</span>);
+</code></pre></div><h4 id="output-14">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">pushed		→ 123
+pushed		→ 123
+case recv	← 123
+case send	→ 456
+received	→ 456
+case send	→ 456
+received	→ 456
+case recv	← 123
+</code></pre></div><h3 id="alef-4">Alef</h3>
+<p><a href="./alef/select.l">select.l</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">int</span> max <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>;
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">selector</span>(chan(<span style="color:#458;font-weight:bold">int</span>) prodchan, chan(<span style="color:#458;font-weight:bold">int</span>) recchan, <span style="color:#458;font-weight:bold">int</span> n)
+{
+	<span style="color:#458;font-weight:bold">int</span> i;
+
+	<span style="color:#000;font-weight:bold">for</span>(;;)
+		alt{
+		<span style="color:#000;font-weight:bold">case</span> i <span style="color:#000;font-weight:bold">=&lt;-</span> <span style="color:#900;font-weight:bold">prodchan</span>:
+			print(<span style="color:#d14">&#34;case recv	← %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, i);
+
+		<span style="color:#000;font-weight:bold">case</span> recchan <span style="color:#000;font-weight:bold">&lt;-=</span> <span style="color:#900;font-weight:bold">n</span>:
+			print(<span style="color:#d14">&#34;case send	→ %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, n);
+		}
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">producer</span>(<span style="color:#458;font-weight:bold">int</span> n, chan(<span style="color:#458;font-weight:bold">int</span>) prodchan)
+{
+	<span style="color:#458;font-weight:bold">int</span> i;
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> max; i<span style="color:#000;font-weight:bold">++</span>){
+		print(<span style="color:#d14">&#34;pushed	→ %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, n);
+		prodchan <span style="color:#000;font-weight:bold">&lt;-=</span> n;
+	}
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">receiver</span>(chan(<span style="color:#458;font-weight:bold">int</span>) recchan)
+{
+	<span style="color:#458;font-weight:bold">int</span> i;
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> max; i<span style="color:#000;font-weight:bold">++</span>){
+		<span style="color:#458;font-weight:bold">int</span> n;
+		n <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span> recchan;
+		print(<span style="color:#d14">&#34;received	→ %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, n);
+	}
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">void</span>)
+{
+	chan(<span style="color:#458;font-weight:bold">int</span>) prodchan;
+	chan(<span style="color:#458;font-weight:bold">int</span>) recchan;
+	alloc prodchan;
+	alloc recchan;
+
+	proc producer(<span style="color:#099">123</span>, prodchan);
+	proc receiver(recchan);
+	proc selector(prodchan, recchan, <span style="color:#099">456</span>);
+
+	sleep(<span style="color:#099">15</span>);
+}
+</code></pre></div><h4 id="output-15">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">pushed		→ 123
+case send	→ 456
+case recv	← 123
+received	→ 456
+received	→ 456
+pushed		→ 123
+case send	→ 456
+case recv	← 123
+</code></pre></div><h3 id="plan9-c-4">Plan9 C</h3>
+<p>Related reading: <a href="http://man.cat-v.org/9front/2/thread">thread(2)</a></p>
+<p><a href="./plan9c/select.c">select.c</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;thread.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#000;font-weight:bold">const</span> <span style="color:#458;font-weight:bold">int</span> max <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>;
+
+<span style="color:#000;font-weight:bold">typedef</span> <span style="color:#000;font-weight:bold">struct</span> Tuple Tuple;
+<span style="color:#000;font-weight:bold">struct</span> Tuple {
+	Channel <span style="color:#000;font-weight:bold">*</span>a;
+	Channel <span style="color:#000;font-weight:bold">*</span>b;
+};
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">selector</span>(<span style="color:#458;font-weight:bold">void</span> <span style="color:#000;font-weight:bold">*</span>v)
+{
+	Tuple <span style="color:#000;font-weight:bold">*</span>t <span style="color:#000;font-weight:bold">=</span> (Tuple<span style="color:#000;font-weight:bold">*</span>)v;
+	Channel <span style="color:#000;font-weight:bold">*</span>prodchan <span style="color:#000;font-weight:bold">=</span> t<span style="color:#000;font-weight:bold">-&gt;</span>a;
+	Channel <span style="color:#000;font-weight:bold">*</span>recchan <span style="color:#000;font-weight:bold">=</span> t<span style="color:#000;font-weight:bold">-&gt;</span>b;
+
+	<span style="color:#998;font-style:italic">// Set up vars for alt
+</span><span style="color:#998;font-style:italic"></span>	<span style="color:#458;font-weight:bold">int</span> pn;
+	<span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>rn <span style="color:#000;font-weight:bold">=</span> malloc(<span style="color:#099">1</span> <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">sizeof</span> (<span style="color:#458;font-weight:bold">int</span>));
+	<span style="color:#000;font-weight:bold">*</span>rn <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">456</span>;
+
+	<span style="color:#998;font-style:italic">// Set up alt
+</span><span style="color:#998;font-style:italic"></span>	Alt alts[] <span style="color:#000;font-weight:bold">=</span> {
+		{prodchan,	<span style="color:#000;font-weight:bold">&amp;</span>pn,	CHANRCV},
+		{recchan,	rn,		CHANSND},
+		{nil,		nil,	CHANEND},
+	};
+
+	<span style="color:#000;font-weight:bold">for</span>(;;)
+		<span style="color:#000;font-weight:bold">switch</span>(alt(alts)){
+		<span style="color:#000;font-weight:bold">case</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">:</span>
+			<span style="color:#998;font-style:italic">// prodchan open for reading
+</span><span style="color:#998;font-style:italic"></span>			recv(prodchan, <span style="color:#000;font-weight:bold">&amp;</span>pn);
+			print(<span style="color:#d14">&#34;case recv	← %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, pn);
+			<span style="color:#000;font-weight:bold">break</span>;
+
+		<span style="color:#000;font-weight:bold">case</span> <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span>
+			<span style="color:#998;font-style:italic">// recchan open for writing
+</span><span style="color:#998;font-style:italic"></span>			send(recchan, rn);
+			print(<span style="color:#d14">&#34;case send	→ %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, <span style="color:#000;font-weight:bold">*</span>rn);
+			<span style="color:#000;font-weight:bold">break</span>;
+
+		<span style="color:#000;font-weight:bold">default</span><span style="color:#000;font-weight:bold">:</span>
+			<span style="color:#000;font-weight:bold">break</span>;
+		}
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">producer</span>(<span style="color:#458;font-weight:bold">void</span> <span style="color:#000;font-weight:bold">*</span>v)
+{
+	Channel <span style="color:#000;font-weight:bold">*</span>prodchan <span style="color:#000;font-weight:bold">=</span> (Channel<span style="color:#000;font-weight:bold">*</span>)v;
+	<span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>n <span style="color:#000;font-weight:bold">=</span> malloc(<span style="color:#099">1</span> <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">sizeof</span> (<span style="color:#458;font-weight:bold">int</span>));
+	<span style="color:#000;font-weight:bold">*</span>n <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">123</span>;
+
+	<span style="color:#458;font-weight:bold">int</span> i;
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> max; i<span style="color:#000;font-weight:bold">++</span>){
+		print(<span style="color:#d14">&#34;pushed		→ %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, <span style="color:#000;font-weight:bold">*</span>n);
+		send(prodchan, n);
+	}
+
+	chanclose(prodchan);
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">receiver</span>(<span style="color:#458;font-weight:bold">void</span> <span style="color:#000;font-weight:bold">*</span>v)
+{
+	Channel <span style="color:#000;font-weight:bold">*</span>recchan <span style="color:#000;font-weight:bold">=</span> (Channel<span style="color:#000;font-weight:bold">*</span>)v;
+
+	<span style="color:#458;font-weight:bold">int</span> i;
+	<span style="color:#458;font-weight:bold">int</span> n;
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> max; i<span style="color:#000;font-weight:bold">++</span>){
+		recv(recchan, <span style="color:#000;font-weight:bold">&amp;</span>n);
+		print(<span style="color:#d14">&#34;received	→ %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, n);
+	}
+
+	chanclose(recchan);
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">threadmain</span>(<span style="color:#458;font-weight:bold">int</span>, <span style="color:#458;font-weight:bold">char</span><span style="color:#000;font-weight:bold">*</span>[])
+{
+	<span style="color:#998;font-style:italic">// Set up channels
+</span><span style="color:#998;font-style:italic"></span>	Channel <span style="color:#000;font-weight:bold">*</span>prodchan	<span style="color:#000;font-weight:bold">=</span> chancreate(<span style="color:#000;font-weight:bold">sizeof</span> (<span style="color:#458;font-weight:bold">int</span>), max);
+	Channel <span style="color:#000;font-weight:bold">*</span>recchan	<span style="color:#000;font-weight:bold">=</span> chancreate(<span style="color:#000;font-weight:bold">sizeof</span> (<span style="color:#458;font-weight:bold">int</span>), max);
+
+	Tuple <span style="color:#000;font-weight:bold">*</span>chans <span style="color:#000;font-weight:bold">=</span> malloc(<span style="color:#099">1</span> <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">sizeof</span> (Tuple));
+	chans<span style="color:#000;font-weight:bold">-&gt;</span>a <span style="color:#000;font-weight:bold">=</span> prodchan;
+	chans<span style="color:#000;font-weight:bold">-&gt;</span>b <span style="color:#000;font-weight:bold">=</span> recchan;
+
+	<span style="color:#998;font-style:italic">// Start processes
+</span><span style="color:#998;font-style:italic"></span>	proccreate(producer, prodchan,	<span style="color:#099">4096</span>);
+	proccreate(receiver, recchan,	<span style="color:#099">4096</span>);
+	proccreate(selector, chans,		<span style="color:#099">4096</span>);
+
+	sleep(<span style="color:#099">1000</span>);
+
+	threadexitsall(nil);
+}
+</code></pre></div><h4 id="output-16">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">pushed		→ 123
+received	→ 456
+case send	→ 456
+pushed		→ 123
+received	→ 456
+case send	→ 456
+case recv	← 123
+case send	→ 456
+case recv	← 123
+</code></pre></div><h3 id="limbo-4">Limbo</h3>
+<p><a href="./limbo/select.b">select.b</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Select;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">sys</span>: Sys;
+	<span style="color:#900;font-weight:bold">print</span>: import sys;
+
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+
+<span style="color:#900;font-weight:bold">Select</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>: fn(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string);
+};
+
+<span style="color:#900;font-weight:bold">max</span> : con <span style="color:#099">2</span>;
+
+selector(<span style="color:#900;font-weight:bold">prodChan</span>: chan of <span style="color:#458;font-weight:bold">int</span>, <span style="color:#900;font-weight:bold">recChan</span>: chan of <span style="color:#458;font-weight:bold">int</span>, <span style="color:#900;font-weight:bold">n</span>: <span style="color:#458;font-weight:bold">int</span>) {
+	<span style="color:#000;font-weight:bold">for</span>(;;)
+		alt {
+		<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span> prodChan <span style="color:#000;font-weight:bold">=&gt;</span>
+			print(<span style="color:#d14">&#34;case recv	← %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, i);
+
+		recChan <span style="color:#000;font-weight:bold">&lt;-=</span> n <span style="color:#000;font-weight:bold">=&gt;</span>
+			print(<span style="color:#d14">&#34;case send	→ %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, n);
+
+		<span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			<span style="color:#000;font-weight:bold">break</span>;
+		}
+}
+
+producer(<span style="color:#900;font-weight:bold">n</span>: <span style="color:#458;font-weight:bold">int</span>, <span style="color:#900;font-weight:bold">prodChan</span>: chan of <span style="color:#458;font-weight:bold">int</span>) {
+	<span style="color:#000;font-weight:bold">for</span>(<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> max; i<span style="color:#000;font-weight:bold">++</span>){
+		print(<span style="color:#d14">&#34;pushed		→ %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, n);
+		prodChan <span style="color:#000;font-weight:bold">&lt;-=</span> n;
+	}
+}
+
+receiver(<span style="color:#900;font-weight:bold">recChan</span>: chan of <span style="color:#458;font-weight:bold">int</span>) {
+	<span style="color:#000;font-weight:bold">for</span>(<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> max; i<span style="color:#000;font-weight:bold">++</span>)
+		print(<span style="color:#d14">&#34;received	→ %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, <span style="color:#000;font-weight:bold">&lt;-</span> recChan);
+}
+
+init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+
+	<span style="color:#900;font-weight:bold">prodChan</span>	:<span style="color:#000;font-weight:bold">=</span> chan of <span style="color:#458;font-weight:bold">int</span>;
+	<span style="color:#900;font-weight:bold">recChan</span>	:<span style="color:#000;font-weight:bold">=</span> chan of <span style="color:#458;font-weight:bold">int</span>;
+
+	spawn <span style="color:#900;font-weight:bold">producer</span>(<span style="color:#099">123</span>, prodChan);
+	spawn <span style="color:#900;font-weight:bold">receiver</span>(recChan);
+	spawn <span style="color:#900;font-weight:bold">selector</span>(prodChan, recChan, <span style="color:#099">456</span>);
+
+	sys<span style="color:#000;font-weight:bold">-&gt;</span>sleep(<span style="color:#099">1000</span>);
+
+	exit;
+}
+
+</code></pre></div><h4 id="output-17">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">pushed		→ 123
+case send	→ 456
+received	→ 456
+case recv	← 123
+pushed		→ 123
+case recv	← 123
+case send	→ 456
+received	→ 456
+</code></pre></div><h3 id="go-4">Go</h3>
+<p><a href="./go/select.go">select.go</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+
+<span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+	<span style="color:#d14">&#34;time&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">printer</span>(intChan <span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">int</span>, strChan <span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">string</span>, stopChan <span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">bool</span>) {
+	strClosed <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">false</span>
+
+	loop:
+	<span style="color:#000;font-weight:bold">for</span> {
+		<span style="color:#000;font-weight:bold">select</span> {
+		<span style="color:#000;font-weight:bold">case</span> n <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&lt;-</span> intChan:
+			fmt.<span style="color:#900;font-weight:bold">Println</span>(n)
+
+		<span style="color:#000;font-weight:bold">case</span> s, ok <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&lt;-</span> strChan:
+			<span style="color:#000;font-weight:bold">if</span> !ok {
+				strClosed = <span style="color:#000;font-weight:bold">true</span>
+			} <span style="color:#000;font-weight:bold">else</span> {
+				fmt.<span style="color:#900;font-weight:bold">Println</span>(s)
+			}
+
+		<span style="color:#000;font-weight:bold">case</span> stopChan <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#000;font-weight:bold">true</span>:
+			<span style="color:#000;font-weight:bold">if</span> strClosed {
+				<span style="color:#000;font-weight:bold">break</span> loop
+			}
+		}
+	}
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#d14">&#34;done.&#34;</span>)
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">makeInts</span>(intChan <span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">int</span>, stopChan <span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">bool</span>) {
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>; i &lt; <span style="color:#099">3</span>; i<span style="color:#000;font-weight:bold">++</span> {
+		intChan <span style="color:#000;font-weight:bold">&lt;-</span> i<span style="color:#000;font-weight:bold">*</span>i
+	}
+
+	<span style="color:#000;font-weight:bold">&lt;-</span> stopChan
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">makeStrings</span>(strChan <span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">string</span>) {
+	strings <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#458;font-weight:bold">string</span>{<span style="color:#d14">&#34;a&#34;</span>, <span style="color:#d14">&#34;b&#34;</span>, <span style="color:#d14">&#34;☺&#34;</span>}
+
+	<span style="color:#000;font-weight:bold">for</span> _, s <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> strings {
+		strChan <span style="color:#000;font-weight:bold">&lt;-</span> s
+	}
+
+	<span style="color:#0086b3">close</span>(strChan)
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	stopChan <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">bool</span>, <span style="color:#099">1</span>)
+	stopChan <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#000;font-weight:bold">true</span>
+
+	intChan <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">int</span>)
+
+	size <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">3</span>
+	strChan <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">string</span>, size)
+
+	<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">printer</span>(intChan, strChan, stopChan)
+	<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">makeInts</span>(intChan, stopChan)
+	<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">makeStrings</span>(strChan)
+
+	time.<span style="color:#900;font-weight:bold">Sleep</span>(<span style="color:#099">10</span> <span style="color:#000;font-weight:bold">*</span> time.Millisecond)
+}
+</code></pre></div><h4 id="output-18">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0
+a
+1
+b
+☺
+4
+done.
+</code></pre></div><h2 id="unnamed-struct-members-and-promotion">Unnamed struct members and promotion</h2>
+<p>Go, including some of its predecessors, includes the ability to have unnamed sub-structures which can be contextually promoted.</p>
+<p>The details of how this promotion works, if present, is found under each language&rsquo;s respective specification/documentation.</p>
+<p>Pay attention to how and where different elements of different structures are called in these examples.</p>
+<p>Note that gcc supports this feature in a similar way under the <code>-fplan9-extensions</code> flag. <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<h3 id="newsqueak-5">Newsqueak</h3>
+<p>Nope.</p>
+<h3 id="alef-5">Alef</h3>
+<p><a href="./alef/unnamed.l">unnamed.l</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+aggr Point {
+	<span style="color:#458;font-weight:bold">int</span> x;
+	<span style="color:#458;font-weight:bold">int</span> y;
+};
+
+aggr Line {
+	Point p1;
+	Point p2;
+};
+
+aggr Circle {
+	Point;
+	<span style="color:#458;font-weight:bold">int</span> radius;
+};
+
+aggr Shape {
+	<span style="color:#458;font-weight:bold">int</span> type;
+	<span style="color:#000;font-weight:bold">union</span> {
+		Circle;
+		Line;
+	};
+};
+
+adt Person {
+<span style="color:#000;font-weight:bold">extern</span>	<span style="color:#458;font-weight:bold">int</span> age;
+<span style="color:#000;font-weight:bold">extern</span>	<span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">ageup</span>(<span style="color:#000;font-weight:bold">*</span>Person, <span style="color:#458;font-weight:bold">int</span>);
+<span style="color:#000;font-weight:bold">extern</span>	Person <span style="color:#900;font-weight:bold">init</span>();
+};
+
+adt Worker {
+<span style="color:#000;font-weight:bold">extern</span>	Person;
+<span style="color:#000;font-weight:bold">extern</span>	byte <span style="color:#000;font-weight:bold">*</span>position;
+<span style="color:#000;font-weight:bold">extern</span>	Worker <span style="color:#900;font-weight:bold">init</span>(Person);
+};
+
+Worker
+Worker.init(Person p)
+{
+	Worker w;
+
+	w.position <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;none&#34;</span>;
+	w.Person <span style="color:#000;font-weight:bold">=</span> p;
+
+	<span style="color:#000;font-weight:bold">return</span> w;
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+Person.ageup(Person <span style="color:#000;font-weight:bold">*</span>p, <span style="color:#458;font-weight:bold">int</span> n)
+{
+	p<span style="color:#000;font-weight:bold">-&gt;</span>age <span style="color:#000;font-weight:bold">+=</span> n;
+}
+
+Person
+Person.init()
+{
+	Person p;
+
+	p.age <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span>;
+
+	<span style="color:#000;font-weight:bold">return</span> p;
+}
+
+<span style="color:#458;font-weight:bold">int</span> equal(Point p1, Point p2)
+{
+	<span style="color:#000;font-weight:bold">return</span> p1.x <span style="color:#000;font-weight:bold">==</span> p2.x <span style="color:#000;font-weight:bold">&amp;&amp;</span> p1.y <span style="color:#000;font-weight:bold">==</span> p2.y;
+}
+
+Point
+mirror(Point p)
+{
+	p.x <span style="color:#000;font-weight:bold">*=</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>;
+	p.y <span style="color:#000;font-weight:bold">*=</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>;
+	<span style="color:#000;font-weight:bold">return</span> p;
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+main(<span style="color:#458;font-weight:bold">void</span>)
+{
+	Point p0, p1;
+	Circle c;
+	Shape s;
+	Line l;
+	Person sean, ana;
+	Worker engineer;
+
+	p0 <span style="color:#000;font-weight:bold">=</span> (Point)(<span style="color:#099">3</span>, <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>);
+
+	c.Point <span style="color:#000;font-weight:bold">=</span> p0;
+	p0 <span style="color:#000;font-weight:bold">=</span> c;
+
+	p1 <span style="color:#000;font-weight:bold">=</span> mirror(c);
+
+	<span style="color:#000;font-weight:bold">if</span>(equal(p0, c))
+		print(<span style="color:#d14">&#34;p0 = c</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>);
+	<span style="color:#000;font-weight:bold">else</span>
+		<span style="color:#900;font-weight:bold">print</span>(<span style="color:#d14">&#34;p0 ≠ c</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>);
+
+	print(<span style="color:#d14">&#34;c&#39;s point = (%d,%d)</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, c.x, c.y);
+
+	print(<span style="color:#d14">&#34;p1 = (%d,%d)</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, p1.x, p1.y);
+
+	l <span style="color:#000;font-weight:bold">=</span> (Line)(p0, p1);
+
+	s.Line <span style="color:#000;font-weight:bold">=</span> l;
+	s.type <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>;	<span style="color:#998;font-style:italic">/* a line */</span>
+
+	<span style="color:#000;font-weight:bold">if</span>(s.type <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span>)
+		print(<span style="color:#d14">&#34;Shape is line (%d,%d) → (%d,%d)</span><span style="color:#d14">\n</span><span style="color:#d14">, s.p1.x, s.p1.y, s.p2.x, s.p2.y);</span>
+
+	sean <span style="color:#000;font-weight:bold">=</span> .Person.init();
+	engineer <span style="color:#000;font-weight:bold">=</span> .Worker.init(sean);
+
+	engineer.ageup(<span style="color:#099">2</span>);
+
+	print(<span style="color:#d14">&#34;engineer position </span><span style="color:#d14">\&#34;</span><span style="color:#d14">%s</span><span style="color:#d14">\&#34;</span><span style="color:#d14"> is %d years old</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>,
+			engineer.position, engineer.age);
+
+	ana <span style="color:#000;font-weight:bold">=</span> engineer;
+
+	print(<span style="color:#d14">&#34;ana age = %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, ana.age);
+}
+</code></pre></div><h4 id="output-19">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">p0 = c
+c&#39;s point = (3,-1)
+p1 = (-3,1)
+Shape is line (3,-1) → (-3,1)
+engineer position &#34;none&#34; is 3 years old
+ana age = 3
+</code></pre></div><h3 id="plan9-c-5">Plan9 C</h3>
+<p>This example is partially derived from the unnamed subunion example presented in the <em>&lsquo;Plan 9 C Compilers&rsquo;</em> paper. <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<p><a href="./plan9c/unnamed.c">unnamed.c</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">double</span> <span style="color:#a61717;background-color:#e3d2d2">π</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">3.14</span>;
+
+<span style="color:#000;font-weight:bold">typedef</span> <span style="color:#000;font-weight:bold">struct</span> Point Point;
+<span style="color:#000;font-weight:bold">typedef</span> <span style="color:#000;font-weight:bold">struct</span> Circle Circle;
+<span style="color:#000;font-weight:bold">typedef</span> <span style="color:#000;font-weight:bold">struct</span> Number Number;
+<span style="color:#000;font-weight:bold">typedef</span> <span style="color:#000;font-weight:bold">struct</span> Value Value;
+
+<span style="color:#000;font-weight:bold">struct</span> Number {
+	<span style="color:#000;font-weight:bold">union</span> {
+		<span style="color:#458;font-weight:bold">double</span> dval;
+		<span style="color:#458;font-weight:bold">float</span>  fval;
+		<span style="color:#458;font-weight:bold">long</span>   lval;
+	};
+};
+
+<span style="color:#000;font-weight:bold">struct</span> Value {
+	Number;
+};
+
+<span style="color:#000;font-weight:bold">struct</span> Point {
+	<span style="color:#458;font-weight:bold">int</span>	x;
+	<span style="color:#458;font-weight:bold">int</span>	y;
+};
+
+<span style="color:#000;font-weight:bold">struct</span> Circle {
+	Point;
+	<span style="color:#458;font-weight:bold">int</span>	radius;
+};
+
+Point
+<span style="color:#900;font-weight:bold">mirror</span>(Point p)
+{
+	<span style="color:#000;font-weight:bold">return</span> (Point) {<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span> <span style="color:#000;font-weight:bold">*</span> p.x, <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span> <span style="color:#000;font-weight:bold">*</span> p.y};
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">int</span>, <span style="color:#458;font-weight:bold">char</span><span style="color:#000;font-weight:bold">*</span>[])
+{
+	Point p<span style="color:#a61717;background-color:#e3d2d2">₀</span> <span style="color:#000;font-weight:bold">=</span> {.x <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">3</span>, .y <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>};
+
+	Circle c <span style="color:#000;font-weight:bold">=</span> {p<span style="color:#a61717;background-color:#e3d2d2">₀</span>, <span style="color:#099">12</span>};
+
+	Point p<span style="color:#a61717;background-color:#e3d2d2">₁</span> <span style="color:#000;font-weight:bold">=</span> c.Point;
+
+	print(<span style="color:#d14">&#34;p₀ = (%d,%d)</span><span style="color:#d14">\n</span><span style="color:#d14">radius = %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, c.x, c.y, c.radius);
+	print(<span style="color:#d14">&#34;p₁ = (%d,%d)</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, p<span style="color:#a61717;background-color:#e3d2d2">₁</span>.x, p<span style="color:#a61717;background-color:#e3d2d2">₁</span>.y);
+
+	Point p<span style="color:#a61717;background-color:#e3d2d2">₂</span> <span style="color:#000;font-weight:bold">=</span> mirror((Point){c.x, c.y});
+
+	print(<span style="color:#d14">&#34;p₂ = (%d,%d)</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, p<span style="color:#a61717;background-color:#e3d2d2">₂</span>.x, p<span style="color:#a61717;background-color:#e3d2d2">₂</span>.y);
+
+	Value v <span style="color:#000;font-weight:bold">=</span> {<span style="color:#a61717;background-color:#e3d2d2">π</span>};
+
+	print(<span style="color:#d14">&#34;value = %f</span><span style="color:#d14">\n</span><span style="color:#d14">d = %p</span><span style="color:#d14">\n</span><span style="color:#d14">f = %p</span><span style="color:#d14">\n</span><span style="color:#d14">l = %p</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>,
+				v.dval, <span style="color:#000;font-weight:bold">&amp;</span>v.dval, <span style="color:#000;font-weight:bold">&amp;</span>v.fval, <span style="color:#000;font-weight:bold">&amp;</span>v.lval);
+
+	exits(nil);
+}
+</code></pre></div><h4 id="output-20">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">p₀ = (3,-1)
+radius = 12
+p₁ = (3,-1)
+p₂ = (-3,1)
+value = 3.140000
+d = 7fffffffeed0
+f = 7fffffffeed0
+l = 7fffffffeed0
+</code></pre></div><h3 id="limbo-5">Limbo</h3>
+<p>Nope.</p>
+<h3 id="go-5">Go</h3>
+<p><a href="./go/unnamed.go">unnamed.go</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+
+<span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">type</span> Point <span style="color:#000;font-weight:bold">struct</span> {
+	x	<span style="color:#458;font-weight:bold">int</span>
+	y	<span style="color:#458;font-weight:bold">int</span>
+}
+
+<span style="color:#000;font-weight:bold">type</span> Circle <span style="color:#000;font-weight:bold">struct</span> {
+	Point
+	radius	<span style="color:#458;font-weight:bold">uint</span>
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">mirror</span>(p Point) Point {
+	<span style="color:#000;font-weight:bold">return</span> Point{<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span><span style="color:#000;font-weight:bold">*</span>p.x, <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span><span style="color:#000;font-weight:bold">*</span>p.y}
+}
+
+<span style="color:#000;font-weight:bold">func</span> (p <span style="color:#000;font-weight:bold">*</span>Point) <span style="color:#900;font-weight:bold">mirror</span>() {
+	p.x <span style="color:#000;font-weight:bold">*=</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>
+	p.y <span style="color:#000;font-weight:bold">*=</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	p <span style="color:#000;font-weight:bold">:=</span> Point{x: <span style="color:#099">3</span>, y: <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>}
+
+	c <span style="color:#000;font-weight:bold">:=</span> Circle{p, <span style="color:#099">12</span>}
+
+	p2 <span style="color:#000;font-weight:bold">:=</span> c
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(p)
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(c)
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(p2)
+
+	p3 <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">mirror</span>(Point{c.x, c.y})
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(p3)
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(c.Point, c.Point.x, c.Point.y)
+
+	c.<span style="color:#900;font-weight:bold">mirror</span>()
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(c)
+}
+</code></pre></div><h4 id="output-21">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">{3 -1}
+{{3 -1} 12}
+{{3 -1} 12}
+{-3 1}
+{3 -1} 3 -1
+{{-3 1} 12}
+</code></pre></div><h2 id="multiple-returns">Multiple returns</h2>
+<p>C in particular is an offender of not enabling returns without a named type (<code>struct</code>) or allocated memory in place to facilitate multiple values being returned to a caller.</p>
+<p>Go and some of the languages that influence it attempt to solve this issue while maintaining fairly C-like semantics.</p>
+<h3 id="newsqueak-6">Newsqueak</h3>
+<p>Nope.</p>
+<h3 id="alef-6">Alef</h3>
+<p>This example is derived from the tuple example found in the <em>&ldquo;Alef User&rsquo;s Guide&rdquo;</em>. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p><a href="./alef/multret.l">multret.l</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+tuple(<span style="color:#458;font-weight:bold">int</span>, byte<span style="color:#000;font-weight:bold">*</span>, byte<span style="color:#000;font-weight:bold">*</span>)
+foo()
+{
+	<span style="color:#000;font-weight:bold">return</span> (<span style="color:#099">7</span>, <span style="color:#d14">&#34;fußbol&#34;</span>, <span style="color:#d14">&#34;skål&#34;</span>);
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+main(<span style="color:#458;font-weight:bold">void</span>)
+{
+	<span style="color:#458;font-weight:bold">int</span> n;
+	byte <span style="color:#000;font-weight:bold">*</span>game, <span style="color:#000;font-weight:bold">*</span>cheer;
+
+	(n, game, cheer) <span style="color:#000;font-weight:bold">=</span> foo();
+	print(<span style="color:#d14">&#34;(%d %s %s)</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, n, game, cheer);
+}
+</code></pre></div><h4 id="output-22">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">(7 fußbol skål)
+</code></pre></div><h3 id="plan9-c-6">Plan9 C</h3>
+<p>Nope.</p>
+<h3 id="limbo-6">Limbo</h3>
+<p><a href="./limbo/multret.b">multret.b</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement MultRet;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">sys</span>: Sys;
+
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+
+<span style="color:#900;font-weight:bold">MultRet</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>: fn(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string);
+};
+
+swap(a, <span style="color:#900;font-weight:bold">b</span>: <span style="color:#458;font-weight:bold">int</span>)<span style="color:#000;font-weight:bold">:</span> (<span style="color:#458;font-weight:bold">int</span>, <span style="color:#458;font-weight:bold">int</span>) {
+	<span style="color:#000;font-weight:bold">return</span> (b, a);
+}
+
+init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+
+	(x, y) <span style="color:#000;font-weight:bold">:=</span> swap(<span style="color:#099">3</span>, <span style="color:#099">7</span>);
+
+	sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;3, 7 → %d, %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, x, y);
+
+	exit;
+}
+</code></pre></div><h4 id="output-23">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">3, 7 → 7, 3
+</code></pre></div><h3 id="go-6">Go</h3>
+<p><a href="./go/multret.go">multret.go</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+
+<span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">foo</span>()(n <span style="color:#458;font-weight:bold">int</span>, s <span style="color:#458;font-weight:bold">string</span>) {
+	n = <span style="color:#099">4</span>
+	s = <span style="color:#d14">&#34;☺&#34;</span>
+	<span style="color:#000;font-weight:bold">return</span>
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">bar</span>() (a, b, c <span style="color:#458;font-weight:bold">string</span>) {
+	<span style="color:#000;font-weight:bold">return</span> <span style="color:#d14">&#34;a&#34;</span>, <span style="color:#d14">&#34;b&#34;</span>, <span style="color:#d14">&#34;c&#34;</span>
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	n, s <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">foo</span>()
+
+	a, b, c <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">bar</span>()
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(n, s, a, b, c)
+}
+</code></pre></div><h4 id="output-24">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">4 ☺ a b c
+</code></pre></div><h2 id="break-and-continue-overloading">Break and continue overloading</h2>
+<p>Go and some of its predecessors support some form of overloading on top of break/continue to allow more precise flow control in nested iterative/branching logic.</p>
+<h3 id="newsqueak-7">Newsqueak</h3>
+<p>Nope.</p>
+<h3 id="alef-7">Alef</h3>
+<p>This example is derived from an example in the <em>&ldquo;Alef User&rsquo;s Guide&rdquo;</em>. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p>Note that there is no overloaded form of <code>continue</code>.</p>
+<p><a href="./alef/bctag.l">bctag.l</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">void</span>)
+{
+	chan(<span style="color:#458;font-weight:bold">int</span>)[<span style="color:#099">1</span>] dummy;
+	chan(<span style="color:#458;font-weight:bold">int</span>)[<span style="color:#099">2</span>] ch;
+	<span style="color:#458;font-weight:bold">int</span> a;
+
+	alloc ch, dummy;
+	dummy <span style="color:#000;font-weight:bold">&lt;-=</span> <span style="color:#099">1</span>;
+	ch <span style="color:#000;font-weight:bold">&lt;-=</span> <span style="color:#099">3</span>;
+	ch <span style="color:#000;font-weight:bold">&lt;-=</span> <span style="color:#099">4</span>;
+
+	<span style="color:#000;font-weight:bold">while</span>(<span style="color:#000;font-weight:bold">?</span>ch)
+		alt {
+		<span style="color:#000;font-weight:bold">case</span> a <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span>ch;
+			print(<span style="color:#d14">&#34;got %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, a);
+			<span style="color:#000;font-weight:bold">break</span> <span style="color:#099">2</span>;
+
+		<span style="color:#000;font-weight:bold">case</span> <span style="color:#000;font-weight:bold">&lt;-</span> dummy;
+			print(<span style="color:#d14">&#34;dummy</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>);
+			dummy <span style="color:#000;font-weight:bold">&lt;-=</span> <span style="color:#099">1</span>;
+			<span style="color:#000;font-weight:bold">break</span>;
+		}
+}
+</code></pre></div><h4 id="output-25">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">dummy
+dummy
+dummy
+dummy
+got 3
+</code></pre></div><h3 id="plan9-c-7">Plan9 C</h3>
+<p>Nope.</p>
+<h3 id="limbo-7">Limbo</h3>
+<p><a href="./limbo/bctag.b">bctag.b</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement BreakContinueTag;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">sys</span>: Sys;
+
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+
+<span style="color:#900;font-weight:bold">BreakContinueTag</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>: fn(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string);
+};
+
+init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+
+	<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>;
+
+	<span style="color:#900;font-weight:bold">loop</span>:
+	<span style="color:#000;font-weight:bold">for</span>(;;){
+		i<span style="color:#000;font-weight:bold">++</span>;
+		<span style="color:#000;font-weight:bold">case</span> i {
+		<span style="color:#099">11</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			<span style="color:#000;font-weight:bold">break</span> loop;
+		<span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			<span style="color:#000;font-weight:bold">if</span>(i <span style="color:#000;font-weight:bold">%</span> <span style="color:#099">2</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span>)
+				<span style="color:#000;font-weight:bold">continue</span> loop;
+		}
+
+		sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;%d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, i);
+	}
+
+	exit;
+}
+</code></pre></div><h4 id="output-26">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">1
+3
+5
+7
+9
+</code></pre></div><h3 id="go-7">Go</h3>
+<p><a href="./go/bctag.go">bctag.go</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+
+<span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>
+
+	loop:
+	<span style="color:#000;font-weight:bold">for</span> {
+		i<span style="color:#000;font-weight:bold">++</span>
+		<span style="color:#000;font-weight:bold">switch</span> {
+		<span style="color:#000;font-weight:bold">case</span> i <span style="color:#000;font-weight:bold">%</span> <span style="color:#099">2</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span>:
+			<span style="color:#000;font-weight:bold">continue</span> loop
+
+		<span style="color:#000;font-weight:bold">case</span> i &gt; <span style="color:#099">10</span>:
+			<span style="color:#000;font-weight:bold">break</span> loop
+		}
+
+		fmt.<span style="color:#900;font-weight:bold">Println</span>(i)
+	}
+}
+</code></pre></div><h4 id="output-27">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">1
+3
+5
+7
+9
+</code></pre></div><h2 id="lists--iteration">Lists / iteration</h2>
+<p>This section demonstrates syntactic properties regarding lists or list-like iterative logic.</p>
+<h3 id="newsqueak-8">Newsqueak</h3>
+<p>Nope.</p>
+<h3 id="alef-8">Alef</h3>
+<p>This example is derived from the iterator example in the <em>&ldquo;Alef User&rsquo;s Guide&rdquo;</em>. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p><a href="./alef/lists.l">lists.l</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">void</span>)
+{
+	<span style="color:#458;font-weight:bold">int</span> i, arr[<span style="color:#099">10</span>];
+
+	arr[i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">::</span><span style="color:#099">10</span>] <span style="color:#000;font-weight:bold">=</span> i <span style="color:#000;font-weight:bold">*</span> i;
+	print(<span style="color:#d14">&#34;%d &#34;</span>, arr[<span style="color:#099">0</span><span style="color:#000;font-weight:bold">::</span><span style="color:#099">10</span>]);
+
+	print(<span style="color:#d14">&#34;</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>);
+}
+</code></pre></div><h4 id="output-28">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 1 4 9 16 25 36 49 64 81
+</code></pre></div><h3 id="plan9-c-8">Plan9 C</h3>
+<p>Nope.</p>
+<h3 id="limbo-8">Limbo</h3>
+<p>This is a modified version of the <em>&lsquo;Lists&rsquo;</em> example in LimboByExample. <sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+<p><a href="./limbo/lists.b">lists.b</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Lists;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">sys</span>: Sys;
+	<span style="color:#900;font-weight:bold">print</span>: import sys;
+
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+
+<span style="color:#900;font-weight:bold">Lists</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>: fn(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string);
+};
+
+init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+
+	<span style="color:#900;font-weight:bold">names</span>: list of string;
+	<span style="color:#900;font-weight:bold">ages</span>: list of <span style="color:#458;font-weight:bold">int</span>;
+	<span style="color:#900;font-weight:bold">persons</span>: list of (string, <span style="color:#458;font-weight:bold">int</span>);
+
+	print(<span style="color:#d14">&#34;Lens: %d, %d, %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, len names, len ages, len persons);
+
+	names <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Spike&#34;</span> <span style="color:#000;font-weight:bold">::</span> names;
+	ages <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">27</span> <span style="color:#000;font-weight:bold">::</span> ages;
+
+	names <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Ed&#34;</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#d14">&#34;Jet&#34;</span> <span style="color:#000;font-weight:bold">::</span> names;
+	ages <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">13</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#099">36</span> <span style="color:#000;font-weight:bold">::</span> ages;
+
+	print(<span style="color:#d14">&#34;Lens: %d, %d, %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, len names, len ages, len persons);
+
+	<span style="color:#900;font-weight:bold">n</span> :<span style="color:#000;font-weight:bold">=</span> names;
+	<span style="color:#900;font-weight:bold">a</span> :<span style="color:#000;font-weight:bold">=</span> ages;
+
+	<span style="color:#000;font-weight:bold">while</span>(n <span style="color:#000;font-weight:bold">!=</span> nil <span style="color:#000;font-weight:bold">&amp;&amp;</span> a <span style="color:#000;font-weight:bold">!=</span> nil) {
+			persons <span style="color:#000;font-weight:bold">=</span> (hd n, hd a) <span style="color:#000;font-weight:bold">::</span> persons;
+			n <span style="color:#000;font-weight:bold">=</span> tl n;
+			a <span style="color:#000;font-weight:bold">=</span> tl a;
+	}
+
+	print(<span style="color:#d14">&#34;Persons:</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>);
+	<span style="color:#000;font-weight:bold">for</span>(; persons <span style="color:#000;font-weight:bold">!=</span> nil; persons <span style="color:#000;font-weight:bold">=</span> tl persons) {
+		(name, age) <span style="color:#000;font-weight:bold">:=</span> hd persons;
+		print(<span style="color:#d14">&#34;</span><span style="color:#d14">\t</span><span style="color:#d14">%s: %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, name, age);
+	}
+
+	print(<span style="color:#d14">&#34;Tmp lens: %d, %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, len n, len a);
+	print(<span style="color:#d14">&#34;Lens: %d, %d, %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, len names, len ages, len persons);
+
+	exit;
+}
+</code></pre></div><h4 id="output-29">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Lens: 0, 0, 0
+Lens: 3, 3, 0
+Persons:
+	Spike: 27
+	Jet: 36
+	Ed: 13
+Tmp lens: 0, 0
+Lens: 3, 3, 0
+</code></pre></div><h3 id="go-8">Go</h3>
+<p><a href="./go/lists.go">lists.go</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+
+<span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	nums <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">int</span>, <span style="color:#099">0</span>, <span style="color:#099">10</span>)
+
+	fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#d14">&#34;Length = %d\nCapacity = %d\n&#34;</span>, <span style="color:#0086b3">len</span>(nums), <span style="color:#0086b3">cap</span>(nums))
+
+
+	nums = <span style="color:#0086b3">append</span>(nums, <span style="color:#099">1</span>)
+	nums = <span style="color:#0086b3">append</span>(nums, <span style="color:#099">2</span>, <span style="color:#099">3</span>, <span style="color:#099">4</span>)
+
+	<span style="color:#000;font-weight:bold">for</span> i, n <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> nums {
+		fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#d14">&#34;%d: %d\n&#34;</span>, i, n)
+	}
+
+	fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#d14">&#34;Length = %d\nCapacity = %d\n&#34;</span>, <span style="color:#0086b3">len</span>(nums), <span style="color:#0086b3">cap</span>(nums))
+}
+</code></pre></div><h4 id="output-30">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Length = 0
+Capacity = 10
+0: 1
+1: 2
+2: 3
+3: 4
+Length = 4
+Capacity = 10
+</code></pre></div><h2 id="modules--packages--separable-compilation">Modules / packages / separable compilation</h2>
+<p>The idea of separating source across files is fairly universal in modern programming languages. The semantics of this process is demonstrated below for Go and some of its predecessors.</p>
+<h3 id="newsqueak-9">Newsqueak</h3>
+<p>Newsqueak can include files as text. This text can be assigned to a value or otherwise is inserted into the calling file as text and potentially interpreted as source.</p>
+<p><a href="./newsqueak/modules/main.nq">main.nq</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">include</span> <span style="color:#998;font-style:italic">&#34;util.nq&#34;</span>;
+
+<span style="color:#900;font-weight:bold">print</span>(<span style="color:#998;font-style:italic">&#34;Hello &#34;</span>);
+<span style="color:#900;font-weight:bold">smiley</span>();
+</code></pre></div><p><a href="./newsqueak/modules/util.nq">util.nq</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">smiley</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">prog</span>() {
+	<span style="color:#008080">smile</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">include</span> <span style="color:#998;font-style:italic">&#34;smile&#34;</span>;
+	<span style="color:#900;font-weight:bold">print</span>(<span style="color:#008080">smile</span>);
+};
+
+;
+</code></pre></div><p><a href="./newsqueak/modules/smile">smile</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&#34;☺&#34;
+</code></pre></div><h4 id="output-31">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Hello
+☺
+</code></pre></div><h3 id="alef-9">Alef</h3>
+<p>Alef does not differ significantly from Plan9 C and this example is omitted.</p>
+<p>Alef uses headers on its own, but does not allow the inclusion of C header files. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p>Related reading: <a href="http://man.cat-v.org/plan_9_2nd_ed/1/alef">alef(1)</a></p>
+<h3 id="plan9-c-9">Plan9 C</h3>
+<p>There are several compiler features which show themselves in the header: <code>#pragma src</code> and <code>#pragma lib</code>. Further reading on these can be found in the <em>&lsquo;Plan 9 C Compilers&rsquo;</em> paper. <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<p>Note that these <code>#pragma</code> directives typically are found with full system paths provided.</p>
+<p><a href="./plan9c/modules/main.c">main.c</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&#34;./libutil/util.h&#34;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">int</span>, <span style="color:#458;font-weight:bold">char</span><span style="color:#000;font-weight:bold">*</span>[])
+{
+	print(<span style="color:#d14">&#34;Hello &#34;</span>);
+	smiley();
+
+	exits(nil);
+}
+</code></pre></div><p><a href="./plan9c/modules/libutil/util.h">util.h</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#pragma src &#34;./libutil&#34;
+</span><span style="color:#999;font-weight:bold;font-style:italic">#pragma lib &#34;./libutil/libutil.a&#34;
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">smiley</span>(<span style="color:#458;font-weight:bold">void</span>);
+</code></pre></div><p><a href="./plan9c/modules/libutil/util.c">util.c</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&#34;util.h&#34;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">smiley</span>(<span style="color:#458;font-weight:bold">void</span>)
+{
+	print(<span style="color:#d14">&#34;☺</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>);
+}
+</code></pre></div><p><a href="./plan9c/modules/mkfile">mkfile (main)</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-make" data-lang="make"><span style="color:#a61717;background-color:#e3d2d2">&lt;/$objtype/mkfile</span>
+
+<span style="color:#008080">BIN</span> <span style="color:#000;font-weight:bold">=</span> ./
+
+<span style="color:#008080">TARG</span> <span style="color:#000;font-weight:bold">=</span> modules-example
+
+<span style="color:#008080">OFILES</span> <span style="color:#000;font-weight:bold">=</span> main.<span style="color:#008080">$O</span>
+
+<span style="color:#008080">CFLAGS</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#008080">$CFLAGS</span> -I ./libutil
+
+<span style="color:#a61717;background-color:#e3d2d2">&lt;/sys/src/cmd/mkone</span>
+</code></pre></div><p><a href="./plan9c/modules/libutil/mkfile">mkfile (libutil)</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-make" data-lang="make"><span style="color:#a61717;background-color:#e3d2d2">&lt;/$objtype/mkfile</span>
+
+<span style="color:#008080">LIB</span> <span style="color:#000;font-weight:bold">=</span> ./libutil.a
+
+<span style="color:#008080">HFILES</span> <span style="color:#000;font-weight:bold">=</span> util.h
+
+<span style="color:#008080">OFILES</span> <span style="color:#000;font-weight:bold">=</span> util.<span style="color:#008080">$O</span>
+
+<span style="color:#a61717;background-color:#e3d2d2">&lt;/sys/src/cmd/mklib</span>
+</code></pre></div><h4 id="output-32">Output</h4>
+<p>For this example, to build and run from 9front you&rsquo;ll use <a href="http://man.cat-v.org/9front/1/mk">mk(1)</a>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">tenshi% lc
+libutil/	main.c		mkfile
+tenshi% <span style="color:#0086b3">cd</span> libutil
+tenshi% mk
+./libutil.a doesn<span style="color:#a61717;background-color:#e3d2d2">&#39;</span>t exist: assuming it will be an archive
+6c -FTVw util.c
+ar vu ./libutil.a util.6
+ar: creating ./libutil.a
+a - util.6
+tenshi% <span style="color:#0086b3">cd</span> ..
+tenshi% mk
+6c -FTVw -I ./libutil main.c
+6l  -o 6.out main.6
+tenshi% 6.out
+Hello ☺
+tenshi%
+</code></pre></div><h3 id="limbo-9">Limbo</h3>
+<p>This is a slightly reduced version of the <em>&lsquo;Modules&rsquo;</em> example in LimboByExample. <sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+<p><a href="./limbo/modules/modules.b">modules.b</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Modules;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+
+<span style="color:#999;font-weight:bold;font-style:italic"># Note the lack of `include &#34;persons.m&#34;;`
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>include <span style="color:#d14">&#34;towns.m&#34;</span>;
+
+<span style="color:#900;font-weight:bold">sys</span>: Sys;
+<span style="color:#900;font-weight:bold">print</span>: import sys;
+
+<span style="color:#900;font-weight:bold">persons</span>: Persons;
+<span style="color:#900;font-weight:bold">Person</span>: import persons;
+
+<span style="color:#900;font-weight:bold">towns</span>: Towns;
+<span style="color:#900;font-weight:bold">Town</span>: import towns;
+
+<span style="color:#900;font-weight:bold">Modules</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>: fn(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string);
+};
+
+init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+
+	persons <span style="color:#000;font-weight:bold">=</span> load Persons <span style="color:#d14">&#34;./persons.dis&#34;</span>;
+	towns <span style="color:#000;font-weight:bold">=</span> load Towns <span style="color:#d14">&#34;./towns.dis&#34;</span>;
+
+	persons<span style="color:#000;font-weight:bold">-&gt;</span>init();
+	towns<span style="color:#000;font-weight:bold">-&gt;</span>init();
+
+	print(<span style="color:#d14">&#34;%d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, persons<span style="color:#000;font-weight:bold">-&gt;</span>getpop());
+	print(<span style="color:#d14">&#34;%d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, towns<span style="color:#000;font-weight:bold">-&gt;</span>persons<span style="color:#000;font-weight:bold">-&gt;</span>getpop());
+
+	<span style="color:#900;font-weight:bold">p</span> :<span style="color:#000;font-weight:bold">=</span> persons<span style="color:#000;font-weight:bold">-&gt;</span>mkperson();
+	p.name	<span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Spike&#34;</span>;
+	p.age	<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">27</span>;
+
+	print(<span style="color:#d14">&#34;%d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, persons<span style="color:#000;font-weight:bold">-&gt;</span>getpop());
+	print(<span style="color:#d14">&#34;%d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, towns<span style="color:#000;font-weight:bold">-&gt;</span>persons<span style="color:#000;font-weight:bold">-&gt;</span>getpop());
+
+	<span style="color:#900;font-weight:bold">t</span> :<span style="color:#000;font-weight:bold">=</span> towns<span style="color:#000;font-weight:bold">-&gt;</span>mktown();
+	t.pop <span style="color:#000;font-weight:bold">=</span> array[] of {p, ref Person(<span style="color:#099">13</span>, <span style="color:#d14">&#34;Ed&#34;</span>)};
+	t.name <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Mars&#34;</span>;
+
+	print(<span style="color:#d14">&#34;%s</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, t.stringify());
+
+	exit;
+}
+</code></pre></div><p><a href="./limbo/modules/persons.b">persons.b</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Persons;
+
+include <span style="color:#d14">&#34;persons.m&#34;</span>;
+
+<span style="color:#900;font-weight:bold">population</span>: <span style="color:#458;font-weight:bold">int</span>;
+
+init() {
+	population <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>;
+}
+
+getpop()<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span> {
+	<span style="color:#000;font-weight:bold">return</span> population;
+}
+
+mkperson()<span style="color:#000;font-weight:bold">:</span> ref Person {
+	population<span style="color:#000;font-weight:bold">++</span>;
+	<span style="color:#000;font-weight:bold">return</span> ref Person;
+}
+
+Person.stringify(<span style="color:#900;font-weight:bold">p</span>: self ref Person)<span style="color:#000;font-weight:bold">:</span> string {
+	<span style="color:#000;font-weight:bold">return</span> p.name;
+}
+</code></pre></div><p><a href="./limbo/modules/towns.m">towns.m</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">include <span style="color:#d14">&#34;persons.m&#34;</span>;
+
+<span style="color:#900;font-weight:bold">Towns</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>: fn();
+	<span style="color:#900;font-weight:bold">mktown</span>: fn()<span style="color:#000;font-weight:bold">:</span> ref Town;
+
+	<span style="color:#900;font-weight:bold">persons</span>: Persons;
+
+	<span style="color:#900;font-weight:bold">Town</span>: adt {
+		<span style="color:#900;font-weight:bold">pop</span>: array of ref Persons<span style="color:#000;font-weight:bold">-&gt;</span>Person;
+		<span style="color:#900;font-weight:bold">name</span>: string;
+		<span style="color:#900;font-weight:bold">stringify</span>: fn(<span style="color:#900;font-weight:bold">t</span>: self ref Town)<span style="color:#000;font-weight:bold">:</span> string;
+	};
+};
+</code></pre></div><p><a href="./limbo/modules/towns.b">towns.b</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Towns;
+
+include <span style="color:#d14">&#34;towns.m&#34;</span>;
+
+init() {
+	persons <span style="color:#000;font-weight:bold">=</span> load Persons <span style="color:#d14">&#34;./persons.dis&#34;</span>;
+}
+
+mktown()<span style="color:#000;font-weight:bold">:</span> ref Town {
+	<span style="color:#000;font-weight:bold">return</span> ref Town;
+}
+
+Town.stringify(<span style="color:#900;font-weight:bold">t</span>: self ref Town)<span style="color:#000;font-weight:bold">:</span> string {
+	<span style="color:#900;font-weight:bold">Person</span>: import persons;
+
+	<span style="color:#900;font-weight:bold">s</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Name: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t.name <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;</span><span style="color:#d14">\n</span><span style="color:#d14">Size: &#34;</span> <span style="color:#000;font-weight:bold">+</span> string len t.pop <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;</span><span style="color:#d14">\n</span><span style="color:#d14">Members:&#34;</span>;
+
+	<span style="color:#000;font-weight:bold">for</span>(<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len t.pop; i<span style="color:#000;font-weight:bold">++</span>)
+		s <span style="color:#000;font-weight:bold">+=</span> <span style="color:#d14">&#34;</span><span style="color:#d14">\n</span><span style="color:#d14">→ &#34;</span> <span style="color:#000;font-weight:bold">+</span> t.pop[i].stringify();
+
+	<span style="color:#000;font-weight:bold">return</span> s;
+}
+</code></pre></div><p><a href="./limbo/modules/mkfile">mkfile</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-make" data-lang="make"><span style="color:#a61717;background-color:#e3d2d2">&lt;/mkconfig</span>
+
+<span style="color:#008080">DISBIN</span> <span style="color:#000;font-weight:bold">=</span> ./
+
+<span style="color:#008080">TARG</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">\
+</span><span style="color:#d14"></span>	modules.dis<span style="color:#d14">\
+</span><span style="color:#d14"></span>	persons.dis<span style="color:#d14">\
+</span><span style="color:#d14"></span>	towns.dis<span style="color:#d14">\
+</span><span style="color:#d14"></span>
+<span style="color:#a61717;background-color:#e3d2d2">&lt;/mkfiles/mkdis</span>
+</code></pre></div><h4 id="output-33">Output</h4>
+<p>For this example, to build and run from Inferno you&rsquo;ll use <a href="http://man.cat-v.org/inferno/1/mk">mk(1)</a>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">; mk
+limbo -I/module -gw modules.b
+limbo -I/module -gw persons.b
+limbo -I/module -gw towns.b
+; modules
+<span style="color:#099">0</span>
+<span style="color:#099">0</span>
+<span style="color:#099">1</span>
+<span style="color:#099">0</span>
+Name: Mars
+Size: <span style="color:#099">2</span>
+Members:
+→ Spike
+→ Ed
+;
+</code></pre></div><h3 id="go-9">Go</h3>
+<p>This example just shows including a local package.</p>
+<p>Modern Go recommends using the module system <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> and most public Go projects will have import paths in forms such as <code>&quot;github.com/foo/bar&quot;</code>.</p>
+<p><a href="./go/modules/main.go">main.go</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+
+<span style="color:#000;font-weight:bold">import</span> (
+util	<span style="color:#d14">&#34;./util&#34;</span>
+	<span style="color:#d14">&#34;fmt&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	fmt.<span style="color:#900;font-weight:bold">Print</span>(<span style="color:#d14">&#34;Hello &#34;</span>)
+	util.<span style="color:#900;font-weight:bold">Smile</span>()
+}
+</code></pre></div><p><a href="./go/modules/util/util.go">util.go</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> util
+
+<span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">Smile</span>() {
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#d14">&#34;☺&#34;</span>)
+}
+</code></pre></div><h4 id="output-34">Output</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Hello ☺
+</code></pre></div><h2 id="references">References</h2>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://github.com/henesy/awesome-inferno">https://github.com/henesy/awesome-inferno</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="http://usingcsp.com/cspbook.pdf">http://usingcsp.com/cspbook.pdf</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p><a href="http://doc.cat-v.org/plan_9/2nd_edition/papers/alef/ug">http://doc.cat-v.org/plan_9/2nd_edition/papers/alef/ug</a> <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p><a href="https://gcc.gnu.org/onlinedocs/gcc-4.6.0/gcc/Unnamed-Fields.html#Unnamed-Fields">https://gcc.gnu.org/onlinedocs/gcc-4.6.0/gcc/Unnamed-Fields.html#Unnamed-Fields</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p><a href="http://doc.cat-v.org/plan_9/4th_edition/papers/compiler">http://doc.cat-v.org/plan_9/4th_edition/papers/compiler</a> <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6" role="doc-endnote">
+<p><a href="https://github.com/henesy/limbobyexample">https://github.com/henesy/limbobyexample</a> <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7" role="doc-endnote">
+<p><a href="https://blog.golang.org/using-go-modules">https://blog.golang.org/using-go-modules</a> <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+</div>
+  
+</article>
+<button class="floating-button">
+    <a class="floating-button__link" href="https://seh.dev/">
+        <span>home</span>
+    </a>
+</button>
+
+
+    </div>
+    
+    <footer class="post-footer">
+    <div class="footer">
+        
+            <div>© 2020, Sean Hinchee</div>
+        
+        <div class="footer__socials">
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+
+    
+    
+      
+<script src="https://seh.dev/js/script.js"></script>
+
+    
+  </body>
+</html>

@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2020, Sean Hinchee</copyright>
-    <lastBuildDate>Sat, 01 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://seh.dev/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go&#39;s History in Code</title>
+      <link>https://seh.dev/go-legacy/</link>
+      <pubDate>Sat, 20 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/go-legacy/</guid>
+      <description>Go&amp;rsquo;s History in Code This post intends to showcase programming patterns, or stuff, which is common between Newsqueak, Alef, Plan9 C, Limbo, and Go.
+All of these code snippets should be complete as shown and compilable/runnable in the state presented. The Alef examples might have subtle typos, but this is due to the fact I had to manually re-type them out from VirtualBox since I didn&amp;rsquo;t have copy/paste available to the guest.</description>
+    </item>
     
     <item>
       <title>Porting Unix Software to Plan9</title>
