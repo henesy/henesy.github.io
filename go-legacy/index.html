@@ -177,7 +177,7 @@ $
 <p>There&rsquo;s also a work-in-progress port of Alef from 2e to 9front/386 which can be found on the <a href="http://wiki.9gridchan.org/public_grid/index.html">public grid</a> griddisk at <code>/burnzez/rep/alef/root</code> and maybe <code>/burnzez/alef</code>. Griddisk is accessible over 9p via <code>tcp!45.63.75.148!9564</code>. You can more easily access the grid from unix via the <a href="https://github.com/henesy/grid-unix">gridnix scripts</a>.</p>
 <p>From a prompt on a complete Plan9 2e installation:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">term% 8al foo.l
-term% 8l co.8
+term% 8l foo.8
 term% 8.out
 <span style="color:#998;font-style:italic"># output, if any</span>
 term%
@@ -676,7 +676,7 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 </code></pre></div><h4 id="output-12">Output</h4>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 1 4 9 16 25 36 49 64 81
 </code></pre></div><h3 id="go-3">Go</h3>
-<p>Note that Go is the only language to support the optional <code>ok</code> value when reading out of a channel.</p>
+<p>Note that Go is not the only language to support the optional <code>ok</code> value when reading out of a channel, the Plan9 C functions <code>send(2)</code> and <code>recv(2)</code> have a return value: &ldquo;Send and recv return 1 on success, -1 if interrupted.&rdquo; <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
 <p><a href="./go/chans.go">chans.go</a></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
 
@@ -1102,7 +1102,7 @@ done.
 <p>Go, including some of its predecessors, includes the ability to have unnamed sub-structures which can be contextually promoted.</p>
 <p>The details of how this promotion works, if present, is found under each language&rsquo;s respective specification/documentation.</p>
 <p>Pay attention to how and where different elements of different structures are called in these examples.</p>
-<p>Note that gcc supports this feature in a similar way under the <code>-fplan9-extensions</code> flag. <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<p>Note that gcc supports this feature in a similar way under the <code>-fplan9-extensions</code> flag. <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
 <h3 id="newsqueak-5">Newsqueak</h3>
 <p>Nope.</p>
 <h3 id="alef-5">Alef</h3>
@@ -1238,7 +1238,7 @@ Shape is line (3,-1) → (-3,1)
 engineer position &#34;none&#34; is 3 years old
 ana age = 3
 </code></pre></div><h3 id="plan9-c-5">Plan9 C</h3>
-<p>This example is partially derived from the unnamed subunion example presented in the <em>&lsquo;Plan 9 C Compilers&rsquo;</em> paper. <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<p>This example is partially derived from the unnamed subunion example presented in the <em>&lsquo;Plan 9 C Compilers&rsquo;</em> paper. <sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
 <p><a href="./plan9c/unnamed.c">unnamed.c</a></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
@@ -1587,7 +1587,7 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 </code></pre></div><h3 id="plan9-c-8">Plan9 C</h3>
 <p>Nope.</p>
 <h3 id="limbo-8">Limbo</h3>
-<p>This is a modified version of the <em>&lsquo;Lists&rsquo;</em> example in LimboByExample. <sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+<p>This is a modified version of the <em>&lsquo;Lists&rsquo;</em> example in LimboByExample. <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
 <p><a href="./limbo/lists.b">lists.b</a></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Lists;
 
@@ -1705,7 +1705,7 @@ Capacity = 10
 <p>Alef uses headers on its own, but does not allow the inclusion of C header files. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
 <p>Related reading: <a href="http://man.cat-v.org/plan_9_2nd_ed/1/alef">alef(1)</a></p>
 <h3 id="plan9-c-9">Plan9 C</h3>
-<p>There are several compiler features which show themselves in the header: <code>#pragma src</code> and <code>#pragma lib</code>. Further reading on these can be found in the <em>&lsquo;Plan 9 C Compilers&rsquo;</em> paper. <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<p>There are several compiler features which show themselves in the header: <code>#pragma src</code> and <code>#pragma lib</code>. Further reading on these can be found in the <em>&lsquo;Plan 9 C Compilers&rsquo;</em> paper. <sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
 <p>Note that these <code>#pragma</code> directives typically are found with full system paths provided.</p>
 <p><a href="./plan9c/modules/main.c">main.c</a></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
@@ -1776,7 +1776,7 @@ tenshi% 6.out
 Hello ☺
 tenshi%
 </code></pre></div><h3 id="limbo-9">Limbo</h3>
-<p>This is a slightly reduced version of the <em>&lsquo;Modules&rsquo;</em> example in LimboByExample. <sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+<p>This is a slightly reduced version of the <em>&lsquo;Modules&rsquo;</em> example in LimboByExample. <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
 <p><a href="./limbo/modules/modules.b">modules.b</a></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Modules;
 
@@ -1917,7 +1917,7 @@ Members:
 ;
 </code></pre></div><h3 id="go-9">Go</h3>
 <p>This example just shows including a local package.</p>
-<p>Modern Go recommends using the module system <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> and most public Go projects will have import paths in forms such as <code>&quot;github.com/foo/bar&quot;</code>.</p>
+<p>Modern Go recommends using the module system <sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup> and most public Go projects will have import paths in forms such as <code>&quot;github.com/foo/bar&quot;</code>.</p>
 <p><a href="./go/modules/main.go">main.go</a></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
 
@@ -1956,16 +1956,19 @@ util	<span style="color:#d14">&#34;./util&#34;</span>
 <p><a href="http://doc.cat-v.org/plan_9/2nd_edition/papers/alef/ug">http://doc.cat-v.org/plan_9/2nd_edition/papers/alef/ug</a> <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4" role="doc-endnote">
-<p><a href="https://gcc.gnu.org/onlinedocs/gcc-4.6.0/gcc/Unnamed-Fields.html#Unnamed-Fields">https://gcc.gnu.org/onlinedocs/gcc-4.6.0/gcc/Unnamed-Fields.html#Unnamed-Fields</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="http://man.cat-v.org/9front/2/thread">http://man.cat-v.org/9front/2/thread</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:5" role="doc-endnote">
-<p><a href="http://doc.cat-v.org/plan_9/4th_edition/papers/compiler">http://doc.cat-v.org/plan_9/4th_edition/papers/compiler</a> <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://gcc.gnu.org/onlinedocs/gcc-4.6.0/gcc/Unnamed-Fields.html#Unnamed-Fields">https://gcc.gnu.org/onlinedocs/gcc-4.6.0/gcc/Unnamed-Fields.html#Unnamed-Fields</a> <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:6" role="doc-endnote">
-<p><a href="https://github.com/henesy/limbobyexample">https://github.com/henesy/limbobyexample</a> <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="http://doc.cat-v.org/plan_9/4th_edition/papers/compiler">http://doc.cat-v.org/plan_9/4th_edition/papers/compiler</a> <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:7" role="doc-endnote">
-<p><a href="https://blog.golang.org/using-go-modules">https://blog.golang.org/using-go-modules</a> <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://github.com/henesy/limbobyexample">https://github.com/henesy/limbobyexample</a> <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:8" role="doc-endnote">
+<p><a href="https://blog.golang.org/using-go-modules">https://blog.golang.org/using-go-modules</a> <a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
