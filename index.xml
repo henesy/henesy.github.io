@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2020, Sean Hinchee</copyright>
-    <lastBuildDate>Sat, 20 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://seh.dev/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Runez Compression Algorithms</title>
+      <link>https://seh.dev/runez/</link>
+      <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/runez/</guid>
+      <description>The Runez Compression Algorithms In January of 2020 I set about writing a pair of naïve, lossless, compression algorithms inspired by a series of conversations over coffee with a good friend.
+These algorithms are very naïve, but simple structurally and to that end I will attempt to convey the implementation.
+There are two algorithms, runez and runez2.
+The runez2 algorithm is a strictly superior successor \(^ \dagger\) to runez with the primary improvement being that there is no unique character limit, which will be explained later.</description>
+    </item>
     
     <item>
       <title>Go&#39;s History in Code</title>
