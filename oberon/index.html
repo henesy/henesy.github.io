@@ -228,6 +228,7 @@ Hello.World
 </ul>
 </li>
 </ol>
+<br>
 <img src="./helloworld.png" title="It was me, Dio!" height="600">
 <h3 id="m0-from-wirth-space">M0 from Wirth Space</h3>
 <p>I modified Wirth&rsquo;s <a href="./M0.Mod">M0.Mod</a> example from <a href="https://inf.ethz.ch/personal/wirth/ProjectOberon/UsingOberon.pdf">Using Oberon</a> which shows some ascpects of a typical Oberon program:</p>
@@ -267,7 +268,8 @@ END P0;
 BEGIN 
 	Texts.OpenWriter(W) 
 END M0. 
-</code></pre></div><img src="./M0P0.png" title="M0.P0 running" height="600">
+</code></pre></div><br>
+<img src="./M0P0.png" title="M0.P0 running" height="600">
 <h2 id="some-stuff-oberon-inspired">Some Stuff Oberon Inspired</h2>
 <h3 id="limbo">Limbo</h3>
 <p><a href="https://github.com/henesy/limbobyexample">Limbo</a> is a language written for the <a href="https://github.com/henesy/awesome-inferno">Inferno</a> operating system which runs on the <a href="http://doc.cat-v.org/inferno/4th_edition/dis_VM_specification">Dis</a> virtual machine.</p>
@@ -283,12 +285,10 @@ END M0.
 <h3 id="go">Go</h3>
 <p>This is mostly due to <a href="https://golang.org/">Go</a>&rsquo;s lineage, see most of the Limbo section above.</p>
 <p>The format for declaring a variable&rsquo;s type does show up in Go as:</p>
-<pre><code>var x int
-</code></pre>
-<p>compare this to Oberon&rsquo;s equivalent:</p>
-<pre><code>VAR sum: INTEGER;
-</code></pre>
-<p>This is a Pascal-ism, but as the language heritage of Go is descended from Pascal, it&rsquo;s worth mentioning. This is also true of Limbo.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">var</span> x <span style="color:#458;font-weight:bold">int</span>
+</code></pre></div><p>compare this to Oberon&rsquo;s equivalent:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">VAR sum: INTEGER;
+</code></pre></div><p>This is a Pascal-ism, but as the language heritage of Go is descended from Pascal, it&rsquo;s worth mentioning. This is also true of Limbo.</p>
 <h3 id="acme">Acme</h3>
 <p><a href="http://acme.cat-v.org">Acme</a> is an editor which expresses itself as a <a href="http://9p.cat-v.org/">9p</a> filesystem originally written for <a href="http://doc.cat-v.org/plan_9/">Plan9</a> in <a href="http://doc.cat-v.org/plan_9/2nd_edition/papers/alef/ref">Alef</a> which drew a great deal of inspiration from Oberon. I (and others!) use Acme as the day-to-day editor of choice. I wouldn&rsquo;t leave home without it ☺.</p>
 <p>Some fun differences in Acme from Oberon&rsquo;s Textual-User-Interface (TUI):</p>
