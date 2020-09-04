@@ -3,17 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://seh.dev/tags/go/</loc>
-    <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+    <loc>https://seh.dev/tags/inferno/</loc>
+    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://seh.dev/tags/limbo/</loc>
+    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://seh.dev/limbo-intro/</loc>
+    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://seh.dev/</loc>
-    <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://seh.dev/tags/</loc>
+    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://seh.dev/tags/go/</loc>
     <lastmod>2020-07-03T00:00:00+00:00</lastmod>
   </url>
   
@@ -24,11 +39,6 @@
   
   <url>
     <loc>https://seh.dev/go-legacy/</loc>
-    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://seh.dev/tags/inferno/</loc>
     <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   

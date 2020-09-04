@@ -7,10 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2020, Sean Hinchee</copyright>
-    <lastBuildDate>Fri, 03 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 02 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://seh.dev/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Program development in Limbo</title>
+      <link>https://seh.dev/limbo-intro/</link>
+      <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/limbo-intro/</guid>
+      <description>Program development in Limbo Motivation Resources covering software development under Inferno are fairly scarce.
+As such, this post aims to provide a start-to-finish demonstration of program development in Limbo inside Inferno.
+Introduction This post assumes you&amp;rsquo;re using Inferno, specifically purgatorio, hosted under linux/amd64 or similar.
+It&amp;rsquo;s also possible to use Inferno under Docker as per the INSTALL file.
+Other platforms are supported, but steps may differ here or there.
+The rune $ indicates a unix shell command under bash, probably.</description>
+    </item>
     
     <item>
       <title>The Runez Compression Algorithms</title>

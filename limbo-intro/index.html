@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>seh.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="Program development in Limbo" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seh.dev/limbo-intro/" />
+    <meta itemprop="name" content="Program development in Limbo">
+    <meta itemprop="description" content="">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Program development in Limbo"/>
+    <meta name="twitter:description" content=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+    
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.7d924ef9774ec20834568e42ea359840e26958ba74814c521b70b3cb5161c0bf.css" >
+</head>
+<body>
+    <header>
+    <div class="header header-frame">
+        <div>
+          
+            <h1 class="header__title">Program development in Limbo</h1>
+          
+            
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list header-nav-list--menu">
+                
+                
+                    
+                        <li class="header-nav-list__item">
+                            <a class="header-nav-list__link" href="/about/">
+                                
+                                <span>About</span>
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+            <button class="header-nav-list__nav-btn">navigation</button>
+        </nav>
+        <button class="mb-header__menu-btn">
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+        </button>
+    </div>
+    <nav id="mobile-header-nav" class="mb-header-nav">
+  
+  
+  <button class="mb-header-nav__close-btn flex-center">
+    <svg
+            class="mb-header-nav__svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            >
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+    </button>
+    
+    <div class="mb-header-nav__wrapper">
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Tags
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/inferno/"
+                                                            >inferno</a
+                                                        >
+                    </li>
+                        
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/limbo/"
+                                                            >limbo</a
+                                                        >
+                    </li>
+                        
+                    
+                
+            </ul>
+        </div>
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Menu
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                
+                    
+                      <li class="mb-header-nav-list__item ">
+                            <a class="mb-header-nav-list__link" href="/about/">
+                                About
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+
+    <div id="content">
+<article class="post">
+  
+    <div class="post-content"><h1 id="program-development-in-limbo">Program development in Limbo</h1>
+<h2 id="motivation">Motivation</h2>
+<p>Resources covering software development under Inferno are fairly scarce.</p>
+<p>As such, this post aims to provide a start-to-finish demonstration of program development in Limbo inside Inferno.</p>
+<h2 id="introduction">Introduction</h2>
+<p>This post assumes you&rsquo;re using Inferno, specifically <a href="https://code.9front.org/hg/purgatorio/">purgatorio</a>, hosted under <code>linux/amd64</code> or similar.</p>
+<p>It&rsquo;s also possible to use Inferno under Docker as per the <code>INSTALL</code> file.</p>
+<p>Other platforms are supported, but steps may differ here or there.</p>
+<p>The rune <code>$</code> indicates a unix shell command under <code>bash</code>, probably.</p>
+<p>The rune <code>;</code> or <code>%</code> indicates a command to be run from inside Inferno.</p>
+<p>The final source from this post: <a href="https://github.com/henesy/socketh-limbo">https://github.com/henesy/socketh-limbo</a></p>
+<p>This post will be an implementation of <a href="https://github.com/henesy/SocketH">SocketH</a> which was originally written in Go and has a few other implementations:</p>
+<ul>
+<li><a href="https://github.com/henesy/socketh-myr">https://github.com/henesy/socketh-myr</a></li>
+<li><a href="https://github.com/henesy/SocketS">https://github.com/henesy/SocketS</a></li>
+</ul>
+<p>The original code isn&rsquo;t great, but it gives a target for what we want to create.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>Many, if not all, of these development steps prior to <em>running</em> the final Dis bytecode can be done from outside of Inferno.</p>
+<p>The limbo compiler can be called as <code>limbo</code> and with the right workflow development may be more pleasant.</p>
+<p>This post assumes:</p>
+<ul>
+<li>Development occurs inside of Inferno for the purpose of consistency</li>
+<li>Some knowledge about imperative, C-like, language programming</li>
+<li>Some knowledge about how unix-like systems work</li>
+<li>Some knowledge about how C-like compiler and linker flows work</li>
+<li>Knowledge about how to interact with a unix-like shell</li>
+<li>Vague knowledge about Inferno, such as the fact Inferno exists ☺</li>
+</ul>
+<h3 id="build-inferno">Build Inferno</h3>
+<p>Steps provided are targeted for <code>linux/amd64</code> as a host for Inferno.</p>
+<p>The official <a href="https://bitbucket.org/inferno-os/inferno-os/">Inferno</a> tree is hosted over <a href="https://git-scm.com/">Git</a>.</p>
+<p>The <a href="https://code.9front.org/hg/purgatorio/">purgatorio</a> fork is hosted by the 9front project over <a href="https://www.mercurial-scm.org/">Mercurial</a>.</p>
+<p>Cloning:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ hg clone https://code.9front.org/hg/purgatorio
+destination directory: purgatorio
+requesting all changes
+adding changesets
+adding manifests
+adding file changes
+added 86 changesets with 10904 changes to 10545 files
+new changesets 78950db8e089:749c484c1b9c
+updating to branch default
+9584 files updated, 0 files merged, 0 files removed, 0 files unresolved
+$ cd purgatorio/
+$ ls
+acme                     FreeBSD  libdynld     libprefab      mkfile       scripts
+AIX                      icons    libfreetype  libsec         mkfiles      services
+appl                     include  libinterp    libtk          module       Solaris
+bitbucket-pipelines.yml  Inferno  libkern      limbo          NetBSD       tools
+CHANGES                  INSTALL  libkeyring   Linux          NOTICE       usr
+dis                      Irix     liblogfs     locale         Nt           utils
+doc                      keydb    libmath      MacOSX         OpenBSD
+Dockerfile               lib      libmemdraw   makemk-AIX.sh  os
+DragonFly                lib9     libmemlayer  makemk.sh      Plan9
+emu                      libbio   libmp        man            POSTINSTALL
+fonts                    libdraw  libnandfs    mkconfig       README.md
+$
+</code></pre></div><p><strong>Read the</strong> <code>INSTALL</code> <strong>file!</strong></p>
+<p>Update our <code>$HOME/.profile</code> to reflect the Inferno install, adapt this to your directories:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">export EMU=&#39;-g1280x960 -c1&#39;
+export INFERNO=$HOME/repos/purgatorio
+export PATH=$PATH:$INFERNO/Linux/386/bin
+</code></pre></div><p>Reload our shell currently in the purgatorio root tree:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ source $HOME/.profile
+$
+</code></pre></div><p>Update the <code>mkconfig</code> file to reflect our environment, adapt this as needed:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">ROOT=$HOME/repos/purgatorio
+
+TKSTYLE=std
+
+CONF=emu
+
+SYSHOST=Linux		# build system OS type (Hp, Inferno, Irix, Linux, MacOSX, Nt, Plan9, Solaris)
+SYSTARG=$SYSHOST	# target system OS type (Hp, Inferno, Irix, Linux, Nt, Plan9, Solaris)
+
+OBJTYPE=386
+
+OBJDIR=$SYSTARG/$OBJTYPE
+
+&lt;$ROOT/mkfiles/mkhost-$SYSHOST			# variables appropriate for host system
+&lt;$ROOT/mkfiles/mkfile-$SYSTARG-$OBJTYPE	# variables used to build target object type
+</code></pre></div><p>Enable multi-arch support on debian-based distributions if on amd64 (64-bit) as Inferno is 32-bit only:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ dpkg --add-architecture i386
+$ apt-get update
+</code></pre></div><p>Install dependencies required to compile Inferno, this example shows dependencies for debian-based (Ubuntu) distributions:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ apt install libc6-dev-i386 libxext6:i386 libx11-dev:i386 libxext-dev:i386 libfontconfig1-dev:i386
+…
+$
+</code></pre></div><p>Build <code>mk</code> which will be used to bootstrap the rest of the process:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ./makemk.sh
+…
+$
+</code></pre></div><p>Build and install Inferno!</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ mk mkdirs
+…
+$ mk clean
+…
+$ mk install
+…
+$
+</code></pre></div><h3 id="start-inferno">Start Inferno</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ emu
+; wm/wm
+…
+</code></pre></div><p>A graphical environment should appear.</p>
+<p>You can make the gui window for Inferno larger by passing in a different size to <code>emu</code> as per <a href="http://man.postnix.pw/purgatorio/1/emu">the manual</a>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-gXsizexYsize
+	Define screen width and height in pixels.  The default
+	values are 640x480 and the minimum values are 64x48.
+	Values smaller than the minimum or greater than the
+	available display size are ignored.
+</code></pre></div><p>thus:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ emu -g1280x960
+; wm/wm
+</code></pre></div><p>and so forth.</p>
+<p>Some programs can be found under the start menu in the bottom left corner decorated with the <a href="vitanuova.com/">Vita Nuova</a> logo:</p>
+<p><img src="http://www.vitanuova.com/images/vitanuova.jpg" alt="Vita Nuova&rsquo;s logo"></p>
+<p>The <code>Shell</code> entry in the start menu will provide a shell-interpreter window from which further commands can be run inside Inferno.</p>
+<h3 id="preparation">Preparation</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% cd $home/appl
+% os git clone https://github.com/henesy/socketh-limbo
+% cd socketh-limbo
+% lc
+.git/     LICENSE   README.md
+% touch .gitignore socketh.b
+% acme socketh.b
+</code></pre></div><p><code>.gitignore</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">*.sbl
+*.dis
+</code></pre></div><p>Limbo &lsquo;libraries&rsquo;, known as &lsquo;modules&rsquo;, and &lsquo;programs&rsquo; are one and the same in terms of semantics, bar &lsquo;libraries&rsquo; having module <code>.m</code> files which are similar to header <code>.h</code> files in C.</p>
+<p>As such, the boilerplate for most Limbo programs is very similar. We can initialize our main file as follows.</p>
+<p><code>socketh.b</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement SocketH;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">sys</span>: Sys;
+
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+include <span style="color:#d14">&#34;arg.m&#34;</span>;
+
+<span style="color:#900;font-weight:bold">SocketH</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>: fn(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">argv</span>: list of string);
+};
+
+
+<span style="color:#999;font-weight:bold;font-style:italic"># An implementation of the SocketH chat protocol
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">argv</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	<span style="color:#900;font-weight:bold">arg</span> :<span style="color:#000;font-weight:bold">=</span> load Arg Arg<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	<span style="color:#000;font-weight:bold">if</span>(arg <span style="color:#000;font-weight:bold">==</span> nil)
+		raise <span style="color:#d14">&#34;could not load arg&#34;</span>;
+
+
+
+	exit;
+}
+</code></pre></div><p>We can break this down a bit.</p>
+<p><code>implement</code> declares a module by name.</p>
+<p>A module definition must be provided indicating exported functions from the module:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">SocketH: module {
+	init: fn(nil: ref Draw-&gt;Context, argv: list of string);
+};
+</code></pre></div><p>Note how a variable name of <code>nil</code> is used to drop assignment of a value.</p>
+<p>The <code>init</code> function is special in shell-loaded Limbo programs and its signature <em>must</em> match what the shell expects the init function interface to be.</p>
+<p>Functionally, <code>init</code> is equivalent to <code>main</code> in most other languages.</p>
+<p><code>include</code> imports an external module&rsquo;s definitions into our scope.</p>
+<p><code>load</code> performs the dynamic loading of a module at runtime.</p>
+<p><code>exit</code> performs the dynamic un-loading of a module at runtime.</p>
+<p><code>raise</code> will throw an exception with a given string as its content.</p>
+<p>We refer to names inside a module using the <code>-&gt;</code> operator.</p>
+<p>We can jointly assign and declare in one step using the <code>:=</code> operator.</p>
+<p>Curly braces are optional.</p>
+<p>Semicolons are not.</p>
+<p>Note the absence of a reserved <code>main</code> module. This is due to each <code>.dis</code> file, potentially an independent module, being theoretically loadable in its own right. A reserved name would cause significant issues with namespaces ☺.</p>
+<h3 id="setting-up-a-workflow">Setting up a workflow</h3>
+<p>Compiling our program should be as straightforward as running the Limbo compiler against our source file:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% limbo socketh.b
+% lc
+.git/		LICENSE		socketh.b
+.gitignore	README.md	socketh.dis
+% socketh.dis
+%
+</code></pre></div><p>This program does nothing right now, but that&rsquo;s fine.</p>
+<p>Note how we can omit the <code>./</code> when running <code>.dis</code> programs.</p>
+<p>Calling the limbo compiler each time is a bit of a pain, and if we start using commandline flags this will become tedious to type.</p>
+<p>In acme, we could type the text we want to run in a tag or window and middle-click said text to run the compilation (or more!) on-demand. In Inferno, acme comes with a <code>Limbo</code> command in the default window tag, but that only works for one file.</p>
+<p>We can simplify this process by writing a <s>makefile</s> <a href="http://doc.cat-v.org/bell_labs/mk/">mkfile</a>!</p>
+<p><code>mkfile</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&lt;/mkconfig
+
+DISBIN = /dis
+
+TARG = socketh.dis
+
+&lt;/mkfiles/mkdis
+</code></pre></div><p>Mk semantics are similar to make with some changes.</p>
+<p>How mk will behave inside Inferno using the <code>mkdis</code> mkfile as the trailing import:</p>
+<ul>
+<li>Mk can import outside mkfiles using the <code>&lt;</code> operator</li>
+<li><code>mk</code> will call <code>mk all</code> which resolves to the <code>all</code> (default) target</li>
+<li><code>mk install</code> calls the <code>all</code> target and copies the <code>TARG</code> file(s) to the <code>DISBIN</code> destination directory</li>
+<li><code>mk clean</code> removes files such as <code>.dis</code> and <code>.sbl</code> from the working directory</li>
+<li><code>mk nuke</code> calls the <code>clean</code> target as well as delete the &lsquo;target&rsquo; files such as the <code>/dis/socketh</code> binary if the <code>install</code> target has been called</li>
+</ul>
+<p>A demonstration:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% lc
+.git/		LICENSE		mkfile
+.gitignore	README.md	socketh.b
+% mk
+limbo -I/module -gw socketh.b
+socketh.b:15: warning: argument argv not referenced
+% lc
+.git/		LICENSE		mkfile		socketh.dis
+.gitignore	README.md	socketh.b	socketh.sbl
+% mk install
+rm -f /dis/socketh.dis &amp;&amp; cp socketh.dis /dis/socketh.dis
+% mk clean
+rm -f *.dis *.sbl
+% whatis socketh
+/dis/socketh.dis
+% mk nuke
+rm -f *.dis *.sbl
+cd /dis; rm -f socketh.dis
+% whatis socketh.dis
+socketh.dis: not found
+% lc
+.git/		LICENSE		mkfile
+.gitignore	README.md	socketh.b
+%
+</code></pre></div><p>Note the Limbo compiler flags being passed by default now for the <code>all</code> target.</p>
+<p>At this point, I usually add <code>mk clean &amp;&amp; mk</code> to my acme tag and run that for multi-file or more complex Limbo programs. This flow is very similar to how I do development under Plan 9.</p>
+<h3 id="common-patterns">Common patterns</h3>
+<h4 id="commandline-flags">Commandline flags</h4>
+<p>We can use <a href="man.postnix.pw/purgatorio/2/arg">arg(2)</a> to process commandline flags:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#a61717;background-color:#e3d2d2">…</span>
+
+<span style="color:#900;font-weight:bold">chatty</span>: <span style="color:#458;font-weight:bold">int</span>	<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>;	<span style="color:#a61717;background-color:#e3d2d2">#</span> Verbose debug output
+
+
+<span style="color:#999;font-weight:bold;font-style:italic"># An implementation of the SocketH chat protocol
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">argv</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	<span style="color:#900;font-weight:bold">arg</span> :<span style="color:#000;font-weight:bold">=</span> load Arg Arg<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	<span style="color:#000;font-weight:bold">if</span>(arg <span style="color:#000;font-weight:bold">==</span> nil)
+		raise <span style="color:#d14">&#34;could not load arg&#34;</span>;
+
+	<span style="color:#900;font-weight:bold">addr</span>: string <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;tcp!*!9090&#34;</span>;
+
+	arg<span style="color:#000;font-weight:bold">-&gt;</span>init(argv);
+	arg<span style="color:#000;font-weight:bold">-&gt;</span>setusage(<span style="color:#d14">&#34;socketh [-D] [-a addr]&#34;</span>);
+
+	<span style="color:#000;font-weight:bold">while</span>((<span style="color:#900;font-weight:bold">c</span> :<span style="color:#000;font-weight:bold">=</span> arg<span style="color:#000;font-weight:bold">-&gt;</span>opt()) <span style="color:#000;font-weight:bold">!=</span> <span style="color:#099">0</span>)
+		<span style="color:#000;font-weight:bold">case</span> c {
+		<span style="color:#d14">&#39;D&#39;</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			chatty<span style="color:#000;font-weight:bold">++</span>;
+
+		<span style="color:#d14">&#39;a&#39;</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			addr <span style="color:#000;font-weight:bold">=</span> arg<span style="color:#000;font-weight:bold">-&gt;</span>earg();
+
+		<span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			arg<span style="color:#000;font-weight:bold">-&gt;</span>usage();
+		}
+
+	argv <span style="color:#000;font-weight:bold">=</span> arg<span style="color:#000;font-weight:bold">-&gt;</span>argv();
+
+
+
+	exit;
+}
+</code></pre></div><p>We can see how these flags are parsed and how these functions act:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% mk
+mk: &#39;all&#39; is up to date
+% socketh -h
+usage: socketh [-D] [-a addr]
+% socketh -D
+% socketh -a
+usage: socketh [-D] [-a addr]
+% socketh -a -D
+% socketh -D -a
+usage: socketh [-D] [-a addr]
+% socketh -a tcp!*!9191
+% socketh
+%
+</code></pre></div><p>Note how if an arugment is not passed to <code>earg()</code>, the function implicitly calls <code>usage()</code>.</p>
+<h4 id="network-listening">Network listening</h4>
+<p>Leveraging <a href="http://man.postnix.pw/purgatorio/2/dial">dial(2)</a>, we can establish a basic TCP network listen-accept-handle flow.</p>
+<p>An example of expanding the prior main file to include an endless echo-listener:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement SocketH;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">sys</span>: Sys;
+
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+include <span style="color:#d14">&#34;arg.m&#34;</span>;
+
+include <span style="color:#d14">&#34;dial.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">dial</span>: Dial;
+
+<span style="color:#900;font-weight:bold">SocketH</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>: fn(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">argv</span>: list of string);
+};
+
+
+<span style="color:#900;font-weight:bold">maxmsg</span>:		con <span style="color:#458;font-weight:bold">int</span>		<span style="color:#099">256</span>;	<span style="color:#a61717;background-color:#e3d2d2">#</span> Max message size in bytes
+<span style="color:#900;font-weight:bold">maxconns</span>:	con <span style="color:#458;font-weight:bold">int</span> 	<span style="color:#099">100</span>;	<span style="color:#a61717;background-color:#e3d2d2">#</span> Max clients
+<span style="color:#900;font-weight:bold">maxusrname</span>:	con <span style="color:#458;font-weight:bold">int</span>		<span style="color:#099">25</span>;		<span style="color:#a61717;background-color:#e3d2d2">#</span> Max username length
+
+<span style="color:#900;font-weight:bold">stderr</span>:		ref sys<span style="color:#000;font-weight:bold">-&gt;</span>FD;		<span style="color:#a61717;background-color:#e3d2d2">#</span> Stderr shortcut
+<span style="color:#900;font-weight:bold">chatty</span>: <span style="color:#458;font-weight:bold">int</span>	<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>;	<span style="color:#a61717;background-color:#e3d2d2">#</span> Verbose debug output
+
+
+<span style="color:#999;font-weight:bold;font-style:italic"># An implementation of the SocketH chat protocol
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">argv</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	<span style="color:#900;font-weight:bold">arg</span> :<span style="color:#000;font-weight:bold">=</span> load Arg Arg<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	<span style="color:#000;font-weight:bold">if</span>(arg <span style="color:#000;font-weight:bold">==</span> nil)
+		raise <span style="color:#d14">&#34;could not load arg&#34;</span>;
+	dial <span style="color:#000;font-weight:bold">=</span> load Dial Dial<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	<span style="color:#000;font-weight:bold">if</span>(dial <span style="color:#000;font-weight:bold">==</span> nil)
+		raise <span style="color:#d14">&#34;could not load dial&#34;</span>;
+
+	stderr <span style="color:#000;font-weight:bold">=</span> sys<span style="color:#000;font-weight:bold">-&gt;</span>fildes(<span style="color:#099">2</span>);
+	<span style="color:#900;font-weight:bold">addr</span>: string <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;tcp!*!9090&#34;</span>;
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Commandline flags
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+	arg<span style="color:#000;font-weight:bold">-&gt;</span>init(argv);
+	arg<span style="color:#000;font-weight:bold">-&gt;</span>setusage(<span style="color:#d14">&#34;socketh [-D] [-a addr]&#34;</span>);
+
+	<span style="color:#000;font-weight:bold">while</span>((<span style="color:#900;font-weight:bold">c</span> :<span style="color:#000;font-weight:bold">=</span> arg<span style="color:#000;font-weight:bold">-&gt;</span>opt()) <span style="color:#000;font-weight:bold">!=</span> <span style="color:#099">0</span>)
+		<span style="color:#000;font-weight:bold">case</span> c {
+		<span style="color:#d14">&#39;D&#39;</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			chatty<span style="color:#000;font-weight:bold">++</span>;
+
+		<span style="color:#d14">&#39;a&#39;</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			addr <span style="color:#000;font-weight:bold">=</span> arg<span style="color:#000;font-weight:bold">-&gt;</span>earg();
+
+		<span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			arg<span style="color:#000;font-weight:bold">-&gt;</span>usage();
+		}
+
+	argv <span style="color:#000;font-weight:bold">=</span> arg<span style="color:#000;font-weight:bold">-&gt;</span>argv();
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Network listening
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+	<span style="color:#900;font-weight:bold">ac</span> :<span style="color:#000;font-weight:bold">=</span> dial<span style="color:#000;font-weight:bold">-&gt;</span>announce(addr);
+	<span style="color:#000;font-weight:bold">if</span>(ac <span style="color:#000;font-weight:bold">==</span> nil){
+		<span style="color:#900;font-weight:bold">err</span> :<span style="color:#000;font-weight:bold">=</span> sys<span style="color:#000;font-weight:bold">-&gt;</span>sprint(<span style="color:#d14">&#34;err: could not announce - %r&#34;</span>);
+		raise err;
+	}
+
+	<span style="color:#000;font-weight:bold">for</span>(;;){
+		<span style="color:#900;font-weight:bold">listener</span> :<span style="color:#000;font-weight:bold">=</span> dial<span style="color:#000;font-weight:bold">-&gt;</span>listen(ac);
+		<span style="color:#000;font-weight:bold">if</span>(listener <span style="color:#000;font-weight:bold">==</span> nil){
+			<span style="color:#900;font-weight:bold">err</span> :<span style="color:#000;font-weight:bold">=</span> sys<span style="color:#000;font-weight:bold">-&gt;</span>sprint(<span style="color:#d14">&#34;err: could not listen - %r&#34;</span>);
+			raise err;
+		}
+
+		<span style="color:#900;font-weight:bold">conn</span> :<span style="color:#000;font-weight:bold">=</span> dial<span style="color:#000;font-weight:bold">-&gt;</span>accept(listener);
+		<span style="color:#000;font-weight:bold">if</span>(conn <span style="color:#000;font-weight:bold">==</span> nil){
+			<span style="color:#900;font-weight:bold">err</span> :<span style="color:#000;font-weight:bold">=</span> sys<span style="color:#000;font-weight:bold">-&gt;</span>sprint(<span style="color:#d14">&#34;err: could not accept - %r&#34;</span>);
+			raise err;
+		}
+
+		spawn handler(conn);
+	}
+
+	exit;
+}
+
+<span style="color:#999;font-weight:bold;font-style:italic"># Handle a connection
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>handler(<span style="color:#900;font-weight:bold">conn</span>: ref Sys<span style="color:#000;font-weight:bold">-&gt;</span>FD) {
+	<span style="color:#900;font-weight:bold">buf</span> :<span style="color:#000;font-weight:bold">=</span> array[maxmsg] of byte;
+
+	<span style="color:#900;font-weight:bold">loop</span>:
+	<span style="color:#000;font-weight:bold">for</span>(;;){
+		<span style="color:#900;font-weight:bold">n</span> :<span style="color:#000;font-weight:bold">=</span> sys<span style="color:#000;font-weight:bold">-&gt;</span>read(conn, buf, len buf);
+
+		<span style="color:#999;font-weight:bold;font-style:italic"># EOF
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>		<span style="color:#000;font-weight:bold">if</span>(n <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span>) {
+			<span style="color:#000;font-weight:bold">break</span> loop;
+		}
+
+		<span style="color:#999;font-weight:bold;font-style:italic"># Error
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>		<span style="color:#000;font-weight:bold">if</span>(n <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#099">0</span>) {
+			sys<span style="color:#000;font-weight:bold">-&gt;</span>fprint(stderr, <span style="color:#d14">&#34;fail: connection ended - %r&#34;</span>);
+			<span style="color:#000;font-weight:bold">break</span> loop;
+		}
+
+		sys<span style="color:#000;font-weight:bold">-&gt;</span>write(conn, buf, n);
+
+		sys<span style="color:#000;font-weight:bold">-&gt;</span>sleep(<span style="color:#099">5</span>);
+	}
+}
+</code></pre></div><h2 id="debugging">Debugging</h2>
+<h3 id="dealing-with-hung-processes-and-networks">Dealing with hung processes and networks</h3>
+<p>Killing the main process for a module may be sufficient for resetting many programs, this can be done by calling <code>kill</code> with the module&rsquo;s name:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% kill SocketH
+417
+%
+</code></pre></div><p>Thus, printing the PID of the killed process.</p>
+<p>If you ever have a dangling dial/listening process that needs killed, we can find the program&rsquo;s PID and kill it as so:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% grep -i tcp /prog/*/fd
+/prog/177/fd:   4 rw I    0 (0000000000020008 0 00)     0       14 /net/tcp/clone
+% kill 177
+%
+</code></pre></div><p>and from the listening program&rsquo;s window we&rsquo;ll see:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% socketh
+sh: 177 &#34;Dial&#34;:killed
+%
+</code></pre></div><p>The above technique works because we know that our listener will be listening on TCP and thus must have a file descriptor open to the <code>tcp</code> filesystem under the <code>/net</code> server.</p>
+<p>We can verify the kernel device name for the <code>/net</code> server via:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% pid = ${pid}; grep &#39;\/net&#39; /prog/$pid/ns | grep &#39;#&#39;
+bind -a #I /net
+bind -b #scs /net
+bind -b #sdns /net
+%
+</code></pre></div><p>We can verify that <code>#I</code> is the file server for networks against the kernel&rsquo;s list of currently loaded drivers exposed at <code>/dev/drivers</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% grep &#39;#I&#39; /dev/drivers
+#I ip
+% lc &#39;#I&#39;/tcp
+0/    1/    clone stats
+% lc /net/tcp
+0/    1/    clone stats
+%
+</code></pre></div><p>You can explicitly disconnect hung TCP connections using the <a href="http://man.postnix.pw/purgatorio/3/ip">ip(3)</a> file system interface:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% grep 9090 /net/tcp/*/local
+/net/tcp/0/local: ::!9090
+/net/tcp/1/local: 127.0.0.1!9090
+% echo hangup &gt; /net/tcp/1/ctl		# Disconnects the client
+% echo hangup &gt; /net/tcp/0/ctl		# Disconnects the server
+%
+</code></pre></div><p>from the main process window, due to closing the <code>::!9090</code> file:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% socketh
+sh: 441 &#34;SocketH&#34;:err: could not listen - listen opening /net/tcp/0/listen: Invalid argument
+%
+</code></pre></div><p>Neat!</p>
+<h3 id="dealing-with-compiler-warningserrors">Dealing with compiler warnings/errors</h3>
+<p>An example of some output that can be generated during development:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% mk
+limbo -I/module -gw socketh.b
+socketh.b:136: warning: local username not referenced
+% mk
+mk: &#39;all&#39; is up to date
+% mk
+mk: &#39;all&#39; is up to date
+% mk
+limbo -I/module -gw socketh.b
+socketh.b:141: near ` : ` : syntax error
+mk: limbo -I/module -gw socketh.b : exit status=1006 &#34;Sh&#34;:fail:errors
+% mk
+limbo -I/module -gw socketh.b
+socketh.b:139: cannot receive on &#39;sprint(&#34;→ %s&#34;, username)&#39; of type string
+mk: limbo -I/module -gw socketh.b : exit status=1010 &#34;Sh&#34;:fail:errors
+% mk
+limbo -I/module -gw socketh.b
+%
+</code></pre></div><p>Note how the errors are in the Plan 9-ish form of <code>file</code>:<code>line</code>: <code>message</code>.</p>
+<p>Acme is able jump-to-line for this error format via right-click on the text as the string is a <a href="http://man.postnix.pw/purgatorio/1/plumb">plumb(1)</a>-compatible form.</p>
+<p>Warnings are explicitly denoted with <code>warning:</code> while errors are otherwise implied by the <code>file</code>:<code>line</code> combination.</p>
+<p>Some errors are more explicit than others, syntax errors may take some thought and are probably the result of a forgotten rune, such as one of <code>)'(;}&quot;{</code>.</p>
+<p>Some errors are less intuitive.</p>
+<p>The error <code>cannot receive on</code> is explicitly regarding a channel type and was the result of me typing <code>=&lt;-</code> rather than <code>&lt;-=</code> for passing the result of <code>sprint()</code> into a channel of strings.</p>
+<h2 id="closure">Closure</h2>
+<h3 id="flushing-out-the-program">Flushing out the program</h3>
+<p>A server that echoes its input is nice, but we&rsquo;re reimplementing an existing system, so let&rsquo;s finish that.</p>
+<p>The final main file:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement SocketH;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">sys</span>: Sys;
+
+include <span style="color:#d14">&#34;dial.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">dial</span>: Dial;
+
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+include <span style="color:#d14">&#34;arg.m&#34;</span>;
+
+<span style="color:#900;font-weight:bold">SocketH</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>: fn(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">argv</span>: list of string);
+};
+
+
+<span style="color:#900;font-weight:bold">maxmsg</span>:		con <span style="color:#458;font-weight:bold">int</span>			<span style="color:#099">256</span>;	<span style="color:#a61717;background-color:#e3d2d2">#</span> Max message size in bytes
+<span style="color:#900;font-weight:bold">maxconns</span>:	con <span style="color:#458;font-weight:bold">int</span> 		<span style="color:#099">100</span>;	<span style="color:#a61717;background-color:#e3d2d2">#</span> Max clients
+<span style="color:#900;font-weight:bold">maxusrname</span>:	con <span style="color:#458;font-weight:bold">int</span>			<span style="color:#099">25</span>;		<span style="color:#a61717;background-color:#e3d2d2">#</span> Max username length
+<span style="color:#900;font-weight:bold">maxbuf</span>:		con <span style="color:#458;font-weight:bold">int</span>			<span style="color:#099">8</span>;		<span style="color:#a61717;background-color:#e3d2d2">#</span> Max channel buffer size
+<span style="color:#900;font-weight:bold">stderr</span>:		ref sys<span style="color:#000;font-weight:bold">-&gt;</span>FD;			<span style="color:#a61717;background-color:#e3d2d2">#</span> Stderr shortcut
+
+<span style="color:#900;font-weight:bold">chatty</span>:		<span style="color:#458;font-weight:bold">int</span>				<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>;	<span style="color:#a61717;background-color:#e3d2d2">#</span> Verbose debug output
+<span style="color:#900;font-weight:bold">broadcast</span>:	chan of string;			<span style="color:#a61717;background-color:#e3d2d2">#</span> Input <span style="color:#000;font-weight:bold">for</span> message broadcast
+<span style="color:#900;font-weight:bold">pool</span>:		chan of ref Sys<span style="color:#000;font-weight:bold">-&gt;</span>FD;	<span style="color:#a61717;background-color:#e3d2d2">#</span> Input <span style="color:#000;font-weight:bold">for</span> adding connections
+
+
+<span style="color:#999;font-weight:bold;font-style:italic"># An implementation of the SocketH chat protocol
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">argv</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	<span style="color:#900;font-weight:bold">arg</span> :<span style="color:#000;font-weight:bold">=</span> load Arg Arg<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	<span style="color:#000;font-weight:bold">if</span>(arg <span style="color:#000;font-weight:bold">==</span> nil)
+		raise <span style="color:#d14">&#34;could not load arg&#34;</span>;
+	dial <span style="color:#000;font-weight:bold">=</span> load Dial Dial<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	<span style="color:#000;font-weight:bold">if</span>(dial <span style="color:#000;font-weight:bold">==</span> nil)
+		raise <span style="color:#d14">&#34;could not load dial&#34;</span>;
+
+	stderr <span style="color:#000;font-weight:bold">=</span> sys<span style="color:#000;font-weight:bold">-&gt;</span>fildes(<span style="color:#099">2</span>);
+
+	broadcast <span style="color:#000;font-weight:bold">=</span> chan[maxbuf] of string;
+	pool <span style="color:#000;font-weight:bold">=</span> chan[maxbuf] of ref Sys<span style="color:#000;font-weight:bold">-&gt;</span>FD;
+
+	<span style="color:#900;font-weight:bold">addr</span>: string <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;tcp!*!9090&#34;</span>;
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Commandline flags
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+	arg<span style="color:#000;font-weight:bold">-&gt;</span>init(argv);
+	arg<span style="color:#000;font-weight:bold">-&gt;</span>setusage(<span style="color:#d14">&#34;socketh [-D] [-a addr]&#34;</span>);
+
+	<span style="color:#000;font-weight:bold">while</span>((<span style="color:#900;font-weight:bold">c</span> :<span style="color:#000;font-weight:bold">=</span> arg<span style="color:#000;font-weight:bold">-&gt;</span>opt()) <span style="color:#000;font-weight:bold">!=</span> <span style="color:#099">0</span>)
+		<span style="color:#000;font-weight:bold">case</span> c {
+		<span style="color:#d14">&#39;D&#39;</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			chatty<span style="color:#000;font-weight:bold">++</span>;
+
+		<span style="color:#d14">&#39;a&#39;</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			addr <span style="color:#000;font-weight:bold">=</span> arg<span style="color:#000;font-weight:bold">-&gt;</span>earg();
+
+		<span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			arg<span style="color:#000;font-weight:bold">-&gt;</span>usage();
+		}
+
+	argv <span style="color:#000;font-weight:bold">=</span> arg<span style="color:#000;font-weight:bold">-&gt;</span>argv();
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Network listening
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+	spawn <span style="color:#900;font-weight:bold">manager</span>();
+
+	<span style="color:#900;font-weight:bold">ac</span> :<span style="color:#000;font-weight:bold">=</span> dial<span style="color:#000;font-weight:bold">-&gt;</span>announce(addr);
+	<span style="color:#000;font-weight:bold">if</span>(ac <span style="color:#000;font-weight:bold">==</span> nil){
+		<span style="color:#900;font-weight:bold">err</span> :<span style="color:#000;font-weight:bold">=</span> sys<span style="color:#000;font-weight:bold">-&gt;</span>sprint(<span style="color:#d14">&#34;err: could not announce - %r&#34;</span>);
+		raise err;
+	}
+
+	<span style="color:#000;font-weight:bold">for</span>(;;){
+		<span style="color:#900;font-weight:bold">listener</span> :<span style="color:#000;font-weight:bold">=</span> dial<span style="color:#000;font-weight:bold">-&gt;</span>listen(ac);
+		<span style="color:#000;font-weight:bold">if</span>(listener <span style="color:#000;font-weight:bold">==</span> nil){
+			<span style="color:#900;font-weight:bold">err</span> :<span style="color:#000;font-weight:bold">=</span> sys<span style="color:#000;font-weight:bold">-&gt;</span>sprint(<span style="color:#d14">&#34;err: could not listen - %r&#34;</span>);
+			raise err;
+		}
+
+		<span style="color:#900;font-weight:bold">conn</span> :<span style="color:#000;font-weight:bold">=</span> dial<span style="color:#000;font-weight:bold">-&gt;</span>accept(listener);
+		<span style="color:#000;font-weight:bold">if</span>(conn <span style="color:#000;font-weight:bold">==</span> nil){
+			<span style="color:#900;font-weight:bold">err</span> :<span style="color:#000;font-weight:bold">=</span> sys<span style="color:#000;font-weight:bold">-&gt;</span>sprint(<span style="color:#d14">&#34;err: could not accept - %r&#34;</span>);
+			raise err;
+		}
+
+		spawn handler(conn);
+	}
+
+	exit;
+}
+
+<span style="color:#999;font-weight:bold;font-style:italic"># Manage connections and messages
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>manager() {
+	<span style="color:#900;font-weight:bold">conns</span> :<span style="color:#000;font-weight:bold">=</span> array[maxconns] of ref Sys<span style="color:#000;font-weight:bold">-&gt;</span>FD;
+
+	<span style="color:#900;font-weight:bold">loop</span>:
+	<span style="color:#000;font-weight:bold">for</span>(;;)
+		alt{
+			<span style="color:#900;font-weight:bold">fd</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span> pool <span style="color:#000;font-weight:bold">=&gt;</span>
+				<span style="color:#999;font-weight:bold;font-style:italic"># Add a new connection
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>				<span style="color:#000;font-weight:bold">for</span>(<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len conns; i<span style="color:#000;font-weight:bold">++</span>) {
+					<span style="color:#000;font-weight:bold">if</span>(conns[i] <span style="color:#000;font-weight:bold">!=</span> nil)
+						<span style="color:#000;font-weight:bold">continue</span>;
+
+					conns[i] <span style="color:#000;font-weight:bold">=</span> fd;
+					<span style="color:#000;font-weight:bold">continue</span> loop;
+				}
+
+				sys<span style="color:#000;font-weight:bold">-&gt;</span>fprint(stderr, <span style="color:#d14">&#34;fail: max conns reached&#34;</span>);
+
+			<span style="color:#900;font-weight:bold">msg</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span> broadcast <span style="color:#000;font-weight:bold">=&gt;</span>
+				msg <span style="color:#000;font-weight:bold">+=</span> <span style="color:#d14">&#34;</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>;
+				sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;%s&#34;</span>, string msg);
+
+				<span style="color:#999;font-weight:bold;font-style:italic"># Incoming message to chat
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>				<span style="color:#000;font-weight:bold">for</span>(<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len conns; i<span style="color:#000;font-weight:bold">++</span>) {
+					<span style="color:#000;font-weight:bold">if</span>(conns[i] <span style="color:#000;font-weight:bold">==</span> nil)
+						<span style="color:#000;font-weight:bold">continue</span>;
+
+					<span style="color:#900;font-weight:bold">buf</span> :<span style="color:#000;font-weight:bold">=</span> array of byte msg;
+
+					sys<span style="color:#000;font-weight:bold">-&gt;</span>write(conns[i], buf, len buf);
+				}
+
+			<span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+				sys<span style="color:#000;font-weight:bold">-&gt;</span>sleep(<span style="color:#099">5</span>);
+		}
+}
+
+<span style="color:#999;font-weight:bold;font-style:italic"># Handle a connection
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>handler(<span style="color:#900;font-weight:bold">conn</span>: ref Sys<span style="color:#000;font-weight:bold">-&gt;</span>FD) {
+	<span style="color:#900;font-weight:bold">sprint</span>: import sys;
+	<span style="color:#900;font-weight:bold">namebuf</span> :<span style="color:#000;font-weight:bold">=</span> array[maxmsg] of byte;
+	<span style="color:#900;font-weight:bold">s</span> :<span style="color:#000;font-weight:bold">=</span> array of byte <span style="color:#d14">&#34;What is your username?: &#34;</span>;
+
+	sys<span style="color:#000;font-weight:bold">-&gt;</span>write(conn, s, len s);
+	<span style="color:#900;font-weight:bold">n</span> :<span style="color:#000;font-weight:bold">=</span> sys<span style="color:#000;font-weight:bold">-&gt;</span>read(conn, namebuf, len namebuf);
+
+	<span style="color:#900;font-weight:bold">username</span> :<span style="color:#000;font-weight:bold">=</span> minimize(string namebuf[<span style="color:#000;font-weight:bold">:</span>n]);
+
+	broadcast <span style="color:#000;font-weight:bold">&lt;-=</span> sprint(<span style="color:#d14">&#34;→ %s&#34;</span>, username);
+
+	pool <span style="color:#000;font-weight:bold">&lt;-=</span> conn;
+
+	<span style="color:#900;font-weight:bold">loop</span>:
+	<span style="color:#000;font-weight:bold">for</span>(;;){
+		<span style="color:#900;font-weight:bold">buf</span> :<span style="color:#000;font-weight:bold">=</span> array[maxmsg] of byte;
+		n <span style="color:#000;font-weight:bold">=</span> sys<span style="color:#000;font-weight:bold">-&gt;</span>read(conn, buf, len buf);
+		<span style="color:#900;font-weight:bold">msg</span> :<span style="color:#000;font-weight:bold">=</span> minimize(string buf[<span style="color:#000;font-weight:bold">:</span>n]);
+
+		<span style="color:#999;font-weight:bold;font-style:italic"># EOF
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>		<span style="color:#000;font-weight:bold">if</span>(n <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span>){
+			<span style="color:#000;font-weight:bold">break</span> loop;
+		}
+
+		<span style="color:#999;font-weight:bold;font-style:italic"># Error
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>		<span style="color:#000;font-weight:bold">if</span>(n <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#099">0</span>){
+			sys<span style="color:#000;font-weight:bold">-&gt;</span>fprint(stderr, <span style="color:#d14">&#34;fail: connection ended - %r&#34;</span>);
+			<span style="color:#000;font-weight:bold">break</span> loop;
+		}
+
+		<span style="color:#000;font-weight:bold">case</span> msg {
+		<span style="color:#d14">&#34;!quit&#34;</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			<span style="color:#000;font-weight:bold">break</span> loop;
+
+		<span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			broadcast <span style="color:#000;font-weight:bold">&lt;-=</span> sprint(<span style="color:#d14">&#34;%s → %s&#34;</span>, username, msg);
+		}
+
+		sys<span style="color:#000;font-weight:bold">-&gt;</span>sleep(<span style="color:#099">1</span>);
+	}
+
+	broadcast <span style="color:#000;font-weight:bold">&lt;-=</span> sprint(<span style="color:#d14">&#34;← %s&#34;</span>, username);
+}
+
+<span style="color:#999;font-weight:bold;font-style:italic"># Truncate up to and not including {\n \r}
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>minimize(<span style="color:#900;font-weight:bold">s</span>: string)<span style="color:#000;font-weight:bold">:</span> string {
+	<span style="color:#000;font-weight:bold">for</span>(<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len s; i<span style="color:#000;font-weight:bold">++</span>)
+		<span style="color:#000;font-weight:bold">if</span>(s[i] <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#39;\n&#39;</span> <span style="color:#000;font-weight:bold">||</span> s[i] <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#39;\r&#39;</span>)
+			<span style="color:#000;font-weight:bold">break</span>;
+
+	<span style="color:#000;font-weight:bold">return</span> s[<span style="color:#000;font-weight:bold">:</span>i];
+}
+
+</code></pre></div><p>We have a few new keywords:</p>
+<p><code>import</code> allows us to explicitly import a given name into our module&rsquo;s namespace from another module&rsquo;s namespace as a first-class name.</p>
+<p><code>break TAG</code> and <code>continue TAG</code> allow us to break/continue to a given tag allowing ease of control flow in more complex logical hierarchies.</p>
+<p>The <code>&lt;-</code> operator combined with a <code>=</code> potentially on one side or the other allows operations over channels to send/receive depending on the context.</p>
+<p>The <code>alt</code> structure allows C-alike <code>switch</code> structure behavior over channels for sending/receiving depending on context.</p>
+<p>Slicing over an array using the <code>[:n]</code> syntax which is logically similar to Go&rsquo;s slicing syntax of <code>[from:before]</code> where the resultant slice is mathematically denoted as the set contents <code>[from, before)</code>.</p>
+<p>Function declarations have a return type as their type denoted with a colon as per:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">minimize(s: string): string {
+…
+}
+</code></pre></div><p>The <code>case</code> structure allows behavior much like the C-alike <code>switch</code> structure with limited pattern matching available.</p>
+<h3 id="installing-and-finishing-up">Installing and finishing up</h3>
+<p>To wrap up, we&rsquo;ll install and commit the work we&rsquo;ve done.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% mk
+limbo -I/module -gw socketh.b
+% mk install
+rm -f /dis/socketh.dis &amp;&amp; cp socketh.dis /dis/socketh.dis
+% whatis socketh
+/dis/socketh.dis
+% socketh -h
+usage: socketh [-D] [-a addr]
+%
+</code></pre></div><p>From unix terminals on the host machine:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ telnet localhost 9090
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is &#39;^]&#39;.
+What is your username?: sean
+hello
+sean → hello
+→ ana
+ana → hi! ☺
+ahoy!
+sean → ahoy!
+!quit
+← sean
+← ana
+^]
+telnet&gt; q
+Connection closed.
+$
+</code></pre></div><p>and</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ telnet localhost 9090
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is &#39;^]&#39;.
+What is your username?: ana
+hi! ☺
+ana → hi! ☺
+sean → ahoy!
+← sean
+!quit
+← ana
+^]
+telnet&gt; q
+Connection closed.
+$
+</code></pre></div><p>with the server output being:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% socketh
+→ sean
+sean → hello
+→ ana
+ana → hi! ☺
+sean → ahoy!
+← sean
+← ana
+</code></pre></div><p>At this point, there&rsquo;s lots of expansion that could be done, but this program is more or less complete as a chat server compatible with the original SocketH clients.</p>
+<h2 id="further-reading">Further reading</h2>
+<ul>
+<li><a href="https://github.com/henesy/limbobyexample">Limbo by Example</a></li>
+<li><a href="https://github.com/henesy/awesome-inferno">Awesome Inferno resources</a></li>
+<li><a href="http://debu.gs/entries/the-inferno-operating-system-you-re-soaking-in-it">Pete&rsquo;s blog series</a></li>
+<li><a href="http://ipn.caerwyn.com/">Inferno programmer&rsquo;s notebook</a> also at <a href="https://github.com/caerwynj/inferno-lab/">https://github.com/caerwynj/inferno-lab/</a></li>
+<li><a href="https://github.com/search?q=org%3APlan9-Archive+limbo+OR+inferno&amp;type=Repositories">Plan 9 archive of Inferno/Limbo software</a></li>
+<li><a href="http://doc.cat-v.org/inferno/books/inferno_programming_with_limbo/">Inferno Programming with Limbo</a></li>
+<li><a href="http://doc.cat-v.org/inferno/4th_edition/limbo_language/descent">A Descent into Limbo</a></li>
+<li><a href="http://doc.cat-v.org/inferno/4th_edition/limbo_language/limbo">The Limbo Programming Language</a> and <a href="http://doc.cat-v.org/inferno/4th_edition/limbo_language/addendum">Addendum</a></li>
+</ul>
+</div>
+  
+</article>
+<button class="floating-button">
+    <a class="floating-button__link" href="https://seh.dev/">
+        <span>home</span>
+    </a>
+</button>
+
+
+    </div>
+    
+    <footer class="post-footer">
+    <div class="footer">
+        
+            <div>© 2020, Sean Hinchee</div>
+        
+        <div class="footer__socials">
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+
+
+    
+    
+      
+<script src="https://seh.dev/js/script.js"></script>
+
+    
+  </body>
+</html>
