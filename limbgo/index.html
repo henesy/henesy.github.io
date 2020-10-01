@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>seh.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="Polymorphism in Limbo and Go 2" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seh.dev/limbgo/" />
+    <meta itemprop="name" content="Polymorphism in Limbo and Go 2">
+    <meta itemprop="description" content="">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Polymorphism in Limbo and Go 2"/>
+    <meta name="twitter:description" content=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+    
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.7d924ef9774ec20834568e42ea359840e26958ba74814c521b70b3cb5161c0bf.css" >
+</head>
+<body>
+    <header>
+    <div class="header header-frame">
+        <div>
+          
+            <h1 class="header__title">Polymorphism in Limbo and Go 2</h1>
+          
+            
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list header-nav-list--menu">
+                
+                
+                    
+                        <li class="header-nav-list__item">
+                            <a class="header-nav-list__link" href="/about/">
+                                
+                                <span>About</span>
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+            <button class="header-nav-list__nav-btn">navigation</button>
+        </nav>
+        <button class="mb-header__menu-btn">
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+        </button>
+    </div>
+    <nav id="mobile-header-nav" class="mb-header-nav">
+  
+  
+  <button class="mb-header-nav__close-btn flex-center">
+    <svg
+            class="mb-header-nav__svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            >
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+    </button>
+    
+    <div class="mb-header-nav__wrapper">
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Tags
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/limbo/"
+                                                            >limbo</a
+                                                        >
+                    </li>
+                        
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/go/"
+                                                            >go</a
+                                                        >
+                    </li>
+                        
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/inferno/"
+                                                            >inferno</a
+                                                        >
+                    </li>
+                        
+                    
+                
+            </ul>
+        </div>
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Menu
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                
+                    
+                      <li class="mb-header-nav-list__item ">
+                            <a class="mb-header-nav-list__link" href="/about/">
+                                About
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+
+    <div id="content">
+<article class="post">
+  
+    <div class="post-content"><h1 id="polymorphism-in-limbo-and-go-2">Polymorphism in Limbo and Go 2</h1>
+<h2 id="motivation">Motivation</h2>
+<p>Go has recently announced that it will be receiving a form of polymorphism through generics in Go 2.</p>
+<p>Prior to and influencing Go (and thus Go 2), the <a href="http://doc.cat-v.org/inferno/4th_edition/limbo_language/">Limbo programming language</a> from <a href="http://doc.cat-v.org/inferno/">the Inferno operating system</a> had implemented a somewhat similar syntax for polymorphism.</p>
+<p>There are very tangible and crucial differences, but for novelty the two languages are cross-referenced.</p>
+<p>This post was primarily motivated by a discussion and linguistic adventure that occurred during <a href="https://www.youtube.com/watch?v=6KTGM479O2Q">a stream exploring the Limbo language and Inferno OS</a>.</p>
+<p><strong>Disclaimer:</strong> I am not an expert on Limbo or Go, if any part of this document is incorrect, please let me know ☺.</p>
+<h2 id="recommended-prior-reading">Recommended prior reading</h2>
+<ul>
+<li><a href="/go-legacy/">Go&rsquo;s History in Code</a></li>
+<li><a href="https://github.com/henesy/limbobyexample/tree/master/Generics">Generics (from Limbo by Example)</a></li>
+<li><a href="https://blog.golang.org/generics-next-step">The Next Step for Generics (in Go)</a></li>
+</ul>
+<h2 id="running-examples">Running examples</h2>
+<p>Examples for both languages are provided as complete, compilable, programs.</p>
+<h3 id="go-2">Go 2</h3>
+<p>Go 2 will need a custom toolchain installed:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ git clone https://github.com/golang/go/
+$ git checkout dev.go2go
+$ cd go/src
+$ ./all.bash
+# Set $GO2PATH as per GO2PATH=$GOROOT/src/cmd/go2go/testdata/go2path
+# Set $GOROOT to be the root of the repository as-needed
+…
+$ go2 tool go2go run poly.go2
+</code></pre></div><p>Examples may be operable through <a href="https://go2goplay.golang.org/">the Go 2 playground</a>.</p>
+<p>References:</p>
+<ul>
+<li><a href="https://go.googlesource.com/go/+/refs/heads/dev.go2go/README.go2go.md">dev.go2go README</a></li>
+<li><a href="https://go.googlesource.com/proposal/+/refs/heads/master/design/go2draft-type-parameters.md">Type Parameters - Draft Design</a></li>
+<li><a href="https://arxiv.org/abs/2005.11710">Featherweight Go</a></li>
+</ul>
+<h3 id="inferno">Inferno</h3>
+<ol>
+<li>Acquire a copy of the Inferno source tree</li>
+</ol>
+<p>Available options:</p>
+<ul>
+<li><a href="https://bitbucket.org/inferno-os/inferno-os/">https://bitbucket.org/inferno-os/inferno-os/</a> (Git)</li>
+<li><a href="https://code.9front.org/hg/purgatorio/">https://code.9front.org/hg/purgatorio/</a> (Mercurial)</li>
+<li><a href="https://github.com/9mirrors/purgatorio">https://github.com/9mirrors/purgatorio</a> (Git)</li>
+</ul>
+<ol start="2">
+<li>Clone and build</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ hg clone https://code.9front.org/hg/purgatorio/	# Or equivalent Git repository
+$ cd purgatorio
+# Read `INSTALL`
+# Edit `mkconfig`
+# Update `$PATH` as per `INSTALL`
+# Set $INFERNO as per `INSTALL`
+$ mk mkdirs
+$ mk install
+$ emu					# Starts Inferno
+;
+; wm/wm			# Starts the Inferno GUI
+…
+</code></pre></div><ol start="3">
+<li>Compile and run examples</li>
+</ol>
+<p>From inside Inferno:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ emu
+; cd /
+; limbo foo.b
+; foo			# Note the omission of the `.dis` suffix and `./` prefix
+</code></pre></div><p>From a host OS:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ limbo foo.b
+$ emu -r ./ -d foo.dis
+</code></pre></div><p>References:</p>
+<ul>
+<li><a href="https://github.com/9mirrors/purgatorio/blob/master/INSTALL">INSTALL</a></li>
+<li><a href="/limbo-intro/">Program development in Limbo</a></li>
+<li><a href="http://doc.cat-v.org/inferno/4th_edition/limbo_language/">Limbo language papers</a></li>
+</ul>
+<h2 id="limbo">Limbo</h2>
+<h3 id="lists">Lists</h3>
+<p>Lists are a first-class type in Limbo.</p>
+<p>Some examples from the standard library&rsquo;s <a href="http://man.postnix.pw/purgatorio/2/lists">lists(2)</a>:</p>
+<p><strong><a href="https://github.com/9mirrors/purgatorio/blob/master/appl/lib/lists.b">/appl/lib/lists.b</a></strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">filter[T](<span style="color:#900;font-weight:bold">p</span>: ref fn(<span style="color:#900;font-weight:bold">x</span>: T)<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span>, <span style="color:#900;font-weight:bold">l</span>: list of T)<span style="color:#000;font-weight:bold">:</span> list of T {
+	<span style="color:#000;font-weight:bold">if</span>(l <span style="color:#000;font-weight:bold">==</span> nil)
+		<span style="color:#000;font-weight:bold">return</span> nil;
+
+	<span style="color:#000;font-weight:bold">if</span>(p(hd l))
+		<span style="color:#000;font-weight:bold">return</span> hd l <span style="color:#000;font-weight:bold">::</span> filter(p, tl l);
+
+	<span style="color:#000;font-weight:bold">return</span> <span style="color:#900;font-weight:bold">filter</span>(p, tl l);
+}
+
+map[T](<span style="color:#900;font-weight:bold">f</span>: ref fn(<span style="color:#900;font-weight:bold">x</span>: T)<span style="color:#000;font-weight:bold">:</span> T, <span style="color:#900;font-weight:bold">l</span>: list of T)<span style="color:#000;font-weight:bold">:</span> list of T {
+	<span style="color:#000;font-weight:bold">if</span>(l <span style="color:#000;font-weight:bold">==</span> nil)
+		<span style="color:#000;font-weight:bold">return</span> nil;
+
+	<span style="color:#000;font-weight:bold">return</span> <span style="color:#900;font-weight:bold">f</span>(hd l) <span style="color:#000;font-weight:bold">::</span> map(f, tl l);
+}
+
+pair[T1, T2](<span style="color:#900;font-weight:bold">l1</span>: list of T1, <span style="color:#900;font-weight:bold">l2</span>: list of T2)<span style="color:#000;font-weight:bold">:</span> list of (T1, T2) {
+	<span style="color:#000;font-weight:bold">if</span>(l1 <span style="color:#000;font-weight:bold">==</span> nil <span style="color:#000;font-weight:bold">&amp;&amp;</span> l2 <span style="color:#000;font-weight:bold">==</span> nil)
+		<span style="color:#000;font-weight:bold">return</span> nil;
+
+	<span style="color:#000;font-weight:bold">return</span> (hd l1, hd l2) <span style="color:#000;font-weight:bold">::</span> pair(tl l1, tl l2);
+}
+
+<span style="color:#999;font-weight:bold;font-style:italic"># find instance of x in l, return tail of l from x
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>find[T](<span style="color:#900;font-weight:bold">x</span>: T, <span style="color:#900;font-weight:bold">l</span>: list of T)<span style="color:#000;font-weight:bold">:</span> list of T
+	<span style="color:#000;font-weight:bold">for</span> {
+		T <span style="color:#000;font-weight:bold">=&gt;</span>	<span style="color:#900;font-weight:bold">eq</span>:	fn(a, <span style="color:#900;font-weight:bold">b</span>: T)<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span>;
+	}
+{
+	<span style="color:#000;font-weight:bold">for</span>(; l <span style="color:#000;font-weight:bold">!=</span> nil; l <span style="color:#000;font-weight:bold">=</span> tl l)
+		<span style="color:#000;font-weight:bold">if</span>(T.eq(x, hd l))
+			<span style="color:#000;font-weight:bold">return</span> l;
+
+	<span style="color:#000;font-weight:bold">return</span> nil;
+}
+</code></pre></div><p>The above functions reflect useful polymorphic idioms <a href="https://medium.com/swlh/think-functional-with-filter-map-and-reduce-e18a189ea444">described in depth elsewhere</a>.</p>
+<p>In short:</p>
+<ul>
+<li>Filter returns a data set satisfying a function, if any</li>
+<li>Map applies a function across a data set</li>
+<li>Pair returns a data set which is composed of unions for respective entries for two data sets</li>
+<li>Find returns the data set following the first value satisfying a function, if any</li>
+</ul>
+<h3 id="arrays">Arrays</h3>
+<p>Some of the functions from <a href="http://man.postnix.pw/purgatorio/2/lists">lists(2)</a> re-implemented as array functions:</p>
+<p><strong><a href="./poly.b">poly.b</a></strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Poly;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">sys</span>: Sys;
+
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+
+<span style="color:#900;font-weight:bold">Poly</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>: fn(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string);
+};
+
+
+<span style="color:#900;font-weight:bold">Integer</span>: type ref Integral;
+
+<span style="color:#900;font-weight:bold">Integral</span>: adt {
+	<span style="color:#900;font-weight:bold">n</span>: <span style="color:#458;font-weight:bold">int</span>;
+	<span style="color:#900;font-weight:bold">Equals</span>:		fn(a, <span style="color:#900;font-weight:bold">b</span>: ref Integral)<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span>;
+	<span style="color:#900;font-weight:bold">String</span>:		fn(<span style="color:#900;font-weight:bold">x</span>: self ref Integral)<span style="color:#000;font-weight:bold">:</span> string;
+};
+
+Integral.Equals(a, <span style="color:#900;font-weight:bold">b</span>: ref Integral)<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span> {
+	<span style="color:#000;font-weight:bold">return</span> a.n <span style="color:#000;font-weight:bold">==</span> b.n;
+}
+
+Integral.String(<span style="color:#900;font-weight:bold">x</span>: self ref Integral)<span style="color:#000;font-weight:bold">:</span> string {
+	<span style="color:#000;font-weight:bold">return</span> sys<span style="color:#000;font-weight:bold">-&gt;</span>sprint(<span style="color:#d14">&#34;%d&#34;</span>, x.n);
+}
+
+<span style="color:#458;font-weight:bold">double</span>(<span style="color:#900;font-weight:bold">x</span>: Integer)<span style="color:#000;font-weight:bold">:</span> Integer {
+	<span style="color:#000;font-weight:bold">return</span> Integer(<span style="color:#099">2</span> <span style="color:#000;font-weight:bold">*</span> x.n);
+}
+
+square(<span style="color:#900;font-weight:bold">x</span>: Integer)<span style="color:#000;font-weight:bold">:</span> Integer {
+	<span style="color:#000;font-weight:bold">return</span> Integer(x.n <span style="color:#000;font-weight:bold">**</span> <span style="color:#099">2</span>);
+}
+
+isfourable(<span style="color:#900;font-weight:bold">x</span>: Integer)<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span> {
+	<span style="color:#000;font-weight:bold">return</span> x.n <span style="color:#000;font-weight:bold">%</span> <span style="color:#099">4</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span>;
+}
+
+
+init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+
+	<span style="color:#900;font-weight:bold">i</span>: <span style="color:#458;font-weight:bold">int</span>;
+	a<span style="color:#a61717;background-color:#e3d2d2">₀</span> <span style="color:#000;font-weight:bold">:=</span> array[<span style="color:#099">6</span>] of Integer;
+
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len a<span style="color:#a61717;background-color:#e3d2d2">₀</span>; i<span style="color:#000;font-weight:bold">++</span>)
+		a<span style="color:#a61717;background-color:#e3d2d2">₀</span>[i] <span style="color:#000;font-weight:bold">=</span> Integer(i <span style="color:#000;font-weight:bold">**</span> <span style="color:#099">2</span>);
+
+	aprint(a<span style="color:#a61717;background-color:#e3d2d2">₀</span>);
+
+	aprint(map(<span style="color:#458;font-weight:bold">double</span>, a<span style="color:#a61717;background-color:#e3d2d2">₀</span>));
+
+	aprint(filter(isfourable, a<span style="color:#a61717;background-color:#e3d2d2">₀</span>));
+
+	a<span style="color:#a61717;background-color:#e3d2d2">₁</span> <span style="color:#000;font-weight:bold">:=</span> pair(map(<span style="color:#458;font-weight:bold">double</span>, a<span style="color:#a61717;background-color:#e3d2d2">₀</span>), map(square, a<span style="color:#a61717;background-color:#e3d2d2">₀</span>));
+
+	sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;[&#34;</span>);
+	<span style="color:#000;font-weight:bold">for</span>(i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len a<span style="color:#a61717;background-color:#e3d2d2">₁</span>; i<span style="color:#000;font-weight:bold">++</span>){
+		(x<span style="color:#a61717;background-color:#e3d2d2">₀</span>, x<span style="color:#a61717;background-color:#e3d2d2">₁</span>) <span style="color:#000;font-weight:bold">:=</span> a<span style="color:#a61717;background-color:#e3d2d2">₁</span>[i];
+		sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;(%d, %d) &#34;</span>, x<span style="color:#a61717;background-color:#e3d2d2">₀</span>.n, x<span style="color:#a61717;background-color:#e3d2d2">₁</span>.n);
+	}
+	sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;]</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>);
+
+	aprint(find(Integer(<span style="color:#099">16</span>), a<span style="color:#a61717;background-color:#e3d2d2">₀</span>));
+
+	aprint(prepend(Integer(<span style="color:#099">9</span>), a<span style="color:#a61717;background-color:#e3d2d2">₀</span>));
+
+	aprint(append(Integer(<span style="color:#099">99</span>), a<span style="color:#a61717;background-color:#e3d2d2">₀</span>));
+
+	aprint(tail(a<span style="color:#a61717;background-color:#e3d2d2">₀</span>));
+}
+
+filter[T](<span style="color:#900;font-weight:bold">p</span>: ref fn(<span style="color:#900;font-weight:bold">x</span>: T)<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span>, <span style="color:#900;font-weight:bold">a</span>: array of T)<span style="color:#000;font-weight:bold">:</span> array of T {
+	<span style="color:#000;font-weight:bold">if</span>(a <span style="color:#000;font-weight:bold">==</span> nil)
+		<span style="color:#000;font-weight:bold">return</span> nil;
+
+	<span style="color:#000;font-weight:bold">if</span>(p(a[<span style="color:#099">0</span>]))
+		<span style="color:#000;font-weight:bold">return</span> prepend(a[<span style="color:#099">0</span>], filter(p, tail(a)));
+
+	<span style="color:#000;font-weight:bold">if</span>(len a <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#099">2</span>)
+		<span style="color:#000;font-weight:bold">return</span> nil;
+
+	<span style="color:#000;font-weight:bold">return</span> <span style="color:#900;font-weight:bold">filter</span>(p, tail(a));
+}
+
+map[T](<span style="color:#900;font-weight:bold">f</span>: ref fn(<span style="color:#900;font-weight:bold">x</span>: T)<span style="color:#000;font-weight:bold">:</span> T, a<span style="color:#a61717;background-color:#e3d2d2">₀</span><span style="color:#000;font-weight:bold">:</span> array of T)<span style="color:#000;font-weight:bold">:</span> array of T {
+	<span style="color:#000;font-weight:bold">if</span>(a<span style="color:#a61717;background-color:#e3d2d2">₀</span> <span style="color:#000;font-weight:bold">==</span> nil)
+		<span style="color:#000;font-weight:bold">return</span> nil;
+
+	a<span style="color:#a61717;background-color:#e3d2d2">₁</span> <span style="color:#000;font-weight:bold">:=</span> array[len a<span style="color:#a61717;background-color:#e3d2d2">₀</span>] of T;
+
+	<span style="color:#000;font-weight:bold">for</span>(<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len a<span style="color:#a61717;background-color:#e3d2d2">₀</span>; i<span style="color:#000;font-weight:bold">++</span>)
+		a<span style="color:#a61717;background-color:#e3d2d2">₁</span>[i] <span style="color:#000;font-weight:bold">=</span> f(a<span style="color:#a61717;background-color:#e3d2d2">₀</span>[i]);
+
+	<span style="color:#000;font-weight:bold">return</span> a<span style="color:#a61717;background-color:#e3d2d2">₁</span>;
+}
+
+pair[T<span style="color:#a61717;background-color:#e3d2d2">₁</span>, T<span style="color:#a61717;background-color:#e3d2d2">₂</span>](a<span style="color:#a61717;background-color:#e3d2d2">₁</span><span style="color:#000;font-weight:bold">:</span> array of T<span style="color:#a61717;background-color:#e3d2d2">₁</span>, a<span style="color:#a61717;background-color:#e3d2d2">₂</span><span style="color:#000;font-weight:bold">:</span> array of T<span style="color:#a61717;background-color:#e3d2d2">₂</span>)<span style="color:#000;font-weight:bold">:</span> array of (T<span style="color:#a61717;background-color:#e3d2d2">₁</span>, T<span style="color:#a61717;background-color:#e3d2d2">₂</span>) {
+	<span style="color:#000;font-weight:bold">if</span>(a<span style="color:#a61717;background-color:#e3d2d2">₁</span> <span style="color:#000;font-weight:bold">==</span> nil <span style="color:#000;font-weight:bold">||</span> a<span style="color:#a61717;background-color:#e3d2d2">₂</span> <span style="color:#000;font-weight:bold">==</span> nil <span style="color:#000;font-weight:bold">||</span> len a<span style="color:#a61717;background-color:#e3d2d2">₁</span> <span style="color:#000;font-weight:bold">!=</span> len a<span style="color:#a61717;background-color:#e3d2d2">₂</span>)
+		<span style="color:#000;font-weight:bold">return</span> nil;
+
+	a<span style="color:#a61717;background-color:#e3d2d2">₃</span> <span style="color:#000;font-weight:bold">:=</span> array[len a<span style="color:#a61717;background-color:#e3d2d2">₁</span>] of (T<span style="color:#a61717;background-color:#e3d2d2">₁</span>, T<span style="color:#a61717;background-color:#e3d2d2">₂</span>);
+
+	<span style="color:#000;font-weight:bold">for</span>(<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len a<span style="color:#a61717;background-color:#e3d2d2">₁</span>; i<span style="color:#000;font-weight:bold">++</span>)
+		a<span style="color:#a61717;background-color:#e3d2d2">₃</span>[i] <span style="color:#000;font-weight:bold">=</span> (a<span style="color:#a61717;background-color:#e3d2d2">₁</span>[i], a<span style="color:#a61717;background-color:#e3d2d2">₂</span>[i]);
+
+	<span style="color:#000;font-weight:bold">return</span> a<span style="color:#a61717;background-color:#e3d2d2">₃</span>;
+}
+
+<span style="color:#999;font-weight:bold;font-style:italic"># find instance of x in l, return tail of l from x
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>find[T](<span style="color:#900;font-weight:bold">x</span>: T, <span style="color:#900;font-weight:bold">a</span>: array of T)<span style="color:#000;font-weight:bold">:</span> array of T
+	<span style="color:#000;font-weight:bold">for</span> {
+		T <span style="color:#000;font-weight:bold">=&gt;</span>	<span style="color:#900;font-weight:bold">Equals</span>:	fn(a, <span style="color:#900;font-weight:bold">b</span>: T)<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span>;
+	}
+{
+	<span style="color:#000;font-weight:bold">for</span>(<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len a; i<span style="color:#000;font-weight:bold">++</span>)
+		<span style="color:#000;font-weight:bold">if</span>(T.Equals(x, a[i]))
+			<span style="color:#000;font-weight:bold">return</span> tail(a[<span style="color:#900;font-weight:bold">i</span>:]);
+
+	<span style="color:#000;font-weight:bold">return</span> nil;
+}
+
+prepend[T](<span style="color:#900;font-weight:bold">x</span>: T, a<span style="color:#a61717;background-color:#e3d2d2">₀</span><span style="color:#000;font-weight:bold">:</span> array of T)<span style="color:#000;font-weight:bold">:</span> array of T {
+	<span style="color:#000;font-weight:bold">if</span>(a<span style="color:#a61717;background-color:#e3d2d2">₀</span> <span style="color:#000;font-weight:bold">==</span> nil)
+		<span style="color:#000;font-weight:bold">return</span> array[<span style="color:#099">1</span>] of { <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">=&gt;</span> x };
+
+	a<span style="color:#a61717;background-color:#e3d2d2">₁</span> <span style="color:#000;font-weight:bold">:=</span> array[len a<span style="color:#a61717;background-color:#e3d2d2">₀</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span>] of T;
+	a<span style="color:#a61717;background-color:#e3d2d2">₁</span>[<span style="color:#099">0</span>] <span style="color:#000;font-weight:bold">=</span> x;
+
+	<span style="color:#000;font-weight:bold">for</span>(<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len a<span style="color:#a61717;background-color:#e3d2d2">₁</span>; i<span style="color:#000;font-weight:bold">++</span>)
+		a<span style="color:#a61717;background-color:#e3d2d2">₁</span>[i] <span style="color:#000;font-weight:bold">=</span> a<span style="color:#a61717;background-color:#e3d2d2">₀</span>[i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>];
+
+	<span style="color:#000;font-weight:bold">return</span> a<span style="color:#a61717;background-color:#e3d2d2">₁</span>;
+}
+
+append[T](<span style="color:#900;font-weight:bold">x</span>: T, a<span style="color:#a61717;background-color:#e3d2d2">₀</span><span style="color:#000;font-weight:bold">:</span> array of T)<span style="color:#000;font-weight:bold">:</span> array of T {
+	<span style="color:#000;font-weight:bold">if</span>(a<span style="color:#a61717;background-color:#e3d2d2">₀</span> <span style="color:#000;font-weight:bold">==</span> nil)
+		<span style="color:#000;font-weight:bold">return</span> array[<span style="color:#099">1</span>] of { <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">=&gt;</span> x };
+
+	a<span style="color:#a61717;background-color:#e3d2d2">₁</span> <span style="color:#000;font-weight:bold">:=</span> array[len a<span style="color:#a61717;background-color:#e3d2d2">₀</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span>] of T;
+	a<span style="color:#a61717;background-color:#e3d2d2">₁</span>[len a<span style="color:#a61717;background-color:#e3d2d2">₁</span> <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">=</span> x;
+
+	<span style="color:#000;font-weight:bold">for</span>(<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len a<span style="color:#a61717;background-color:#e3d2d2">₁</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>; i<span style="color:#000;font-weight:bold">++</span>)
+		a<span style="color:#a61717;background-color:#e3d2d2">₁</span>[i] <span style="color:#000;font-weight:bold">=</span> a<span style="color:#a61717;background-color:#e3d2d2">₀</span>[i];
+
+	<span style="color:#000;font-weight:bold">return</span> a<span style="color:#a61717;background-color:#e3d2d2">₁</span>;
+}
+
+tail[T](<span style="color:#900;font-weight:bold">a</span>: array of T)<span style="color:#000;font-weight:bold">:</span> array of T {
+	<span style="color:#000;font-weight:bold">if</span>(a <span style="color:#000;font-weight:bold">==</span> nil <span style="color:#000;font-weight:bold">||</span> len a <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#099">2</span>)
+		<span style="color:#000;font-weight:bold">return</span> nil;
+
+	<span style="color:#000;font-weight:bold">return</span> a[<span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span>];
+}
+
+aprint[T](<span style="color:#900;font-weight:bold">a</span>: array of T)
+	<span style="color:#000;font-weight:bold">for</span> {
+		T <span style="color:#000;font-weight:bold">=&gt;</span>	<span style="color:#900;font-weight:bold">String</span>:	fn(<span style="color:#900;font-weight:bold">a</span>: self T)<span style="color:#000;font-weight:bold">:</span> string;
+	}
+{
+	<span style="color:#000;font-weight:bold">if</span>(a <span style="color:#000;font-weight:bold">==</span> nil) {
+		sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;[]</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>);
+		<span style="color:#000;font-weight:bold">return</span>;
+	}
+
+	sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;[&#34;</span>);
+
+	<span style="color:#000;font-weight:bold">for</span>(<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len a; i<span style="color:#000;font-weight:bold">++</span>) {
+		sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;%s&#34;</span>, a[i].String());
+
+		<span style="color:#000;font-weight:bold">if</span>(i <span style="color:#000;font-weight:bold">&lt;</span> len a <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span>)
+			sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;, &#34;</span>);
+	}
+
+	sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;]</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>);
+
+}
+</code></pre></div><p><strong>Output:</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; limbo poly.b
+; poly
+[0, 1, 4, 9, 16, 25]
+[0, 2, 8, 18, 32, 50]
+[0, 4, 16]
+[(0, 0) (2, 1) (8, 16) (18, 81) (32, 256) (50, 625) ]
+[25]
+[9, 0, 1, 4, 9, 16, 25]
+[0, 1, 4, 9, 16, 25, 99]
+[1, 4, 9, 16, 25]
+;
+</code></pre></div><h3 id="summary">Summary</h3>
+<p>Limbo is picky about what kind of type or value can be considered <code>T</code> or be used in a polymorphic manner.</p>
+<p>Specifically, only <code>ref</code> values may be used polymorphically.</p>
+<p>Primitive types such as <code>int</code> are disallowed to be used polymorphically as a <code>ref int</code> type cannot exist in Limbo.</p>
+<p>Practically, these constraints translate to needing to utilize and operate upon, for polymorphic purposes, <code>ref</code> types of ADT&rsquo;s.</p>
+<p>Additionally, any methods which operate on a type and are intended to be used polymorphically, must operate on a <code>ref</code> type of its parent ADT (Abstract Data Type).</p>
+<p>For ease of use, a type alias shorthand may be desirable (<code>Integer</code> above) to avoid writing <code>ref Integral</code> continuously throughout the source.</p>
+<p><strong>Note:</strong> one cannot have a <code>ref T</code> in a polymorphic function.</p>
+<h2 id="go-2-1">Go 2</h2>
+<p>A re-implementation of the array functions in Limbo above:</p>
+<p><strong><a href="./poly.go2">poly.go2</a></strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+
+<span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+	<span style="color:#d14">&#34;math&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">isfourable</span>(n <span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">bool</span> {
+	<span style="color:#000;font-weight:bold">return</span> n <span style="color:#000;font-weight:bold">%</span> <span style="color:#099">4</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span>
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">double</span>(n <span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">int</span> {
+	<span style="color:#000;font-weight:bold">return</span> <span style="color:#099">2</span> <span style="color:#000;font-weight:bold">*</span> n
+}
+
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	a <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">int</span>, <span style="color:#099">6</span>)
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>; i &lt; <span style="color:#0086b3">len</span>(a); i<span style="color:#000;font-weight:bold">++</span> {
+		a[i] = <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Pow</span>(<span style="color:#0086b3">float64</span>(i), <span style="color:#099">2</span>))
+	}
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(a)
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#900;font-weight:bold">Map</span>(double, a))
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#900;font-weight:bold">Filter</span>(isfourable, a))
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#900;font-weight:bold">Find</span>(<span style="color:#099">16</span>, a))
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#900;font-weight:bold">Tail</span>(a))
+}
+
+
+<span style="color:#000;font-weight:bold">func</span> Filter[T any](f <span style="color:#000;font-weight:bold">func</span>(v T) <span style="color:#458;font-weight:bold">bool</span>, a []T) []T {
+	o <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]T, <span style="color:#099">0</span>, <span style="color:#0086b3">len</span>(a))
+
+	<span style="color:#000;font-weight:bold">for</span> _, v <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> a {
+		<span style="color:#000;font-weight:bold">if</span> <span style="color:#900;font-weight:bold">f</span>(v) {
+			o = <span style="color:#0086b3">append</span>(o, v)
+		}
+	}
+
+	<span style="color:#000;font-weight:bold">return</span> o
+}
+
+<span style="color:#000;font-weight:bold">func</span> Map[T any](f <span style="color:#000;font-weight:bold">func</span>(v T) T, a []T) []T {
+	o <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]T, <span style="color:#0086b3">len</span>(a))
+
+	<span style="color:#000;font-weight:bold">for</span> i, v <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> a {
+		o[i] = <span style="color:#900;font-weight:bold">f</span>(v)
+	}
+
+	<span style="color:#000;font-weight:bold">return</span> o
+}
+
+<span style="color:#000;font-weight:bold">func</span> Find[T comparable](x T, a []T) []T {
+	<span style="color:#000;font-weight:bold">for</span> i, v <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> a {
+		<span style="color:#000;font-weight:bold">if</span> v <span style="color:#000;font-weight:bold">==</span> x {
+			<span style="color:#000;font-weight:bold">return</span> <span style="color:#900;font-weight:bold">Tail</span>(a[i:])
+		}
+	}
+
+	<span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">nil</span>
+}
+
+<span style="color:#000;font-weight:bold">func</span> Tail[T any](a []T) []T {
+	<span style="color:#000;font-weight:bold">if</span>(a <span style="color:#000;font-weight:bold">==</span> <span style="color:#000;font-weight:bold">nil</span> <span style="color:#000;font-weight:bold">||</span> <span style="color:#0086b3">len</span>(a) &lt; <span style="color:#099">2</span>) {
+		<span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">nil</span>
+	}
+
+	<span style="color:#000;font-weight:bold">return</span> a[<span style="color:#099">1</span>:]
+}
+</code></pre></div><p><strong>Output:</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go2 tool go2go run poly.go2
+[0 1 4 9 16 25]
+[0 2 8 18 32 50]
+[0 4 16]
+[25]
+[1 4 9 16 25]
+$
+</code></pre></div><p>The <code>pair()</code> function is omitted as Go does not have tuples.</p>
+<p>The <code>append()</code> and <code>prepend()</code> functions are omitted as Go can express equivalent functionality through its native <code>append()</code>.</p>
+<h3 id="summary-1">Summary</h3>
+<p>Go permits polymorphism over <code>interface</code> types.</p>
+<p>Interface types require methods be present on a given fulfilling type.</p>
+<p>Interfaces may extend and further constraint other interfaces.</p>
+<p>The <code>any</code> interface seen in Go 2 is equivalent to <code>interface{}</code> in Go 1 and may be satisfied by <strong>any</strong> type.</p>
+<p>The <code>comparable</code> interface seen above is described in the Go 2 source as:</p>
+<p><strong><a href="https://github.com/golang/go/blob/5e60d1e8c796e40be31e51e06945d6ec4e40d3f2/src/go/types/universe.go#L204">$GOROOT/src/go/types/universe.go:204</a></strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#998;font-style:italic">// The &#34;comparable&#34; interface can be imagined as defined like
+</span><span style="color:#998;font-style:italic">//
+</span><span style="color:#998;font-style:italic">// type comparable interface {
+</span><span style="color:#998;font-style:italic">//         == () untyped bool
+</span><span style="color:#998;font-style:italic">//         != () untyped bool
+</span><span style="color:#998;font-style:italic">// }
+</span><span style="color:#998;font-style:italic">//
+</span><span style="color:#998;font-style:italic">// == and != cannot be user-declared but we can declare
+</span><span style="color:#998;font-style:italic">// a magic method == and check for its presence when needed.
+</span></code></pre></div><p>Notably, at present, not all functionality - such as <code>==</code> and <code>!=</code> above - can be implemented directly by a user, but is limited to being defined inside the compiler proper.</p>
+<h2 id="roadblocks">Roadblocks</h2>
+<p><strong>Limbo compiler errors:</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; mk
+limbo -I/module -gw poly.b
+poly.b:66: fn(a: T, b: T): int and fn(a: Integral, b: Integral): int are not compatible wrt Equal
+poly.b:66: function call type mismatch (fn[T](x: T, a: array of T): array of T vs fn[T](nil: ref Integral, nil: array of ref Integral): array of T)
+mk: limbo -I/module -gw poly.b : exit status=343 &#34;Sh&#34;:fail:errors
+;
+</code></pre></div><p>The <code>Equal()</code> function needs to be defined with <code>ref Integral</code>, not <code>Integral</code> ☺.</p>
+<p><strong>Go 2 compiler errors:</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go2 tool go2go run poly.go2
+/tmp/go2go-run761246244/poly.go2:47:6: expected &#39;IDENT&#39;, found &#39;map&#39;
+go2: exit 1
+$
+</code></pre></div><p>The name <code>map</code> is reserved for Go&rsquo;s native <code>map</code> type.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go2 tool go2go run poly.go2
+/tmp/go2go-run190126073/poly.go2:47:10: expected ), found &#39;type&#39;
+go2: exit 1
+$
+</code></pre></div><p>I used <code>[type T]</code> instead of <code>[T any]</code> inside a function signature.</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>Go 2 implements polymorphism over interfaces, which primitive types are permitted to fulfill.</p>
+<p>Limbo does not have interfaces, but can somewhat mimic this behavior using constraints on methods for types, as per above:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic"># find instance of x in l, return tail of l from x
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>find[T](<span style="color:#900;font-weight:bold">x</span>: T, <span style="color:#900;font-weight:bold">a</span>: array of T)<span style="color:#000;font-weight:bold">:</span> array of T
+	<span style="color:#999;font-weight:bold;font-style:italic"># Constraint is here ↓
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#000;font-weight:bold">for</span> {
+		T <span style="color:#000;font-weight:bold">=&gt;</span>	<span style="color:#900;font-weight:bold">Equals</span>:	fn(a, <span style="color:#900;font-weight:bold">b</span>: T)<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span>;
+	}
+{
+	<span style="color:#999;font-weight:bold;font-style:italic"># Function proper begins here ↓
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#000;font-weight:bold">for</span>(<span style="color:#900;font-weight:bold">i</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len a; i<span style="color:#000;font-weight:bold">++</span>)
+		<span style="color:#000;font-weight:bold">if</span>(T.Equals(x, a[i]))
+			<span style="color:#000;font-weight:bold">return</span> tail(a[<span style="color:#900;font-weight:bold">i</span>:]);
+
+	<span style="color:#000;font-weight:bold">return</span> nil;
+}
+</code></pre></div><p>Specifically - in Limbo - a type <em>T</em> may be used polymorphically if and only if the type is:</p>
+<ul>
+<li>A reference</li>
+<li>Can have methods</li>
+</ul>
+<p>Thus, since Limbo does not permit type definitions which are references to primitives, only a reference to ADT type may be used polymorphically.</p>
+<p>Go&rsquo;s interfaces show their power here, as interfaces can build upon and further constraint other, extant, interfaces, allowing a degree of composition Limbo is not able to represent formally.</p>
+<p>Both systems constrain polymorphic types based on the presence of methods and said method&rsquo;s signatures, but Go permits a more flexible model of definition for what may qualify an interface and thus be used polymoprhically.</p>
+<p>For example, in Go:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">type</span> Equitable <span style="color:#000;font-weight:bold">interface</span> {
+	<span style="color:#900;font-weight:bold">Equals</span>(e Equitable) <span style="color:#458;font-weight:bold">bool</span>
+}
+
+<span style="color:#000;font-weight:bold">type</span> Comparable <span style="color:#000;font-weight:bold">interface</span> {
+	Equitable
+	<span style="color:#900;font-weight:bold">Greater</span>(c Comparable) <span style="color:#458;font-weight:bold">bool</span>
+	<span style="color:#900;font-weight:bold">Lesser</span>(c Comparable) <span style="color:#458;font-weight:bold">bool</span>
+}
+</code></pre></div><p>The equivalent for Limbo would resemble a function constraint in the form:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic"># find instance of x in l, return tail of l from x
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>compare[T](<span style="color:#900;font-weight:bold">x</span>: T, <span style="color:#900;font-weight:bold">a</span>: array of T)<span style="color:#000;font-weight:bold">:</span> array of T
+	<span style="color:#000;font-weight:bold">for</span> {
+		T <span style="color:#000;font-weight:bold">=&gt;</span>
+			<span style="color:#900;font-weight:bold">Equals</span>:		fn(a, <span style="color:#900;font-weight:bold">b</span>: T)<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span>;
+			<span style="color:#900;font-weight:bold">Greater</span>:		fn(a, <span style="color:#900;font-weight:bold">b</span>: T)<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span>;
+			<span style="color:#900;font-weight:bold">Lesser</span>:		fn(a, <span style="color:#900;font-weight:bold">b</span>: T)<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span>;
+	}
+{ <span style="color:#a61717;background-color:#e3d2d2">…</span> }
+</code></pre></div><p>Note that Limbo does not have the ability to group these constraints under a name or set.</p>
+<p>Furthermore, as Go is effectively the spiritual successor to Limbo, Go&rsquo;s interfaces represent an evolution on the initial - spartan and limited - implementation of polymorphic type constraint from Limbo and permit a similar, but more elegant model of constraint composition.</p>
+</div>
+  
+</article>
+<button class="floating-button">
+    <a class="floating-button__link" href="https://seh.dev/">
+        <span>home</span>
+    </a>
+</button>
+
+
+    </div>
+    
+    <footer class="post-footer">
+    <div class="footer">
+        
+            <div>© 2020, Sean Hinchee</div>
+        
+        <div class="footer__socials">
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+
+
+    
+    
+      
+<script src="https://seh.dev/js/script.js"></script>
+
+    
+  </body>
+</html>
