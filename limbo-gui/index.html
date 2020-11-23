@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>seh.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="Limbo GUI&#39;s with Tk" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seh.dev/limbo-gui/" />
+    <meta itemprop="name" content="Limbo GUI&#39;s with Tk">
+    <meta itemprop="description" content="">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Limbo GUI&#39;s with Tk"/>
+    <meta name="twitter:description" content=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+    
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.7d924ef9774ec20834568e42ea359840e26958ba74814c521b70b3cb5161c0bf.css" >
+</head>
+<body>
+    <header>
+    <div class="header header-frame">
+        <div>
+          
+            <h1 class="header__title">Limbo GUI&#39;s with Tk</h1>
+          
+            
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list header-nav-list--menu">
+                
+                
+                    
+                        <li class="header-nav-list__item">
+                            <a class="header-nav-list__link" href="/about/">
+                                
+                                <span>About</span>
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+            <button class="header-nav-list__nav-btn">navigation</button>
+        </nav>
+        <button class="mb-header__menu-btn">
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+        </button>
+    </div>
+    <nav id="mobile-header-nav" class="mb-header-nav">
+  
+  
+  <button class="mb-header-nav__close-btn flex-center">
+    <svg
+            class="mb-header-nav__svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            >
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+    </button>
+    
+    <div class="mb-header-nav__wrapper">
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Tags
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/inferno/"
+                                                            >inferno</a
+                                                        >
+                    </li>
+                        
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/limbo/"
+                                                            >limbo</a
+                                                        >
+                    </li>
+                        
+                    
+                
+            </ul>
+        </div>
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Menu
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                
+                    
+                      <li class="mb-header-nav-list__item ">
+                            <a class="mb-header-nav-list__link" href="/about/">
+                                About
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+
+    <div id="content">
+<article class="post">
+  
+    <div class="post-content"><h1 id="limbo-guis-with-tk">Limbo GUI&rsquo;s with Tk</h1>
+<h2 id="motivation">Motivation</h2>
+<p>GUI programming can be very difficult and documentation for writing graphical programs can be provided with a large number of assumption on pre-existing knowledge, etc.</p>
+<p>Additionally, compartmentalized examples which do not employ some kind of <em>`other tricks&rsquo;</em> can be hard to come by. This problem is exasperated for less well-known systems such as Inferno.</p>
+<p>The first version of the second program shown below was written over a year ago, but did not work well and presented only the most minimal fulfillment of what could be called a functioning graphical program.</p>
+<p>Now, after some research and careful study of the graphical libraries, some manual inaccuracies and a lack of examples ended with a working and responsive demonstration of how to write a complete, high-level, graphical program under Inferno.</p>
+<h2 id="introduction">Introduction</h2>
+<p>This post assumes you&rsquo;re using Inferno, specifically <a href="https://code.9front.org/hg/purgatorio/">purgatorio</a>, hosted under <code>linux/amd64</code> or similar.</p>
+<p>It&rsquo;s also possible to use Inferno under Docker as per the <code>INSTALL</code> file.</p>
+<p>For an in-depth introduction to setting up and performing software development-related operations under Inferno, see <a href="/limbo-intro/">Program development in Limbo</a>.</p>
+<p>Two libraries for writing GUI programs will be demonstrated, <a href="http://man.postnix.pw/purgatorio/2/tkclient">tkclient(2)</a> and <a href="http://man.postnix.pw/purgatorio/2/wmclient">wmclient(2)</a>.</p>
+<p>Neither of the two example programs contain particularly complex operations and neither have a great deal of control flow complexity to make the basic graphical operations more intuitive.</p>
+<h2 id="hello-tkclient2">Hello tkclient(2)</h2>
+<p>Tk is called by invoking a handful of library routines and writing string commands.</p>
+<p>Tkclient allows one to avoid some common command invokations and defer to a handful of procedures to simplify development.</p>
+<p>The following program, HelloTk, shows a fixed message on the first line and prints the current &lsquo;tick&rsquo; count on the second line.</p>
+<p>HelloTk&rsquo;s window can be moved, closed, and left to the background with no graphical issues.</p>
+<p>With Tkclient, Tk commands must be invoked explicitly for some operations as seen with the <code>tk-&gt;cmd()</code> function.</p>
+<p>The basic structure of the program is to initialize Tk&rsquo;s state and window details, spawn the timer/period ticker process, and alternate on a set of event channels until the program is closed. Note that the first step before first invoking a Tk routine is start a new process group, this action will compartmentalize child processed created through <code>spawn</code> later and permit more straightforward cleanup of the program come time to exit.</p>
+<p>The <code>kbd</code> channel receives keyboard inputs, <code>ptr</code> receives mouse inputs, and the <code>ctl</code>, <code>wreq</code>, and <code>wmctl</code> channels receive window manager/Tk events.</p>
+<p>Every second, the <code>tick</code> channel will be filled, the <code>n</code> count of ticks will go up, and the text inside the window will be updated to reflect the new value.</p>
+<p>The final source: <a href="https://github.com/henesy/limbo-playground/blob/master/hellotk/">https://github.com/henesy/limbo-playground/blob/master/hellotk/</a></p>
+<p><strong><a href="./hellotk.b">hellotk.b</a></strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement HelloTk;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">sys</span>: Sys;
+
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">draw</span>: Draw;
+
+include <span style="color:#d14">&#34;tk.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">tk</span>: Tk;
+
+include	<span style="color:#d14">&#34;tkclient.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">tkclient</span>: Tkclient;
+
+<span style="color:#900;font-weight:bold">HelloTk</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>:	fn(<span style="color:#900;font-weight:bold">ctxt</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">argv</span>: list of string);
+};
+
+
+init(<span style="color:#900;font-weight:bold">ctxt</span>: ref Draw<span style="color:#000;font-weight:bold">-&gt;</span>Context, <span style="color:#900;font-weight:bold">nil</span>: list of string) {
+	sys  <span style="color:#000;font-weight:bold">=</span> load Sys  Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	<span style="color:#000;font-weight:bold">if</span> (ctxt <span style="color:#000;font-weight:bold">==</span> nil)
+		raise <span style="color:#d14">&#34;no window context&#34;</span>;
+
+	draw <span style="color:#000;font-weight:bold">=</span> load Draw Draw<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	tk   <span style="color:#000;font-weight:bold">=</span> load Tk   Tk<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	tkclient<span style="color:#000;font-weight:bold">=</span> load Tkclient Tkclient<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Make a new process group for us and child processes
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	sys<span style="color:#000;font-weight:bold">-&gt;</span>pctl(Sys<span style="color:#000;font-weight:bold">-&gt;</span>NEWPGRP, nil);
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Start Tk
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	tkclient<span style="color:#000;font-weight:bold">-&gt;</span>init();
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Create window
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	(t, wmctl) <span style="color:#000;font-weight:bold">:=</span> tkclient<span style="color:#000;font-weight:bold">-&gt;</span>toplevel(ctxt, <span style="color:#d14">&#34;&#34;</span>, <span style="color:#d14">&#34;Hello Tk&#34;</span>, <span style="color:#099">0</span>);
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Set the text to be displayed
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#900;font-weight:bold">text</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Hello, Tk ☺ </span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>;
+	tk<span style="color:#000;font-weight:bold">-&gt;</span>cmd(t, <span style="color:#d14">&#34;label .d -label {&#34;</span> <span style="color:#000;font-weight:bold">+</span> text <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;}&#34;</span>);
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Build the window
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#900;font-weight:bold">height</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span>;		<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#099">2</span> lines
+	tk<span style="color:#000;font-weight:bold">-&gt;</span>cmd(t, <span style="color:#d14">&#34;pack .d; pack propagate . &#34;</span> <span style="color:#000;font-weight:bold">+</span> string height);
+	tkclient<span style="color:#000;font-weight:bold">-&gt;</span>onscreen(t, nil);
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Start receiving keyboard and mouse input
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	tkclient<span style="color:#000;font-weight:bold">-&gt;</span>startinput(t, <span style="color:#d14">&#34;kbd&#34;</span><span style="color:#000;font-weight:bold">::</span><span style="color:#d14">&#34;ptr&#34;</span><span style="color:#000;font-weight:bold">::</span>nil);
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Set a ticker to trigger periodic re-draw&#39;ing
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#900;font-weight:bold">tick</span> :<span style="color:#000;font-weight:bold">=</span> chan of <span style="color:#458;font-weight:bold">int</span>;
+	spawn <span style="color:#900;font-weight:bold">timer</span>(tick);
+
+	<span style="color:#900;font-weight:bold">n</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>;
+	<span style="color:#000;font-weight:bold">for</span>(;;)
+		alt {
+		<span style="color:#900;font-weight:bold">key</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span>t.ctxt.kbd <span style="color:#000;font-weight:bold">=&gt;</span>
+			<span style="color:#999;font-weight:bold;font-style:italic"># Ticks every keyboard button press
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>			sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;key = %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, key);
+			tk<span style="color:#000;font-weight:bold">-&gt;</span>keyboard(t, key);
+
+		<span style="color:#900;font-weight:bold">ptr</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span>t.ctxt.ptr <span style="color:#000;font-weight:bold">=&gt;</span>
+			<span style="color:#999;font-weight:bold;font-style:italic"># Ticks every time the pointer moves/clicks
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>			tk<span style="color:#000;font-weight:bold">-&gt;</span>pointer(t, <span style="color:#000;font-weight:bold">*</span>ptr);
+
+		<span style="color:#900;font-weight:bold">s</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span>t.ctxt.ctl
+		or	s <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span>t.wreq
+		or	s <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span>wmctl <span style="color:#000;font-weight:bold">=&gt;</span>
+			<span style="color:#999;font-weight:bold;font-style:italic"># Ticks every time the window itself has an event
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>			sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;tk string = </span><span style="color:#d14">\&#34;</span><span style="color:#d14">%s</span><span style="color:#d14">\&#34;\n</span><span style="color:#d14">&#34;</span>, s);
+			tkclient<span style="color:#000;font-weight:bold">-&gt;</span>wmctl(t, s);
+
+		<span style="color:#000;font-weight:bold">&lt;-</span>tick <span style="color:#000;font-weight:bold">=&gt;</span>
+			<span style="color:#999;font-weight:bold;font-style:italic"># Update the text on screen
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>			<span style="color:#900;font-weight:bold">str</span> :<span style="color:#000;font-weight:bold">=</span> text <span style="color:#000;font-weight:bold">+</span> string <span style="color:#000;font-weight:bold">++</span>n;
+			tk<span style="color:#000;font-weight:bold">-&gt;</span>cmd(t, <span style="color:#d14">&#34;.d configure -label {&#34;</span> <span style="color:#000;font-weight:bold">+</span> str <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;};update&#34;</span>);
+		}
+}
+
+timer(<span style="color:#900;font-weight:bold">c</span>: chan of <span style="color:#458;font-weight:bold">int</span>) {
+	<span style="color:#000;font-weight:bold">for</span>(;;) {
+		c <span style="color:#000;font-weight:bold">&lt;-=</span> <span style="color:#099">1</span>;
+		sys<span style="color:#000;font-weight:bold">-&gt;</span>sleep(<span style="color:#099">1000</span>);
+	}
+}
+</code></pre></div><p>The program appears as:</p>
+<p><img src="./hellotk.png" alt="hellotk"></p>
+<h2 id="hello-wmclient2">Hello wmclient(2)</h2>
+<p>Tk doesn&rsquo;t always have to be interacted with directly.</p>
+<p>A more terse interface can be used for building graphical programs, enter <a href="http://man.postnix.pw/purgatorio/2/wmclient">wmclient(2)</a>.</p>
+<p>Wmclient is designed to allow building a user interface on top of the graphical environment provided by <a href="http://man.postnix.pw/purgatorio/1/wm">wm(1)</a>.</p>
+<p>Proportionally, Wmclient is less used than Tkclient throughout Inferno, with only a handful of programs using Wmclient:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">/appl/acme
+/appl/cmd/9win.b
+/appl/cmd/touchcal.b
+/appl/wm/clock.b
+/appl/wm/drawmux
+/appl/wm/wm.b
+</code></pre></div><p>Pleasantly, as shown in the bouncing ball demonstration (<code>bb</code>) below, we get all the window decorations and a program responsive to being minimized, resized, etc.</p>
+<p>Programs written with Wmclient aren&rsquo;t necessarily tied to being run under <code>wm/wm</code> either. The bouncing ball program can be started as the first graphical application and a <a href="http://man.postnix.pw/purgatorio/2/draw-context">draw-context(2)</a> is allocated as-needed.</p>
+<p>The bouncing ball demonstration allocates a ball image, a background image, and a background image for the ball which is used to minimize visible tearing and a trail behind the ball as the ball moves.</p>
+<p>That is, <code>ballbg</code> will be drawn around the ball - <code>+2</code> pixels each direction - and match the color of the background.</p>
+<p>The flow of <code>bb</code> is similar to the HelloTk program above. Several input channels are alternated upon with the values arriving being passed on to their respective library handlers.</p>
+<p>The <code>tickchan</code> channel will receive a signal every <code>delay</code> milliseconds, triggering a movement and re-draw of the ball. Thus, every 10ms, the ball and its background moves and is re-rendered inside the window. Note that the background for the window is not re-drawn on a tick.</p>
+<p>Every time a window manager event occurs down the <code>w.ctl</code> or <code>w.ctxt.ctl</code> channels, the background is re-drawn and the ball is re-placed at the center of the window.</p>
+<p>The <code>w.imager()</code> method for a <code>wmclient-&gt;Window</code> type will return the rectangle of the window which is drawable inside and does not include the window decorations, etc. This allows for avoidance of approximating the <em>functional</em> size of a window for drawing routines.</p>
+<p>The final source: <a href="https://github.com/henesy/bouncingball-limbo">https://github.com/henesy/bouncingball-limbo</a></p>
+<p><strong><a href="./bb.b">bb.b</a></strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement BouncingBall;
+
+include <span style="color:#d14">&#34;sys.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">sys</span>: Sys;
+
+include <span style="color:#d14">&#34;draw.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">draw</span>: Draw;
+	Point, Rect, Display, Image, Screen, <span style="color:#900;font-weight:bold">Context</span>: import draw;
+
+include <span style="color:#d14">&#34;tk.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">tk</span>: Tk;
+include <span style="color:#d14">&#34;wmclient.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">wmclient</span>: Wmclient;
+	<span style="color:#900;font-weight:bold">Window</span>: import wmclient;
+
+include <span style="color:#d14">&#34;daytime.m&#34;</span>;
+include <span style="color:#d14">&#34;rand.m&#34;</span>;
+	<span style="color:#900;font-weight:bold">rand</span>: Rand;
+
+include <span style="color:#d14">&#34;arg.m&#34;</span>;
+
+
+<span style="color:#900;font-weight:bold">BouncingBall</span>: module {
+	<span style="color:#900;font-weight:bold">init</span>:	fn(<span style="color:#900;font-weight:bold">ctxt</span>: ref Context, <span style="color:#900;font-weight:bold">argv</span>: list of string);
+};
+
+NE, NW, SE, <span style="color:#900;font-weight:bold">SW</span>: con iota;		<span style="color:#a61717;background-color:#e3d2d2">#</span> Directions ball can move
+<span style="color:#900;font-weight:bold">ZP</span>: con Point(<span style="color:#099">0</span>, <span style="color:#099">0</span>);			<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#099">0</span>,<span style="color:#099">0</span> point
+<span style="color:#900;font-weight:bold">delay</span>: con <span style="color:#099">10</span>;				<span style="color:#a61717;background-color:#e3d2d2">#</span> ms to draw on
+
+<span style="color:#900;font-weight:bold">bg</span>: ref Image;				<span style="color:#a61717;background-color:#e3d2d2">#</span> Window background color
+<span style="color:#900;font-weight:bold">width</span>: <span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">600</span>;			<span style="color:#a61717;background-color:#e3d2d2">#</span> Width of window
+
+<span style="color:#900;font-weight:bold">lastopt</span>: <span style="color:#458;font-weight:bold">int</span>;				<span style="color:#a61717;background-color:#e3d2d2">#</span> To avoid ball getting stuck
+<span style="color:#900;font-weight:bold">bearing</span>: <span style="color:#458;font-weight:bold">int</span>;				<span style="color:#a61717;background-color:#e3d2d2">#</span> Starting movement vector of ball
+<span style="color:#900;font-weight:bold">radius</span>: <span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">20</span>;			<span style="color:#a61717;background-color:#e3d2d2">#</span> Radius of ball
+<span style="color:#900;font-weight:bold">BP</span>: Point;					<span style="color:#a61717;background-color:#e3d2d2">#</span> Point of ball relative to top left corner
+<span style="color:#900;font-weight:bold">ballimg</span>: ref Image;			<span style="color:#a61717;background-color:#e3d2d2">#</span> Image of ball
+<span style="color:#900;font-weight:bold">ballbg</span>: ref Image;			<span style="color:#a61717;background-color:#e3d2d2">#</span> Background color to circumscribe
+
+<span style="color:#999;font-weight:bold;font-style:italic"># Draw a bouncing ball on the screen
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>init(<span style="color:#900;font-weight:bold">ctxt</span>: ref Context, <span style="color:#900;font-weight:bold">argv</span>: list of string) {
+	sys <span style="color:#000;font-weight:bold">=</span> load Sys Sys<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+
+	draw <span style="color:#000;font-weight:bold">=</span> load Draw Draw<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	tk <span style="color:#000;font-weight:bold">=</span> load Tk Tk<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	wmclient <span style="color:#000;font-weight:bold">=</span> load Wmclient Wmclient<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+
+	<span style="color:#900;font-weight:bold">arg</span> :<span style="color:#000;font-weight:bold">=</span> load Arg Arg<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	rand <span style="color:#000;font-weight:bold">=</span> load Rand Rand<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+	<span style="color:#900;font-weight:bold">time</span> :<span style="color:#000;font-weight:bold">=</span> load Daytime Daytime<span style="color:#000;font-weight:bold">-&gt;</span>PATH;
+
+	rand<span style="color:#000;font-weight:bold">-&gt;</span>init(time<span style="color:#000;font-weight:bold">-&gt;</span>now());
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Commandline args
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	arg<span style="color:#000;font-weight:bold">-&gt;</span>init(argv);
+	arg<span style="color:#000;font-weight:bold">-&gt;</span>setusage(<span style="color:#d14">&#34;bb [-r radius] [-w width]&#34;</span>);
+
+	<span style="color:#000;font-weight:bold">while</span>((<span style="color:#900;font-weight:bold">c</span> :<span style="color:#000;font-weight:bold">=</span> arg<span style="color:#000;font-weight:bold">-&gt;</span>opt()) <span style="color:#000;font-weight:bold">!=</span> <span style="color:#099">0</span>)
+		<span style="color:#000;font-weight:bold">case</span> c {
+		<span style="color:#d14">&#39;r&#39;</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			radius <span style="color:#000;font-weight:bold">=</span> <span style="color:#458;font-weight:bold">int</span> arg<span style="color:#000;font-weight:bold">-&gt;</span>earg();
+		<span style="color:#d14">&#39;w&#39;</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			width <span style="color:#000;font-weight:bold">=</span> <span style="color:#458;font-weight:bold">int</span> arg<span style="color:#000;font-weight:bold">-&gt;</span>earg();
+		<span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">=&gt;</span>
+			arg<span style="color:#000;font-weight:bold">-&gt;</span>usage();
+		}
+
+	argv <span style="color:#000;font-weight:bold">=</span> arg<span style="color:#000;font-weight:bold">-&gt;</span>argv();
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Window setup
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	sys<span style="color:#000;font-weight:bold">-&gt;</span>pctl(Sys<span style="color:#000;font-weight:bold">-&gt;</span>NEWPGRP, nil);
+	wmclient<span style="color:#000;font-weight:bold">-&gt;</span>init();
+
+	<span style="color:#900;font-weight:bold">winctxt</span> :<span style="color:#000;font-weight:bold">=</span> ctxt;
+	<span style="color:#000;font-weight:bold">if</span>(winctxt <span style="color:#000;font-weight:bold">==</span> nil)
+		winctxt <span style="color:#000;font-weight:bold">=</span> wmclient<span style="color:#000;font-weight:bold">-&gt;</span>makedrawcontext();
+
+	<span style="color:#900;font-weight:bold">display</span> :<span style="color:#000;font-weight:bold">=</span> winctxt.display;
+
+	<span style="color:#900;font-weight:bold">w</span> :<span style="color:#000;font-weight:bold">=</span> wmclient<span style="color:#000;font-weight:bold">-&gt;</span>window(winctxt, <span style="color:#d14">&#34;Bouncing Ball&#34;</span>, Wmclient<span style="color:#000;font-weight:bold">-&gt;</span>Appl);
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Load graphical artifacts
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	bg <span style="color:#000;font-weight:bold">=</span> display.rgb(<span style="color:#099">192</span>, <span style="color:#099">192</span>, <span style="color:#099">192</span>);	<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#099">0xC0C0C0FF</span>
+	ballbg <span style="color:#000;font-weight:bold">=</span> display.newimage(Rect(ZP, (radius<span style="color:#000;font-weight:bold">+</span><span style="color:#099">2</span>,radius<span style="color:#000;font-weight:bold">+</span><span style="color:#099">2</span>)), Draw<span style="color:#000;font-weight:bold">-&gt;</span>RGB24, <span style="color:#099">1</span>, <span style="color:#458;font-weight:bold">int</span> <span style="color:#099">16</span>rC0C0C0FF);	<span style="color:#a61717;background-color:#e3d2d2">#</span> (<span style="color:#099">192</span>, <span style="color:#099">192</span>, <span style="color:#099">192</span>)
+	ballimg <span style="color:#000;font-weight:bold">=</span> display.newimage(Rect(ZP, (radius,radius)), Draw<span style="color:#000;font-weight:bold">-&gt;</span>RGB24, <span style="color:#099">1</span>, Draw<span style="color:#000;font-weight:bold">-&gt;</span>Red);
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Make the window appear
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	w.reshape(Rect(ZP, (width, width)));
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Bring the window to focus
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	w.onscreen(<span style="color:#d14">&#34;place&#34;</span>);
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Start receiving input
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	w.startinput(<span style="color:#d14">&#34;kbd&#34;</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#d14">&#34;ptr&#34;</span> <span style="color:#000;font-weight:bold">::</span> nil);
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Set initial ball location to above center of window
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#999;font-weight:bold;font-style:italic"># We don&#39;t want exact center to avoid cornering ☺
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#999;font-weight:bold;font-style:italic"># Windows are represented as rectangles
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#999;font-weight:bold;font-style:italic"># r.min in this case is top left of a window, r.max bottom right
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+	<span style="color:#900;font-weight:bold">r</span> :<span style="color:#000;font-weight:bold">=</span> w.imager(w.image.r);
+	<span style="color:#900;font-weight:bold">offset</span> :<span style="color:#000;font-weight:bold">=</span> r.max.sub(r.min).div(<span style="color:#099">2</span>);
+	offset <span style="color:#000;font-weight:bold">=</span> offset.sub(Point(<span style="color:#099">0</span>, offset.y<span style="color:#000;font-weight:bold">/</span><span style="color:#099">2</span>));
+	BP <span style="color:#000;font-weight:bold">=</span> r.min.add(offset);
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Draw background and ball initially
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	w.image.draw(w.image.r, bg, nil, ZP);
+
+	bearing <span style="color:#000;font-weight:bold">=</span> rand<span style="color:#000;font-weight:bold">-&gt;</span>rand(<span style="color:#099">4</span>);	<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#099">4</span> bearings
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Kick off draw timer
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#900;font-weight:bold">tickchan</span> :<span style="color:#000;font-weight:bold">=</span> chan of <span style="color:#458;font-weight:bold">int</span>;
+	spawn <span style="color:#900;font-weight:bold">ticker</span>(tickchan);
+
+	<span style="color:#000;font-weight:bold">for</span>(;;)
+		alt {
+		<span style="color:#900;font-weight:bold">ctl</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span>w.ctl
+		or	ctl <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span>w.ctxt.ctl <span style="color:#000;font-weight:bold">=&gt;</span>
+			sys<span style="color:#000;font-weight:bold">-&gt;</span>print(<span style="color:#d14">&#34;%s</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, ctl);
+			w.wmctl(ctl);
+
+			<span style="color:#999;font-weight:bold;font-style:italic"># Handle ctl messages as per wmclient(2)
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>			<span style="color:#000;font-weight:bold">if</span>(ctl <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;exit&#34;</span>)
+					exit;
+
+			<span style="color:#999;font-weight:bold;font-style:italic"># Re-draw background
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>			w.image.draw(w.image.r, bg, nil, ZP);
+
+			<span style="color:#999;font-weight:bold;font-style:italic"># TODO - re-align ball properly, this jumps to middle
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>			r <span style="color:#000;font-weight:bold">=</span> w.imager(w.image.r);
+			offset <span style="color:#000;font-weight:bold">=</span> r.max.sub(r.min).div(<span style="color:#099">2</span>);
+			offset <span style="color:#000;font-weight:bold">=</span> offset.sub(Point(<span style="color:#099">0</span>, offset.y<span style="color:#000;font-weight:bold">/</span><span style="color:#099">2</span>));
+			BP <span style="color:#000;font-weight:bold">=</span> r.min.add(offset);
+
+			<span style="color:#999;font-weight:bold;font-style:italic"># TODO - update collision borders
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>			drawball(w);
+
+		<span style="color:#900;font-weight:bold">p</span> :<span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&lt;-</span>w.ctxt.ptr <span style="color:#000;font-weight:bold">=&gt;</span>
+			w.pointer(<span style="color:#000;font-weight:bold">*</span>p);
+
+		<span style="color:#999;font-weight:bold;font-style:italic"># Draw on ticks
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>		<span style="color:#000;font-weight:bold">&lt;-</span>tickchan <span style="color:#000;font-weight:bold">=&gt;</span>
+			drawball(w);
+		}
+
+	exit;
+}
+
+<span style="color:#999;font-weight:bold;font-style:italic"># Draw the ball for a frame
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>drawball(<span style="color:#900;font-weight:bold">win</span>: ref Wmclient<span style="color:#000;font-weight:bold">-&gt;</span>Window) {
+	<span style="color:#900;font-weight:bold">screen</span> :<span style="color:#000;font-weight:bold">=</span> win.image;
+	<span style="color:#000;font-weight:bold">if</span>(screen <span style="color:#000;font-weight:bold">==</span> nil)
+		<span style="color:#000;font-weight:bold">return</span>;
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Draw an ellipse around where we were in the bg color of thickness 2px
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#999;font-weight:bold;font-style:italic"># This smooths the animation
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#900;font-weight:bold">targ</span> :<span style="color:#000;font-weight:bold">=</span> BP;
+	screen.ellipse(targ, radius<span style="color:#000;font-weight:bold">+</span><span style="color:#099">2</span>, radius<span style="color:#000;font-weight:bold">+</span><span style="color:#099">2</span>, <span style="color:#099">2</span>, ballbg, ZP);
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Move circle
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	mvball(win, bear(BP));
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Draw circle
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	screen.fillellipse(targ, radius, radius, ballimg, ZP);
+}
+
+
+<span style="color:#999;font-weight:bold;font-style:italic"># Move the ball in reference to screen corner
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>mvball(<span style="color:#900;font-weight:bold">win</span>: ref Wmclient<span style="color:#000;font-weight:bold">-&gt;</span>Window, <span style="color:#900;font-weight:bold">p</span>: Point) {
+	<span style="color:#900;font-weight:bold">screen</span> :<span style="color:#000;font-weight:bold">=</span> win.image;
+	<span style="color:#000;font-weight:bold">if</span>(screen <span style="color:#000;font-weight:bold">==</span> nil)
+		<span style="color:#000;font-weight:bold">return</span>;
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Window rectangle
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#900;font-weight:bold">r</span> :<span style="color:#000;font-weight:bold">=</span> win.imager(win.image.r);
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Make the rectangle smaller by radius for collision
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	r.min.x <span style="color:#000;font-weight:bold">+=</span> radius;
+	r.min.y <span style="color:#000;font-weight:bold">-=</span> radius<span style="color:#000;font-weight:bold">/</span><span style="color:#099">3</span>;	<span style="color:#a61717;background-color:#e3d2d2">#</span> Oh no, is this some <span style="color:#a61717;background-color:#e3d2d2">π</span> shenanigans<span style="color:#000;font-weight:bold">?</span>
+	r.max.x <span style="color:#000;font-weight:bold">-=</span> radius;
+	r.max.y <span style="color:#000;font-weight:bold">-=</span> radius;
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Point.add() means negative values should concatenate just fine
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#900;font-weight:bold">targ</span> :<span style="color:#000;font-weight:bold">=</span> p;
+
+	<span style="color:#999;font-weight:bold;font-style:italic"># Check if we&#39;re within the rectangle
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#000;font-weight:bold">if</span>(<span style="color:#000;font-weight:bold">!</span> targ.in(r)) {
+
+		<span style="color:#999;font-weight:bold;font-style:italic"># Randomize a bit
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>		<span style="color:#900;font-weight:bold">opt</span> :<span style="color:#000;font-weight:bold">=</span> rand<span style="color:#000;font-weight:bold">-&gt;</span>rand(<span style="color:#099">2</span>);
+		<span style="color:#000;font-weight:bold">if</span>(opt <span style="color:#000;font-weight:bold">==</span> lastopt);
+			opt <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">!</span>opt;
+
+		<span style="color:#999;font-weight:bold;font-style:italic"># We rotate our direction
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>		<span style="color:#000;font-weight:bold">case</span> bearing {
+		NE <span style="color:#000;font-weight:bold">=&gt;</span>
+			<span style="color:#000;font-weight:bold">if</span>(opt)
+				bearing <span style="color:#000;font-weight:bold">=</span> NW;
+			<span style="color:#000;font-weight:bold">else</span>
+				bearing <span style="color:#000;font-weight:bold">=</span> SW;
+		NW <span style="color:#000;font-weight:bold">=&gt;</span>
+			<span style="color:#000;font-weight:bold">if</span>(opt)
+				bearing <span style="color:#000;font-weight:bold">=</span> NE;
+			<span style="color:#000;font-weight:bold">else</span>
+				bearing <span style="color:#000;font-weight:bold">=</span> SE;
+		SE <span style="color:#000;font-weight:bold">=&gt;</span>
+			<span style="color:#000;font-weight:bold">if</span>(opt)
+				bearing <span style="color:#000;font-weight:bold">=</span> SW;
+			<span style="color:#000;font-weight:bold">else</span>
+				bearing <span style="color:#000;font-weight:bold">=</span> NW;
+		SW <span style="color:#000;font-weight:bold">=&gt;</span>
+			<span style="color:#000;font-weight:bold">if</span>(opt)
+				bearing <span style="color:#000;font-weight:bold">=</span> NE;
+			<span style="color:#000;font-weight:bold">else</span>
+				bearing <span style="color:#000;font-weight:bold">=</span> SE;
+		}
+
+		lastopt <span style="color:#000;font-weight:bold">=</span> opt;
+		targ <span style="color:#000;font-weight:bold">=</span> BP;
+	}
+
+	BP <span style="color:#000;font-weight:bold">=</span> targ;
+}
+
+<span style="color:#999;font-weight:bold;font-style:italic"># Ticks every delay milliseconds to draw
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>ticker(<span style="color:#900;font-weight:bold">tickchan</span>: chan of <span style="color:#458;font-weight:bold">int</span>) {
+	<span style="color:#000;font-weight:bold">for</span>(;;) {
+		sys<span style="color:#000;font-weight:bold">-&gt;</span>sleep(delay);
+		tickchan <span style="color:#000;font-weight:bold">&lt;-=</span> <span style="color:#099">1</span>;
+	}
+}
+
+<span style="color:#999;font-weight:bold;font-style:italic"># Apply bearing shifts to the ball
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>bear(<span style="color:#900;font-weight:bold">p</span>: Point)<span style="color:#000;font-weight:bold">:</span> Point {
+	<span style="color:#900;font-weight:bold">x</span> :<span style="color:#000;font-weight:bold">=</span> p.x;
+	<span style="color:#900;font-weight:bold">y</span> :<span style="color:#000;font-weight:bold">=</span> p.y;
+
+	<span style="color:#000;font-weight:bold">case</span> bearing {
+		NE <span style="color:#000;font-weight:bold">=&gt;</span>
+			x<span style="color:#000;font-weight:bold">++</span>;
+			y<span style="color:#000;font-weight:bold">--</span>;
+		NW <span style="color:#000;font-weight:bold">=&gt;</span>
+			x<span style="color:#000;font-weight:bold">--</span>;
+			y<span style="color:#000;font-weight:bold">--</span>;
+		SE <span style="color:#000;font-weight:bold">=&gt;</span>
+			x<span style="color:#000;font-weight:bold">++</span>;
+			y<span style="color:#000;font-weight:bold">++</span>;
+		SW <span style="color:#000;font-weight:bold">=&gt;</span>
+			x<span style="color:#000;font-weight:bold">--</span>;
+			y<span style="color:#000;font-weight:bold">++</span>;
+	}
+
+	<span style="color:#000;font-weight:bold">return</span> Point(x, y);
+}
+
+</code></pre></div><p>We can see the final product:</p>
+<p><img src="./bb.png" alt="Bouncing Ball"></p>
+<h2 id="conclusions">Conclusions</h2>
+<p>Inferno provides multiple approaches to writing full-featured graphical programs.</p>
+<p>Wmclient lets the programmer ignore many of the boilerplate Tk commands for a simple program and Tkclient makes the use of said Tk commands more straightforward.</p>
+<h2 id="references">References</h2>
+<p>User interface construction:</p>
+<ul>
+<li><a href="http://man.postnix.pw/purgatorio/2/tk">tk(2)</a></li>
+<li><a href="http://man.postnix.pw/purgatorio/2/tkclient">tkclient(2)</a></li>
+<li><a href="http://man.postnix.pw/purgatorio/2/wmclient">wmclient(2)</a></li>
+</ul>
+<p>Abstract drawing routines:</p>
+<ul>
+<li><a href="http://man.postnix.pw/purgatorio/2/draw-0intro">draw-intro(2)</a></li>
+<li><a href="http://man.postnix.pw/purgatorio/2/draw-point">draw-point(2)</a></li>
+<li><a href="http://man.postnix.pw/purgatorio/2/draw-rect">draw-rect(2)</a></li>
+</ul>
+</div>
+  
+</article>
+<button class="floating-button">
+    <a class="floating-button__link" href="https://seh.dev/">
+        <span>home</span>
+    </a>
+</button>
+
+
+    </div>
+    
+    <footer class="post-footer">
+    <div class="footer">
+        
+            <div>© 2020, Sean Hinchee</div>
+        
+        <div class="footer__socials">
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+
+
+    
+    
+      
+<script src="https://seh.dev/js/script.js"></script>
+
+    
+  </body>
+</html>

@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2020, Sean Hinchee</copyright>
-    <lastBuildDate>Tue, 29 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://seh.dev/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Limbo GUI&#39;s with Tk</title>
+      <link>https://seh.dev/limbo-gui/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/limbo-gui/</guid>
+      <description>Limbo GUI&amp;rsquo;s with Tk Motivation GUI programming can be very difficult and documentation for writing graphical programs can be provided with a large number of assumption on pre-existing knowledge, etc.
+Additionally, compartmentalized examples which do not employ some kind of `other tricks&amp;rsquo; can be hard to come by. This problem is exasperated for less well-known systems such as Inferno.
+The first version of the second program shown below was written over a year ago, but did not work well and presented only the most minimal fulfillment of what could be called a functioning graphical program.</description>
+    </item>
     
     <item>
       <title>Polymorphism in Limbo and Go 2</title>

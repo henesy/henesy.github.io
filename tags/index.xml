@@ -7,24 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2020, Sean Hinchee</copyright>
-    <lastBuildDate>Tue, 29 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://seh.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>go</title>
-      <link>https://seh.dev/tags/go/</link>
-      <pubDate>Tue, 29 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://seh.dev/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>inferno</title>
       <link>https://seh.dev/tags/inferno/</link>
-      <pubDate>Tue, 29 Sep 2020 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>https://seh.dev/tags/inferno/</guid>
       <description></description>
@@ -33,9 +24,18 @@
     <item>
       <title>limbo</title>
       <link>https://seh.dev/tags/limbo/</link>
-      <pubDate>Tue, 29 Sep 2020 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>https://seh.dev/tags/limbo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://seh.dev/tags/go/</link>
+      <pubDate>Tue, 29 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/tags/go/</guid>
       <description></description>
     </item>
     
