@@ -9,7 +9,7 @@
     <copyright>© 2020, Sean Hinchee</copyright>
     <lastBuildDate>Fri, 20 Nov 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://seh.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+  <atom:link href="https://seh.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,6 +19,8 @@
       
       <guid>https://seh.dev/tags/inferno/</guid>
       <description></description>
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -28,6 +30,8 @@
       
       <guid>https://seh.dev/tags/limbo/</guid>
       <description></description>
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -37,6 +41,8 @@
       
       <guid>https://seh.dev/tags/go/</guid>
       <description></description>
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -46,6 +52,8 @@
       
       <guid>https://seh.dev/tags/plan9/</guid>
       <description></description>
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -55,6 +63,8 @@
       
       <guid>https://seh.dev/tags/porting/</guid>
       <description></description>
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -64,6 +74,8 @@
       
       <guid>https://seh.dev/tags/oberon/</guid>
       <description></description>
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -73,6 +85,8 @@
       
       <guid>https://seh.dev/tags/graphics/</guid>
       <description></description>
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -82,6 +96,8 @@
       
       <guid>https://seh.dev/tags/9p/</guid>
       <description></description>
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -91,6 +107,8 @@
       
       <guid>https://seh.dev/tags/p9p/</guid>
       <description></description>
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
   </channel>
