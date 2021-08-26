@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2020, Sean Hinchee</copyright>
-    <lastBuildDate>Thu, 26 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Aug 2021 00:00:00 +0000</lastBuildDate>
     
   <atom:link href="https://seh.dev/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Creating and Applying 9front Patches (Git Edition)</title>
       <link>https://seh.dev/patches-git/</link>
-      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 24 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://seh.dev/patches-git/</guid>
       <description>Creating and Applying 9front Patches (Git Edition) History   October 2018, Ori pushes the first commit to git9.
