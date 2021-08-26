@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>seh.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="Creating and Applying 9front Patches (Git Edition)" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seh.dev/patches-git/" />
+    <meta itemprop="name" content="Creating and Applying 9front Patches (Git Edition)">
+    <meta itemprop="description" content="">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Creating and Applying 9front Patches (Git Edition)"/>
+    <meta name="twitter:description" content=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+    
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.c535b8bc90eb1287432762da2e2ef5fb3d2f9583e20de56032f1f77e3cbabe05.css" >
+</head>
+<body>
+    <header>
+    <div class="header header-frame">
+        <div>
+          
+            <h1 class="header__title">Creating and Applying 9front Patches (Git Edition)</h1>
+          
+            
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list header-nav-list--menu">
+                
+                
+                    
+                        <li class="header-nav-list__item">
+                            <a class="header-nav-list__link" href="/about/">
+                                
+                                <span>About</span>
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+            <button class="header-nav-list__nav-btn">navigation</button>
+        </nav>
+        <button class="mb-header__menu-btn">
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+        </button>
+    </div>
+    <nav id="mobile-header-nav" class="mb-header-nav">
+  
+  
+  <button class="mb-header-nav__close-btn flex-center">
+    <svg
+            class="mb-header-nav__svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            >
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+    </button>
+    
+    <div class="mb-header-nav__wrapper">
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Tags
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/plan9/"
+                                                            >plan9</a
+                                                        >
+                    </li>
+                        
+                    
+                
+            </ul>
+        </div>
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Menu
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                
+                    
+                      <li class="mb-header-nav-list__item ">
+                            <a class="mb-header-nav-list__link" href="/about/">
+                                About
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+
+    <div id="content">
+<article class="post">
+  
+    <div class="post-content"><h1 id="creating-and-applying-9front-patches-git-edition">Creating and Applying 9front Patches (Git Edition)</h1>
+<h2 id="history">History</h2>
+<ul>
+<li>
+<p>October 2018, Ori <a href="https://github.com/Plan9-Archive/git9-hg/commit/22d65457a396771799379df6a8662b312be80a42">pushes the first commit to git9</a>.</p>
+</li>
+<li>
+<p>April 2019, Ori starts the 9fans thread <a href="https://9fans.topicbox.com/groups/9fans/Tfe05d23d2da2ea57-M6ff60bdc26cbe145050c6f8a/9fans-git-fs-possibly-usable">'[9fans] Git/fs: Possibly Usable'</a>.</p>
+</li>
+<li>
+<p>Late April 2019, Lufia announces <a href="https://github.com/lufia/git">their port of unix git</a> on 9fans thread <a href="https://9fans.topicbox.com/groups/9fans/Te3752ec266e3a002-M7286f7236d8aab10096f7946/9fans-git-client">'[9fans] Git client'</a>.</p>
+</li>
+<li>
+<p>June 2019, git9 <a href="https://shithub.us/ori/git9/ec28e68d5f5d72748d4b2d0be2861956b856ef4f/commit.html">migrates to git</a>.</p>
+</li>
+<li>
+<p>July 2020, Atlassian deletes all Mercurial repositories without <a href="https://github.com/Plan9-Archive/git9-hg">archive</a> or remorse.</p>
+</li>
+<li>
+<p>Early September 2020, Ori <a href="https://orib.dev/git9.html">summarizes the model for git9</a>.</p>
+</li>
+<li>
+<p>September 2020, Ori <a href="https://orib.dev/gitserve.html">announces git9 can serve itself</a>.</p>
+</li>
+<li>
+<p>November 2020, Ori <a href="https://orib.dev/githosting.html">announces that his git9 is self-hosting</a> and <a href="https://shithub.us/">shithub</a> is launched.</p>
+</li>
+<li>
+<p>September 2021, 9front <a href="http://9front.org/releases/">releases &lsquo;Community vs Infrastructure&rsquo;</a>, migrates to git9, and removes Mercurial and Python.</p>
+</li>
+</ul>
+<h2 id="creating">Creating</h2>
+<p>To create a patch we first pull 9front&rsquo;s git repo and bind our files into place:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; sysupdate
+
+; bind -a /dist/plan9front /
+</code></pre></div><p>We should create our own work branch:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/branch -n mywork
+</code></pre></div><p>We can now make our changes to the system.</p>
+<p>If we lose our way, we can see which files have changed:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/diff -s
+M sys/src/cmd/seq.c
+;
+</code></pre></div><p>We will commit our changes whilst inside our branch:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text"># We make changes to seq(1)
+; git/commit -m &#39;seq: some kind of change&#39; /sys/src/cmd/seq.c
+heads/mywork: 40d27871e341512ad69a50645e289f6b3856c528
+;
+</code></pre></div><p>If we need to, we can get a commit hash manually:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/log -s | sed 1q | awk &#39;{print $1}&#39;
+40d27871e341512ad69a50645e289f6b3856c528
+</code></pre></div><p>We export our changes to a diff:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/export 40d27871e341512ad69a50645e289f6b3856c528 &gt; $home/mypatch.diff
+</code></pre></div><p>You can export your changes to <a href="http://okturing.com/">the 9front pastebin</a> for ease of linking:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/export 40d27871e341512ad69a50645e289f6b3856c528 | webpaste
+</code></pre></div><p>We can return to the default 9front branch:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/branch front
+</code></pre></div><h2 id="applying">Applying</h2>
+<p>In the same way we pull and bind our files into place:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; sysupdate
+
+; bind -a /dist/plan9front /
+</code></pre></div><p>For individual files you could use <code>ape/patch</code> if desired, but for most 9front patches you should use <code>git/import</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/import &lt; $home/mypatch.diff
+applying seq: some kind of change
+M sys/src/cmd/seq.c
+;
+</code></pre></div><p>The patch is now applied!</p>
+<p>If you wish to trash the changes from the patch, use:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/revert /sys/src/cmd/seq.c
+</code></pre></div><p>You can delete obsolete branches via:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/branch front
+; git/branch -d mywork
+</code></pre></div><h3 id="mail">Mail</h3>
+<p>If a patch is formatted properly and inline from an e-mail, you should be able to import from upasfs as per:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/import &lt; /mail/fs/mbox/4321
+</code></pre></div></div>
+  
+</article>
+<button class="floating-button">
+    <a class="floating-button__link" href="https://seh.dev/">
+        <span>home</span>
+    </a>
+</button>
+
+
+    </div>
+    
+    <footer class="post-footer">
+    <div class="footer">
+        
+            <div>© 2020, Sean Hinchee</div>
+        
+        <div class="footer__socials">
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+
+
+    
+    
+      
+<script src="https://seh.dev/js/script.js"></script>
+
+    
+  </body>
+</html>

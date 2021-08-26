@@ -20,7 +20,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 
     
-    <link rel="stylesheet" href="https://seh.dev/scss/style.min.7d924ef9774ec20834568e42ea359840e26958ba74814c521b70b3cb5161c0bf.css" >
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.c535b8bc90eb1287432762da2e2ef5fb3d2f9583e20de56032f1f77e3cbabe05.css" >
 </head>
 <body>
     <header>
@@ -164,7 +164,7 @@
 <p>Examples for both languages are provided as complete, compilable, programs.</p>
 <h3 id="go-2">Go 2</h3>
 <p>Go 2 will need a custom toolchain installed:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ git clone https://github.com/golang/go/
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ git clone https://github.com/golang/go/
 $ git checkout dev.go2go
 $ cd go/src
 $ ./all.bash
@@ -192,7 +192,7 @@ $ go2 tool go2go run poly.go2
 <ol start="2">
 <li>Clone and build</li>
 </ol>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ hg clone https://code.9front.org/hg/purgatorio/	# Or equivalent Git repository
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ hg clone https://code.9front.org/hg/purgatorio/	# Or equivalent Git repository
 $ cd purgatorio
 # Read `INSTALL`
 # Edit `mkconfig`
@@ -208,12 +208,12 @@ $ emu					# Starts Inferno
 <li>Compile and run examples</li>
 </ol>
 <p>From inside Inferno:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ emu
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ emu
 ; cd /
 ; limbo foo.b
 ; foo			# Note the omission of the `.dis` suffix and `./` prefix
 </code></pre></div><p>From a host OS:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ limbo foo.b
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ limbo foo.b
 $ emu -r ./ -d foo.dis
 </code></pre></div><p>References:</p>
 <ul>
@@ -226,7 +226,7 @@ $ emu -r ./ -d foo.dis
 <p>Lists are a first-class type in Limbo.</p>
 <p>Some examples from the standard library&rsquo;s <a href="http://man.postnix.pw/purgatorio/2/lists">lists(2)</a>:</p>
 <p><strong><a href="https://github.com/9mirrors/purgatorio/blob/master/appl/lib/lists.b">/appl/lib/lists.b</a></strong></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">filter[T](<span style="color:#900;font-weight:bold">p</span>: ref fn(<span style="color:#900;font-weight:bold">x</span>: T)<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span>, <span style="color:#900;font-weight:bold">l</span>: list of T)<span style="color:#000;font-weight:bold">:</span> list of T {
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">filter[T](<span style="color:#900;font-weight:bold">p</span>: ref fn(<span style="color:#900;font-weight:bold">x</span>: T)<span style="color:#000;font-weight:bold">:</span> <span style="color:#458;font-weight:bold">int</span>, <span style="color:#900;font-weight:bold">l</span>: list of T)<span style="color:#000;font-weight:bold">:</span> list of T {
 	<span style="color:#000;font-weight:bold">if</span>(l <span style="color:#000;font-weight:bold">==</span> nil)
 		<span style="color:#000;font-weight:bold">return</span> nil;
 
@@ -273,7 +273,7 @@ pair[T1, T2](<span style="color:#900;font-weight:bold">l1</span>: list of T1, <s
 <h3 id="arrays">Arrays</h3>
 <p>Some of the functions from <a href="http://man.postnix.pw/purgatorio/2/lists">lists(2)</a> re-implemented as array functions:</p>
 <p><strong><a href="./poly.b">poly.b</a></strong></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Poly;
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Poly;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 	<span style="color:#900;font-weight:bold">sys</span>: Sys;
@@ -453,7 +453,7 @@ aprint[T](<span style="color:#900;font-weight:bold">a</span>: array of T)
 
 }
 </code></pre></div><p><strong>Output:</strong></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; limbo poly.b
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; limbo poly.b
 ; poly
 [0, 1, 4, 9, 16, 25]
 [0, 2, 8, 18, 32, 50]
@@ -475,7 +475,7 @@ aprint[T](<span style="color:#900;font-weight:bold">a</span>: array of T)
 <h2 id="go-2-1">Go 2</h2>
 <p>A re-implementation of the array functions in Limbo above:</p>
 <p><strong><a href="./poly.go2">poly.go2</a></strong></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
 
 <span style="color:#000;font-weight:bold">import</span> (
 	<span style="color:#d14">&#34;fmt&#34;</span>
@@ -549,7 +549,7 @@ aprint[T](<span style="color:#900;font-weight:bold">a</span>: array of T)
 	<span style="color:#000;font-weight:bold">return</span> a[<span style="color:#099">1</span>:]
 }
 </code></pre></div><p><strong>Output:</strong></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go2 tool go2go run poly.go2
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go2 tool go2go run poly.go2
 [0 1 4 9 16 25]
 [0 2 8 18 32 50]
 [0 4 16]
@@ -565,7 +565,7 @@ $
 <p>The <code>any</code> interface seen in Go 2 is equivalent to <code>interface{}</code> in Go 1 and may be satisfied by <strong>any</strong> type.</p>
 <p>The <code>comparable</code> interface seen above is described in the Go 2 source as:</p>
 <p><strong><a href="https://github.com/golang/go/blob/5e60d1e8c796e40be31e51e06945d6ec4e40d3f2/src/go/types/universe.go#L204">$GOROOT/src/go/types/universe.go:204</a></strong></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#998;font-style:italic">// The &#34;comparable&#34; interface can be imagined as defined like
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#998;font-style:italic">// The &#34;comparable&#34; interface can be imagined as defined like
 </span><span style="color:#998;font-style:italic">//
 </span><span style="color:#998;font-style:italic">// type comparable interface {
 </span><span style="color:#998;font-style:italic">//         == () untyped bool
@@ -577,7 +577,7 @@ $
 </span></code></pre></div><p>Notably, at present, not all functionality - such as <code>==</code> and <code>!=</code> above - can be implemented directly by a user, but is limited to being defined inside the compiler proper.</p>
 <h2 id="roadblocks">Roadblocks</h2>
 <p><strong>Limbo compiler errors:</strong></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; mk
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; mk
 limbo -I/module -gw poly.b
 poly.b:66: fn(a: T, b: T): int and fn(a: Integral, b: Integral): int are not compatible wrt Equal
 poly.b:66: function call type mismatch (fn[T](x: T, a: array of T): array of T vs fn[T](nil: ref Integral, nil: array of ref Integral): array of T)
@@ -585,12 +585,12 @@ mk: limbo -I/module -gw poly.b : exit status=343 &#34;Sh&#34;:fail:errors
 ;
 </code></pre></div><p>The <code>Equal()</code> function needs to be defined with <code>ref Integral</code>, not <code>Integral</code> ☺.</p>
 <p><strong>Go 2 compiler errors:</strong></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go2 tool go2go run poly.go2
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go2 tool go2go run poly.go2
 /tmp/go2go-run761246244/poly.go2:47:6: expected &#39;IDENT&#39;, found &#39;map&#39;
 go2: exit 1
 $
 </code></pre></div><p>The name <code>map</code> is reserved for Go&rsquo;s native <code>map</code> type.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go2 tool go2go run poly.go2
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go2 tool go2go run poly.go2
 /tmp/go2go-run190126073/poly.go2:47:10: expected ), found &#39;type&#39;
 go2: exit 1
 $
@@ -598,7 +598,7 @@ $
 <h2 id="conclusions">Conclusions</h2>
 <p>Go 2 implements polymorphism over interfaces, which primitive types are permitted to fulfill.</p>
 <p>Limbo does not have interfaces, but can somewhat mimic this behavior using constraints on methods for types, as per above:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic"># find instance of x in l, return tail of l from x
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic"># find instance of x in l, return tail of l from x
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>find[T](<span style="color:#900;font-weight:bold">x</span>: T, <span style="color:#900;font-weight:bold">a</span>: array of T)<span style="color:#000;font-weight:bold">:</span> array of T
 	<span style="color:#999;font-weight:bold;font-style:italic"># Constraint is here ↓
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>	<span style="color:#000;font-weight:bold">for</span> {
@@ -621,7 +621,7 @@ $
 <p>Go&rsquo;s interfaces show their power here, as interfaces can build upon and further constraint other, extant, interfaces, allowing a degree of composition Limbo is not able to represent formally.</p>
 <p>Both systems constrain polymorphic types based on the presence of methods and said method&rsquo;s signatures, but Go permits a more flexible model of definition for what may qualify an interface and thus be used polymoprhically.</p>
 <p>For example, in Go:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">type</span> Equitable <span style="color:#000;font-weight:bold">interface</span> {
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">type</span> Equitable <span style="color:#000;font-weight:bold">interface</span> {
 	<span style="color:#900;font-weight:bold">Equals</span>(e Equitable) <span style="color:#458;font-weight:bold">bool</span>
 }
 
@@ -631,7 +631,7 @@ $
 	<span style="color:#900;font-weight:bold">Lesser</span>(c Comparable) <span style="color:#458;font-weight:bold">bool</span>
 }
 </code></pre></div><p>The equivalent for Limbo would resemble a function constraint in the form:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic"># find instance of x in l, return tail of l from x
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic"># find instance of x in l, return tail of l from x
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>compare[T](<span style="color:#900;font-weight:bold">x</span>: T, <span style="color:#900;font-weight:bold">a</span>: array of T)<span style="color:#000;font-weight:bold">:</span> array of T
 	<span style="color:#000;font-weight:bold">for</span> {
 		T <span style="color:#000;font-weight:bold">=&gt;</span>

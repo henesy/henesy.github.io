@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2020, Sean Hinchee</copyright>
-    <lastBuildDate>Fri, 20 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 26 Aug 2021 00:00:00 +0000</lastBuildDate>
     
   <atom:link href="https://seh.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>plan9</title>
+      <link>https://seh.dev/tags/plan9/</link>
+      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/tags/plan9/</guid>
+      <description></description>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
+    </item>
     
     <item>
       <title>inferno</title>
@@ -19,8 +31,9 @@
       
       <guid>https://seh.dev/tags/inferno/</guid>
       <description></description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
     <item>
@@ -30,8 +43,9 @@
       
       <guid>https://seh.dev/tags/limbo/</guid>
       <description></description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
     <item>
@@ -41,19 +55,9 @@
       
       <guid>https://seh.dev/tags/go/</guid>
       <description></description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
-    </item>
-    
-    <item>
-      <title>plan9</title>
-      <link>https://seh.dev/tags/plan9/</link>
-      <pubDate>Sat, 20 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://seh.dev/tags/plan9/</guid>
-      <description></description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
     <item>
@@ -63,8 +67,9 @@
       
       <guid>https://seh.dev/tags/porting/</guid>
       <description></description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
     <item>
@@ -74,8 +79,9 @@
       
       <guid>https://seh.dev/tags/oberon/</guid>
       <description></description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
     <item>
@@ -85,8 +91,9 @@
       
       <guid>https://seh.dev/tags/graphics/</guid>
       <description></description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
     <item>
@@ -96,8 +103,9 @@
       
       <guid>https://seh.dev/tags/9p/</guid>
       <description></description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
     <item>
@@ -107,8 +115,9 @@
       
       <guid>https://seh.dev/tags/p9p/</guid>
       <description></description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
   </channel>

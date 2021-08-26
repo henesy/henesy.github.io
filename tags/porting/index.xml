@@ -22,8 +22,9 @@
 The final port source code for the port: https://github.com/henesy/c4.
 The commits for the port starting from my history should vaguely reflect the order and rough increment of changes described in this post. It is recommended to skim the source and changes while reading ☺.
 Initial reading  C Programming in Plan 9  Porting This post will show the process of porting a unix program, c4, to plan9.</description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
   </channel>

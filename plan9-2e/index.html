@@ -20,7 +20,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 
     
-    <link rel="stylesheet" href="https://seh.dev/scss/style.min.7d924ef9774ec20834568e42ea359840e26958ba74814c521b70b3cb5161c0bf.css" >
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.c535b8bc90eb1287432762da2e2ef5fb3d2f9583e20de56032f1f77e3cbabe05.css" >
 </head>
 <body>
     <header>
@@ -154,12 +154,12 @@
 <p>Diskette 1 is easy, you will write it directly to a floppy disk or just boot the .img as it ships. For diskettes 2-4 you will have .vd files that must be copied (not written) to dos-formatted floppy images or disks.</p>
 <p>Note: These instructions assume a linux host.</p>
 <p>To create a formatted floppy image:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">mkfs.msdos -C disk.img 1440
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">mkfs.msdos -C disk.img 1440
 </code></pre></div><p>To mount a floppy image:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">mount -o loop disk.img /path/to/somedir
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">mount -o loop disk.img /path/to/somedir
 </code></pre></div><p>From this point you&rsquo;d make .img&rsquo;s for the disk[2-4] .vd&rsquo;s and copy the respective file onto the image.</p>
 <p>If you need to create floppy images from DOS disks at this time, you can do:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">dd bs=512 count=2880 if=/dev/fda of=dos.img
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">dd bs=512 count=2880 if=/dev/fda of=dos.img
 </code></pre></div><h2 id="2-install-ms-dos">2. Install MS-DOS</h2>
 <p>You can choose (probably) any 6.xx+ version of DOS up to Windows 95, but I&rsquo;ve only tested the installation with MS-DOS 6.2. FreeDOS or DrDOS might work, but again, I haven&rsquo;t tested them.</p>
 <p>The required size for a demo install is pretty small, you can probably stick with DOS defaults if you just want to make a demo installation. If you want a full installation, you will need to install DOS on a 1GB+ partition (recall that DOS can&rsquo;t handle disks/partitions greater in size than 2GB) or so. The full installation will copy the entire contents of the cd (~500MB) and you will have a full demo installation in addition to this.</p>

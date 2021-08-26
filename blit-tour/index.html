@@ -20,7 +20,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 
     
-    <link rel="stylesheet" href="https://seh.dev/scss/style.min.7d924ef9774ec20834568e42ea359840e26958ba74814c521b70b3cb5161c0bf.css" >
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.c535b8bc90eb1287432762da2e2ef5fb3d2f9583e20de56032f1f77e3cbabe05.css" >
 </head>
 <body>
     <header>
@@ -135,9 +135,12 @@
 <p>Ever wondered if there was a nice way to get a VAX-grade, semi-authentic, Blit experience?</p>
 <p>Good news! While 9front ships with a Blit emulator via <code>games/blit</code> you can also connect to UNIX from GNU/Linux with <a href="https://github.com/timnewsham/blit">this handy port</a> and <a href="https://github.com/9fans/plan9port">plan9port</a>.</p>
 <p>To get a connection going just run the following on your emulator of choice:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">blit -t <span style="color:#d14">&#39;tcp!papnet.eu!8888&#39;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">blit -t <span style="color:#d14">&#39;tcp!papnet.eu!8888&#39;</span>
 </code></pre></div><p>Choose <code>ken</code> as your username.</p>
-<p>Enjoy your authentic UNIX experience!</p>
+<p>To start a window manager:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">. <span style="color:#008080">$HOME</span>/.profile_blit
+mux
+</code></pre></div><p>Enjoy your authentic UNIX experience!</p>
 </div>
   
 </article>

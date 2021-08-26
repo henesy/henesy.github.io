@@ -19,10 +19,11 @@
       
       <guid>https://seh.dev/limbo-gui/</guid>
       <description>Limbo GUI&amp;rsquo;s with Tk Motivation GUI programming can be very difficult and documentation for writing graphical programs can be provided with a large number of assumption on pre-existing knowledge, etc.
-Additionally, compartmentalized examples which do not employ some kind of `other tricks&amp;rsquo; can be hard to come by. This problem is exasperated for less well-known systems such as Inferno.
+Additionally, compartmentalized examples which do not employ some kind of `other tricks&#39; can be hard to come by. This problem is exasperated for less well-known systems such as Inferno.
 The first version of the second program shown below was written over a year ago, but did not work well and presented only the most minimal fulfillment of what could be called a functioning graphical program.</description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
     <item>
@@ -35,8 +36,9 @@ The first version of the second program shown below was written over a year ago,
 Prior to and influencing Go (and thus Go 2), the Limbo programming language from the Inferno operating system had implemented a somewhat similar syntax for polymorphism.
 There are very tangible and crucial differences, but for novelty the two languages are cross-referenced.
 This post was primarily motivated by a discussion and linguistic adventure that occurred during a stream exploring the Limbo language and Inferno OS.</description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
     <item>
@@ -51,8 +53,9 @@ Introduction This post assumes you&amp;rsquo;re using Inferno, specifically purg
 It&amp;rsquo;s also possible to use Inferno under Docker as per the INSTALL file.
 Other platforms are supported, but steps may differ here or there.
 The rune $ indicates a unix shell command under bash, probably.</description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
     <item>
@@ -63,8 +66,9 @@ The rune $ indicates a unix shell command under bash, probably.</description>
       <guid>https://seh.dev/go-legacy/</guid>
       <description>Go&amp;rsquo;s History in Code This post intends to showcase programming patterns, or stuff, which is common between Newsqueak, Alef, Plan9 C, Limbo, and Go.
 All of these code snippets should be complete as shown and compilable/runnable in the state presented. The Alef examples might have subtle typos, but this is due to the fact I had to manually re-type them out from VirtualBox since I didn&amp;rsquo;t have copy/paste available to the guest.</description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
   </channel>

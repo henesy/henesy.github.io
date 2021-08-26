@@ -20,7 +20,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 
     
-    <link rel="stylesheet" href="https://seh.dev/scss/style.min.7d924ef9774ec20834568e42ea359840e26958ba74814c521b70b3cb5161c0bf.css" >
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.c535b8bc90eb1287432762da2e2ef5fb3d2f9583e20de56032f1f77e3cbabe05.css" >
 </head>
 <body>
     <header>
@@ -142,7 +142,7 @@
     <div class="post-content"><h1 id="limbo-guis-with-tk">Limbo GUI&rsquo;s with Tk</h1>
 <h2 id="motivation">Motivation</h2>
 <p>GUI programming can be very difficult and documentation for writing graphical programs can be provided with a large number of assumption on pre-existing knowledge, etc.</p>
-<p>Additionally, compartmentalized examples which do not employ some kind of <em>`other tricks&rsquo;</em> can be hard to come by. This problem is exasperated for less well-known systems such as Inferno.</p>
+<p>Additionally, compartmentalized examples which do not employ some kind of <em>`other tricks'</em> can be hard to come by. This problem is exasperated for less well-known systems such as Inferno.</p>
 <p>The first version of the second program shown below was written over a year ago, but did not work well and presented only the most minimal fulfillment of what could be called a functioning graphical program.</p>
 <p>Now, after some research and careful study of the graphical libraries, some manual inaccuracies and a lack of examples ended with a working and responsive demonstration of how to write a complete, high-level, graphical program under Inferno.</p>
 <h2 id="introduction">Introduction</h2>
@@ -162,7 +162,7 @@
 <p>Every second, the <code>tick</code> channel will be filled, the <code>n</code> count of ticks will go up, and the text inside the window will be updated to reflect the new value.</p>
 <p>The final source: <a href="https://github.com/henesy/limbo-playground/blob/master/hellotk/">https://github.com/henesy/limbo-playground/blob/master/hellotk/</a></p>
 <p><strong><a href="./hellotk.b">hellotk.b</a></strong></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement HelloTk;
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement HelloTk;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 	<span style="color:#900;font-weight:bold">sys</span>: Sys;
@@ -254,7 +254,7 @@ timer(<span style="color:#900;font-weight:bold">c</span>: chan of <span style="c
 <p>A more terse interface can be used for building graphical programs, enter <a href="http://man.postnix.pw/purgatorio/2/wmclient">wmclient(2)</a>.</p>
 <p>Wmclient is designed to allow building a user interface on top of the graphical environment provided by <a href="http://man.postnix.pw/purgatorio/1/wm">wm(1)</a>.</p>
 <p>Proportionally, Wmclient is less used than Tkclient throughout Inferno, with only a handful of programs using Wmclient:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">/appl/acme
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">/appl/acme
 /appl/cmd/9win.b
 /appl/cmd/touchcal.b
 /appl/wm/clock.b
@@ -270,7 +270,7 @@ timer(<span style="color:#900;font-weight:bold">c</span>: chan of <span style="c
 <p>The <code>w.imager()</code> method for a <code>wmclient-&gt;Window</code> type will return the rectangle of the window which is drawable inside and does not include the window decorations, etc. This allows for avoidance of approximating the <em>functional</em> size of a window for drawing routines.</p>
 <p>The final source: <a href="https://github.com/henesy/bouncingball-limbo">https://github.com/henesy/bouncingball-limbo</a></p>
 <p><strong><a href="./bb.b">bb.b</a></strong></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement BouncingBall;
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement BouncingBall;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 	<span style="color:#900;font-weight:bold">sys</span>: Sys;

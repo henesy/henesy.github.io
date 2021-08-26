@@ -23,8 +23,9 @@ Oberon is notable for being simple and powerful in a manner which permits Oberon
 Refer to Wikipedia for some history and exposition: https://en.wikipedia.org/wiki/Oberon_(operating_system)
 Getting Oberon The easiest way to get Oberon up and running from unix is through pdewacht&amp;rsquo;s risc emu: https://github.com/pdewacht/oberon-risc-emu
 You can also, from unix, use A2 Oberon Subsystem for Unix (aosunix).</description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
+      <mp3></mp3>
+      <youtube_id></youtube_id>
+      <enclosure url="" type="audio/mpeg" />
     </item>
     
   </channel>
