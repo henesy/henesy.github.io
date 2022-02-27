@@ -173,7 +173,7 @@
 <p>The official <a href="https://bitbucket.org/inferno-os/inferno-os/">Inferno</a> tree is hosted over <a href="https://git-scm.com/">Git</a>.</p>
 <p>The <a href="https://code.9front.org/hg/purgatorio/">purgatorio</a> fork is hosted by the 9front project over <a href="https://www.mercurial-scm.org/">Mercurial</a>.</p>
 <p>Cloning:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ hg clone https://code.9front.org/hg/purgatorio
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ hg clone https://code.9front.org/hg/purgatorio
 destination directory: purgatorio
 requesting all changes
 adding changesets
@@ -199,14 +199,14 @@ fonts                    libdraw  libnandfs    mkconfig       README.md
 $
 </code></pre></div><p><strong>Read the</strong> <code>INSTALL</code> <strong>file!</strong></p>
 <p>Update our <code>$HOME/.profile</code> to reflect the Inferno install, adapt this to your directories:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">export EMU=&#39;-g1280x960 -c1&#39;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">export EMU=&#39;-g1280x960 -c1&#39;
 export INFERNO=$HOME/repos/purgatorio
 export PATH=$PATH:$INFERNO/Linux/386/bin
 </code></pre></div><p>Reload our shell currently in the purgatorio root tree:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ source $HOME/.profile
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ source $HOME/.profile
 $
 </code></pre></div><p>Update the <code>mkconfig</code> file to reflect our environment, adapt this as needed:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">ROOT=$HOME/repos/purgatorio
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">ROOT=$HOME/repos/purgatorio
 
 TKSTYLE=std
 
@@ -222,18 +222,18 @@ OBJDIR=$SYSTARG/$OBJTYPE
 &lt;$ROOT/mkfiles/mkhost-$SYSHOST			# variables appropriate for host system
 &lt;$ROOT/mkfiles/mkfile-$SYSTARG-$OBJTYPE	# variables used to build target object type
 </code></pre></div><p>Enable multi-arch support on debian-based distributions if on amd64 (64-bit) as Inferno is 32-bit only:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ dpkg --add-architecture i386
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ dpkg --add-architecture i386
 $ apt-get update
 </code></pre></div><p>Install dependencies required to compile Inferno, this example shows dependencies for debian-based (Ubuntu) distributions:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ apt install libc6-dev-i386 libxext6:i386 libx11-dev:i386 libxext-dev:i386 libfontconfig1-dev:i386
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ apt install libc6-dev-i386 libxext6:i386 libx11-dev:i386 libxext-dev:i386 libfontconfig1-dev:i386
 …
 $
 </code></pre></div><p>Build <code>mk</code> which will be used to bootstrap the rest of the process:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ./makemk.sh
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ./makemk.sh
 …
 $
 </code></pre></div><p>Build and install Inferno!</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ mk mkdirs
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ mk mkdirs
 …
 $ mk clean
 …
@@ -241,25 +241,25 @@ $ mk install
 …
 $
 </code></pre></div><h3 id="start-inferno">Start Inferno</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ emu
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ emu
 ; wm/wm
 …
 </code></pre></div><p>A graphical environment should appear.</p>
 <p>You can make the gui window for Inferno larger by passing in a different size to <code>emu</code> as per <a href="http://man.postnix.pw/purgatorio/1/emu">the manual</a>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-gXsizexYsize
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-gXsizexYsize
 	Define screen width and height in pixels.  The default
 	values are 640x480 and the minimum values are 64x48.
 	Values smaller than the minimum or greater than the
 	available display size are ignored.
 </code></pre></div><p>thus:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ emu -g1280x960
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ emu -g1280x960
 ; wm/wm
 </code></pre></div><p>and so forth.</p>
 <p>Some programs can be found under the start menu in the bottom left corner decorated with the <a href="vitanuova.com/">Vita Nuova</a> logo:</p>
 <p><img src="http://www.vitanuova.com/images/vitanuova.jpg" alt="Vita Nuova&rsquo;s logo"></p>
 <p>The <code>Shell</code> entry in the start menu will provide a shell-interpreter window from which further commands can be run inside Inferno.</p>
 <h3 id="preparation">Preparation</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% cd $home/appl
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% cd $home/appl
 % os git clone https://github.com/henesy/socketh-limbo
 % cd socketh-limbo
 % lc
@@ -267,12 +267,12 @@ $
 % touch .gitignore socketh.b
 % acme socketh.b
 </code></pre></div><p><code>.gitignore</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">*.sbl
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">*.sbl
 *.dis
 </code></pre></div><p>Limbo &lsquo;libraries&rsquo;, known as &lsquo;modules&rsquo;, and &lsquo;programs&rsquo; are one and the same in terms of semantics, bar &lsquo;libraries&rsquo; having module <code>.m</code> files which are similar to header <code>.h</code> files in C.</p>
 <p>As such, the boilerplate for most Limbo programs is very similar. We can initialize our main file as follows.</p>
 <p><code>socketh.b</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement SocketH;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement SocketH;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 	<span style="color:#900;font-weight:bold">sys</span>: Sys;
@@ -299,7 +299,7 @@ include <span style="color:#d14">&#34;arg.m&#34;</span>;
 </code></pre></div><p>We can break this down a bit.</p>
 <p><code>implement</code> declares a module by name.</p>
 <p>A module definition must be provided indicating exported functions from the module:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">SocketH: module {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">SocketH: module {
 	init: fn(nil: ref Draw-&gt;Context, argv: list of string);
 };
 </code></pre></div><p>Note how a variable name of <code>nil</code> is used to drop assignment of a value.</p>
@@ -316,7 +316,7 @@ include <span style="color:#d14">&#34;arg.m&#34;</span>;
 <p>Note the absence of a reserved <code>main</code> module. This is due to each <code>.dis</code> file, potentially an independent module, being theoretically loadable in its own right. A reserved name would cause significant issues with namespaces ☺.</p>
 <h3 id="setting-up-a-workflow">Setting up a workflow</h3>
 <p>Compiling our program should be as straightforward as running the Limbo compiler against our source file:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% limbo socketh.b
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% limbo socketh.b
 % lc
 .git/		LICENSE		socketh.b
 .gitignore	README.md	socketh.dis
@@ -328,7 +328,7 @@ include <span style="color:#d14">&#34;arg.m&#34;</span>;
 <p>In acme, we could type the text we want to run in a tag or window and middle-click said text to run the compilation (or more!) on-demand. In Inferno, acme comes with a <code>Limbo</code> command in the default window tag, but that only works for one file.</p>
 <p>We can simplify this process by writing a <s>makefile</s> <a href="http://doc.cat-v.org/bell_labs/mk/">mkfile</a>!</p>
 <p><code>mkfile</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&lt;/mkconfig
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&lt;/mkconfig
 
 DISBIN = /dis
 
@@ -345,7 +345,7 @@ TARG = socketh.dis
 <li><code>mk nuke</code> calls the <code>clean</code> target as well as delete the &lsquo;target&rsquo; files such as the <code>/dis/socketh</code> binary if the <code>install</code> target has been called</li>
 </ul>
 <p>A demonstration:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% lc
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% lc
 .git/		LICENSE		mkfile
 .gitignore	README.md	socketh.b
 % mk
@@ -374,7 +374,7 @@ socketh.dis: not found
 <h3 id="common-patterns">Common patterns</h3>
 <h4 id="commandline-flags">Commandline flags</h4>
 <p>We can use <a href="man.postnix.pw/purgatorio/2/arg">arg(2)</a> to process commandline flags:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#a61717;background-color:#e3d2d2">…</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#a61717;background-color:#e3d2d2">…</span>
 
 <span style="color:#900;font-weight:bold">chatty</span>: <span style="color:#458;font-weight:bold">int</span>	<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>;	<span style="color:#a61717;background-color:#e3d2d2">#</span> Verbose debug output
 
@@ -410,7 +410,7 @@ socketh.dis: not found
 	exit;
 }
 </code></pre></div><p>We can see how these flags are parsed and how these functions act:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% mk
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% mk
 mk: &#39;all&#39; is up to date
 % socketh -h
 usage: socketh [-D] [-a addr]
@@ -427,7 +427,7 @@ usage: socketh [-D] [-a addr]
 <h4 id="network-listening">Network listening</h4>
 <p>Leveraging <a href="http://man.postnix.pw/purgatorio/2/dial">dial(2)</a>, we can establish a basic TCP network listen-accept-handle flow.</p>
 <p>An example of expanding the prior main file to include an endless echo-listener:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement SocketH;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement SocketH;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 	<span style="color:#900;font-weight:bold">sys</span>: Sys;
@@ -537,28 +537,28 @@ include <span style="color:#d14">&#34;dial.m&#34;</span>;
 </code></pre></div><h2 id="debugging">Debugging</h2>
 <h3 id="dealing-with-hung-processes-and-networks">Dealing with hung processes and networks</h3>
 <p>Killing the main process for a module may be sufficient for resetting many programs, this can be done by calling <code>kill</code> with the module&rsquo;s name:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% kill SocketH
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% kill SocketH
 417
 %
 </code></pre></div><p>Thus, printing the PID of the killed process.</p>
 <p>If you ever have a dangling dial/listening process that needs killed, we can find the program&rsquo;s PID and kill it as so:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% grep -i tcp /prog/*/fd
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% grep -i tcp /prog/*/fd
 /prog/177/fd:   4 rw I    0 (0000000000020008 0 00)     0       14 /net/tcp/clone
 % kill 177
 %
 </code></pre></div><p>and from the listening program&rsquo;s window we&rsquo;ll see:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% socketh
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% socketh
 sh: 177 &#34;Dial&#34;:killed
 %
 </code></pre></div><p>The above technique works because we know that our listener will be listening on TCP and thus must have a file descriptor open to the <code>tcp</code> filesystem under the <code>/net</code> server.</p>
 <p>We can verify the kernel device name for the <code>/net</code> server via:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% pid = ${pid}; grep &#39;\/net&#39; /prog/$pid/ns | grep &#39;#&#39;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% pid = ${pid}; grep &#39;\/net&#39; /prog/$pid/ns | grep &#39;#&#39;
 bind -a #I /net
 bind -b #scs /net
 bind -b #sdns /net
 %
 </code></pre></div><p>We can verify that <code>#I</code> is the file server for networks against the kernel&rsquo;s list of currently loaded drivers exposed at <code>/dev/drivers</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% grep &#39;#I&#39; /dev/drivers
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% grep &#39;#I&#39; /dev/drivers
 #I ip
 % lc &#39;#I&#39;/tcp
 0/    1/    clone stats
@@ -566,20 +566,20 @@ bind -b #sdns /net
 0/    1/    clone stats
 %
 </code></pre></div><p>You can explicitly disconnect hung TCP connections using the <a href="http://man.postnix.pw/purgatorio/3/ip">ip(3)</a> file system interface:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% grep 9090 /net/tcp/*/local
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% grep 9090 /net/tcp/*/local
 /net/tcp/0/local: ::!9090
 /net/tcp/1/local: 127.0.0.1!9090
 % echo hangup &gt; /net/tcp/1/ctl		# Disconnects the client
 % echo hangup &gt; /net/tcp/0/ctl		# Disconnects the server
 %
 </code></pre></div><p>from the main process window, due to closing the <code>::!9090</code> file:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% socketh
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% socketh
 sh: 441 &#34;SocketH&#34;:err: could not listen - listen opening /net/tcp/0/listen: Invalid argument
 %
 </code></pre></div><p>Neat!</p>
 <h3 id="dealing-with-compiler-warningserrors">Dealing with compiler warnings/errors</h3>
 <p>An example of some output that can be generated during development:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% mk
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% mk
 limbo -I/module -gw socketh.b
 socketh.b:136: warning: local username not referenced
 % mk
@@ -607,7 +607,7 @@ limbo -I/module -gw socketh.b
 <h3 id="flushing-out-the-program">Flushing out the program</h3>
 <p>A server that echoes its input is nice, but we&rsquo;re reimplementing an existing system, so let&rsquo;s finish that.</p>
 <p>The final main file:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement SocketH;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement SocketH;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 	<span style="color:#900;font-weight:bold">sys</span>: Sys;
@@ -799,13 +799,13 @@ include <span style="color:#d14">&#34;arg.m&#34;</span>;
 <p>The <code>alt</code> structure allows C-alike <code>switch</code> structure behavior over channels for sending/receiving depending on context.</p>
 <p>Slicing over an array using the <code>[:n]</code> syntax which is logically similar to Go&rsquo;s slicing syntax of <code>[from:before]</code> where the resultant slice is mathematically denoted as the set contents <code>[from, before)</code>.</p>
 <p>Function declarations have a return type as their type denoted with a colon as per:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">minimize(s: string): string {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">minimize(s: string): string {
 …
 }
 </code></pre></div><p>The <code>case</code> structure allows behavior much like the C-alike <code>switch</code> structure with limited pattern matching available.</p>
 <h3 id="installing-and-finishing-up">Installing and finishing up</h3>
 <p>To wrap up, we&rsquo;ll install and commit the work we&rsquo;ve done.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% mk
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% mk
 limbo -I/module -gw socketh.b
 % mk install
 rm -f /dis/socketh.dis &amp;&amp; cp socketh.dis /dis/socketh.dis
@@ -815,7 +815,7 @@ rm -f /dis/socketh.dis &amp;&amp; cp socketh.dis /dis/socketh.dis
 usage: socketh [-D] [-a addr]
 %
 </code></pre></div><p>From unix terminals on the host machine:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ telnet localhost 9090
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ telnet localhost 9090
 Trying 127.0.0.1...
 Connected to localhost.
 Escape character is &#39;^]&#39;.
@@ -834,7 +834,7 @@ telnet&gt; q
 Connection closed.
 $
 </code></pre></div><p>and</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ telnet localhost 9090
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ telnet localhost 9090
 Trying 127.0.0.1...
 Connected to localhost.
 Escape character is &#39;^]&#39;.
@@ -850,7 +850,7 @@ telnet&gt; q
 Connection closed.
 $
 </code></pre></div><p>with the server output being:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% socketh
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% socketh
 → sean
 sean → hello
 → ana

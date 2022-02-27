@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>utf8 on seh.dev</title>
+    <link>https://seh.dev/tags/utf8/</link>
+    <description>Recent content in utf8 on seh.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2020, Sean Hinchee</copyright>
+    <lastBuildDate>Fri, 25 Feb 2022 00:00:00 +0000</lastBuildDate>
+    
+  <atom:link href="https://seh.dev/tags/utf8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Writing UTF-8 Programs in Plan 9</title>
+      <link>https://seh.dev/9runes/</link>
+      <pubDate>Fri, 25 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/9runes/</guid>
+      <description>Writing UTF-8 Programs in Plan 9 This post was written using 9front/amd64 “COMMUNITY VS INFRASTRUCTURE” as a reference.
+Programs are built on Plan 9 using the 2c(1) compiler suite.
+Thus, on amd64:
+tenshi% 6c rsize.c tenshi% 6l rsize.6 tenshi% 6.out わ 4 4 tenshi% Remember, in C, a char (ASCII character) is almost always 1 byte (8 bits).
+This document presumes that a non-rune char is 1 byte.
+Initial reading  C Programming in Plan 9  UTF-8 in Plan 9 Plan 9 is full of UTF-8 aware programs, which makes sense, given that Plan 9 was the system UTF-8 was designed on/for.</description>
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
+    </item>
+    
+  </channel>
+</rss>

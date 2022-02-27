@@ -148,13 +148,13 @@
 <p>The <a href="https://github.com/9fans/plan9port">plan9port</a> <a href="https://9fans.github.io/plan9port/man/man1/wc.html">wc(1)</a> is used as it supports the counting of valid utf-8 characters. The plan9port <code>wc</code> command is called explicitly using the plan9port <code>9</code> program to circumvent the standard <code>$PATH</code> calling convention.</p>
 <p>The runez family tools operate using standard input and standard output and compress by default.</p>
 <p>The runez family algorithms assume that they can read the entirety of their input file into memory.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ runez -h
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ runez -h
 Usage of runez:
   -D	Chatty debug mode
   -c	Explicit compress mode
   -d	De-compress mode
 $
-</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ runez2 -h
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ runez2 -h
 Usage of runez2:
   -D	Chatty debug mode
   -c	Explicit compress mode
@@ -163,7 +163,7 @@ $
 </code></pre></div><h3 id="compression">Compression</h3>
 <p><strong>Runez:</strong></p>
 <p>Note the deliberate truncation of the larger mac.txt from the runez2 repository.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sed 5q mac.txt | runez &gt; mac.rz
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sed 5q mac.txt | runez &gt; mac.rz
 $ sed 5q mac.txt | <span style="color:#099">9</span> wc -r
     <span style="color:#099">195</span>
 $ <span style="color:#099">9</span> wc -c mac.rz mac.txt
@@ -173,7 +173,7 @@ $ <span style="color:#099">9</span> wc -c mac.rz mac.txt
 $
 </code></pre></div><p>What happens if you don&rsquo;t truncate the file?</p>
 <p><strong>Runez2:</strong></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ runez2 &lt; mac.txt &gt; mac.rz2
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ runez2 &lt; mac.txt &gt; mac.rz2
 $ <span style="color:#099">9</span> wc -r mac.txt
    <span style="color:#099">1950</span> mac.txt
 $ <span style="color:#099">9</span> wc -c mac.txt mac.rz2
@@ -183,7 +183,7 @@ $ <span style="color:#099">9</span> wc -c mac.txt mac.rz2
 $
 </code></pre></div><h3 id="decompression">Decompression</h3>
 <p><strong>Runez:</strong></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ runez -d &lt; mac.rz
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ runez -d &lt; mac.rz
 Моето летачко возило е полно со јагули
 Моето летачко возило е полно со јагули
 Моето летачко возило е полно со јагули
@@ -191,7 +191,7 @@ $
 Моето летачко возило е полно со јагули
 $
 </code></pre></div><p><strong>Runez2:</strong></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ runez2 -d &lt; mac.rz2
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ runez2 -d &lt; mac.rz2
 Моето летачко возило е полно со јагули
 Моето летачко возило е полно со јагули
 Моето летачко возило е полно со јагули
@@ -249,12 +249,12 @@ $
 <p>Runez takes a series of valid utf-8 characters, which permits the ASCII range, and compacts them into a little-endian binary archive file.</p>
 <p>The file consists of a table where each row encodes information about one rune, a valid utf-8 character.</p>
 <p>A row takes the form of at least 3 columns:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[number of position : uint8] [rune : int32] [position : uint8 …]
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[number of position : uint8] [rune : int32] [position : uint8 …]
 </code></pre></div><p>Note that the ellipses &lsquo;…&rsquo; implies that there can be be multiple positions, or offsets, a rune can occupy within a file.</p>
 <p>For example, given the string:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">αβξαβξ
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">αβξαβξ
 </code></pre></div><p>The table would resemble:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">2 α 0 3
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">2 α 0 3
 2 β 1 4
 2 ξ 2 5
 </code></pre></div><p>If we perform a small calculation we can see that the size of the input file is 6 int32 values, which are a total of  \( 4 * 6 = 24\)  bytes. The output file is 3 int32 values and 9 uint8 values totalling  \( 3 * 4 + 9 = 21 \)  bytes. In total, this input yields 3 bytes of compression.</p>
@@ -266,7 +266,7 @@ $
 $$</p>
 <p>We can apply this formula on the mac.txt example from earlier to calculate the size of the final archive.</p>
 <p>The file consists of one line of 39 runes repeated across 5 lines:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Моето летачко возило е полно со јагули\n
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Моето летачко возило е полно со јагули\n
 </code></pre></div><p>The set of 19 unique runes:</p>
 <p>$$
 r \isin R{nl, ␣, М, о, е, т, л, а, ч, к, в, з, и, п, с, ј, г, у, н}
@@ -284,7 +284,7 @@ $$</p>
 \therefore 290\ bytes
 $$</p>
 <p>We can validate this manually:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ wc -c mac.rz
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ wc -c mac.rz
 <span style="color:#099">290</span> mac.rz
 $
 </code></pre></div><p>The space savings shown here is  \( 1- \frac{290}{355} = 0.18 = 18\% \) .</p>
@@ -292,21 +292,21 @@ $
 <h4 id="compression-1">Compression</h4>
 <p>Function definition: <a href="https://github.com/henesy/runez/blob/30368d63a423af444da1017f5317482222e9a713/main.go#L57">https://github.com/henesy/runez/blob/30368d63a423af444da1017f5317482222e9a713/main.go#L57</a></p>
 <p>Runez begins compression by building a hashmap, mapping a <code>rune</code> to a list of <code>uint8</code>&rsquo;s.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dict <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">map</span>[<span style="color:#458;font-weight:bold">rune</span>]<span style="color:#000;font-weight:bold">*</span>list.List)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dict <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">map</span>[<span style="color:#458;font-weight:bold">rune</span>]<span style="color:#000;font-weight:bold">*</span>list.List)
 </code></pre></div><p>Each rune from the input file is then iterated on sequentially, with their offset from the beginning of the file, starting at 0, being indexed as <code>i</code>.</p>
 <p>Each rune found will be checked for presence within the map.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">if</span> dict[r] <span style="color:#000;font-weight:bold">==</span> <span style="color:#000;font-weight:bold">nil</span> {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">if</span> dict[r] <span style="color:#000;font-weight:bold">==</span> <span style="color:#000;font-weight:bold">nil</span> {
 	dict[r] = list.<span style="color:#900;font-weight:bold">New</span>()
 }
 </code></pre></div><p>If the rune is found in the map as existing, the current rune offset is prepended to the list for said rune.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dict[r].<span style="color:#900;font-weight:bold">PushFront</span>(<span style="color:#0086b3">uint8</span>(i))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dict[r].<span style="color:#900;font-weight:bold">PushFront</span>(<span style="color:#0086b3">uint8</span>(i))
 </code></pre></div><p>If the rune is not found in the map, a list is allocated for the rune and the current rune offset is prepended to the list for said rune.</p>
 <p>After all the runes have been read from the input file, the map is then iterated over and rows are generated for the output table.</p>
 <p>The number of positions is derived from the list length.</p>
 <p>The rune is derived from the map key during iteration.</p>
 <p>The positions are extracted starting from the front of the list.</p>
 <p>We can see the relevant encoding of the position count, rune, and positions respectively as per:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">err <span style="color:#000;font-weight:bold">:=</span> binary.<span style="color:#900;font-weight:bold">Write</span>(w, binary.LittleEndian, pc)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">err <span style="color:#000;font-weight:bold">:=</span> binary.<span style="color:#900;font-weight:bold">Write</span>(w, binary.LittleEndian, pc)
 <span style="color:#a61717;background-color:#e3d2d2">…</span>
 err = binary.<span style="color:#900;font-weight:bold">Write</span>(w, binary.LittleEndian, r)
 <span style="color:#a61717;background-color:#e3d2d2">…</span>
@@ -317,10 +317,10 @@ err = binary.<span style="color:#900;font-weight:bold">Write</span>(w, binary.Li
 </code></pre></div><h4 id="decompression-1">Decompression</h4>
 <p>Function definition: <a href="https://github.com/henesy/runez/blob/30368d63a423af444da1017f5317482222e9a713/main.go#L116">https://github.com/henesy/runez/blob/30368d63a423af444da1017f5317482222e9a713/main.go#L116</a></p>
 <p>Runez begins decompression by allocated a hashmap mapping a <code>rune</code> to a slice of <code>uint8</code>&rsquo;s.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dict <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">map</span>[<span style="color:#458;font-weight:bold">rune</span>][]<span style="color:#458;font-weight:bold">uint8</span>)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dict <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">map</span>[<span style="color:#458;font-weight:bold">rune</span>][]<span style="color:#458;font-weight:bold">uint8</span>)
 </code></pre></div><p>Runez will read from the input file until EOF is reached.</p>
 <p>Each iteration of the reading process will extract a position count, rune, and a number of positions as defined by the position count.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">err <span style="color:#000;font-weight:bold">:=</span> binary.<span style="color:#900;font-weight:bold">Read</span>(r, binary.LittleEndian, <span style="color:#000;font-weight:bold">&amp;</span>pc)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">err <span style="color:#000;font-weight:bold">:=</span> binary.<span style="color:#900;font-weight:bold">Read</span>(r, binary.LittleEndian, <span style="color:#000;font-weight:bold">&amp;</span>pc)
 <span style="color:#a61717;background-color:#e3d2d2">…</span>
 err = binary.<span style="color:#900;font-weight:bold">Read</span>(r, binary.LittleEndian, <span style="color:#000;font-weight:bold">&amp;</span>ru)
 <span style="color:#a61717;background-color:#e3d2d2">…</span>
@@ -334,28 +334,28 @@ err = binary.<span style="color:#900;font-weight:bold">Read</span>(r, binary.Lit
 }
 <span style="color:#a61717;background-color:#e3d2d2">…</span>
 </code></pre></div><p>The total number of runes based on the sum of position counts is stored for later use.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">sum <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">sum <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>
 <span style="color:#a61717;background-color:#e3d2d2">…</span>
 sum <span style="color:#000;font-weight:bold">+=</span> <span style="color:#0086b3">int</span>(pc)
 <span style="color:#a61717;background-color:#e3d2d2">…</span>
 </code></pre></div><p>The slice is allocated in size of &lsquo;position count&rsquo; number of positions.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dict[ru] = <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">uint8</span>, pc)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dict[ru] = <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">uint8</span>, pc)
 </code></pre></div><p>After all runes have been read, the map is iterated over and inside said iteration, the slice of positions is iterated over.</p>
 <p>A <code>Pair</code> type is used to conjoin a rune to a given position.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">type</span> Pair <span style="color:#000;font-weight:bold">struct</span> {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">type</span> Pair <span style="color:#000;font-weight:bold">struct</span> {
 	R <span style="color:#458;font-weight:bold">rune</span>
 	P <span style="color:#458;font-weight:bold">uint8</span>
 }
 </code></pre></div><p>A slice of pairs is allocated proportional to the size of the aforementioned sum value.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">master <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]Pair, <span style="color:#099">0</span>, sum)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">master <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]Pair, <span style="color:#099">0</span>, sum)
 </code></pre></div><p>Each position iterated over is placed in a <code>Pair</code> with its parent rune and the couple is appended to the master slice of pairs.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> ru, s <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> dict {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> ru, s <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> dict {
 	<span style="color:#000;font-weight:bold">for</span> _, p <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> s {
 		master = <span style="color:#0086b3">append</span>(master, Pair{ru, p})
 	}
 }
 </code></pre></div><p>After all position and rune pairs have been processed, the slice of all pairs is sorted by position value, starting from 0.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a61717;background-color:#e3d2d2">…</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a61717;background-color:#e3d2d2">…</span>
 <span style="color:#000;font-weight:bold">type</span> ByPosition []Pair
 
 <span style="color:#000;font-weight:bold">func</span> (a ByPosition) <span style="color:#900;font-weight:bold">Len</span>() <span style="color:#458;font-weight:bold">int</span>           { <span style="color:#000;font-weight:bold">return</span> <span style="color:#0086b3">len</span>(a) }
@@ -365,7 +365,7 @@ sum <span style="color:#000;font-weight:bold">+=</span> <span style="color:#0086
 sort.<span style="color:#900;font-weight:bold">Sort</span>(<span style="color:#900;font-weight:bold">ByPosition</span>(master))
 <span style="color:#a61717;background-color:#e3d2d2">…</span>
 </code></pre></div><p>The sorted slice of pairs is then emitted to standard output.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> _, pair <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> master {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> _, pair <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> master {
 	w.<span style="color:#900;font-weight:bold">Write</span>([]<span style="color:#0086b3">byte</span>(<span style="color:#0086b3">string</span>(pair.R)))
 }
 </code></pre></div><h2 id="runez-the-second">Runez the second</h2>
@@ -374,15 +374,15 @@ sort.<span style="color:#900;font-weight:bold">Sort</span>(<span style="color:#9
 <p>Runez2 takes a series of valid utf-8 characters, which permits the ASCII range, and compacts them into a little-endian binary archive file.</p>
 <p>The file consists of two parts, a preamble which lists all the unique runes in a specific order and a body which is separated from the preamble by a null rune and consists of single byte (<code>uint8</code>) values indicating the unique rune which should be substituted into position for said single byte value.</p>
 <p>The archive format is thus structured as follows:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[rune : int32]
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[rune : int32]
 …
 [\0 : int32]
 [N : uint8]
 </code></pre></div><p>Note that the ellipses &lsquo;…&rsquo; implies that there can be many runes prior to the null divider.</p>
 <p>For example, given the string:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">αβξαβξ
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">αβξαβξ
 </code></pre></div><p>The file would resemble:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">αβξ
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">αβξ
 \0
 0 1 2 0 1 2
 </code></pre></div><p>The core assumptions made by Runez2 is that the whole file can be read into memory and that there are no more than  \( (\oplus uint8(0) = 255)+1 = 256 \)  <strong>unique</strong> runes.</p>
@@ -399,7 +399,7 @@ $$</p>
 <p>Note that in practice, due to how utf-8 text encoding works, the size in bytes of the plaintext is most likely much smaller than this number.</p>
 <p>We can apply the former formula on the mac.txt example from earlier to calculate the size of the final archive.</p>
 <p>The file consists of one line of 39 runes repeated many times:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Моето летачко возило е полно со јагули\n
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Моето летачко возило е полно со јагули\n
 </code></pre></div><p>The set of 19 unique runes:</p>
 <p>$$
 r \isin R{nl, ␣, М, о, е, т, л, а, ч, к, в, з, и, п, с, ј, г, у, н}
@@ -417,12 +417,12 @@ $$</p>
 \therefore 2030\ bytes
 $$</p>
 <p>We can validate this manually:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ wc -c mac.rz2
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ wc -c mac.rz2
 <span style="color:#099">2030</span> mac.rz2
 $
 </code></pre></div><p>The space savings shown here is  \( 1- \frac{2030}{3550} = 0.43 = 43\% \) .</p>
 <p>This ratio is indicative of the maximum space savings of this algorithm as illustrated by compressing a much larger document, a utf-8 text transcription of the Quran:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ wc -c quran.txt
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ wc -c quran.txt
 <span style="color:#099">1344086</span> quran.txt
 $ runez2 &lt; quran.txt &gt; quran.rz2
 $ wc -c quran.rz2
@@ -437,10 +437,10 @@ $
 <p>Runez2 begins by beginning a hashmap, mapping a <code>rune</code> to a <code>uint8</code>.</p>
 <p>The <code>uint8</code> mapped value is the indexed offset of a given <code>rune</code> in the order the runes were found, and will be emitted.</p>
 <p>A list is made to push the rune index values into to represent the structure of the text where each rune index value is a shorthand reference to the rune that should occupy the index values.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dict <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">map</span>[<span style="color:#458;font-weight:bold">rune</span>]<span style="color:#458;font-weight:bold">uint8</span>)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dict <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">map</span>[<span style="color:#458;font-weight:bold">rune</span>]<span style="color:#458;font-weight:bold">uint8</span>)
 runes <span style="color:#000;font-weight:bold">:=</span> list.<span style="color:#900;font-weight:bold">New</span>()
 </code></pre></div><p>As runes are found from the input file they are added into the map and pushed, in order, into the list.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">if</span> i <span style="color:#000;font-weight:bold">&lt;=</span> <span style="color:#099">0</span> {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">if</span> i <span style="color:#000;font-weight:bold">&lt;=</span> <span style="color:#099">0</span> {
 	<span style="color:#998;font-style:italic">// Handle the base case explicitly
 </span><span style="color:#998;font-style:italic"></span>	dict[ru] = <span style="color:#0086b3">uint8</span>(i)
 	i<span style="color:#000;font-weight:bold">++</span>
@@ -456,20 +456,20 @@ runes <span style="color:#000;font-weight:bold">:=</span> list.<span style="colo
 <span style="color:#998;font-style:italic">// Push the i-value for the rune
 </span><span style="color:#998;font-style:italic"></span>runes.<span style="color:#900;font-weight:bold">PushBack</span>(dict[ru])
 </code></pre></div><p>When all the runes have been read, a slice is allocated to store a table of runes, the map is effectively reversed and the relevant <code>i</code>&lsquo;th position for a rune is where the rune from the map is stored.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> ru, i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> dict {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> ru, i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> dict {
 	<span style="color:#a61717;background-color:#e3d2d2">…</span>
 	table[i] = ru
 }
 </code></pre></div><p>The table is then iterated over and the runes are emitted in order from the table as the preamble of the archive.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>; i &lt; <span style="color:#0086b3">len</span>(table); i<span style="color:#000;font-weight:bold">++</span> {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>; i &lt; <span style="color:#0086b3">len</span>(table); i<span style="color:#000;font-weight:bold">++</span> {
 	<span style="color:#a61717;background-color:#e3d2d2">…</span>
 	err <span style="color:#000;font-weight:bold">:=</span> binary.<span style="color:#900;font-weight:bold">Write</span>(w, binary.LittleEndian, table[i])
 	<span style="color:#a61717;background-color:#e3d2d2">…</span>
 }
 </code></pre></div><p>The preamble is terminated with a full null rune.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">err <span style="color:#000;font-weight:bold">:=</span> binary.<span style="color:#900;font-weight:bold">Write</span>(w, binary.LittleEndian, <span style="color:#0086b3">rune</span>(<span style="color:#099">0</span>))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">err <span style="color:#000;font-weight:bold">:=</span> binary.<span style="color:#900;font-weight:bold">Write</span>(w, binary.LittleEndian, <span style="color:#0086b3">rune</span>(<span style="color:#099">0</span>))
 </code></pre></div><p>The list of rune index values is then iterated over to emit the body of the document.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> p <span style="color:#000;font-weight:bold">:=</span> runes.<span style="color:#900;font-weight:bold">Front</span>(); p <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span>; p = p.<span style="color:#900;font-weight:bold">Next</span>() {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> p <span style="color:#000;font-weight:bold">:=</span> runes.<span style="color:#900;font-weight:bold">Front</span>(); p <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span>; p = p.<span style="color:#900;font-weight:bold">Next</span>() {
 	err <span style="color:#000;font-weight:bold">:=</span> binary.<span style="color:#900;font-weight:bold">Write</span>(w, binary.LittleEndian, <span style="color:#0086b3">byte</span>(p.Value.(<span style="color:#458;font-weight:bold">uint8</span>)))
 	<span style="color:#a61717;background-color:#e3d2d2">…</span>
 }
@@ -477,11 +477,11 @@ runes <span style="color:#000;font-weight:bold">:=</span> list.<span style="colo
 <p>Function definition: <a href="https://github.com/henesy/runez2/blob/98adfdfacd54c540751e4062e581143576e5344a/main.go#L161">https://github.com/henesy/runez2/blob/98adfdfacd54c540751e4062e581143576e5344a/main.go#L161</a></p>
 <p>A table is allocated to store the preamble runes read in from the input file.</p>
 <p>The table is allocated with a maximum capacity of  \( (\oplus uint8(0) = 255)+1 = 256 \)  runes.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">var</span> table []<span style="color:#458;font-weight:bold">rune</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">var</span> table []<span style="color:#458;font-weight:bold">rune</span>
 
 table = <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">rune</span>, <span style="color:#099">0</span>, <span style="color:#0086b3">int</span>(^<span style="color:#0086b3">uint8</span>(<span style="color:#099">0</span>)))
 </code></pre></div><p>The preamble of runes are then read in and stored in order. Upon reaching a null rune, the preamble is terminated.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> {
 	<span style="color:#000;font-weight:bold">var</span> ru <span style="color:#458;font-weight:bold">rune</span>
 
 	err <span style="color:#000;font-weight:bold">:=</span> binary.<span style="color:#900;font-weight:bold">Read</span>(r, binary.LittleEndian, <span style="color:#000;font-weight:bold">&amp;</span>ru)
@@ -495,7 +495,7 @@ table = <span style="color:#0086b3">make</span>([]<span style="color:#458;font-w
 	table = <span style="color:#0086b3">append</span>(table, ru)
 }
 </code></pre></div><p>The indices are then read from the body of the archive, in order, and the rune value for the relevant index is substituted to restore the original content of the input, which is emitted.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> {
 		<span style="color:#000;font-weight:bold">var</span> i <span style="color:#458;font-weight:bold">uint8</span>
 
 		err <span style="color:#000;font-weight:bold">:=</span> binary.<span style="color:#900;font-weight:bold">Read</span>(r, binary.LittleEndian, <span style="color:#000;font-weight:bold">&amp;</span>i)

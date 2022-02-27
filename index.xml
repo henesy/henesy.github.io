@@ -7,10 +7,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2020, Sean Hinchee</copyright>
-    <lastBuildDate>Tue, 24 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 25 Feb 2022 00:00:00 +0000</lastBuildDate>
     
   <atom:link href="https://seh.dev/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Writing UTF-8 Programs in Plan 9</title>
+      <link>https://seh.dev/9runes/</link>
+      <pubDate>Fri, 25 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/9runes/</guid>
+      <description>Writing UTF-8 Programs in Plan 9 This post was written using 9front/amd64 “COMMUNITY VS INFRASTRUCTURE” as a reference.
+Programs are built on Plan 9 using the 2c(1) compiler suite.
+Thus, on amd64:
+tenshi% 6c rsize.c tenshi% 6l rsize.6 tenshi% 6.out わ 4 4 tenshi% Remember, in C, a char (ASCII character) is almost always 1 byte (8 bits).
+This document presumes that a non-rune char is 1 byte.
+Initial reading  C Programming in Plan 9  UTF-8 in Plan 9 Plan 9 is full of UTF-8 aware programs, which makes sense, given that Plan 9 was the system UTF-8 was designed on/for.</description>
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
+    </item>
     
     <item>
       <title>Creating and Applying 9front Patches (Git Edition)</title>
@@ -23,9 +39,8 @@
   Late April 2019, Lufia announces their port of unix git on 9fans thread &#39;[9fans] Git client&#39;.
   June 2019, git9 migrates to git.
   July 2020, Atlassian deletes all Mercurial repositories without archive or remorse.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -37,9 +52,8 @@
       <description>Limbo GUI&amp;rsquo;s with Tk Motivation GUI programming can be very difficult and documentation for writing graphical programs can be provided with a large number of assumption on pre-existing knowledge, etc.
 Additionally, compartmentalized examples which do not employ some kind of `other tricks&#39; can be hard to come by. This problem is exasperated for less well-known systems such as Inferno.
 The first version of the second program shown below was written over a year ago, but did not work well and presented only the most minimal fulfillment of what could be called a functioning graphical program.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -52,9 +66,8 @@ The first version of the second program shown below was written over a year ago,
 Prior to and influencing Go (and thus Go 2), the Limbo programming language from the Inferno operating system had implemented a somewhat similar syntax for polymorphism.
 There are very tangible and crucial differences, but for novelty the two languages are cross-referenced.
 This post was primarily motivated by a discussion and linguistic adventure that occurred during a stream exploring the Limbo language and Inferno OS.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -69,9 +82,8 @@ Introduction This post assumes you&amp;rsquo;re using Inferno, specifically purg
 It&amp;rsquo;s also possible to use Inferno under Docker as per the INSTALL file.
 Other platforms are supported, but steps may differ here or there.
 The rune $ indicates a unix shell command under bash, probably.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -84,9 +96,8 @@ The rune $ indicates a unix shell command under bash, probably.</description>
 These algorithms are very naïve, but simple structurally and to that end I will attempt to convey the implementation.
 There are two algorithms, runez and runez2.
 The runez2 algorithm is a strictly superior successor \(^ \dagger\) to runez with the primary improvement being that there is no unique character limit, which will be explained later.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -97,9 +108,8 @@ The runez2 algorithm is a strictly superior successor \(^ \dagger\) to runez wit
       <guid>https://seh.dev/go-legacy/</guid>
       <description>Go&amp;rsquo;s History in Code This post intends to showcase programming patterns, or stuff, which is common between Newsqueak, Alef, Plan9 C, Limbo, and Go.
 All of these code snippets should be complete as shown and compilable/runnable in the state presented. The Alef examples might have subtle typos, but this is due to the fact I had to manually re-type them out from VirtualBox since I didn&amp;rsquo;t have copy/paste available to the guest.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -112,9 +122,8 @@ All of these code snippets should be complete as shown and compilable/runnable i
 The final port source code for the port: https://github.com/henesy/c4.
 The commits for the port starting from my history should vaguely reflect the order and rough increment of changes described in this post. It is recommended to skim the source and changes while reading ☺.
 Initial reading  C Programming in Plan 9  Porting This post will show the process of porting a unix program, c4, to plan9.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -128,9 +137,8 @@ Oberon is notable for being simple and powerful in a manner which permits Oberon
 Refer to Wikipedia for some history and exposition: https://en.wikipedia.org/wiki/Oberon_(operating_system)
 Getting Oberon The easiest way to get Oberon up and running from unix is through pdewacht&amp;rsquo;s risc emu: https://github.com/pdewacht/oberon-risc-emu
 You can also, from unix, use A2 Oberon Subsystem for Unix (aosunix).</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -142,9 +150,8 @@ You can also, from unix, use A2 Oberon Subsystem for Unix (aosunix).</descriptio
       <description>Using p9sk1 authentication in modern 9front Many moons ago 9front moved to dp9ik auth from p9sk1 due to security concerns. However, there may be cases, such as using parts of plan9port, that one may want to enable the old cpu protocol and p9sk1 authentication.
 Steps to complete:
  Enable p9sk1 by removing the -N flag from the authsrv(2) init scripts:  /rc/bin/service.auth/authsrv.il566 /rc/bin/service.auth/tcp567   Enable the legacy cpu(1) protocol server via:  mv &#39;/rc/bin/service/!</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -157,9 +164,8 @@ Steps to complete:
 While I might get around to a step by step tutorial on GUI programming in another post or location, I&amp;rsquo;d rather compile some helpful examples and resources for getting started.
 Some useful programs for reference:
  9pong 9clock lines squares bouncing ball example breakout snake clock catclock glendy mahjongg  Some useful documents for reference:</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -173,9 +179,8 @@ sysupdate bind -a /dist/plan9front / cd / In this example we&amp;rsquo;re making
 bind $home/src/rio /sys/src/cmd/rio To get the latest commit:
 hg log | sed 5q A first log output example might be:
 changeset: 6705:eecec6d3b341 user: cinap_lenrek@felloff.net date: Mon Sep 03 20:54:26 2018 +0200 summary: vt: fix plumbsel(), snarfsel() The commit hash we&amp;rsquo;re looking for is eecec6d3b341 and we can use it as follows to make the diff file:</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -189,9 +194,8 @@ Good news! While 9front ships with a Blit emulator via games/blit you can also c
 To get a connection going just run the following on your emulator of choice:
 blit -t &amp;#39;tcp!papnet.eu!8888&amp;#39; Choose ken as your username.
 To start a window manager:</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -201,9 +205,8 @@ To start a window manager:</description>
       
       <guid>https://seh.dev/discordfs-thoughts/</guid>
       <description>DiscordFS &amp;ndash; A Tale of Two Clients Around a year ago I worked on my first attempt at a Discord client that would build and function on 9front. Since then the landscape hasn&amp;rsquo;t changed much and neither has the client. It works well enough for my needs and the two or so other people who use it. Since then however, the number of members in the 9fans Discord Server has grown many times its original size.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -214,9 +217,8 @@ To start a window manager:</description>
       <guid>https://seh.dev/plan9-2e/</guid>
       <description>Install Notes for Plan 9 Second Edition A thanks to aap for providing copies of the floppy images and isos used to perform the test installs. None of this would have been able to happen without you.
 Disclaimer: I have not successfully managed to get Plan 9 2e (2e from hereon) installed in qemu or physical hardware. Qemu has had issues due to the fact that I&amp;rsquo;m unfamiliar with configuring IDE in qemu.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -228,9 +230,8 @@ Disclaimer: I have not successfully managed to get Plan 9 2e (2e from hereon) in
       <description>Using Plan9Port Mkfiles Recently I decided to play with the idea of porting Nemo&amp;rsquo;s semfs (from Ch13 of his book) to *nix as a learning exercise.
 As a goal I wanted to change as little of the original code as possible. Even with the plan9port 9c/9l bindings however, some portions of the source (unnamed struct members, mostly) did not build and required changing.
 A notable point of change was the mkfile for semfs, originally using the mkone file, I needed to find the equivalent mkfile in plan9port.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
   </channel>

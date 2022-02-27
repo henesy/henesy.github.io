@@ -19,9 +19,8 @@
       
       <guid>https://seh.dev/discordfs-thoughts/</guid>
       <description>DiscordFS &amp;ndash; A Tale of Two Clients Around a year ago I worked on my first attempt at a Discord client that would build and function on 9front. Since then the landscape hasn&amp;rsquo;t changed much and neither has the client. It works well enough for my needs and the two or so other people who use it. Since then however, the number of members in the 9fans Discord Server has grown many times its original size.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
   </channel>

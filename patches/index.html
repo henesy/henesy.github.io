@@ -134,34 +134,34 @@
     <div class="post-content"><h1 id="creating-and-applying-9front-patches-hg-edition">Creating and Applying 9front Patches (HG Edition)</h1>
 <h2 id="creating">Creating</h2>
 <p>To create a patch we first pull 9front&rsquo;s hg repo and bind our files into place:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sysupdate
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sysupdate
 
 bind -a /dist/plan9front /
 
 cd /
 </code></pre></div><p>In this example we&rsquo;re making a patch for rio, any combination of folders should work:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">bind $home/src/rio /sys/src/cmd/rio
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">bind $home/src/rio /sys/src/cmd/rio
 </code></pre></div><p>To get the latest commit:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">hg log | sed 5q
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">hg log | sed 5q
 </code></pre></div><p>A first log output example might be:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">changeset:   6705:eecec6d3b341
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">changeset:   6705:eecec6d3b341
 user:        cinap_lenrek@felloff.net
 date:        Mon Sep 03 20:54:26 2018 +0200
 summary:     vt: fix plumbsel(), snarfsel()
 </code></pre></div><p>The commit hash we&rsquo;re looking for is <code>eecec6d3b341</code> and we can use it as follows to make the diff file:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">hg diff -r eecec6d3b341 /sys/src/cmd/rio/wind.c &gt; $home/mypatch.diff
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">hg diff -r eecec6d3b341 /sys/src/cmd/rio/wind.c &gt; $home/mypatch.diff
 </code></pre></div><h2 id="applying">Applying</h2>
 <p>In the same way we pull and bind our files into place:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sysupdate
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sysupdate
 
 bind -a /dist/plan9front /
 
 cd /
 </code></pre></div><p>For individual files you could use <code>ape/patch</code> if desired, but for most 9front patches you should use hg:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">hg import --no-commit -f $home/mypatch.diff
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">hg import --no-commit -f $home/mypatch.diff
 </code></pre></div><p>The patch is now applied!</p>
 <p>If you wish to trash the changes from the patch, use:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">hg revert
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">hg revert
 </code></pre></div></div>
   
 </article>

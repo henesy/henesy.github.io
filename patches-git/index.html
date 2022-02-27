@@ -164,49 +164,49 @@
 </ul>
 <h2 id="creating">Creating</h2>
 <p>To create a patch we first pull 9front&rsquo;s git repo and bind our files into place:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; sysupdate
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; sysupdate
 
 ; bind -a /dist/plan9front /
 </code></pre></div><p>We should create our own work branch:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/branch -n mywork
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/branch -n mywork
 </code></pre></div><p>We can now make our changes to the system.</p>
 <p>If we lose our way, we can see which files have changed:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/diff -s
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/diff -s
 M sys/src/cmd/seq.c
 ;
 </code></pre></div><p>We will commit our changes whilst inside our branch:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text"># We make changes to seq(1)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text"># We make changes to seq(1)
 ; git/commit -m &#39;seq: some kind of change&#39; /sys/src/cmd/seq.c
 heads/mywork: 40d27871e341512ad69a50645e289f6b3856c528
 ;
 </code></pre></div><p>If we need to, we can get a commit hash manually:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/log -s | sed 1q | awk &#39;{print $1}&#39;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/log -s | sed 1q | awk &#39;{print $1}&#39;
 40d27871e341512ad69a50645e289f6b3856c528
 </code></pre></div><p>We export our changes to a diff:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/export 40d27871e341512ad69a50645e289f6b3856c528 &gt; $home/mypatch.diff
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/export 40d27871e341512ad69a50645e289f6b3856c528 &gt; $home/mypatch.diff
 </code></pre></div><p>You can export your changes to <a href="http://okturing.com/">the 9front pastebin</a> for ease of linking:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/export 40d27871e341512ad69a50645e289f6b3856c528 | webpaste
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/export 40d27871e341512ad69a50645e289f6b3856c528 | webpaste
 </code></pre></div><p>We can return to the default 9front branch:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/branch front
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/branch front
 </code></pre></div><h2 id="applying">Applying</h2>
 <p>In the same way we pull and bind our files into place:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; sysupdate
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; sysupdate
 
 ; bind -a /dist/plan9front /
 </code></pre></div><p>For individual files you could use <code>ape/patch</code> if desired, but for most 9front patches you should use <code>git/import</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/import &lt; $home/mypatch.diff
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/import &lt; $home/mypatch.diff
 applying seq: some kind of change
 M sys/src/cmd/seq.c
 ;
 </code></pre></div><p>The patch is now applied!</p>
 <p>If you wish to trash the changes from the patch, use:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/revert /sys/src/cmd/seq.c
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/revert /sys/src/cmd/seq.c
 </code></pre></div><p>You can delete obsolete branches via:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/branch front
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/branch front
 ; git/branch -d mywork
 </code></pre></div><h3 id="mail">Mail</h3>
 <p>If a patch is formatted properly and inline from an e-mail, you should be able to import from upasfs as per:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/import &lt; /mail/fs/mbox/4321
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">; git/import &lt; /mail/fs/mbox/4321
 </code></pre></div></div>
   
 </article>

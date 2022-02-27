@@ -22,9 +22,8 @@
 Prior to and influencing Go (and thus Go 2), the Limbo programming language from the Inferno operating system had implemented a somewhat similar syntax for polymorphism.
 There are very tangible and crucial differences, but for novelty the two languages are cross-referenced.
 This post was primarily motivated by a discussion and linguistic adventure that occurred during a stream exploring the Limbo language and Inferno OS.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -37,9 +36,8 @@ This post was primarily motivated by a discussion and linguistic adventure that 
 These algorithms are very naïve, but simple structurally and to that end I will attempt to convey the implementation.
 There are two algorithms, runez and runez2.
 The runez2 algorithm is a strictly superior successor \(^ \dagger\) to runez with the primary improvement being that there is no unique character limit, which will be explained later.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -50,9 +48,8 @@ The runez2 algorithm is a strictly superior successor \(^ \dagger\) to runez wit
       <guid>https://seh.dev/go-legacy/</guid>
       <description>Go&amp;rsquo;s History in Code This post intends to showcase programming patterns, or stuff, which is common between Newsqueak, Alef, Plan9 C, Limbo, and Go.
 All of these code snippets should be complete as shown and compilable/runnable in the state presented. The Alef examples might have subtle typos, but this is due to the fact I had to manually re-type them out from VirtualBox since I didn&amp;rsquo;t have copy/paste available to the guest.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
     <item>
@@ -62,9 +59,8 @@ All of these code snippets should be complete as shown and compilable/runnable i
       
       <guid>https://seh.dev/discordfs-thoughts/</guid>
       <description>DiscordFS &amp;ndash; A Tale of Two Clients Around a year ago I worked on my first attempt at a Discord client that would build and function on 9front. Since then the landscape hasn&amp;rsquo;t changed much and neither has the client. It works well enough for my needs and the two or so other people who use it. Since then however, the number of members in the 9fans Discord Server has grown many times its original size.</description>
-      <mp3></mp3>
-      <youtube_id></youtube_id>
-      <enclosure url="" type="audio/mpeg" />
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
     </item>
     
   </channel>

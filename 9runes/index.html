@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>seh.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="Writing UTF-8 Programs in Plan 9" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seh.dev/9runes/" />
+    <meta itemprop="name" content="Writing UTF-8 Programs in Plan 9">
+    <meta itemprop="description" content="">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Writing UTF-8 Programs in Plan 9"/>
+    <meta name="twitter:description" content=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+    
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.c535b8bc90eb1287432762da2e2ef5fb3d2f9583e20de56032f1f77e3cbabe05.css" >
+</head>
+<body>
+    <header>
+    <div class="header header-frame">
+        <div>
+          
+            <h1 class="header__title">Writing UTF-8 Programs in Plan 9</h1>
+          
+            
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list header-nav-list--menu">
+                
+                
+                    
+                        <li class="header-nav-list__item">
+                            <a class="header-nav-list__link" href="/about/">
+                                
+                                <span>About</span>
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+            <button class="header-nav-list__nav-btn">navigation</button>
+        </nav>
+        <button class="mb-header__menu-btn">
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+        </button>
+    </div>
+    <nav id="mobile-header-nav" class="mb-header-nav">
+  
+  
+  <button class="mb-header-nav__close-btn flex-center">
+    <svg
+            class="mb-header-nav__svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            >
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+    </button>
+    
+    <div class="mb-header-nav__wrapper">
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Tags
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/plan9/"
+                                                            >plan9</a
+                                                        >
+                    </li>
+                        
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/utf8/"
+                                                            >utf8</a
+                                                        >
+                    </li>
+                        
+                    
+                
+            </ul>
+        </div>
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Menu
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                
+                    
+                      <li class="mb-header-nav-list__item ">
+                            <a class="mb-header-nav-list__link" href="/about/">
+                                About
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+
+    <div id="content">
+<article class="post">
+  
+    <div class="post-content"><h1 id="writing-utf-8-programs-in-plan-9">Writing UTF-8 Programs in Plan 9</h1>
+<p>This post was written using 9front/amd64 “COMMUNITY VS INFRASTRUCTURE” as a reference.</p>
+<p>Programs are built on Plan 9 using the <a href="http://man.cat-v.org/9front/1/2c">2c(1)</a> compiler suite.</p>
+<p>Thus, on amd64:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% 6c rsize.c
+tenshi% 6l rsize.6
+tenshi% 6.out
+わ 4 4
+tenshi% 
+</code></pre></div><p>Remember, in C, a <code>char</code> (ASCII character) is <a href="https://news.ycombinator.com/item?id=12903031">almost always</a> 1 byte (8 bits).</p>
+<p>This document presumes that a non-rune char is 1 byte.</p>
+<h2 id="initial-reading">Initial reading</h2>
+<ul>
+<li><a href="http://doc.cat-v.org/plan_9/programming/c_programming_in_plan_9">C Programming in Plan 9</a></li>
+</ul>
+<h2 id="utf-8-in-plan-9">UTF-8 in Plan 9</h2>
+<p>Plan 9 is full of UTF-8 aware programs, which makes sense, given that <a href="http://doc.cat-v.org/bell_labs/utf-8_history">Plan 9 was the system UTF-8 was designed on/for</a>.</p>
+<p><a href="http://man.cat-v.org/9front/1/wc">Wc(1)</a> has a rune flag (very useful):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% wc -c -r &lt; /lib/hiragana
+    447     737
+tenshi% 
+</code></pre></div><p><a href="http://man.cat-v.org/9front/1/tr">Tr(1)</a> works on runes:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% echo &#39;αβψ&#39; | tr -d &#39;β&#39;
+αψ
+tenshi% 
+</code></pre></div><p>The <a href="http://man.cat-v.org/9front/1/2c">compiler suite</a> permits UTF-8 characters in source code, as seen in <code>☺☻☹.c</code> below:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span><span style="color:#000;font-weight:bold">typedef</span> <span style="color:#458;font-weight:bold">int</span> <span style="color:#a61717;background-color:#e3d2d2">☺☹☻</span>;
+<span style="color:#000;font-weight:bold">typedef</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#a61717;background-color:#e3d2d2">☹☺☻</span>;
+<span style="color:#000;font-weight:bold">enum</span>
+{
+	<span style="color:#a61717;background-color:#e3d2d2">☹☻☺</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">sizeof</span>(<span style="color:#a61717;background-color:#e3d2d2">☺☹☻</span>),
+	<span style="color:#a61717;background-color:#e3d2d2">☻☺☹</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>,
+};
+
+<span style="color:#a61717;background-color:#e3d2d2">☹☺☻</span>
+main(<span style="color:#a61717;background-color:#e3d2d2">☹☺☻</span>)
+{
+	<span style="color:#a61717;background-color:#e3d2d2">☺☹☻</span> <span style="color:#a61717;background-color:#e3d2d2">☺☻☹</span>;
+
+	<span style="color:#000;font-weight:bold">for</span>(<span style="color:#a61717;background-color:#e3d2d2">☺☻☹</span><span style="color:#000;font-weight:bold">=</span><span style="color:#a61717;background-color:#e3d2d2">☻☺☹</span>; <span style="color:#a61717;background-color:#e3d2d2">☺☻☹</span><span style="color:#000;font-weight:bold">&lt;</span><span style="color:#a61717;background-color:#e3d2d2">☹☻☺</span>; <span style="color:#a61717;background-color:#e3d2d2">☺☻☹</span><span style="color:#000;font-weight:bold">++</span>)
+		print(<span style="color:#d14">&#34;☺☻☹ = %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, <span style="color:#a61717;background-color:#e3d2d2">☺☻☹</span>);
+		exits(<span style="color:#a61717;background-color:#e3d2d2">☻☺☹</span>);
+}
+</code></pre></div><p>→</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% 6.out
+☺☻☹ = 0
+☺☻☹ = 1
+☺☻☹ = 2
+☺☻☹ = 3
+tenshi% 
+</code></pre></div><p>Plan 9 happens to be the source of a, if not the only, unicode-aware troff implementation.</p>
+<p>The list goes on.</p>
+<h2 id="runes">Runes</h2>
+<p><img src="./dracula.png" alt="Dracula: What is a string? A miserable little pile of bytes."></p>
+<p>What is a rune?</p>
+<p>On Plan 9 it&rsquo;s:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% grep Rune /$objtype/include/u.h
+typedef	uint		Rune;
+tenshi% 
+</code></pre></div><p>A <code>uint</code> of course being:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% grep uint /$objtype/include/u.h
+typedef unsigned int	uint;
+</code></pre></div><p>Okay, but how big is that <em>actually</em>?</p>
+<p>A quick program to be sure:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">int</span>, <span style="color:#458;font-weight:bold">char</span><span style="color:#000;font-weight:bold">*</span>[])
+{
+	Rune r <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">L</span><span style="color:#d14">&#39;わ&#39;</span>;
+	print(<span style="color:#d14">&#34;%C %d %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, r, <span style="color:#000;font-weight:bold">sizeof</span> r, <span style="color:#000;font-weight:bold">sizeof</span> (Rune));
+	exits(nil);
+}
+</code></pre></div><p>Yielding:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% 6.out
+わ 4 4
+tenshi% 
+</code></pre></div><p>So a rune is 32 bits.</p>
+<p>What&rsquo;s stored in a rune?</p>
+<p>The <a href="http://man.cat-v.org/9front/6/utf">utf(6)</a> manual says it best:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">In Plan 9, a rune is a 32-bit quantity representing a Uni-
+code character.  Internally, programs may store characters
+as runes.  However, any external manifestation of textual
+information, in files or at the interface between programs,
+uses a machine-independent, byte-stream encoding called UTF.
+
+UTF is designed so the 7-bit ASCII set (values hexadecimal
+00 to 7F), appear only as themselves in the encoding.  Runes
+with values above 7F appear as sequences of two or more
+bytes with values only from 80 to FF.
+</code></pre></div><p>So a rune is truly 32 bits.</p>
+<h2 id="runes-in-c">Runes in C</h2>
+<p>As seen in <a href="http://doc.cat-v.org/plan_9/programming/c_programming_in_plan_9">&lsquo;C Programming in Plan 9&rsquo;</a>, Plan 9 introduces a few pleasantries to make writing rune-friendly programs a bit easier.</p>
+<p>From the same document:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>()
+{
+    print(<span style="color:#d14">&#34;3 %C 4</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, <span style="color:#d14">L</span><span style="color:#d14">&#39;≤&#39;</span>);
+    print(<span style="color:#d14">&#34;%S</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, <span style="color:#d14">L</span><span style="color:#d14">&#34;Άρχιμήδης&#34;</span>); <span style="color:#998;font-style:italic">/* Archimedes */</span>
+}
+</code></pre></div><p>Yielding:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% 6.out
+3 ≤ 4
+Άρχιμήδης
+tenshi% 
+</code></pre></div><p>There are a few patterns that can save you from overthinking the rune↔char conversion.</p>
+<p>In most cases in C, if you get input from somewhere, the input is in bytes, or, a <code>char[]</code>.</p>
+<p>A <code>char[]</code> is not a an array of runes, however, but just bytes. Runes can span multiple bytes and ostensibly go all the way up to 4-bytes wide.</p>
+<p>So operating on individual written characters (runes) is not necessarily as simple as iterating through the bytes.</p>
+<p>Thankfully, getting from a <code>char[]</code> to a <code>Rune[]</code> is fairly straightforward.</p>
+<p><code>smprint(2)</code> and <code>runesmprint(2)</code> (or other <code>print(2)</code> functions as appropriate) permit the emission of a <code>malloc(2)</code>&rsquo;d buffer of bytes and runes, respectively.</p>
+<p>So, in practice, we can convert an entire string into a new buffer:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">int</span>, <span style="color:#458;font-weight:bold">char</span><span style="color:#000;font-weight:bold">*</span>[])
+{
+	Rune	<span style="color:#000;font-weight:bold">*</span>rstr <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">L</span><span style="color:#d14">&#34;☺☹☻&#34;</span>,	<span style="color:#000;font-weight:bold">*</span>rout;
+	<span style="color:#458;font-weight:bold">char</span>	<span style="color:#000;font-weight:bold">*</span>bstr <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;abc123&#34;</span>,	<span style="color:#000;font-weight:bold">*</span>bout;
+
+	rout <span style="color:#000;font-weight:bold">=</span> runesmprint(<span style="color:#d14">&#34;%s&#34;</span>, bstr);
+	bout <span style="color:#000;font-weight:bold">=</span> smprint(<span style="color:#d14">&#34;%S&#34;</span>, rstr);
+	print(<span style="color:#d14">&#34;%S (%d)</span><span style="color:#d14">\n</span><span style="color:#d14">%s (%d)</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, rstr, runestrlen(rstr), bout, strlen(bout));
+	print(<span style="color:#d14">&#34;%s (%d)</span><span style="color:#d14">\n</span><span style="color:#d14">%S (%d)</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, bstr, strlen(bstr), rout, runestrlen(rout));
+
+	free(rout);
+	free(bout);
+	exits(nil);
+}
+</code></pre></div><p>→</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tenshi% 6.out
+☺☹☻ (3)
+☺☹☻ (9)
+abc123 (6)
+abc123 (6)
+tenshi% 
+</code></pre></div><p>Iterating through characters in a <code>Rune[]</code> lets us work with individual, legible, unicode, characters as we would bytes in traditional C.</p>
+<h2 id="case-study-kr-exercise-1-19">Case Study: K&amp;R exercise 1-19</h2>
+<p>&lsquo;The C Programming Language&rsquo; has exercises in it for completion by the reader. Exercise 1-19 asks the reader to implement a program that reverses individual lines of its input using a function <code>reverse(s)</code>.</p>
+<p>The prompt is almost certainly written with only ASCII characters as input, so reversal is, in theory, trivial. In the spirit of reimplementing K&amp;R exercises in Plan 9 C, I decided to pursue UTF-8 compliance.</p>
+<p>In-place array reversal in C <a href="https://stackoverflow.com/questions/22977859/reversing-an-array-in-place">is more or less well understood</a>, but what we&rsquo;ll be given as our input is probably going to be plain bytes.</p>
+<p>My solution used the <a href="http://man.cat-v.org/9front/2/bio"><code>bio(2)</code></a> library, specifically <code>Brdstr(2)</code> for reading input, so each read returns a <code>malloc(2)</code>&rsquo;d <code>char*</code> containing the line of bytes until the next <code>\n</code>, with the <code>\n</code> replaced by a <code>\0</code> null delimiter.</p>
+<p>Since we&rsquo;re not working with just bytes and thus the atomic unit in our reversal is potentially multiple bytes, we should implement it as working on <code>Rune*</code>.</p>
+<p>Here&rsquo;s a trimmed down version of the program:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;bio.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+Rune<span style="color:#000;font-weight:bold">*</span>
+<span style="color:#900;font-weight:bold">reverse</span>(Rune <span style="color:#000;font-weight:bold">*</span>in, Rune <span style="color:#000;font-weight:bold">*</span>out, usize len)
+{
+	<span style="color:#458;font-weight:bold">int</span> i;
+	<span style="color:#458;font-weight:bold">int</span> to <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>, from <span style="color:#000;font-weight:bold">=</span> len<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>;
+	<span style="color:#000;font-weight:bold">while</span>(from <span style="color:#000;font-weight:bold">&gt;=</span> <span style="color:#099">0</span>){
+		out[to] <span style="color:#000;font-weight:bold">=</span> in[from];
+		from<span style="color:#000;font-weight:bold">--</span>;
+		to<span style="color:#000;font-weight:bold">++</span>;
+	}
+
+	<span style="color:#000;font-weight:bold">return</span> out;
+}
+
+<span style="color:#458;font-weight:bold">void</span>
+<span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">int</span>, <span style="color:#458;font-weight:bold">char</span><span style="color:#000;font-weight:bold">*</span>[])
+{
+	Biobuf	<span style="color:#000;font-weight:bold">*</span>in, <span style="color:#000;font-weight:bold">*</span>out;
+	in <span style="color:#000;font-weight:bold">=</span> Bfdopen(<span style="color:#099">0</span>, OREAD);
+	out <span style="color:#000;font-weight:bold">=</span> Bfdopen(<span style="color:#099">1</span>, OWRITE);
+
+	<span style="color:#000;font-weight:bold">while</span>(<span style="color:#099">1</span>){
+		<span style="color:#458;font-weight:bold">long</span> rlen <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>;
+		<span style="color:#458;font-weight:bold">char</span> <span style="color:#000;font-weight:bold">*</span>line;
+		<span style="color:#458;font-weight:bold">int</span> len <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>, n, i;
+		Rune <span style="color:#000;font-weight:bold">*</span>rev, <span style="color:#000;font-weight:bold">*</span>rstr;
+
+		line <span style="color:#000;font-weight:bold">=</span> Brdstr(in, <span style="color:#d14">&#39;\n&#39;</span>, <span style="color:#099">1</span>);
+		len <span style="color:#000;font-weight:bold">=</span> Blinelen(in);
+		<span style="color:#000;font-weight:bold">if</span>(line <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span>)
+			<span style="color:#000;font-weight:bold">break</span>;
+
+		rstr <span style="color:#000;font-weight:bold">=</span> runesmprint(<span style="color:#d14">&#34;%s&#34;</span>, line);
+		rlen <span style="color:#000;font-weight:bold">=</span> runestrlen(rstr);
+		rev <span style="color:#000;font-weight:bold">=</span> calloc(rlen<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>, <span style="color:#000;font-weight:bold">sizeof</span> (Rune));
+		reverse(rstr, rev, rlen);
+		rev[rlen] <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;\0&#39;</span>;
+
+		n <span style="color:#000;font-weight:bold">=</span> Bprint(out, <span style="color:#d14">&#34;%S</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, rev);
+
+		free(line);
+		free(rev);
+		free(rstr);
+	}
+
+	Bterm(in);
+	Bterm(out);
+
+	exits(nil);
+}
+</code></pre></div><p>Here&rsquo;s an example of the program running on <a href="http://git.9front.org/plan9front/plan9front/840d16912a39d1207a2ceb82755f690e15f17e4b/lib/hiragana/f.html"><code>/lib/hiragana</code></a>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">term% 8.out &lt; /lib/hiragana
+anagariH
+
+
+-	k	s	t	n	h	m	y	r	w
+
+a  あ	か	さ	た	な	は	ま	や	ら	わ
+i  い	き	ihsし	ihcち	に	ひ	み		り	ゐ
+u  う	く	す	ustつ	ぬ	ufふ	む	ゆ	る	
+e  え	け	せ	て	ね	へ	め		れ	ゑ
+o  お	こ	そ	と	の	ほ	も	よ	ろ	oを
+
+m/nん
+g	z	d		b	p			
+
+a	が	ざ	だ		ば	ぱ			
+i	ぎ	ijじ	ijぢ		び	ぴ			
+u	ぐ	ず	uzづ		ぶ	ぷ			
+e	げ	ぜ	で		べ	ぺ			
+o	ご	ぞ	ど		ぼ	ぽ			
+
+
+yk	hs	hc	yn	yh	ym		yr	
+
+a	ゃき	ゃし	ゃち	ゃに	ゃひ	ゃみ		ゃり	
+u	ゅき	ゅし	ゅち	ゅに	ゅひ	ゅみ		ゅり	
+o	ょき	ょし	ょち	ょに	ょひ	ょみ		ょり	
+
+
+yg	j	j		yb	yp			
+
+a	ゃぎ	ゃじ	ゃぢ		ゃび	ゃぴ			
+u	ゅぎ	ゅじ	ゅぢ		ゅび	ゅぴ			
+o	ょぎ	ょじ	ょぢ		ょび	ょぴ			
+term% 
+</code></pre></div><p>The above program is much more complex (and less time/memory efficient) than its byte-oriented counterpart. Rather, the program actually works with languages other than English, which is most languages.</p>
+<p>The complete K&amp;R 1-19 solution source: <a href="https://shithub.us/henesy/kandr/HEAD/ex/ex1-19.c/f.html">https://shithub.us/henesy/kandr/HEAD/ex/ex1-19.c/f.html</a> ☦</p>
+<h2 id="an-aside-on-whitespace">An aside on whitespace</h2>
+<p>Does multi-byte (UTF-8-only) whitespace exist? Go doesn&rsquo;t think so:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+
+<span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#d14">&#34;Max:&#34;</span>, ^<span style="color:#0086b3">byte</span>(<span style="color:#099">0</span>))
+	<span style="color:#998;font-style:italic">// From Go&#39;s &#34;unicode&#34; package&#39;s `unicode.IsSpace()`
+</span><span style="color:#998;font-style:italic"></span>	<span style="color:#998;font-style:italic">// https://github.com/golang/go/blob/go1.17.7/src/unicode/graphic.go#L126
+</span><span style="color:#998;font-style:italic"></span>	<span style="color:#000;font-weight:bold">for</span> _, r <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> []<span style="color:#458;font-weight:bold">int</span>{<span style="color:#d14">&#39;\t&#39;</span>, <span style="color:#d14">&#39;\n&#39;</span>, <span style="color:#d14">&#39;\v&#39;</span>, <span style="color:#d14">&#39;\f&#39;</span>, <span style="color:#d14">&#39;\r&#39;</span>, <span style="color:#d14">&#39; &#39;</span>, <span style="color:#099">0x85</span>, <span style="color:#099">0xA0</span>} {
+		fmt.<span style="color:#900;font-weight:bold">Println</span>(r)
+	}
+}
+</code></pre></div><p>⇒</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Max: 255
+9
+10
+11
+12
+13
+32
+133
+160
+</code></pre></div><p>All values fit under the 1-byte max of ≤255.</p>
+<h2 id="functions-to-know">Functions to know</h2>
+<p>In the interest of making it easier to find what you want when writing your UTF-8-friendly programs, a few manuals:</p>
+<p>Rune and UTF-8 conversion → <a href="http://man.cat-v.org/9front/2/rune">rune(2)</a>.</p>
+<p>String utilities, but implemented against <code>Rune*</code> → <a href="http://man.cat-v.org/9front/2/runestrcat">runestrcat(2)</a>.</p>
+<p>Unicode character (rune) functions, such as <code>tolower()</code> → <a href="http://man.cat-v.org/9front/2/isalpharune">isalpharune(2)</a>.</p>
+<p>While mostly dealing with bytes, <a href="http://man.cat-v.org/9front/2/bio">bio(2)</a> includes some <code>Rune</code>-specific functions:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">long  Bgetrune(Biobufhdr *bp)
+int   Bungetrune(Biobufhdr *bp)
+int   Bputrune(Biobufhdr *bp, long c)
+</code></pre></div><p>Bio&rsquo;s <code>Bprint()</code> also respects <code>%S</code> and <code>%C</code>, of course.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://man.cat-v.org/9front/2/rune">rune(2)</a></li>
+<li><a href="http://man.cat-v.org/9front/2/runestrcat">runestrcat(2)</a></li>
+<li><a href="http://man.cat-v.org/9front/2/isalpharune">isalpharune(2)</a></li>
+<li><a href="http://man.cat-v.org/9front/6/utf">utf(6)</a></li>
+<li><a href="http://git.9front.org/plan9front/plan9front/840d16912a39d1207a2ceb82755f690e15f17e4b/lib/unicode/f.html"><code>/lib/unicode</code></a></li>
+<li><a href="http://doc.cat-v.org/plan_9/4th_edition/papers/compiler">The Plan 9 C Compilers</a></li>
+<li><a href="http://doc.cat-v.org/bell_labs/utf-8_history">The history of UTF-8 as told by Rob Pike</a></li>
+<li><a href="http://doc.cat-v.org/plan_9/programming/c_programming_in_plan_9">C Programming in Plan 9</a></li>
+<li><a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/">The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)</a></li>
+<li><a href="https://go.dev/blog/strings">Strings, bytes, runes and characters in Go</a></li>
+</ul>
+<p>☦ If you want to see me struggle with this particular exercise, it&rsquo;s on video: <a href="https://youtu.be/kWeeQnO0DNc?t=1022">https://youtu.be/kWeeQnO0DNc?t=1022</a></p>
+</div>
+  
+</article>
+<button class="floating-button">
+    <a class="floating-button__link" href="https://seh.dev/">
+        <span>home</span>
+    </a>
+</button>
+
+
+    </div>
+    
+    <footer class="post-footer">
+    <div class="footer">
+        
+            <div>© 2020, Sean Hinchee</div>
+        
+        <div class="footer__socials">
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+
+
+    
+    
+      
+<script src="https://seh.dev/js/script.js"></script>
+
+    
+  </body>
+</html>

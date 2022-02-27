@@ -174,7 +174,7 @@
 <li><a href="https://swtch.com/~rsc/thread/newsquimpl.pdf">https://swtch.com/~rsc/thread/newsquimpl.pdf</a></li>
 </ul>
 <p>To run a program from a prompt:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ squint foo.nq
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ squint foo.nq
 <span style="color:#998;font-style:italic"># output, if any</span>
 $
 </code></pre></div><h3 id="alef">Alef</h3>
@@ -184,7 +184,7 @@ $
 <p>Direct download to a VirtualBox image of 2e: <a href="http://9.postnix.pw/hist/2e/plan92e_vbox.tgz">http://9.postnix.pw/hist/2e/plan92e_vbox.tgz</a></p>
 <p>There&rsquo;s also a work-in-progress port of Alef from 2e to 9front/386 which can be found on the <a href="http://wiki.9gridchan.org/public_grid/index.html">public grid</a> griddisk at <code>/burnzez/rep/alef/root</code> and maybe <code>/burnzez/alef</code>. Griddisk is accessible over 9p via <code>tcp!45.63.75.148!9564</code>. You can more easily access the grid from unix via the <a href="https://github.com/henesy/grid-unix">gridnix scripts</a>.</p>
 <p>From a prompt on a complete Plan9 2e installation:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">term% 8al foo.l
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">term% 8al foo.l
 term% 8l foo.8
 term% 8.out
 <span style="color:#998;font-style:italic"># output, if any</span>
@@ -199,13 +199,13 @@ term%
 </ul>
 <p>The Plan9 C dialect was partially described with a narrative <a href="https://seh.dev/porting/">in a previous blog post</a>.</p>
 <p>From a 386 9front system:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">term% 8c foo.c
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">term% 8c foo.c
 term% 8l foo.8
 term% 8.out
 <span style="color:#998;font-style:italic"># output, if any</span>
 term%
 </code></pre></div><p>From an amd64 9front system:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">term% 6c foo.c
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">term% 6c foo.c
 term% 6l foo.6
 term% 6.out
 <span style="color:#998;font-style:italic"># output, if any</span>
@@ -222,7 +222,7 @@ term%
 <li><a href="http://doc.cat-v.org/inferno/4th_edition/limbo_language/addendum">http://doc.cat-v.org/inferno/4th_edition/limbo_language/addendum</a></li>
 </ul>
 <p>From a prompt inside the Inferno virtual machine (or native):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">; limbo foo.b
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">; limbo foo.b
 ; foo
 <span style="color:#998;font-style:italic"># output, if any</span>
 ;
@@ -230,7 +230,7 @@ term%
 <p>Go can be acquired from <a href="https://golang.org">https://golang.org</a>.</p>
 <p>The specification for Go: <a href="https://golang.org/ref/spec">https://golang.org/ref/spec</a></p>
 <p>To run a single file program:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ go run foo.go
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ go run foo.go
 <span style="color:#998;font-style:italic"># output, if any</span>
 $
 </code></pre></div><h2 id="intro---tokenizing">Intro - tokenizing</h2>
@@ -239,7 +239,7 @@ $
 <p>Nope.</p>
 <h3 id="alef-1">Alef</h3>
 <p><a href="./alef/tok.l">tok.l</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
 <span style="color:#999;font-weight:bold;font-style:italic">#define NTOKS 9
 </span><span style="color:#999;font-weight:bold;font-style:italic">#define MAXTOK 512
@@ -261,7 +261,7 @@ $
 	exits(nil);
 }
 </code></pre></div><h4 id="output">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">abc » &#39;test 1 2 3&#39; !
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">abc » &#39;test 1 2 3&#39; !
 abc
 »
 &#39;test
@@ -272,7 +272,7 @@ abc
 </code></pre></div><h3 id="plan9-c-1">Plan9 C</h3>
 <p>Related reading: <a href="http://man.cat-v.org/9front/2/getfields">tokenize(2)</a></p>
 <p><a href="./plan9c/tok.c">tok.c</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
 <span style="color:#999;font-weight:bold;font-style:italic">#define NTOKS 9
@@ -295,7 +295,7 @@ abc
 	exits(nil);
 }
 </code></pre></div><h4 id="output-1">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">abc ☺ &#39;test 1 2 3&#39; !
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">abc ☺ &#39;test 1 2 3&#39; !
 abc
 ☺
 test 1 2 3
@@ -303,7 +303,7 @@ test 1 2 3
 </code></pre></div><h3 id="limbo-1">Limbo</h3>
 <p>Related reading: <a href="http://man.cat-v.org/inferno/2/sys-tokenize">sys-tokenize(2)</a></p>
 <p><a href="./limbo/tok.b">tok.b</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Tokenizing;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Tokenizing;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 	<span style="color:#900;font-weight:bold">sys</span>: Sys;
@@ -330,7 +330,7 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 	exit;
 }
 </code></pre></div><h4 id="output-2">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">abc ☺ &#39;test 1 2 3&#39; !
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">abc ☺ &#39;test 1 2 3&#39; !
 abc
 ☺
 &#39;test
@@ -340,7 +340,7 @@ abc
 !
 </code></pre></div><h3 id="go-1">Go</h3>
 <p><a href="./go/tok.go">tok.go</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
 
 <span style="color:#000;font-weight:bold">import</span> (
 	<span style="color:#d14">&#34;fmt&#34;</span>
@@ -359,7 +359,7 @@ abc
 	}
 }
 </code></pre></div><h4 id="output-3">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">abc ☺ &#39;test 1 2 3&#39; !
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">abc ☺ &#39;test 1 2 3&#39; !
 abc
 ☺
 &#39;test
@@ -371,7 +371,7 @@ abc
 <p>Many of the languages which inspired Go contained simple abstractions for running functions in asychronous coroutines, processes, or threads.</p>
 <h3 id="newsqueak-2">Newsqueak</h3>
 <p><a href="./newsqueak/co.nq">co.nq</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">double</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">prog</span>(<span style="color:#008080">n</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">int</span>) {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">double</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">prog</span>(<span style="color:#008080">n</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">int</span>) {
 	<span style="color:#008080">print</span>(<span style="color:#099">2</span><span style="color:#900;font-weight:bold">*</span><span style="color:#008080">n</span><span style="color:#900;font-weight:bold">,</span> <span style="color:#998;font-style:italic">&#34;\n&#34;</span>);
 };
 
@@ -380,12 +380,12 @@ abc
 <span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">double</span>(<span style="color:#099">9</span>);
 <span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">double</span>(<span style="color:#099">11</span>);
 </code></pre></div><h4 id="output-4">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">14
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">14
 18
 22
 </code></pre></div><h3 id="alef-2">Alef</h3>
 <p><a href="./alef/co.l">co.l</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
 <span style="color:#458;font-weight:bold">void</span>
 <span style="color:#900;font-weight:bold">double</span>(<span style="color:#458;font-weight:bold">int</span> n)
@@ -406,14 +406,14 @@ abc
 }
 
 </code></pre></div><h4 id="output-5">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">18
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">18
 26
 22
 14
 </code></pre></div><h3 id="plan9-c-2">Plan9 C</h3>
 <p>Related reading: <a href="http://man.cat-v.org/9front/2/thread">thread(2)</a></p>
 <p><a href="./plan9c/co.c">co.c</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;thread.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
@@ -434,11 +434,11 @@ abc
 	threadexitsall(nil);
 }
 </code></pre></div><h4 id="output-6">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">14
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">14
 18
 </code></pre></div><h3 id="limbo-2">Limbo</h3>
 <p><a href="./limbo/co.b">co.b</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Coroutines;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Coroutines;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 	<span style="color:#900;font-weight:bold">sys</span>: Sys;
@@ -463,10 +463,10 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 	exit;
 }
 </code></pre></div><h4 id="output-7">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">14
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">14
 </code></pre></div><h3 id="go-2">Go</h3>
 <p><a href="./go/co.go">co.go</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
 
 <span style="color:#000;font-weight:bold">import</span> (
 	<span style="color:#d14">&#34;fmt&#34;</span>
@@ -482,13 +482,13 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 	time.<span style="color:#900;font-weight:bold">Sleep</span>(<span style="color:#099">5</span> <span style="color:#000;font-weight:bold">*</span> time.Millisecond)
 }
 </code></pre></div><h4 id="output-8">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">14
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">14
 </code></pre></div><h2 id="sending-and-receiving-on-channels">Sending and receiving on channels</h2>
 <p>Channels are a core part of the Communicating Sequential Processes (CSP) <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> model for concurrent synchronization and communication.</p>
 <p>Go and its predecessors support standard library/primitive-level tooling for working with channels.</p>
 <h3 id="newsqueak-3">Newsqueak</h3>
 <p><a href="./newsqueak/chans.nq">chans.nq</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">max</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">10</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">max</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">10</span>;
 
 <span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#900;font-weight:bold">Prints</span> <span style="color:#900;font-weight:bold">out</span> <span style="color:#900;font-weight:bold">numbers</span> <span style="color:#900;font-weight:bold">as</span> <span style="color:#900;font-weight:bold">they</span><span style="color:#a61717;background-color:#e3d2d2">&#39;</span><span style="color:#900;font-weight:bold">re</span> <span style="color:#900;font-weight:bold">received</span>
 <span style="color:#900;font-weight:bold">printer</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">prog</span>(<span style="color:#900;font-weight:bold">c:</span> <span style="color:#008080">chan</span> <span style="color:#008080">of</span> <span style="color:#900;font-weight:bold">int</span>)
@@ -516,11 +516,11 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 <span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">printer</span>(<span style="color:#008080">printChan</span>);
 <span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">pusher</span>(<span style="color:#008080">printChan</span>);
 </code></pre></div><h4 id="output-9">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 1 4 9 16 25 36 49 64 81
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 1 4 9 16 25 36 49 64 81
 </code></pre></div><h3 id="alef-3">Alef</h3>
 <p>Note the <code>?</code> and <code>[n]</code> syntax for channels as defined in the <em>&ldquo;Alef User&rsquo;s Guide&rdquo;</em>. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
 <p><a href="./alef/chans.l">chans.l</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
 <span style="color:#458;font-weight:bold">int</span> max <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">10</span>;
 
@@ -565,7 +565,7 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 		print(<span style="color:#d14">&#34;received %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, <span style="color:#000;font-weight:bold">&lt;-</span>bufchan);
 }
 </code></pre></div><h4 id="output-10">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0
 1
 4
 9
@@ -582,7 +582,7 @@ received 12
 </code></pre></div><h3 id="plan9-c-3">Plan9 C</h3>
 <p>Related reading: <a href="http://man.cat-v.org/9front/2/thread">thread(2)</a></p>
 <p><a href="./plan9c/chans.c">chans.c</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;thread.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
@@ -628,7 +628,7 @@ received 12
 	threadexitsall(nil);
 }
 </code></pre></div><h4 id="output-11">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">received → 0
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">received → 0
 received → 1
 received → 4
 received → 9
@@ -640,7 +640,7 @@ received → 64
 received → 81
 </code></pre></div><h3 id="limbo-3">Limbo</h3>
 <p><a href="./limbo/chans.b">chans.b</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Channels;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Channels;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 	<span style="color:#900;font-weight:bold">sys</span>: Sys;
@@ -682,11 +682,11 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 	exit;
 }
 </code></pre></div><h4 id="output-12">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 1 4 9 16 25 36 49 64 81
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 1 4 9 16 25 36 49 64 81
 </code></pre></div><h3 id="go-3">Go</h3>
 <p>Note that Go is not the only language to support the optional <code>ok</code> value when reading out of a channel, the Plan9 C functions <code>send(2)</code> and <code>recv(2)</code> have a return value: &ldquo;Send and recv return 1 on success, -1 if interrupted.&rdquo; <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
 <p><a href="./go/chans.go">chans.go</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
 
 <span style="color:#000;font-weight:bold">import</span> (
 	<span style="color:#d14">&#34;fmt&#34;</span>
@@ -728,12 +728,12 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 }
 
 </code></pre></div><h4 id="output-13">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 1 4 9 16 25 36 49 64 81
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 1 4 9 16 25 36 49 64 81
 </code></pre></div><h2 id="selecting-on-multiple-channels">Selecting on multiple channels</h2>
 <p>Continuing with the CSP channel communication model, Go and its predecessors support primitives for alternating - or selecting - on multiple channels, typically in switch/case-like statement specifying a case of ready to send/receive.</p>
 <h3 id="newsqueak-4">Newsqueak</h3>
 <p><a href="./newsqueak/select.nq">select.nq</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">max</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">2</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">max</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">2</span>;
 
 <span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#900;font-weight:bold">Selects</span> <span style="color:#900;font-weight:bold">on</span> <span style="color:#900;font-weight:bold">two</span> <span style="color:#900;font-weight:bold">channels</span> <span style="color:#900;font-weight:bold">for</span> <span style="color:#900;font-weight:bold">both</span> <span style="color:#900;font-weight:bold">being</span> <span style="color:#900;font-weight:bold">able</span> <span style="color:#900;font-weight:bold">to</span> <span style="color:#900;font-weight:bold">receive</span> <span style="color:#900;font-weight:bold">and</span> <span style="color:#900;font-weight:bold">send</span>
 <span style="color:#900;font-weight:bold">selector</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">prog</span>(<span style="color:#008080">prodChan</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">chan</span> <span style="color:#900;font-weight:bold">of</span> <span style="color:#900;font-weight:bold">int,</span> <span style="color:#008080">recChan</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">chan</span> <span style="color:#900;font-weight:bold">of</span> <span style="color:#900;font-weight:bold">int,</span> <span style="color:#008080">n</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#900;font-weight:bold">int</span>){
@@ -777,7 +777,7 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 <span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">receiver</span>(<span style="color:#008080">recChan</span>);
 <span style="color:#900;font-weight:bold">begin</span> <span style="color:#900;font-weight:bold">selector</span>(<span style="color:#008080">prodChan</span><span style="color:#900;font-weight:bold">,</span> <span style="color:#008080">recChan</span><span style="color:#900;font-weight:bold">,</span> <span style="color:#099">456</span>);
 </code></pre></div><h4 id="output-14">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">pushed		→ 123
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">pushed		→ 123
 pushed		→ 123
 case recv	← 123
 case send	→ 456
@@ -787,7 +787,7 @@ received	→ 456
 case recv	← 123
 </code></pre></div><h3 id="alef-4">Alef</h3>
 <p><a href="./alef/select.l">select.l</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
 <span style="color:#458;font-weight:bold">int</span> max <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>;
 
@@ -842,7 +842,7 @@ case recv	← 123
 	sleep(<span style="color:#099">15</span>);
 }
 </code></pre></div><h4 id="output-15">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">pushed		→ 123
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">pushed		→ 123
 case send	→ 456
 case recv	← 123
 received	→ 456
@@ -853,7 +853,7 @@ case recv	← 123
 </code></pre></div><h3 id="plan9-c-4">Plan9 C</h3>
 <p>Related reading: <a href="http://man.cat-v.org/9front/2/thread">thread(2)</a></p>
 <p><a href="./plan9c/select.c">select.c</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;thread.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
@@ -955,7 +955,7 @@ case recv	← 123
 	threadexitsall(nil);
 }
 </code></pre></div><h4 id="output-16">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">pushed		→ 123
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">pushed		→ 123
 received	→ 456
 case send	→ 456
 pushed		→ 123
@@ -966,7 +966,7 @@ case send	→ 456
 case recv	← 123
 </code></pre></div><h3 id="limbo-4">Limbo</h3>
 <p><a href="./limbo/select.b">select.b</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Select;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Select;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 	<span style="color:#900;font-weight:bold">sys</span>: Sys;
@@ -1022,7 +1022,7 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 }
 
 </code></pre></div><h4 id="output-17">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">pushed		→ 123
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">pushed		→ 123
 case send	→ 456
 received	→ 456
 case recv	← 123
@@ -1032,7 +1032,7 @@ case send	→ 456
 received	→ 456
 </code></pre></div><h3 id="go-4">Go</h3>
 <p><a href="./go/select.go">select.go</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
 
 <span style="color:#000;font-weight:bold">import</span> (
 	<span style="color:#d14">&#34;fmt&#34;</span>
@@ -1099,7 +1099,7 @@ received	→ 456
 	time.<span style="color:#900;font-weight:bold">Sleep</span>(<span style="color:#099">10</span> <span style="color:#000;font-weight:bold">*</span> time.Millisecond)
 }
 </code></pre></div><h4 id="output-18">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0
 a
 1
 b
@@ -1115,7 +1115,7 @@ done.
 <p>Nope.</p>
 <h3 id="alef-5">Alef</h3>
 <p><a href="./alef/unnamed.l">unnamed.l</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
 aggr Point {
 	<span style="color:#458;font-weight:bold">int</span> x;
@@ -1239,7 +1239,7 @@ main(<span style="color:#458;font-weight:bold">void</span>)
 	print(<span style="color:#d14">&#34;ana age = %d</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, ana.age);
 }
 </code></pre></div><h4 id="output-19">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">p0 = c
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">p0 = c
 c&#39;s point = (3,-1)
 p1 = (-3,1)
 Shape is line (3,-1) → (-3,1)
@@ -1248,7 +1248,7 @@ ana age = 3
 </code></pre></div><h3 id="plan9-c-5">Plan9 C</h3>
 <p>This example is partially derived from the unnamed subunion example presented in the <em>&lsquo;Plan 9 C Compilers&rsquo;</em> paper. <sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
 <p><a href="./plan9c/unnamed.c">unnamed.c</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
 <span style="color:#458;font-weight:bold">double</span> <span style="color:#a61717;background-color:#e3d2d2">π</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">3.14</span>;
@@ -1310,7 +1310,7 @@ Point
 	exits(nil);
 }
 </code></pre></div><h4 id="output-20">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">p₀ = (3,-1)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">p₀ = (3,-1)
 radius = 12
 p₁ = (3,-1)
 p₂ = (-3,1)
@@ -1322,7 +1322,7 @@ l = 7fffffffeed0
 <p>Nope.</p>
 <h3 id="go-5">Go</h3>
 <p><a href="./go/unnamed.go">unnamed.go</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
 
 <span style="color:#000;font-weight:bold">import</span> (
 	<span style="color:#d14">&#34;fmt&#34;</span>
@@ -1368,7 +1368,7 @@ l = 7fffffffeed0
 	fmt.<span style="color:#900;font-weight:bold">Println</span>(c)
 }
 </code></pre></div><h4 id="output-21">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">{3 -1}
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">{3 -1}
 {{3 -1} 12}
 {{3 -1} 12}
 {-3 1}
@@ -1382,7 +1382,7 @@ l = 7fffffffeed0
 <h3 id="alef-6">Alef</h3>
 <p>This example is derived from the tuple example found in the <em>&ldquo;Alef User&rsquo;s Guide&rdquo;</em>. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
 <p><a href="./alef/multret.l">multret.l</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
 tuple(<span style="color:#458;font-weight:bold">int</span>, byte<span style="color:#000;font-weight:bold">*</span>, byte<span style="color:#000;font-weight:bold">*</span>)
 foo()
@@ -1400,12 +1400,12 @@ main(<span style="color:#458;font-weight:bold">void</span>)
 	print(<span style="color:#d14">&#34;(%d %s %s)</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>, n, game, cheer);
 }
 </code></pre></div><h4 id="output-22">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">(7 fußbol skål)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">(7 fußbol skål)
 </code></pre></div><h3 id="plan9-c-6">Plan9 C</h3>
 <p>Nope.</p>
 <h3 id="limbo-6">Limbo</h3>
 <p><a href="./limbo/multret.b">multret.b</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement MultRet;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement MultRet;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 	<span style="color:#900;font-weight:bold">sys</span>: Sys;
@@ -1430,10 +1430,10 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 	exit;
 }
 </code></pre></div><h4 id="output-23">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">3, 7 → 7, 3
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">3, 7 → 7, 3
 </code></pre></div><h3 id="go-6">Go</h3>
 <p><a href="./go/multret.go">multret.go</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
 
 <span style="color:#000;font-weight:bold">import</span> (
 	<span style="color:#d14">&#34;fmt&#34;</span>
@@ -1457,7 +1457,7 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 	fmt.<span style="color:#900;font-weight:bold">Println</span>(n, s, a, b, c)
 }
 </code></pre></div><h4 id="output-24">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">4 ☺ a b c
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">4 ☺ a b c
 </code></pre></div><h2 id="break-and-continue-overloading">Break and continue overloading</h2>
 <p>Go and some of its predecessors support some form of overloading on top of break/continue to allow more precise flow control in nested iterative/branching logic.</p>
 <h3 id="newsqueak-7">Newsqueak</h3>
@@ -1466,7 +1466,7 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 <p>This example is derived from an example in the <em>&ldquo;Alef User&rsquo;s Guide&rdquo;</em>. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
 <p>Note that there is no overloaded form of <code>continue</code>.</p>
 <p><a href="./alef/bctag.l">bctag.l</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
 <span style="color:#458;font-weight:bold">void</span>
 <span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">void</span>)
@@ -1493,7 +1493,7 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 		}
 }
 </code></pre></div><h4 id="output-25">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">dummy
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">dummy
 dummy
 dummy
 dummy
@@ -1502,7 +1502,7 @@ got 3
 <p>Nope.</p>
 <h3 id="limbo-7">Limbo</h3>
 <p><a href="./limbo/bctag.b">bctag.b</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement BreakContinueTag;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement BreakContinueTag;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 	<span style="color:#900;font-weight:bold">sys</span>: Sys;
@@ -1535,14 +1535,14 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 	exit;
 }
 </code></pre></div><h4 id="output-26">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">1
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">1
 3
 5
 7
 9
 </code></pre></div><h3 id="go-7">Go</h3>
 <p><a href="./go/bctag.go">bctag.go</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
 
 <span style="color:#000;font-weight:bold">import</span> (
 	<span style="color:#d14">&#34;fmt&#34;</span>
@@ -1566,7 +1566,7 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 	}
 }
 </code></pre></div><h4 id="output-27">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">1
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">1
 3
 5
 7
@@ -1578,7 +1578,7 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 <h3 id="alef-8">Alef</h3>
 <p>This example is derived from the iterator example in the <em>&ldquo;Alef User&rsquo;s Guide&rdquo;</em>. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
 <p><a href="./alef/lists.l">lists.l</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;alef.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
 <span style="color:#458;font-weight:bold">void</span>
 <span style="color:#900;font-weight:bold">main</span>(<span style="color:#458;font-weight:bold">void</span>)
@@ -1591,13 +1591,13 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 	print(<span style="color:#d14">&#34;</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>);
 }
 </code></pre></div><h4 id="output-28">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 1 4 9 16 25 36 49 64 81
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 1 4 9 16 25 36 49 64 81
 </code></pre></div><h3 id="plan9-c-8">Plan9 C</h3>
 <p>Nope.</p>
 <h3 id="limbo-8">Limbo</h3>
 <p>This is a modified version of the <em>&lsquo;Lists&rsquo;</em> example in LimboByExample. <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
 <p><a href="./limbo/lists.b">lists.b</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Lists;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Lists;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 	<span style="color:#900;font-weight:bold">sys</span>: Sys;
@@ -1647,7 +1647,7 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 	exit;
 }
 </code></pre></div><h4 id="output-29">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Lens: 0, 0, 0
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Lens: 0, 0, 0
 Lens: 3, 3, 0
 Persons:
 	Spike: 27
@@ -1657,7 +1657,7 @@ Tmp lens: 0, 0
 Lens: 3, 3, 0
 </code></pre></div><h3 id="go-8">Go</h3>
 <p><a href="./go/lists.go">lists.go</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
 
 <span style="color:#000;font-weight:bold">import</span> (
 	<span style="color:#d14">&#34;fmt&#34;</span>
@@ -1679,7 +1679,7 @@ Lens: 3, 3, 0
 	fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#d14">&#34;Length = %d\nCapacity = %d\n&#34;</span>, <span style="color:#0086b3">len</span>(nums), <span style="color:#0086b3">cap</span>(nums))
 }
 </code></pre></div><h4 id="output-30">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Length = 0
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Length = 0
 Capacity = 10
 0: 1
 1: 2
@@ -1692,21 +1692,21 @@ Capacity = 10
 <h3 id="newsqueak-9">Newsqueak</h3>
 <p>Newsqueak can include files as text. This text can be assigned to a value or otherwise is inserted into the calling file as text and potentially interpreted as source.</p>
 <p><a href="./newsqueak/modules/main.nq">main.nq</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">include</span> <span style="color:#998;font-style:italic">&#34;util.nq&#34;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">include</span> <span style="color:#998;font-style:italic">&#34;util.nq&#34;</span>;
 
 <span style="color:#900;font-weight:bold">print</span>(<span style="color:#998;font-style:italic">&#34;Hello &#34;</span>);
 <span style="color:#900;font-weight:bold">smiley</span>();
 </code></pre></div><p><a href="./newsqueak/modules/util.nq">util.nq</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">smiley</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">prog</span>() {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-smalltalk" data-lang="smalltalk"><span style="color:#008080">smiley</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">prog</span>() {
 	<span style="color:#008080">smile</span> <span style="color:#000;font-weight:bold">:=</span> <span style="color:#008080">include</span> <span style="color:#998;font-style:italic">&#34;smile&#34;</span>;
 	<span style="color:#900;font-weight:bold">print</span>(<span style="color:#008080">smile</span>);
 };
 
 ;
 </code></pre></div><p><a href="./newsqueak/modules/smile">smile</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&#34;☺&#34;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&#34;☺&#34;
 </code></pre></div><h4 id="output-31">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Hello
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Hello
 ☺
 </code></pre></div><h3 id="alef-9">Alef</h3>
 <p>Alef does not differ significantly from Plan9 C and this example is omitted.</p>
@@ -1716,7 +1716,7 @@ Capacity = 10
 <p>There are several compiler features which show themselves in the header: <code>#pragma src</code> and <code>#pragma lib</code>. Further reading on these can be found in the <em>&lsquo;Plan 9 C Compilers&rsquo;</em> paper. <sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
 <p>Note that these <code>#pragma</code> directives typically are found with full system paths provided.</p>
 <p><a href="./plan9c/modules/main.c">main.c</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&#34;./libutil/util.h&#34;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
@@ -1729,12 +1729,12 @@ Capacity = 10
 	exits(nil);
 }
 </code></pre></div><p><a href="./plan9c/modules/libutil/util.h">util.h</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#pragma src &#34;./libutil&#34;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#pragma src &#34;./libutil&#34;
 </span><span style="color:#999;font-weight:bold;font-style:italic">#pragma lib &#34;./libutil/libutil.a&#34;
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
 <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">smiley</span>(<span style="color:#458;font-weight:bold">void</span>);
 </code></pre></div><p><a href="./plan9c/modules/libutil/util.c">util.c</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;u.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;libc.h&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&#34;util.h&#34;</span><span style="color:#999;font-weight:bold;font-style:italic">
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
@@ -1744,7 +1744,7 @@ Capacity = 10
 	print(<span style="color:#d14">&#34;☺</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>);
 }
 </code></pre></div><p><a href="./plan9c/modules/mkfile">mkfile (main)</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-make" data-lang="make"><span style="color:#a61717;background-color:#e3d2d2">&lt;/$objtype/mkfile</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-make" data-lang="make"><span style="color:#a61717;background-color:#e3d2d2">&lt;/$objtype/mkfile</span>
 
 <span style="color:#008080">BIN</span> <span style="color:#000;font-weight:bold">=</span> ./
 
@@ -1756,7 +1756,7 @@ Capacity = 10
 
 <span style="color:#a61717;background-color:#e3d2d2">&lt;/sys/src/cmd/mkone</span>
 </code></pre></div><p><a href="./plan9c/modules/libutil/mkfile">mkfile (libutil)</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-make" data-lang="make"><span style="color:#a61717;background-color:#e3d2d2">&lt;/$objtype/mkfile</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-make" data-lang="make"><span style="color:#a61717;background-color:#e3d2d2">&lt;/$objtype/mkfile</span>
 
 <span style="color:#008080">LIB</span> <span style="color:#000;font-weight:bold">=</span> ./libutil.a
 
@@ -1767,7 +1767,7 @@ Capacity = 10
 <span style="color:#a61717;background-color:#e3d2d2">&lt;/sys/src/cmd/mklib</span>
 </code></pre></div><h4 id="output-32">Output</h4>
 <p>For this example, to build and run from 9front you&rsquo;ll use <a href="http://man.cat-v.org/9front/1/mk">mk(1)</a>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">tenshi% lc
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">tenshi% lc
 libutil/	main.c		mkfile
 tenshi% <span style="color:#0086b3">cd</span> libutil
 tenshi% mk
@@ -1786,7 +1786,7 @@ tenshi%
 </code></pre></div><h3 id="limbo-9">Limbo</h3>
 <p>This is a slightly reduced version of the <em>&lsquo;Modules&rsquo;</em> example in LimboByExample. <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
 <p><a href="./limbo/modules/modules.b">modules.b</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Modules;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Modules;
 
 include <span style="color:#d14">&#34;sys.m&#34;</span>;
 include <span style="color:#d14">&#34;draw.m&#34;</span>;
@@ -1835,7 +1835,7 @@ init(<span style="color:#900;font-weight:bold">nil</span>: ref Draw<span style="
 	exit;
 }
 </code></pre></div><p><a href="./limbo/modules/persons.b">persons.b</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Persons;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Persons;
 
 include <span style="color:#d14">&#34;persons.m&#34;</span>;
 
@@ -1858,7 +1858,7 @@ Person.stringify(<span style="color:#900;font-weight:bold">p</span>: self ref Pe
 	<span style="color:#000;font-weight:bold">return</span> p.name;
 }
 </code></pre></div><p><a href="./limbo/modules/towns.m">towns.m</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">include <span style="color:#d14">&#34;persons.m&#34;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">include <span style="color:#d14">&#34;persons.m&#34;</span>;
 
 <span style="color:#900;font-weight:bold">Towns</span>: module {
 	<span style="color:#900;font-weight:bold">init</span>: fn();
@@ -1873,7 +1873,7 @@ Person.stringify(<span style="color:#900;font-weight:bold">p</span>: self ref Pe
 	};
 };
 </code></pre></div><p><a href="./limbo/modules/towns.b">towns.b</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Towns;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">implement Towns;
 
 include <span style="color:#d14">&#34;towns.m&#34;</span>;
 
@@ -1896,7 +1896,7 @@ Town.stringify(<span style="color:#900;font-weight:bold">t</span>: self ref Town
 	<span style="color:#000;font-weight:bold">return</span> s;
 }
 </code></pre></div><p><a href="./limbo/modules/mkfile">mkfile</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-make" data-lang="make"><span style="color:#a61717;background-color:#e3d2d2">&lt;/mkconfig</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-make" data-lang="make"><span style="color:#a61717;background-color:#e3d2d2">&lt;/mkconfig</span>
 
 <span style="color:#008080">DISBIN</span> <span style="color:#000;font-weight:bold">=</span> ./
 
@@ -1908,7 +1908,7 @@ Town.stringify(<span style="color:#900;font-weight:bold">t</span>: self ref Town
 <span style="color:#a61717;background-color:#e3d2d2">&lt;/mkfiles/mkdis</span>
 </code></pre></div><h4 id="output-33">Output</h4>
 <p>For this example, to build and run from Inferno you&rsquo;ll use <a href="http://man.cat-v.org/inferno/1/mk">mk(1)</a>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">; mk
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">; mk
 limbo -I/module -gw modules.b
 limbo -I/module -gw persons.b
 limbo -I/module -gw towns.b
@@ -1927,7 +1927,7 @@ Members:
 <p>This example just shows including a local package.</p>
 <p>Modern Go recommends using the module system <sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup> and most public Go projects will have import paths in forms such as <code>&quot;github.com/foo/bar&quot;</code>.</p>
 <p><a href="./go/modules/main.go">main.go</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
 
 <span style="color:#000;font-weight:bold">import</span> (
 util	<span style="color:#d14">&#34;./util&#34;</span>
@@ -1939,7 +1939,7 @@ util	<span style="color:#d14">&#34;./util&#34;</span>
 	util.<span style="color:#900;font-weight:bold">Smile</span>()
 }
 </code></pre></div><p><a href="./go/modules/util/util.go">util.go</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> util
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> util
 
 <span style="color:#000;font-weight:bold">import</span> (
 	<span style="color:#d14">&#34;fmt&#34;</span>
@@ -1949,7 +1949,7 @@ util	<span style="color:#d14">&#34;./util&#34;</span>
 	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#d14">&#34;☺&#34;</span>)
 }
 </code></pre></div><h4 id="output-34">Output</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Hello ☺
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Hello ☺
 </code></pre></div><h2 id="references">References</h2>
 <section class="footnotes" role="doc-endnotes">
 <hr>
