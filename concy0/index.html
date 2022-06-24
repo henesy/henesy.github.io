@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>seh.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="Go Patterns - Fanning" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seh.dev/concy0/" />
+    <meta itemprop="name" content="Go Patterns - Fanning">
+    <meta itemprop="description" content="">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Go Patterns - Fanning"/>
+    <meta name="twitter:description" content=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+    
+    <link rel="stylesheet" href="https://seh.dev/scss/style.min.c535b8bc90eb1287432762da2e2ef5fb3d2f9583e20de56032f1f77e3cbabe05.css" >
+</head>
+<body>
+    <header>
+    <div class="header header-frame">
+        <div>
+          
+            <h1 class="header__title">Go Patterns - Fanning</h1>
+          
+            
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list header-nav-list--menu">
+                
+                
+                    
+                        <li class="header-nav-list__item">
+                            <a class="header-nav-list__link" href="/about/">
+                                
+                                <span>About</span>
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+            <button class="header-nav-list__nav-btn">navigation</button>
+        </nav>
+        <button class="mb-header__menu-btn">
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+        </button>
+    </div>
+    <nav id="mobile-header-nav" class="mb-header-nav">
+  
+  
+  <button class="mb-header-nav__close-btn flex-center">
+    <svg
+            class="mb-header-nav__svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            >
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+    </button>
+    
+    <div class="mb-header-nav__wrapper">
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Tags
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://seh.dev/tags/go/"
+                                                            >go</a
+                                                        >
+                    </li>
+                        
+                    
+                
+            </ul>
+        </div>
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Menu
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                
+                    
+                      <li class="mb-header-nav-list__item ">
+                            <a class="mb-header-nav-list__link" href="/about/">
+                                About
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+
+    <div id="content">
+<article class="post">
+  
+    <div class="post-content"><h1 id="go-patterns---fanning">Go Patterns - Fanning</h1>
+<h2 id="background">Background</h2>
+<p>The summer of 2022 I had the chance to explain Go programming patterns I - and I assume others - use regularly in writing concurrent systems to my three interns.</p>
+<p>Although many university courses will talk about threading, they do not necessarily discuss concurrency, rarely if ever Go, and rarely go in depth on polymorphism.</p>
+<p>The state of affairs is unfortunate, because it means that although Go and plenty of other &lsquo;current generation&rsquo; programming languages have been publicly available for years, <a href="https://tip.golang.org/doc/devel/release#go1">Go since at least 2012</a>, the situation in many computer science programs is not very different from the state of affairs ten years ago.</p>
+<p>Fortunately, Go comes with a broad set of thorough documentation with plenty of examples, which is great, but when you want to introduce multiple concepts at the same time, composed, that are foreign to an audience, you need comprehensive demonstrations.</p>
+<p>This series will hopefully a composition of examples I have given my interns in one form or another.</p>
+<h2 id="fanning">Fanning</h2>
+<p>Fanning is a handwave-y term for &lsquo;taking a lot of stuff, using it in a variety of different places, and consolidating it all back to one place.&rsquo;</p>
+<p>In mathematical terms, we could make some kind of definition like &lsquo;one to many&rsquo; then &lsquo;many to one&rsquo; relationships, but I am unfortunately not a mathematician.</p>
+<p>There are a vast number of ways to go about fulfilling the preceding definitions, but in Go our scenario is typically that we want to write a program which is <a href="https://go.dev/blog/waza-talk">concurrent</a>, <a href="https://go.dev/blog/codelab-share">does not share memory</a>, <a href="https://go.dev/blog/go1.18">and nowadays</a> - <a href="https://go.dev/doc/tutorial/generics">might use polymorphism</a>.</p>
+<p>For the record, I do not particularly like the examples given in the Go generics documentation, so I reject them and substitute my own. This is probably because most of my polymorphic programming was in <a href="https://seh.dev/limbgo/">Limbo</a> where I ended up <a href="https://github.com/henesy/limbobyexample">also writing my own examples</a>.</p>
+<p>So, here&rsquo;s an example very similar to one I gave my interns:</p>
+<p><a href="./fanning.go">fanning.go</a> | <a href="https://go.dev/play/p/-wuQYKzHgaM">playground</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+
+<span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+	<span style="color:#d14">&#34;time&#34;</span>
+
+	<span style="color:#d14">&#34;golang.org/x/exp/constraints&#34;</span>
+	<span style="color:#d14">&#34;golang.org/x/exp/slices&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">type</span> Numeric <span style="color:#000;font-weight:bold">interface</span> {
+	constraints.Integer | constraints.Float
+}
+
+<span style="color:#000;font-weight:bold">type</span> Empty <span style="color:#000;font-weight:bold">struct</span>{}
+
+<span style="color:#000;font-weight:bold">var</span> Nothing = Empty{}
+
+<span style="color:#000;font-weight:bold">func</span> fill[N Numeric](c <span style="color:#000;font-weight:bold">chan</span> N, n N, f <span style="color:#000;font-weight:bold">func</span>(N) N) {
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">N</span>(<span style="color:#099">0</span>); i &lt; n; i<span style="color:#000;font-weight:bold">++</span> {
+		c <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">f</span>(i)
+	}
+	<span style="color:#0086b3">close</span>(c)
+}
+
+<span style="color:#000;font-weight:bold">func</span> drain[T Numeric](chans []<span style="color:#000;font-weight:bold">chan</span> T, results <span style="color:#000;font-weight:bold">chan</span> T) {
+	<span style="color:#000;font-weight:bold">var</span> res T
+	<span style="color:#000;font-weight:bold">for</span> <span style="color:#0086b3">len</span>(chans) &gt; <span style="color:#099">0</span> {
+		<span style="color:#000;font-weight:bold">for</span> i, c <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> chans {
+			<span style="color:#000;font-weight:bold">select</span> {
+			<span style="color:#000;font-weight:bold">case</span> x, ok <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&lt;-</span>c:
+				<span style="color:#000;font-weight:bold">if</span> !ok {
+					chans = slices.<span style="color:#900;font-weight:bold">Delete</span>(chans, <span style="color:#900;font-weight:bold">max</span>(<span style="color:#099">0</span>, i), <span style="color:#900;font-weight:bold">min</span>(i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>, <span style="color:#0086b3">len</span>(chans)))
+				}
+				res <span style="color:#000;font-weight:bold">+=</span> <span style="color:#900;font-weight:bold">square</span>(x)
+			<span style="color:#000;font-weight:bold">default</span>:
+				time.<span style="color:#900;font-weight:bold">Sleep</span>(<span style="color:#099">2</span> <span style="color:#000;font-weight:bold">*</span> time.Millisecond)
+			}
+		}
+	}
+	results <span style="color:#000;font-weight:bold">&lt;-</span> res
+	<span style="color:#0086b3">close</span>(results)
+}
+
+<span style="color:#000;font-weight:bold">func</span> printer[T any](c <span style="color:#000;font-weight:bold">chan</span> T, done <span style="color:#000;font-weight:bold">chan</span> Empty) {
+	<span style="color:#000;font-weight:bold">for</span> {
+		x, ok <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&lt;-</span>c
+		<span style="color:#000;font-weight:bold">if</span> !ok {
+			<span style="color:#000;font-weight:bold">break</span>
+		}
+		fmt.<span style="color:#900;font-weight:bold">Println</span>(x)
+	}
+	done <span style="color:#000;font-weight:bold">&lt;-</span> Nothing
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	n <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">5</span>
+	<span style="color:#000;font-weight:bold">var</span> chans []<span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">int</span>
+	fin <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> Empty)
+	results <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">int</span>)
+
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>; i &lt; n; i<span style="color:#000;font-weight:bold">++</span> {
+		c <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">int</span>, n)
+		<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">fill</span>(c, n, square[<span style="color:#458;font-weight:bold">int</span>])
+		chans = <span style="color:#0086b3">append</span>(chans, c)
+	}
+
+	<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">printer</span>(results, fin)
+	<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">drain</span>(chans, results)
+
+	<span style="color:#000;font-weight:bold">&lt;-</span>fin
+}
+
+<span style="color:#000;font-weight:bold">func</span> square[T Numeric](x T) T {
+	<span style="color:#000;font-weight:bold">return</span> x <span style="color:#000;font-weight:bold">*</span> x
+}
+
+<span style="color:#000;font-weight:bold">func</span> min[T Numeric](a, b T) T {
+	<span style="color:#000;font-weight:bold">if</span> a <span style="color:#000;font-weight:bold">&lt;=</span> b {
+		<span style="color:#000;font-weight:bold">return</span> a
+	}
+	<span style="color:#000;font-weight:bold">return</span> b
+}
+
+<span style="color:#000;font-weight:bold">func</span> max[T Numeric](a, b T) T {
+	<span style="color:#000;font-weight:bold">if</span> a <span style="color:#000;font-weight:bold">&gt;=</span> b {
+		<span style="color:#000;font-weight:bold">return</span> a
+	}
+	<span style="color:#000;font-weight:bold">return</span> b
+}
+</code></pre></div><p>There&rsquo;s a lot to unpack here!</p>
+<p>A bunch of different Go patterns floating around, from the top!</p>
+<p>The experimental polymorphic packages, providing <a href="godocs.io/golang.org/x/exp/constraints">premade type constraints</a> and <a href="https://godocs.io/golang.org/x/exp/slices">generic slice utilities, respectively</a>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#d14">&#34;golang.org/x/exp/constraints&#34;</span>
+	<span style="color:#d14">&#34;golang.org/x/exp/slices&#34;</span>
+</code></pre></div><p>We define our own interface for &lsquo;numbers&rsquo;, mostly to make a visible example:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">type</span> Numeric <span style="color:#000;font-weight:bold">interface</span> {
+	constraints.Integer | constraints.Float
+}
+</code></pre></div><p><a href="https://dave.cheney.net/2014/03/25/the-empty-struct">The empty struct pattern</a> <a href="https://dave.cheney.net/2013/04/30/curious-channels">applied to channels</a>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">type</span> Empty <span style="color:#000;font-weight:bold">struct</span>{}
+<span style="color:#000;font-weight:bold">var</span> Nothing = Empty{}
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">fin <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> Empty)
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">done <span style="color:#000;font-weight:bold">&lt;-</span> Nothing
+</code></pre></div><p>Fill operates on a channel of numbers <code>c</code>, a number <code>n</code>, and a function of numbers <code>f</code>. For &lsquo;n&rsquo; iterations, write the output of <code>f</code> of <code>i</code> to <code>c</code>. Finally, <a href="https://tip.golang.org/ref/spec#Close">close</a> <code>c</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> fill[N Numeric](c <span style="color:#000;font-weight:bold">chan</span> N, n N, f <span style="color:#000;font-weight:bold">func</span>(N) N) {
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">N</span>(<span style="color:#099">0</span>); i &lt; n; i<span style="color:#000;font-weight:bold">++</span> {
+		c <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">f</span>(i)
+	}
+	<span style="color:#0086b3">close</span>(c)
+}
+</code></pre></div><p>Drain takes a slice of input channels, <code>chans</code>, and a channel for a final value, <code>results</code>. While there are channels in <code>chans</code>, for every channel in <code>chans</code>, if said channel has a value <code>x</code> in it, sum the square of <code>x</code> to the final value <code>res</code>, if the channel is closed, remove the channel from <code>chans</code>. If a channel isn&rsquo;t ready to be read from, sleep for <code>2ms</code>. After all channels have been exhausted, write the final value to <code>results</code> and close the channel <code>results</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> drain[T Numeric](chans []<span style="color:#000;font-weight:bold">chan</span> T, results <span style="color:#000;font-weight:bold">chan</span> T) {
+	<span style="color:#000;font-weight:bold">var</span> res T
+	<span style="color:#000;font-weight:bold">for</span> <span style="color:#0086b3">len</span>(chans) &gt; <span style="color:#099">0</span> {
+		<span style="color:#000;font-weight:bold">for</span> i, c <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> chans {
+			<span style="color:#000;font-weight:bold">select</span> {
+			<span style="color:#000;font-weight:bold">case</span> x, ok <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&lt;-</span>c:
+				<span style="color:#000;font-weight:bold">if</span> !ok {
+					chans = slices.<span style="color:#900;font-weight:bold">Delete</span>(chans, <span style="color:#900;font-weight:bold">max</span>(<span style="color:#099">0</span>, i), <span style="color:#900;font-weight:bold">min</span>(i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>, <span style="color:#0086b3">len</span>(chans)))
+				}
+				res <span style="color:#000;font-weight:bold">+=</span> <span style="color:#900;font-weight:bold">square</span>(x)
+			<span style="color:#000;font-weight:bold">default</span>:
+				time.<span style="color:#900;font-weight:bold">Sleep</span>(<span style="color:#099">2</span> <span style="color:#000;font-weight:bold">*</span> time.Millisecond)
+			}
+		}
+	}
+	results <span style="color:#000;font-weight:bold">&lt;-</span> res
+	<span style="color:#0086b3">close</span>(results)
+}
+</code></pre></div><p>Printer work on any type <code>T</code>, takes a channel of type <code>T</code> and a channel of empty structs. Continuously, until <code>c</code> is closed, read and print a value <code>x</code> out of <code>c</code>. After <code>c</code> is closed, write an empty struct instance, <code>Nothing</code>, to <code>done</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> printer[T any](c <span style="color:#000;font-weight:bold">chan</span> T, done <span style="color:#000;font-weight:bold">chan</span> Empty) {
+	<span style="color:#000;font-weight:bold">for</span> {
+		x, ok <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&lt;-</span>c
+		<span style="color:#000;font-weight:bold">if</span> !ok {
+			<span style="color:#000;font-weight:bold">break</span>
+		}
+		fmt.<span style="color:#900;font-weight:bold">Println</span>(x)
+	}
+	done <span style="color:#000;font-weight:bold">&lt;-</span> Nothing
+}
+</code></pre></div><p>Main initializes our <code>n</code> for number of channels to make and then values for each channel to write by <code>fill</code>. Two unbuffered channels are initialized, <code>fin</code> and <code>results</code>. For <code>n</code> iterations, create a channel, concurrently dispatch an instance of <code>fill</code> with <code>c</code> and <code>square</code> coerced to operate on <code>int</code> types, and add <code>c</code> to the slice of channels. <code>Printer</code> and <code>drain</code> are concurrently dispatched with copies of the channels necessarily for them to complete their roles, respectively.</p>
+<p>The <code>main</code> goroutine is kept alive until <code>printer</code> finishes, which requires <code>drain</code> to finish, which requires all instances of <code>fill</code> to complete. If the <code>main</code> goroutine exits, <a href="https://tip.golang.org/ref/spec#Program_execution">all child goroutines will be ended</a>. Reading from an unbuffered channel <a href="https://tip.golang.org/ref/spec#Channel_types">blocks</a> until a value is written to the channel. Buffered channel reads and writes do not block unless the buffer is empty or full, respectively.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	n <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">5</span>
+	<span style="color:#000;font-weight:bold">var</span> chans []<span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">int</span>
+	fin <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> Empty)
+	results <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">int</span>)
+
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>; i &lt; n; i<span style="color:#000;font-weight:bold">++</span> {
+		c <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> <span style="color:#458;font-weight:bold">int</span>, n)
+		<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">fill</span>(c, n, square[<span style="color:#458;font-weight:bold">int</span>])
+		chans = <span style="color:#0086b3">append</span>(chans, c)
+	}
+
+	<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">printer</span>(results, fin)
+	<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">drain</span>(chans, results)
+
+	<span style="color:#000;font-weight:bold">&lt;-</span>fin
+}
+</code></pre></div><p>A handful of utility programs are provided at the end of the program. <code>Square</code> returns the square of a number <code>x</code>. <code>Min</code> returns a lesser of <code>a</code> or <code>b</code>. <code>Max</code> returns the greater of <code>a</code> or <code>b</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> square[T Numeric](x T) T {
+	<span style="color:#000;font-weight:bold">return</span> x <span style="color:#000;font-weight:bold">*</span> x
+}
+
+<span style="color:#000;font-weight:bold">func</span> min[T Numeric](a, b T) T {
+	<span style="color:#000;font-weight:bold">if</span> a <span style="color:#000;font-weight:bold">&lt;=</span> b {
+		<span style="color:#000;font-weight:bold">return</span> a
+	}
+	<span style="color:#000;font-weight:bold">return</span> b
+}
+
+<span style="color:#000;font-weight:bold">func</span> max[T Numeric](a, b T) T {
+	<span style="color:#000;font-weight:bold">if</span> a <span style="color:#000;font-weight:bold">&gt;=</span> b {
+		<span style="color:#000;font-weight:bold">return</span> a
+	}
+	<span style="color:#000;font-weight:bold">return</span> b
+}
+</code></pre></div><h2 id="conclusion">Conclusion</h2>
+<p>In the preceding program, we fanned out <code>n</code> <code>fill</code> coroutines which each provided <code>n</code> values to their respective channels.</p>
+<p>Our fan-in was consolidating values through <code>drain</code> and then passing the final result to <code>printer</code>.</p>
+<p>We made sure the program would run to total completion by using channel closure and the blocking properties of unbuffered channels to synchronize between goroutines.</p>
+</div>
+  
+</article>
+<button class="floating-button">
+    <a class="floating-button__link" href="https://seh.dev/">
+        <span>home</span>
+    </a>
+</button>
+
+
+    </div>
+    
+    <footer class="post-footer">
+    <div class="footer">
+        
+            <div>© 2022, Sean Hinchee</div>
+        
+        <div class="footer__socials">
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+
+
+    
+    
+      
+<script src="https://seh.dev/js/script.js"></script>
+
+    
+  </body>
+</html>

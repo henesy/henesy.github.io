@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2022, Sean Hinchee</copyright>
-    <lastBuildDate>Fri, 25 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 Jun 2022 00:00:00 +0000</lastBuildDate>
     
   <atom:link href="https://seh.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>go</title>
+      <link>https://seh.dev/tags/go/</link>
+      <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/tags/go/</guid>
+      <description></description>
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
+    </item>
     
     <item>
       <title>plan9</title>
@@ -51,17 +62,6 @@
       <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>https://seh.dev/tags/limbo/</guid>
-      <description></description>
-	  <mp3></mp3>
-	  <youtube_id></youtube_id>
-    </item>
-    
-    <item>
-      <title>go</title>
-      <link>https://seh.dev/tags/go/</link>
-      <pubDate>Tue, 29 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://seh.dev/tags/go/</guid>
       <description></description>
 	  <mp3></mp3>
 	  <youtube_id></youtube_id>

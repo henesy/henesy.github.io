@@ -7,10 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2022, Sean Hinchee</copyright>
-    <lastBuildDate>Fri, 25 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 Jun 2022 00:00:00 +0000</lastBuildDate>
     
   <atom:link href="https://seh.dev/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go Patterns - Fanning</title>
+      <link>https://seh.dev/concy0/</link>
+      <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://seh.dev/concy0/</guid>
+      <description>Go Patterns - Fanning Background The summer of 2022 I had the chance to explain Go programming patterns I - and I assume others - use regularly in writing concurrent systems to my three interns.
+Although many university courses will talk about threading, they do not necessarily discuss concurrency, rarely if ever Go, and rarely go in depth on polymorphism.
+The state of affairs is unfortunate, because it means that although Go and plenty of other &amp;lsquo;current generation&amp;rsquo; programming languages have been publicly available for years, Go since at least 2012, the situation in many computer science programs is not very different from the state of affairs ten years ago.</description>
+	  <mp3></mp3>
+	  <youtube_id></youtube_id>
+    </item>
     
     <item>
       <title>Writing UTF-8 Programs in Plan 9</title>
