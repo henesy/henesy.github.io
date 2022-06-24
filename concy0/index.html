@@ -133,16 +133,16 @@
   
     <div class="post-content"><h1 id="go-patterns---fanning">Go Patterns - Fanning</h1>
 <h2 id="background">Background</h2>
-<p>The summer of 2022 I had the chance to explain Go programming patterns I - and I assume others - use regularly in writing concurrent systems to my three interns.</p>
+<p>The summer of 2022 I had the chance to explain Go programming patterns I - and I assume others - use regularly in writing concurrent systems to my three interns who had never seen Go before.</p>
 <p>Although many university courses will talk about threading, they do not necessarily discuss concurrency, rarely if ever Go, and rarely go in depth on polymorphism.</p>
-<p>The state of affairs is unfortunate, because it means that although Go and plenty of other &lsquo;current generation&rsquo; programming languages have been publicly available for years, <a href="https://tip.golang.org/doc/devel/release#go1">Go since at least 2012</a>, the situation in many computer science programs is not very different from the state of affairs ten years ago.</p>
-<p>Fortunately, Go comes with a broad set of thorough documentation with plenty of examples, which is great, but when you want to introduce multiple concepts at the same time, composed, that are foreign to an audience, you need comprehensive demonstrations.</p>
-<p>This series will hopefully a composition of examples I have given my interns in one form or another.</p>
+<p>The state of affairs is unfortunate, it means that although Go and plenty of other &lsquo;current generation&rsquo; programming languages have been publicly available for years, <a href="https://tip.golang.org/doc/devel/release#go1">Go since at least 2012</a>, the present situation in many computer science programs is not very different from the state of affairs ten years ago.</p>
+<p>Fortunately, Go comes with a broad set of thorough documentation with plenty of examples, which is great, but when you want to introduce multiple concepts at the same time, composed, that are foreign to an audience, you want comprehensive demonstrations of such.</p>
+<p>This series will hopefully be a composition of examples I have given my interns in one form or another.</p>
 <h2 id="fanning">Fanning</h2>
 <p>Fanning is a handwave-y term for &lsquo;taking a lot of stuff, using it in a variety of different places, and consolidating it all back to one place.&rsquo;</p>
 <p>In mathematical terms, we could make some kind of definition like &lsquo;one to many&rsquo; then &lsquo;many to one&rsquo; relationships, but I am unfortunately not a mathematician.</p>
 <p>There are a vast number of ways to go about fulfilling the preceding definitions, but in Go our scenario is typically that we want to write a program which is <a href="https://go.dev/blog/waza-talk">concurrent</a>, <a href="https://go.dev/blog/codelab-share">does not share memory</a>, <a href="https://go.dev/blog/go1.18">and nowadays</a> - <a href="https://go.dev/doc/tutorial/generics">might use polymorphism</a>.</p>
-<p>For the record, I do not particularly like the examples given in the Go generics documentation, so I reject them and substitute my own. This is probably because most of my polymorphic programming was in <a href="https://seh.dev/limbgo/">Limbo</a> where I ended up <a href="https://github.com/henesy/limbobyexample">also writing my own examples</a>.</p>
+<p>For the record, I do not particularly like the examples given in the Go generics documentation, so I reject them and substitute my own. This is almost certainly motived by most of my polymorphic programming being in <a href="https://seh.dev/limbgo/">Limbo</a> where I ended up <a href="https://github.com/henesy/limbobyexample">writing my own examples</a>.</p>
 <p>So, here&rsquo;s an example very similar to one I gave my interns:</p>
 <p><a href="./fanning.go">fanning.go</a> | <a href="https://go.dev/play/p/-wuQYKzHgaM">playground</a></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
@@ -236,8 +236,8 @@
 	<span style="color:#000;font-weight:bold">return</span> b
 }
 </code></pre></div><p>There&rsquo;s a lot to unpack here!</p>
-<p>A bunch of different Go patterns floating around, from the top!</p>
-<p>The experimental polymorphic packages, providing <a href="godocs.io/golang.org/x/exp/constraints">premade type constraints</a> and <a href="https://godocs.io/golang.org/x/exp/slices">generic slice utilities, respectively</a>.</p>
+<p>A bunch of different Go patterns are floating around, from the top!</p>
+<p>The experimental polymorphic packages, providing <a href="godocs.io/golang.org/x/exp/constraints">premade type constraints</a> and <a href="https://godocs.io/golang.org/x/exp/slices">generic slice utilities</a>, respectively.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#d14">&#34;golang.org/x/exp/constraints&#34;</span>
 	<span style="color:#d14">&#34;golang.org/x/exp/slices&#34;</span>
 </code></pre></div><p>We define our own interface for &lsquo;numbers&rsquo;, mostly to make a visible example:</p>
