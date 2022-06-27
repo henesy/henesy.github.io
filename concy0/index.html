@@ -144,7 +144,7 @@
 <p>There are a vast number of ways to go about fulfilling the preceding definitions, but in Go our scenario is typically that we want to write a program which is <a href="https://go.dev/blog/waza-talk">concurrent</a>, <a href="https://go.dev/blog/codelab-share">does not share memory</a>, <a href="https://go.dev/blog/go1.18">and nowadays</a> - <a href="https://go.dev/doc/tutorial/generics">might use polymorphism</a>.</p>
 <p>For the record, I do not particularly like the examples given in the Go generics documentation, so I reject them and substitute my own. This is almost certainly motived by most of my polymorphic programming being in <a href="https://seh.dev/limbgo/">Limbo</a> where I ended up <a href="https://github.com/henesy/limbobyexample">writing my own examples</a>.</p>
 <p>So, here&rsquo;s an example very similar to one I gave my interns:</p>
-<p><a href="./fanning.go">fanning.go</a> | <a href="https://go.dev/play/p/-wuQYKzHgaM">playground</a></p>
+<p><a href="./fanning.go">fanning.go</a> | <a href="https://go.dev/play/p/K10xtOP7-63">playground</a></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
 
 <span style="color:#000;font-weight:bold">import</span> (
@@ -177,11 +177,10 @@
 			<span style="color:#000;font-weight:bold">select</span> {
 			<span style="color:#000;font-weight:bold">case</span> x, ok <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&lt;-</span>c:
 				<span style="color:#000;font-weight:bold">if</span> !ok {
-					chans = slices.<span style="color:#900;font-weight:bold">Delete</span>(chans, <span style="color:#900;font-weight:bold">max</span>(<span style="color:#099">0</span>, i), <span style="color:#900;font-weight:bold">min</span>(i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>, <span style="color:#0086b3">len</span>(chans)))
+					<span style="color:#998;font-style:italic">// Illustrative, this is O(n²)
+</span><span style="color:#998;font-style:italic"></span>					chans = slices.<span style="color:#900;font-weight:bold">Delete</span>(chans, <span style="color:#900;font-weight:bold">max</span>(<span style="color:#099">0</span>, i), <span style="color:#900;font-weight:bold">min</span>(i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>, <span style="color:#0086b3">len</span>(chans)))
 				}
 				res <span style="color:#000;font-weight:bold">+=</span> <span style="color:#900;font-weight:bold">square</span>(x)
-			<span style="color:#000;font-weight:bold">default</span>:
-				time.<span style="color:#900;font-weight:bold">Sleep</span>(<span style="color:#099">2</span> <span style="color:#000;font-weight:bold">*</span> time.Millisecond)
 			}
 		}
 	}
@@ -256,7 +255,7 @@
 	}
 	<span style="color:#0086b3">close</span>(c)
 }
-</code></pre></div><p>Drain takes a slice of input channels, <code>chans</code>, and a channel for a final value, <code>results</code>. While there are channels in <code>chans</code>, for every channel in <code>chans</code>, if said channel has a value <code>x</code> in it, sum the square of <code>x</code> to the final value <code>res</code>, if the channel is closed, remove the channel from <code>chans</code>. If a channel isn&rsquo;t ready to be read from, sleep for <code>2ms</code>. After all channels have been exhausted, write the final value to <code>results</code> and close the channel <code>results</code>.</p>
+</code></pre></div><p>Drain takes a slice of input channels, <code>chans</code>, and a channel for a final value, <code>results</code>. While there are channels in <code>chans</code>, for every channel in <code>chans</code>, if said channel has a value <code>x</code> in it, sum the square of <code>x</code> to the final value <code>res</code>, if the channel is closed, remove the channel from <code>chans</code>. After all channels have been exhausted, write the final value to <code>results</code> and close the channel <code>results</code>.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> drain[T Numeric](chans []<span style="color:#000;font-weight:bold">chan</span> T, results <span style="color:#000;font-weight:bold">chan</span> T) {
 	<span style="color:#000;font-weight:bold">var</span> res T
 	<span style="color:#000;font-weight:bold">for</span> <span style="color:#0086b3">len</span>(chans) &gt; <span style="color:#099">0</span> {
@@ -264,11 +263,10 @@
 			<span style="color:#000;font-weight:bold">select</span> {
 			<span style="color:#000;font-weight:bold">case</span> x, ok <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&lt;-</span>c:
 				<span style="color:#000;font-weight:bold">if</span> !ok {
-					chans = slices.<span style="color:#900;font-weight:bold">Delete</span>(chans, <span style="color:#900;font-weight:bold">max</span>(<span style="color:#099">0</span>, i), <span style="color:#900;font-weight:bold">min</span>(i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>, <span style="color:#0086b3">len</span>(chans)))
+					<span style="color:#998;font-style:italic">// Illustrative, this is O(n²)
+</span><span style="color:#998;font-style:italic"></span>					chans = slices.<span style="color:#900;font-weight:bold">Delete</span>(chans, <span style="color:#900;font-weight:bold">max</span>(<span style="color:#099">0</span>, i), <span style="color:#900;font-weight:bold">min</span>(i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>, <span style="color:#0086b3">len</span>(chans)))
 				}
 				res <span style="color:#000;font-weight:bold">+=</span> <span style="color:#900;font-weight:bold">square</span>(x)
-			<span style="color:#000;font-weight:bold">default</span>:
-				time.<span style="color:#900;font-weight:bold">Sleep</span>(<span style="color:#099">2</span> <span style="color:#000;font-weight:bold">*</span> time.Millisecond)
 			}
 		}
 	}
